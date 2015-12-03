@@ -1,0 +1,21 @@
+body {
+    background-color: #f2f8fc;
+    padding: 10px;
+}
+
+label {
+    width: 80px;
+    vertical-align: top;
+}
+
+input {
+    width: 200px;
+}
+
+input[type="file"] {
+    display: inline;
+}
+
+textarea {
+    width: 200px;
+}

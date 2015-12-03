@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<ImportResponse><Result><Success>true</Success><Test>true</Test><ResultMessage>Shipment 3245325 successfully created</ResultMessage><ShipmentLabelLink>https://mercury.landmarkglobal.com/shipments/getLabel.php?sid=xxx</ShipmentLabelLink><Packages><Package><TrackingNumber>LTN_test17316927N1</TrackingNumber><LandmarkTrackingNumber>LTN_test17316927N1</LandmarkTrackingNumber><LabelLink>https://mercury.landmarkglobal.com/shipments/getLabel.php?tid=xxx&amp;t=pdf</LabelLink></Package></Packages></Result></ImportResponse>

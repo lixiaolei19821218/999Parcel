@@ -1,0 +1,263 @@
+
+div.container {
+	max-width: 988px;
+}
+
+body.gf {
+	font-family: '微软雅黑',Arial,Verdana,sans-serif;
+	padding: 0;
+}
+
+body.gf .header {
+	min-height: 88px;
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	background-color: #fff;
+}
+
+body.gf .main {
+}
+
+body.gf .footer {
+	min-height: 260px;
+	background-color: #1A1F2F;
+	line-height: 28px;
+}
+
+#editable-toolbar {
+	background-color: #fffcc3;
+	border: 1px solid #ccc;
+	padding: 4px;
+    position: fixed;
+    z-index: 700;
+    left: -6px;
+    top: -3px;
+}
+#editable-toolbar a {
+    border-left: 1px solid #666;
+    padding: 0 5px;
+    font-style: italic;
+    text-decoration: none;
+	color: #000;
+}
+#editable-loading {display:none}
+
+ul.breadcrumb {
+	margin: 0;
+	padding: 0;
+}
+.latest-news p {
+	margin-bottom: 0;
+}
+
+.sz16 {font-size: 16px}
+.bold {font-weight: bold}
+.cb {clear: both}
+.fl {float: left}
+.fr {float: right}
+.udl {text-decoration: underline}
+.tac {text-align: center}
+.tar {text-align: right}
+.tal {text-align: left}
+.clrw1, a.clrw1 {color: #F1F1F2}
+.clrb1, a.clrb1 {color: #909AC1}
+.clrb2, a.clrb2 {color: #313443}
+.clrb3, a.clrb3 {color: #0075C2}
+.clrb4, a.clrb4 {color: #1D2032}
+.clrb5, a.clrb5 {color: #24548D}
+.clrr1 {color: #f00}
+.bdr1 {border-right: 1px solid #484D60}
+
+.prompt {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.pd1 {padding: 3px 5px}
+.pd2 {padding: 0 10px}
+.pd3 {padding: 7px 13px; line-height: 20px}
+.pd4 {margin-top:10px; margin-bottom:5px; padding: 5px 10px}
+.pd5 {padding: 7px 5px}
+.pd6 {padding: 15px 5px 0}
+.pd7 {padding: 5px}
+
+.mg1 {margin-top: 20px}
+.mg2 {line-height:22px;margin-top:7px;display:block;padding-left:30px}
+.rds1 {border-top-left-radius: 10px;border-top-right-radius: 10px}
+.rds2 {border-bottom-left-radius: 10px;border-bottom-right-radius: 10px}
+.bg1 {background-image: url(/static/img/bg1.png)}
+.bg2 {background-image: url(/static/img/bg2.png)}
+.bg3 {background-image: url(/static/img/bg3.png)}
+.bg4 {background-color: #E4EAEE}
+.bg5 {background-image:url(/static/img/bg5.png);background-repeat:no-repeat}
+.btn1 {
+	background-color: #0075C2;
+	width:20px; height:20px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	border: none;
+	display: inline-block;
+	line-height: 20px;
+	padding: 0;
+}
+.btn2 {
+	background-color: #908A94;
+	width:20px; height:20px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	border: none;
+	display: inline-block;
+	line-height: 20px;
+	padding: 0;
+}
+a.hv1:hover, a.hv1.active {
+	background-color: #292D40;
+	color: #fff;
+	text-decoration: none;
+}
+.input1 {padding: 0 3px}
+.input1 input[type="text"] {max-width:60%;margin-bottom:0;height:26px;padding:3px}
+.login-form input[type="text"] {
+	width: 100%;
+	margin-bottom: 0;
+	padding: 3px;
+}
+.login-form input[type="password"] {
+	width: 100%;
+	margin-bottom: 0;
+	padding: 3px;
+}
+.login-form td {
+	padding: 6px;
+}
+
+.buzou {
+	width: 120px;
+	height: 42px;
+	line-height: 30px;
+	color: #F1F1F2;
+	margin: 0 10px;
+	padding-left: 7px;
+}
+.buzou.active {
+	width: 160px;
+	margin: 0 -11px;
+	background: url(/static/img/buzou.png) -2px -51px no-repeat;
+	text-align: center;
+	padding-left: 0;
+}
+.buzou.active-last {
+	background: url(/static/img/buzou.png) -160px -51px no-repeat;
+	margin-left: -10px;
+	width: 140px;
+}
+table.table-products th, table.table-orders th {
+	background: url(/static/img/bg1.png) 0 -188px repeat-x;
+	border-top: 1px solid #fff !important;
+}
+table.table-orders {border: 1px solid #ddd}
+table.table-orders tr th {
+	background: url(/static/img/bg1.png) 0 -174px repeat-x;
+	padding: 15px 20px
+}
+table.table-orders tr td {
+	padding: 16px 20px
+}
+.ac-tb table tr th {
+	background: url(/static/img/bg-tb.png) 0 0 repeat-x;
+	padding: 15px 5px;
+}
+.ac-tb table tr td {
+	background-color: #fff;
+	padding: 10px 5px;
+}
+
+.btn-hover {margin-left: 10px !important}
+.btn-hover span {display: none}
+.btn-hover:hover span {display: inline; padding-left: 3px}
+.ib {display:inline-block; vertical-align:top}
+.mx_cal {margin-left:3px}
+.errorlist {color:#f00}
+.btn-small {
+	border-radius: 3px;
+    font-size: 11.9px;
+    padding: 2px 10px;
+}
+.btn_mx {
+	border-radius: 3px;
+    font-size: 11.9px;
+    padding: 2px 7px;
+}
+.input-append {display:inline-block}
+label {margin-bottom:0; vertical-align:middle}
+input[type="text"], input[type="password"], textarea, select {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.controls input[type="text"], .controls input[type="password"] {
+	margin-bottom: 0;
+	height: 26px;
+}
+.form-cart .quantity input[type="text"] {
+    width: 38px;
+}
+
+.breadcrumb > li + li:before {
+    color: #333;
+    content: "/";
+    padding: 0 5px;
+}
+i.dl {
+	background:url(/static/img/dl.png) -4px -2px no-repeat;
+	height: 20px; width: 20px;
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#contact-collapsed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 160px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #843E5A;
+}
+
+#contact {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 320px;
+//    height: 450px;
+    display: none;
+}
+
+#contact-title {
+    background-color: #843E5A;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.s-minimize, .s-maximize, .s-file, .s-email, .s-twitter, .s-thumb-up, .s-thumb-down, .s-facebook, .s-close, .s-cancel, .s-mobile {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url(http://cdn.livechatinc.com/img/sprites.20141118102754.png);
+    background-repeat: no-repeat;
+}
+
+.s-maximize {
+    background-position: 0px -15px;
+    width: 17px;
+    height: 12px;
+}
+
+.s-minimize {
+    background-position: -24px 0px;
+    width: 17px;
+    height: 12px;
+}

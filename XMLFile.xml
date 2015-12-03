@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ImportRequest>
+  <Login>
+    <Username>demoapi</Username>
+    <Password>demo123</Password>
+  </Login>
+  <Test>true</Test>
+  <!-- Optional. Defaults to true before account activation, false afterwards -->
+  <ClientID>218</ClientID>
+  <!-- Required if more than one client under user, otherwise Optional -->
+  <Reference>3245325</Reference>
+  <ShipTo>
+    <Name>Test Company</Name>
+    <Attention>Ole Olsen</Attention>
+    <!-- Optional -->
+    <Address1>5130 Halford Drive</Address1>
+    <Address2>Building #C</Address2>
+    <!-- Optional -->
+    <Address3>Unit 1</Address3>
+    <!-- Optional -->
+    <City>Windsor</City>
+    <State>ON</State>
+    <PostalCode>N9A6J3</PostalCode>
+    <Country>CA</Country>
+    <!-- 2 character ISO Code -->
+    <Phone>1-519-737-9101</Phone>
+    <!-- Optional, but encouraged -->
+    <Email>orders@test.com</Email>
+    <!-- Optional -->
+    <Region>Canada</Region>
+    <!-- Default 'Canada' -->
+    <Residential>true</Residential>
+    <!-- Optional -->
+  </ShipTo>
+  <ShipMethod>LGINTSTD</ShipMethod>
+  <ItemsCurrency>USD</ItemsCurrency>
+  <!-- Optional, and only used when client uses multiple currencies.  If used, pass the 3 character ISO 4217 code to represent the currency (i.e. USD, CAD)  -->
+
+  <!-- Optional, Whether or not to return a generic label even though the shipment will not be processed. -->
+  <ProduceLabel>false</ProduceLabel>
+
+  <!-- Optional, only used if ProduceLabel = true. Default is PDF.  Also supports JPG, GIF, BMP, ZPL and PNG -->
+  <LabelFormat>PDF</LabelFormat>
+
+  <!-- Optional, only used if ProduceLabel = true. Default is "LINKS" (if LabelFormat = ZPL, default is "ZPL").
+                    LINKS - returns links to all labels which must be retrieved in <LabelLink> tag.
+                    ZPL - label image returned as ZPL in <LabelImage> tag. This type automatically chosen if LabelFormat = ZPL.
+                    BASE64 - Base64 encoded label image is returned directly in the XML response in <LabelImage> tag.
+                    BASE64COMPRESSED - GZcompressed and Base64 encoded label image is returned directly in the XML response in <LabelImage> tag.
+                -->
+  <LabelEncoding>LINKS</LabelEncoding>
+
+  <ShipOptions>
+    <!-- Optional, For a list of available options, contact your account rep -->
+    <Option>
+      <Name>dummy_option</Name>
+      <Value>true</Value>
+    </Option>
+  </ShipOptions>
+  <VendorInformation>
+    <!-- Conditional.  Required if providing third party logistics for the client. Information here represents the actual vendor (retailer) name and address for the items sold in the order. -->
+    <VendorName>Test Company Legal Name</VendorName>
+    <VendorAddress1>Sample Company Street</VendorAddress1>
+    <VendorAddress2>Suite 135</VendorAddress2>
+    <VendorCity>Santa Barbara</VendorCity>
+    <VendorState>CA</VendorState>
+    <VendorPostalCode>93101</VendorPostalCode>
+    <VendorCountry>US</VendorCountry>
+  </VendorInformation>
+  <AdditionalFields>
+    <!-- Optional.  Used to store any other additional information the client 
+wants to pass.  Up to 5 additional fields may be passed. -->
+    <Field1>Any type of data</Field1>
+    <!-- Optional -->
+    <Field2>Purchased with Credit Card</Field2>
+    <!-- Optional -->
+    <Field3>99000029327172321</Field3>
+    <!-- Optional -->
+    <Field4>123198012</Field4>
+    <!-- Optional -->
+    <Field5>Stored information</Field5>
+    <!-- Optional -->
+  </AdditionalFields>
+  <PickSlipAdditions>
+    <!-- Optional, Used to display additional information on the pick slip. Such as a charge or memo -->
+    <Charges>
+      <!-- Optional. Additional charges besides the charges for each item -->
+      <Charge>
+        <Description>Gift Card Code: DISCOUNTHOUND</Description>
+        <Value>-7.25</Value>
+      </Charge>
+      <Charge>
+        <Description>Sales Tax</Description>
+        <Value>1.59</Value>
+      </Charge>
+    </Charges>
+    <Memos>
+      <!-- Optional -->
+      <Memo>You will receive 15% off your next order with coupon code SAVE15</Memo>
+    </Memos>
+  </PickSlipAdditions>
+  <Packages>
+    <!-- Do not include the Packages node for orders Landmark is fulfilling -->
+    <Package>
+      <Weight>4.5</Weight>
+      <!-- (lbs) -->
+      <Length>12</Length>
+      <!-- Inches, Optional -->
+      <Width>12</Width>
+      <!-- Inches, Optional -->
+      <Height>12</Height>
+      <!-- Inches, Optional -->
+      <PackageReference>98233312</PackageReference>
+      <!-- Optional.  Another reference for the client -->
+    </Package>
+    <Package>
+      <Weight>8</Weight>
+      <!-- (lbs) -->
+      <Length>12</Length>
+      <!-- Inches, Optional -->
+      <Width>12</Width>
+      <!-- Inches, Optional -->
+      <Height>12</Height>
+      <!-- Inches, Optional -->
+      <PackageReference>98233310</PackageReference>
+      <!-- Optional.  Another reference for the client -->
+    </Package>
+  </Packages>
+  <Items>
+    <!-- Required for customs if the shipment will be crossing the border -->
+    <Item>
+      <Sku>7224059</Sku>
+      <Quantity>2</Quantity>
+      <UnitPrice>93.99</UnitPrice>
+      <!-- (USD) -->
+      <Description>Women's Shoes</Description>
+      <HSCode>640399.30.00</HSCode>
+      <!-- Optional -->
+      <CountryOfOrigin>CN</CountryOfOrigin>
+      <!-- 2 character ISO code -->
+
+      <!-- Optional Tag for Cost of Insurance + Freight. -->
+      <!-- Note: This value is NOT inclusive of the unit price and is un-affected by quantity. -->
+      <CIFValue>23.00</CIFValue>
+    </Item>
+  </Items>
+</ImportRequest>
