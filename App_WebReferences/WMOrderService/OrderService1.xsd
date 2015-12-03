@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WM_Project.control" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WM_Project.control" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="QuotaRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Destination" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Length" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Post_way" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QuotaRequest" nillable="true" type="tns:QuotaRequest" />
+  <xs:complexType name="QuotaResponse">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Errors" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Price" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QuotaResponse" nillable="true" type="tns:QuotaResponse" />
+  <xs:complexType name="LoginRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginRequest" nillable="true" type="tns:LoginRequest" />
+  <xs:complexType name="LoginResponse">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Errors" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginResponse" nillable="true" type="tns:LoginResponse" />
+  <xs:complexType name="AccountBalanceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountBalanceRequest" nillable="true" type="tns:AccountBalanceRequest" />
+  <xs:complexType name="AccountBalanceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountBalance" type="xs:float" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Errors" nillable="true" type="q3:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountBalanceResponse" nillable="true" type="tns:AccountBalanceResponse" />
+  <xs:complexType name="OrderResponse">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Errors" nillable="true" type="q4:ArrayOfstring" />
+      <xs:element minOccurs="0" name="LeaderOrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderResponse" nillable="true" type="tns:OrderResponse" />
+  <xs:complexType name="LabelResponse">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Errors" nillable="true" type="q5:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Label" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LabelResponse" nillable="true" type="tns:LabelResponse" />
+  <xs:complexType name="LocalOrderRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Items" type="xs:int" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Packagenumber" nillable="true" type="q6:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderCompanyname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderContactName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderContry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderPostCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Shippingtype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Weight" nillable="true" type="q7:ArrayOffloat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocalOrderRequest" nillable="true" type="tns:LocalOrderRequest" />
+  <xs:complexType name="LocalOrderResponse">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Errors" nillable="true" type="q8:ArrayOfstring" />
+      <xs:element minOccurs="0" name="LeaderOrderNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="LocalPdf" nillable="true" type="q9:ArrayOfbase64Binary" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TrackNumber" nillable="true" type="q10:ArrayOfstring" />
+      <xs:element minOccurs="0" name="WM_LeaderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WM_OrderNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocalOrderResponse" nillable="true" type="tns:LocalOrderResponse" />
+</xs:schema>

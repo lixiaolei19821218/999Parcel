@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="YCShipmentService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/YCShipmentService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IYCShipmentService_DeleteShipment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShipment" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_DeleteShipment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShipmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RetrieveShipmentLabels_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveShipmentLabels" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RetrieveShipmentLabels_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveShipmentLabelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessShipment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessShipment" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessShipment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessShipmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessShipmentEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessShipmentEx" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessShipmentEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessShipmentExResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessB2CShipmentEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessB2CShipmentEx" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessB2CShipmentEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessB2CShipmentExResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessAllB2CShipmentEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessAllB2CShipmentEx" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessAllB2CShipmentEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessAllB2CShipmentExResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_GetAllB2CRegisterProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllB2CRegisterProducts" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_GetAllB2CRegisterProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllB2CRegisterProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ShipmentQuote_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShipmentQuote" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ShipmentQuote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShipmentQuoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_PreLoadAllShipmentPrice_InputMessage">
+    <wsdl:part name="parameters" element="tns:PreLoadAllShipmentPrice" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_PreLoadAllShipmentPrice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PreLoadAllShipmentPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ValidShipmentServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidShipmentServices" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ValidShipmentServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidShipmentServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_VerifyEmsIdServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyEmsIdServices" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_VerifyEmsIdServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyEmsIdServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_UploadAuthenticateIdServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadAuthenticateIdServices" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_UploadAuthenticateIdServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadAuthenticateIdServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_GetTrackingInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrackingInformation" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_GetTrackingInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrackingInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessProductPurchase_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessProductPurchase" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_ProcessProductPurchase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessProductPurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RetrieveProductPurchaseStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveProductPurchaseStatus" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RetrieveProductPurchaseStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveProductPurchaseStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_LoadHaiTaoDropdownResources_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadHaiTaoDropdownResources" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_LoadHaiTaoDropdownResources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadHaiTaoDropdownResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_PlaceHTOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlaceHTOrder" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_PlaceHTOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlaceHTOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RetrieveHTOrderInfomation_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveHTOrderInfomation" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RetrieveHTOrderInfomation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveHTOrderInfomationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RegisterProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterProduct" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_RegisterProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_CheckProductRegisterStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckProductRegisterStatus" />
+  </wsdl:message>
+  <wsdl:message name="IYCShipmentService_CheckProductRegisterStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckProductRegisterStatusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IYCShipmentService">
+    <wsdl:operation name="DeleteShipment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/DeleteShipment" message="tns:IYCShipmentService_DeleteShipment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/DeleteShipmentResponse" message="tns:IYCShipmentService_DeleteShipment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveShipmentLabels">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/RetrieveShipmentLabels" message="tns:IYCShipmentService_RetrieveShipmentLabels_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/RetrieveShipmentLabelsResponse" message="tns:IYCShipmentService_RetrieveShipmentLabels_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessShipment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessShipment" message="tns:IYCShipmentService_ProcessShipment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessShipmentResponse" message="tns:IYCShipmentService_ProcessShipment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessShipmentEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessShipmentEx" message="tns:IYCShipmentService_ProcessShipmentEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessShipmentExResponse" message="tns:IYCShipmentService_ProcessShipmentEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessB2CShipmentEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessB2CShipmentEx" message="tns:IYCShipmentService_ProcessB2CShipmentEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessB2CShipmentExResponse" message="tns:IYCShipmentService_ProcessB2CShipmentEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessAllB2CShipmentEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessAllB2CShipmentEx" message="tns:IYCShipmentService_ProcessAllB2CShipmentEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessAllB2CShipmentExResponse" message="tns:IYCShipmentService_ProcessAllB2CShipmentEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllB2CRegisterProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/GetAllB2CRegisterProducts" message="tns:IYCShipmentService_GetAllB2CRegisterProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/GetAllB2CRegisterProductsResponse" message="tns:IYCShipmentService_GetAllB2CRegisterProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShipmentQuote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ShipmentQuote" message="tns:IYCShipmentService_ShipmentQuote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ShipmentQuoteResponse" message="tns:IYCShipmentService_ShipmentQuote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PreLoadAllShipmentPrice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/PreLoadAllShipmentPrice" message="tns:IYCShipmentService_PreLoadAllShipmentPrice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/PreLoadAllShipmentPriceResponse" message="tns:IYCShipmentService_PreLoadAllShipmentPrice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidShipmentServices">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ValidShipmentServices" message="tns:IYCShipmentService_ValidShipmentServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ValidShipmentServicesResponse" message="tns:IYCShipmentService_ValidShipmentServices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyEmsIdServices">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/VerifyEmsIdServices" message="tns:IYCShipmentService_VerifyEmsIdServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/VerifyEmsIdServicesResponse" message="tns:IYCShipmentService_VerifyEmsIdServices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadAuthenticateIdServices">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/UploadAuthenticateIdServices" message="tns:IYCShipmentService_UploadAuthenticateIdServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/UploadAuthenticateIdServicesResponse" message="tns:IYCShipmentService_UploadAuthenticateIdServices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackingInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/GetTrackingInformation" message="tns:IYCShipmentService_GetTrackingInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/GetTrackingInformationResponse" message="tns:IYCShipmentService_GetTrackingInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessProductPurchase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessProductPurchase" message="tns:IYCShipmentService_ProcessProductPurchase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/ProcessProductPurchaseResponse" message="tns:IYCShipmentService_ProcessProductPurchase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProductPurchaseStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/RetrieveProductPurchaseStatus" message="tns:IYCShipmentService_RetrieveProductPurchaseStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/RetrieveProductPurchaseStatusResponse" message="tns:IYCShipmentService_RetrieveProductPurchaseStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadHaiTaoDropdownResources">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/LoadHaiTaoDropdownResources" message="tns:IYCShipmentService_LoadHaiTaoDropdownResources_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/LoadHaiTaoDropdownResourcesResponse" message="tns:IYCShipmentService_LoadHaiTaoDropdownResources_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlaceHTOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/PlaceHTOrder" message="tns:IYCShipmentService_PlaceHTOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/PlaceHTOrderResponse" message="tns:IYCShipmentService_PlaceHTOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveHTOrderInfomation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/RetrieveHTOrderInfomation" message="tns:IYCShipmentService_RetrieveHTOrderInfomation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/RetrieveHTOrderInfomationResponse" message="tns:IYCShipmentService_RetrieveHTOrderInfomation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/RegisterProduct" message="tns:IYCShipmentService_RegisterProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/RegisterProductResponse" message="tns:IYCShipmentService_RegisterProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckProductRegisterStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IYCShipmentService/CheckProductRegisterStatus" message="tns:IYCShipmentService_CheckProductRegisterStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IYCShipmentService/CheckProductRegisterStatusResponse" message="tns:IYCShipmentService_CheckProductRegisterStatus_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IYCShipmentService" type="tns:IYCShipmentService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteShipment">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/DeleteShipment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveShipmentLabels">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/RetrieveShipmentLabels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessShipment">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ProcessShipment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessShipmentEx">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ProcessShipmentEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessB2CShipmentEx">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ProcessB2CShipmentEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessAllB2CShipmentEx">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ProcessAllB2CShipmentEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllB2CRegisterProducts">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/GetAllB2CRegisterProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShipmentQuote">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ShipmentQuote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreLoadAllShipmentPrice">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/PreLoadAllShipmentPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidShipmentServices">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ValidShipmentServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyEmsIdServices">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/VerifyEmsIdServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadAuthenticateIdServices">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/UploadAuthenticateIdServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackingInformation">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/GetTrackingInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessProductPurchase">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/ProcessProductPurchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProductPurchaseStatus">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/RetrieveProductPurchaseStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadHaiTaoDropdownResources">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/LoadHaiTaoDropdownResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlaceHTOrder">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/PlaceHTOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveHTOrderInfomation">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/RetrieveHTOrderInfomation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterProduct">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/RegisterProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckProductRegisterStatus">
+      <soap:operation soapAction="http://tempuri.org/IYCShipmentService/CheckProductRegisterStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="YCShipmentService">
+    <wsdl:port name="BasicHttpBinding_IYCShipmentService" binding="tns:BasicHttpBinding_IYCShipmentService">
+      <soap:address location="http://sandbox.51parcel.com/YCShipmentService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

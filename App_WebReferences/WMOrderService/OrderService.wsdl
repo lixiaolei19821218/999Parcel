@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OrderService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WM_Project.control" />
+      <xsd:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOrderService_Quota_InputMessage">
+    <wsdl:part name="parameters" element="tns:Quota" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_Quota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_LoginToWM_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginToWM" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_LoginToWM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginToWMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetAccountBalanceResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetAccountBalanceResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountBalanceResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_UpdateEmsStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmsStatus" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_UpdateEmsStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmsStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_OrderPlace_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderPlace" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_OrderPlace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrderPlaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetLabelByWMLeaderNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLabelByWMLeaderNumber" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetLabelByWMLeaderNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLabelByWMLeaderNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetLabelByPackgeNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLabelByPackgeNumber" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetLabelByPackgeNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLabelByPackgeNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetLabelByTrackNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLabelByTrackNumber" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_GetLabelByTrackNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLabelByTrackNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_PlaceLocalOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlaceLocalOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_PlaceLocalOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlaceLocalOrderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IOrderService">
+    <wsdl:operation name="Quota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/Quota" message="tns:IOrderService_Quota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/QuotaResponse" message="tns:IOrderService_Quota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginToWM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/LoginToWM" message="tns:IOrderService_LoginToWM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/LoginToWMResponse" message="tns:IOrderService_LoginToWM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountBalanceResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetAccountBalanceResponse" message="tns:IOrderService_GetAccountBalanceResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetAccountBalanceResponseResponse" message="tns:IOrderService_GetAccountBalanceResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmsStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/UpdateEmsStatus" message="tns:IOrderService_UpdateEmsStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/UpdateEmsStatusResponse" message="tns:IOrderService_UpdateEmsStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderPlace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/OrderPlace" message="tns:IOrderService_OrderPlace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/OrderPlaceResponse" message="tns:IOrderService_OrderPlace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLabelByWMLeaderNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetLabelByWMLeaderNumber" message="tns:IOrderService_GetLabelByWMLeaderNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetLabelByWMLeaderNumberResponse" message="tns:IOrderService_GetLabelByWMLeaderNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLabelByPackgeNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetLabelByPackgeNumber" message="tns:IOrderService_GetLabelByPackgeNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetLabelByPackgeNumberResponse" message="tns:IOrderService_GetLabelByPackgeNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLabelByTrackNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetLabelByTrackNumber" message="tns:IOrderService_GetLabelByTrackNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetLabelByTrackNumberResponse" message="tns:IOrderService_GetLabelByTrackNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlaceLocalOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/PlaceLocalOrder" message="tns:IOrderService_PlaceLocalOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/PlaceLocalOrderResponse" message="tns:IOrderService_PlaceLocalOrder_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IOrderService" type="tns:IOrderService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Quota">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/Quota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginToWM">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/LoginToWM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountBalanceResponse">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/GetAccountBalanceResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmsStatus">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/UpdateEmsStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderPlace">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/OrderPlace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLabelByWMLeaderNumber">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/GetLabelByWMLeaderNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLabelByPackgeNumber">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/GetLabelByPackgeNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLabelByTrackNumber">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/GetLabelByTrackNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlaceLocalOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/PlaceLocalOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderService">
+    <wsdl:port name="BasicHttpBinding_IOrderService" binding="tns:BasicHttpBinding_IOrderService">
+      <soap:address location="http://api-test.wm-global-express.net/WebService/OrderService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WM_Project.control" />
+  <xs:import schemaLocation="http://api-test.wm-global-express.net/WebService/OrderService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="Quota">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="priceRequest" nillable="true" type="q1:QuotaRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QuotaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="QuotaResult" nillable="true" type="q2:QuotaResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginToWM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="loginRequest" nillable="true" type="q3:LoginRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginToWMResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="LoginToWMResult" nillable="true" type="q4:LoginResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountBalanceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="accountBalanceRequest" nillable="true" type="q5:AccountBalanceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountBalanceResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="GetAccountBalanceResponseResult" nillable="true" type="q6:AccountBalanceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEmsStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ems_number" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="air_no" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pallet_no" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEmsStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateEmsStatusResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderPlace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Description" nillable="true" type="q7:ArrayOfstring" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PurposeOfShipment" nillable="true" type="q8:ArrayOfstring" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Height" nillable="true" type="q9:ArrayOffloat" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Length" nillable="true" type="q10:ArrayOffloat" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Width" nillable="true" type="q11:ArrayOffloat" />
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Weight" nillable="true" type="q12:ArrayOffloat" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Value" nillable="true" type="q13:ArrayOffloat" />
+        <xs:element minOccurs="0" name="Items" type="xs:int" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipeintPostCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipientAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipientCity" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipientCompanyName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipientContactName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipientCountry" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RecipientPhone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderCity" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderCompanyname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderContactName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderContry" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderPhone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SenderPostCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Shippingdate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderPlaceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="OrderPlaceResult" nillable="true" type="q14:OrderResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLabelByWMLeaderNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="WMLeaderNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLabelByWMLeaderNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="GetLabelByWMLeaderNumberResult" nillable="true" type="q15:LabelResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLabelByPackgeNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PackageNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLabelByPackgeNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="GetLabelByPackgeNumberResult" nillable="true" type="q16:LabelResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLabelByTrackNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="TrackNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLabelByTrackNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="GetLabelByTrackNumberResult" nillable="true" type="q17:LabelResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlaceLocalOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="localOrderRequest" nillable="true" type="q18:LocalOrderRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlaceLocalOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WM_Project.control" minOccurs="0" name="PlaceLocalOrderResult" nillable="true" type="q19:LocalOrderResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

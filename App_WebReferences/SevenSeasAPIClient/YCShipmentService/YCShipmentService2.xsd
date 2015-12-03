@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/YCShipmentService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/YCShipmentService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="DeleteShipmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="OrderReference" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeleteShipmentRequest" nillable="true" type="tns:DeleteShipmentRequest" />
+  <xs:complexType name="AuthenticationDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+  <xs:complexType name="DeleteShipmentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeleteShipmentResponse" nillable="true" type="tns:DeleteShipmentResponse" />
+  <xs:complexType name="ResponseStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="tns:ShipmentStatusCode" />
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseStatus" nillable="true" type="tns:ResponseStatus" />
+  <xs:simpleType name="ShipmentStatusCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS" />
+      <xs:enumeration value="FAILED" />
+      <xs:enumeration value="PEND" />
+      <xs:enumeration value="IDVERIFY" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ShipmentStatusCode" nillable="true" type="tns:ShipmentStatusCode" />
+  <xs:complexType name="ShipmentLabelsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="OrderReference" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShipmentLabelsRequest" nillable="true" type="tns:ShipmentLabelsRequest" />
+  <xs:complexType name="ProcessShipmentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CollectionReceiptImage" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CustomerDocumentImage" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CustomerLabelImage" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="OrderReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+      <xs:element minOccurs="0" name="TrackingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackingUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UKLabelImage" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessShipmentResponse" nillable="true" type="tns:ProcessShipmentResponse" />
+  <xs:complexType name="ProcessShipmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderTotalValue" type="xs:double" />
+      <xs:element minOccurs="0" name="PackageType" type="tns:PackageType" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+      <xs:element minOccurs="0" name="ShipFromAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToProvince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToQQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToWechat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipmentDetails" nillable="true" type="tns:ShipmentPackageDetails" />
+      <xs:element minOccurs="0" name="ShippingDate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessShipmentRequest" nillable="true" type="tns:ProcessShipmentRequest" />
+  <xs:simpleType name="PackageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Document">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Package">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PackageType" nillable="true" type="tns:PackageType" />
+  <xs:simpleType name="ServiceProvider">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ParcelForcePriority">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Anpost">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ParcelForceEconomyPickup">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ParcelForceEconomyDropOff">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="B2CRegular">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="_51Express" />
+      <xs:enumeration value="UK2UKCitylink">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AnpostInternational">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DHLInternational">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ParcelSpecialService">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="B2CDropoff">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">18</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ServiceProvider" nillable="true" type="tns:ServiceProvider" />
+  <xs:complexType name="ShipmentPackageDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ItemDetails" nillable="true" type="tns:ArrayOfProductDetails" />
+      <xs:element minOccurs="0" name="Length" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Weight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Width" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShipmentPackageDetails" nillable="true" type="tns:ShipmentPackageDetails" />
+  <xs:complexType name="ArrayOfProductDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDetails" nillable="true" type="tns:ProductDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductDetails" nillable="true" type="tns:ArrayOfProductDetails" />
+  <xs:complexType name="ProductDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="UnitPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductDetails" nillable="true" type="tns:ProductDetails" />
+  <xs:complexType name="ProcessShipmentRequestEx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderTotalValue" type="xs:double" />
+      <xs:element minOccurs="0" name="PackageType" type="tns:PackageType" />
+      <xs:element minOccurs="0" name="PurchaseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+      <xs:element minOccurs="0" name="ShipFromAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToProvince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToQQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToWechat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipmentDetails" nillable="true" type="tns:ShipmentPackageDetails" />
+      <xs:element minOccurs="0" name="ShippingDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UKShipmentType" type="tns:UKShipmentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessShipmentRequestEx" nillable="true" type="tns:ProcessShipmentRequestEx" />
+  <xs:simpleType name="UKShipmentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Send2Warehouse">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ParcelForceUK">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CollectPlus" />
+      <xs:enumeration value="DHLUK" />
+      <xs:enumeration value="Yodel" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UKShipmentType" nillable="true" type="tns:UKShipmentType" />
+  <xs:complexType name="ProcessB2CShipmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderTotalValue" type="xs:double" />
+      <xs:element minOccurs="0" name="PackageDetails" nillable="true" type="tns:ArrayOfB2CPackageDetails" />
+      <xs:element minOccurs="0" name="PackageType" type="tns:PackageType" />
+      <xs:element minOccurs="0" name="PurchaseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverIDCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+      <xs:element minOccurs="0" name="ShipFromAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToProvince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToQQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToWechat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UKShipmentType" type="tns:UKShipmentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessB2CShipmentRequest" nillable="true" type="tns:ProcessB2CShipmentRequest" />
+  <xs:complexType name="ArrayOfB2CPackageDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="B2CPackageDetails" nillable="true" type="tns:B2CPackageDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfB2CPackageDetails" nillable="true" type="tns:ArrayOfB2CPackageDetails" />
+  <xs:complexType name="B2CPackageDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductUniqueCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="B2CPackageDetails" nillable="true" type="tns:B2CPackageDetails" />
+  <xs:complexType name="ProcessB2CShipmentRequestEx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderTotalValue" type="xs:double" />
+      <xs:element minOccurs="0" name="PackageDetails" nillable="true" type="tns:ArrayOfB2CPackageDetails" />
+      <xs:element minOccurs="0" name="PackageType" type="tns:PackageType" />
+      <xs:element minOccurs="0" name="ParcelHeight" type="xs:double" />
+      <xs:element minOccurs="0" name="ParcelLength" type="xs:double" />
+      <xs:element minOccurs="0" name="ParcelWeight" type="xs:double" />
+      <xs:element minOccurs="0" name="ParcelWidth" type="xs:double" />
+      <xs:element minOccurs="0" name="PurchaseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverIDCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+      <xs:element minOccurs="0" name="ShipFromAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToProvince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToQQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToWechat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UKShipmentType" type="tns:UKShipmentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessB2CShipmentRequestEx" nillable="true" type="tns:ProcessB2CShipmentRequestEx" />
+  <xs:complexType name="B2CRegisterProductResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfB2CRegisterredProduct" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="B2CRegisterProductResponse" nillable="true" type="tns:B2CRegisterProductResponse" />
+  <xs:complexType name="ArrayOfB2CRegisterredProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="B2CRegisterredProduct" nillable="true" type="tns:B2CRegisterredProduct" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfB2CRegisterredProduct" nillable="true" type="tns:ArrayOfB2CRegisterredProduct" />
+  <xs:complexType name="B2CRegisterredProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductUniqueCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="B2CRegisterredProduct" nillable="true" type="tns:B2CRegisterredProduct" />
+  <xs:complexType name="ShipmentQuoteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="OrderTotalValue" type="xs:double" />
+      <xs:element minOccurs="0" name="PackageType" type="tns:PackageType" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+      <xs:element minOccurs="0" name="ShipToCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipmentDetails" nillable="true" type="tns:ShipmentPackageDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShipmentQuoteRequest" nillable="true" type="tns:ShipmentQuoteRequest" />
+  <xs:complexType name="ShipmentQuoteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderTotalPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OrderTotalWeight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShipmentQuoteResponse" nillable="true" type="tns:ShipmentQuoteResponse" />
+  <xs:complexType name="PreLoadAllShipmentPriceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PreLoadAllShipmentPriceRequest" nillable="true" type="tns:PreLoadAllShipmentPriceRequest" />
+  <xs:complexType name="PreLoadAllShipmentPriceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ShipmentPrice" nillable="true" type="tns:ArrayOfShipmentPrice" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PreLoadAllShipmentPriceResponse" nillable="true" type="tns:PreLoadAllShipmentPriceResponse" />
+  <xs:complexType name="ArrayOfShipmentPrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ShipmentPrice" nillable="true" type="tns:ShipmentPrice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfShipmentPrice" nillable="true" type="tns:ArrayOfShipmentPrice" />
+  <xs:complexType name="ShipmentPrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ServiceBasicPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ServicePrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ServiceProviderId" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+      <xs:element minOccurs="0" name="Weight" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShipmentPrice" nillable="true" type="tns:ShipmentPrice" />
+  <xs:complexType name="ShipmentServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+      <xs:element minOccurs="0" name="ValidServices" nillable="true" type="tns:ArrayOfServiceDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShipmentServiceResponse" nillable="true" type="tns:ShipmentServiceResponse" />
+  <xs:complexType name="ArrayOfServiceDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceDetails" nillable="true" type="tns:ServiceDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceDetails" nillable="true" type="tns:ArrayOfServiceDetails" />
+  <xs:complexType name="ServiceDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ServiceId" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceDetails" nillable="true" type="tns:ServiceDetails" />
+  <xs:complexType name="VerifyEmsIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="EmsIdList" nillable="true" type="tns:ArrayOfVerifyEmsIdDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyEmsIdRequest" nillable="true" type="tns:VerifyEmsIdRequest" />
+  <xs:complexType name="ArrayOfVerifyEmsIdDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VerifyEmsIdDetails" nillable="true" type="tns:VerifyEmsIdDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVerifyEmsIdDetails" nillable="true" type="tns:ArrayOfVerifyEmsIdDetails" />
+  <xs:complexType name="VerifyEmsIdDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsVerified" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReceiverName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyEmsIdDetails" nillable="true" type="tns:VerifyEmsIdDetails" />
+  <xs:complexType name="VerifyEmsIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmsIdList" nillable="true" type="tns:ArrayOfVerifyEmsIdDetails" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyEmsIdResponse" nillable="true" type="tns:VerifyEmsIdResponse" />
+  <xs:complexType name="UploadAuthenticateEmsIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="CellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExpiresDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forever" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IDFirstJpg" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="IDNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDNoType" type="tns:CodeNoType" />
+      <xs:element minOccurs="0" name="IDSecondJpg" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="IDType" type="tns:CodeType" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UploadAuthenticateEmsIdRequest" nillable="true" type="tns:UploadAuthenticateEmsIdRequest" />
+  <xs:simpleType name="CodeNoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FirstIDCard" />
+      <xs:enumeration value="SecondIDCard" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CodeNoType" nillable="true" type="tns:CodeNoType" />
+  <xs:simpleType name="CodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IDCard" />
+      <xs:enumeration value="Passport" />
+      <xs:enumeration value="SoldierCard" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CodeType" nillable="true" type="tns:CodeType" />
+  <xs:complexType name="UploadAuthenticateEmsIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="tns:UploadAuthenticateEmsIdStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UploadAuthenticateEmsIdResponse" nillable="true" type="tns:UploadAuthenticateEmsIdResponse" />
+  <xs:simpleType name="UploadAuthenticateEmsIdStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS" />
+      <xs:enumeration value="FAILED" />
+      <xs:enumeration value="VERIFIED" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UploadAuthenticateEmsIdStatus" nillable="true" type="tns:UploadAuthenticateEmsIdStatus" />
+  <xs:complexType name="GetTrackingInformationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetTrackingInformationRequest" nillable="true" type="tns:GetTrackingInformationRequest" />
+  <xs:complexType name="GetTrackingInformationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+      <xs:element minOccurs="0" name="TrackingInformations" nillable="true" type="tns:ArrayOfTrackingInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetTrackingInformationResponse" nillable="true" type="tns:GetTrackingInformationResponse" />
+  <xs:complexType name="ArrayOfTrackingInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackingInformation" nillable="true" type="tns:TrackingInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrackingInformation" nillable="true" type="tns:ArrayOfTrackingInformation" />
+  <xs:complexType name="TrackingInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ItemStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastEvent" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastEventDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastEventLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedOn" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackingInformation" nillable="true" type="tns:TrackingInformation" />
+  <xs:complexType name="ProcessProductPurchaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackingType" type="tns:PackingType" />
+      <xs:element minOccurs="0" name="ProductShipmentProvider" type="tns:ProductShipmentProvider" />
+      <xs:element minOccurs="0" name="PurchaseDetails" nillable="true" type="tns:ArrayOfPurchaseDetails" />
+      <xs:element minOccurs="0" name="ShipFromCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToProvince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToQQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToWechat" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessProductPurchaseRequest" nillable="true" type="tns:ProcessProductPurchaseRequest" />
+  <xs:simpleType name="PackingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="One_Item_Per_Box">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Two_Item_Per_Box">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Four_Item_Per_Box">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Six_Item_Per_Box">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PackingType" nillable="true" type="tns:PackingType" />
+  <xs:simpleType name="ProductShipmentProvider">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ParcelForceEconomy">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">109</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EMS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">108</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="_51Express">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">105</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductShipmentProvider" nillable="true" type="tns:ProductShipmentProvider" />
+  <xs:complexType name="ArrayOfPurchaseDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurchaseDetails" nillable="true" type="tns:PurchaseDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPurchaseDetails" nillable="true" type="tns:ArrayOfPurchaseDetails" />
+  <xs:complexType name="PurchaseDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductName" type="tns:ProductList" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PurchaseDetails" nillable="true" type="tns:PurchaseDetails" />
+  <xs:simpleType name="ProductList">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Aptamil_First_Milk">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">101</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Aptamil_Hungry_Milk">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">102</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Aptamil_Follow_On_milk">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">103</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Aptamil_Growing_Up_milk_1_To_2_years">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">104</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Aptamil_Growing_Up_milk_2_To_3_years">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">105</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cow_Gate_First_Infant_Milk">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">106</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cow_Gate_Infant_Milk_for_hungrier_babies">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">107</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cow_Gate_Follow_On_Milk">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">108</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cow_Gate_Growing_Up_Milk_1_To_2_years">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">109</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cow_Gate_Growing_Up_Milk_2_To_3_years">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">110</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductList" nillable="true" type="tns:ProductList" />
+  <xs:complexType name="ProcessProductPurchaseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderStatus" nillable="true" type="tns:ArrayOfOrderStatusDetails" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessProductPurchaseResponse" nillable="true" type="tns:ProcessProductPurchaseResponse" />
+  <xs:complexType name="ArrayOfOrderStatusDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderStatusDetails" nillable="true" type="tns:OrderStatusDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderStatusDetails" nillable="true" type="tns:ArrayOfOrderStatusDetails" />
+  <xs:complexType name="OrderStatusDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackingUrl" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderStatusDetails" nillable="true" type="tns:OrderStatusDetails" />
+  <xs:complexType name="OrderReferenceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="OrderReference" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderReferenceRequest" nillable="true" type="tns:OrderReferenceRequest" />
+  <xs:complexType name="HTDropdownResourceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTDropdownResourceRequest" nillable="true" type="tns:HTDropdownResourceRequest" />
+  <xs:complexType name="HTDropdownResourceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdditionalServicesList" nillable="true" type="tns:ArrayOfHTOrderAdditionalService" />
+      <xs:element minOccurs="0" name="CategoryList" nillable="true" type="tns:ArrayOfHTCategory" />
+      <xs:element minOccurs="0" name="OverseaLogisticsList" nillable="true" type="tns:ArrayOfOverseaLogistic" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTDropdownResourceResponse" nillable="true" type="tns:HTDropdownResourceResponse" />
+  <xs:complexType name="ArrayOfHTOrderAdditionalService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HTOrderAdditionalService" nillable="true" type="tns:HTOrderAdditionalService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHTOrderAdditionalService" nillable="true" type="tns:ArrayOfHTOrderAdditionalService" />
+  <xs:complexType name="HTOrderAdditionalService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ServiceDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceId" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServicePrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTOrderAdditionalService" nillable="true" type="tns:HTOrderAdditionalService" />
+  <xs:complexType name="ArrayOfHTCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HTCategory" nillable="true" type="tns:HTCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHTCategory" nillable="true" type="tns:ArrayOfHTCategory" />
+  <xs:complexType name="HTCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnglishDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTCategory" nillable="true" type="tns:HTCategory" />
+  <xs:complexType name="ArrayOfOverseaLogistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OverseaLogistic" nillable="true" type="tns:OverseaLogistic" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOverseaLogistic" nillable="true" type="tns:ArrayOfOverseaLogistic" />
+  <xs:complexType name="OverseaLogistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OverseaLogisticId" type="xs:int" />
+      <xs:element minOccurs="0" name="OverseaLogisticName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OverseaLogistic" nillable="true" type="tns:OverseaLogistic" />
+  <xs:complexType name="PlaceHTOrderRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="OrderAdditionalServices" nillable="true" type="tns:ArrayOfHTOrderAdditionalServices" />
+      <xs:element minOccurs="0" name="OrderDetails" nillable="true" type="tns:ArrayOfHTOrderDetails" />
+      <xs:element minOccurs="0" name="ServiceProvider" type="tns:ServiceProvider" />
+      <xs:element minOccurs="0" name="ShipFromAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipFromPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToAddress3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToChineseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToIDCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToPostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToProvince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToQQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipToWechat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Warehouse" type="tns:Warehouse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlaceHTOrderRequest" nillable="true" type="tns:PlaceHTOrderRequest" />
+  <xs:complexType name="ArrayOfHTOrderAdditionalServices">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HTOrderAdditionalServices" nillable="true" type="tns:HTOrderAdditionalServices" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHTOrderAdditionalServices" nillable="true" type="tns:ArrayOfHTOrderAdditionalServices" />
+  <xs:complexType name="HTOrderAdditionalServices">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdditionalServiceId" type="xs:int" />
+      <xs:element minOccurs="0" name="RequestNotes" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTOrderAdditionalServices" nillable="true" type="tns:HTOrderAdditionalServices" />
+  <xs:complexType name="ArrayOfHTOrderDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HTOrderDetails" nillable="true" type="tns:HTOrderDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHTOrderDetails" nillable="true" type="tns:ArrayOfHTOrderDetails" />
+  <xs:complexType name="HTOrderDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomsCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OverseaLogisticId" type="xs:int" />
+      <xs:element minOccurs="0" name="OverseaTrackingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="ShoppingWebsite" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="UnitPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTOrderDetails" nillable="true" type="tns:HTOrderDetails" />
+  <xs:simpleType name="Warehouse">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="London_Warehouse_1">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Warehouse" nillable="true" type="tns:Warehouse" />
+  <xs:complexType name="PlaceHTOrderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HTOrderReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlaceHTOrderResponse" nillable="true" type="tns:PlaceHTOrderResponse" />
+  <xs:complexType name="HTOrderInfoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="HTOrderReference" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTOrderInfoRequest" nillable="true" type="tns:HTOrderInfoRequest" />
+  <xs:complexType name="HTOrderInfoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillablePrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HTOrderReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HTOrderStatus" type="tns:HTOrderStatusCode" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HTOrderInfoResponse" nillable="true" type="tns:HTOrderInfoResponse" />
+  <xs:simpleType name="HTOrderStatusCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS" />
+      <xs:enumeration value="FAILED" />
+      <xs:enumeration value="PEND" />
+      <xs:enumeration value="IDVERIFY" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HTOrderStatusCode" nillable="true" type="tns:HTOrderStatusCode" />
+  <xs:complexType name="ProductRegisterRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="ProductDetails" nillable="true" type="tns:ArrayOfProductRegisterData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegisterRequest" nillable="true" type="tns:ProductRegisterRequest" />
+  <xs:complexType name="ArrayOfProductRegisterData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductRegisterData" nillable="true" type="tns:ProductRegisterData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductRegisterData" nillable="true" type="tns:ArrayOfProductRegisterData" />
+  <xs:complexType name="ProductRegisterData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductBarcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductEnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegisterCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalePrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Unit" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnitWeight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VendorSKU" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WrapUnit" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegisterData" nillable="true" type="tns:ProductRegisterData" />
+  <xs:complexType name="ProductRegisterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegisterResponse" nillable="true" type="tns:ProductRegisterResponse" />
+  <xs:complexType name="ProductRegisterStatusCheckRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationDetails" nillable="true" type="tns:AuthenticationDetails" />
+      <xs:element minOccurs="0" name="ProductRegisterCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegisterStatusCheckRequest" nillable="true" type="tns:ProductRegisterStatusCheckRequest" />
+  <xs:complexType name="ProductRegisterStatusCheckResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductRegisterStatus" type="tns:ProductRegisterStatus" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:ResponseStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductRegisterStatusCheckResponse" nillable="true" type="tns:ProductRegisterStatusCheckResponse" />
+  <xs:simpleType name="ProductRegisterStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RequestReceived" />
+      <xs:enumeration value="Transalted" />
+      <xs:enumeration value="WaitingForApproval" />
+      <xs:enumeration value="Approved" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductRegisterStatus" nillable="true" type="tns:ProductRegisterStatus" />
+</xs:schema>

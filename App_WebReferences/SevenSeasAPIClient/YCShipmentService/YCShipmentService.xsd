@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/YCShipmentService" />
+  <xs:element name="DeleteShipment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q1:DeleteShipmentRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteShipmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="DeleteShipmentResult" nillable="true" type="q2:DeleteShipmentResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveShipmentLabels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q3:ShipmentLabelsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveShipmentLabelsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="RetrieveShipmentLabelsResult" nillable="true" type="q4:ProcessShipmentResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessShipment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q5:ProcessShipmentRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessShipmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ProcessShipmentResult" nillable="true" type="q6:ProcessShipmentResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessShipmentEx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q7:ProcessShipmentRequestEx" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessShipmentExResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ProcessShipmentExResult" nillable="true" type="q8:ProcessShipmentResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessB2CShipmentEx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q9:ProcessB2CShipmentRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessB2CShipmentExResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ProcessB2CShipmentExResult" nillable="true" type="q10:ProcessShipmentResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessAllB2CShipmentEx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q11:ProcessB2CShipmentRequestEx" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessAllB2CShipmentExResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ProcessAllB2CShipmentExResult" nillable="true" type="q12:ProcessShipmentResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllB2CRegisterProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q13:AuthenticationDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllB2CRegisterProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="GetAllB2CRegisterProductsResult" nillable="true" type="q14:B2CRegisterProductResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShipmentQuote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q15:ShipmentQuoteRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShipmentQuoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ShipmentQuoteResult" nillable="true" type="q16:ShipmentQuoteResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PreLoadAllShipmentPrice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q17:PreLoadAllShipmentPriceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PreLoadAllShipmentPriceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="PreLoadAllShipmentPriceResult" nillable="true" type="q18:PreLoadAllShipmentPriceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidShipmentServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q19:AuthenticationDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidShipmentServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ValidShipmentServicesResult" nillable="true" type="q20:ShipmentServiceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyEmsIdServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q21:VerifyEmsIdRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyEmsIdServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="VerifyEmsIdServicesResult" nillable="true" type="q22:VerifyEmsIdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadAuthenticateIdServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q23:UploadAuthenticateEmsIdRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadAuthenticateIdServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="UploadAuthenticateIdServicesResult" nillable="true" type="q24:UploadAuthenticateEmsIdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTrackingInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q25:GetTrackingInformationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTrackingInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="GetTrackingInformationResult" nillable="true" type="q26:GetTrackingInformationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessProductPurchase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q27:ProcessProductPurchaseRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessProductPurchaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="ProcessProductPurchaseResult" nillable="true" type="q28:ProcessProductPurchaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveProductPurchaseStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q29:OrderReferenceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveProductPurchaseStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="RetrieveProductPurchaseStatusResult" nillable="true" type="q30:ProcessProductPurchaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadHaiTaoDropdownResources">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q31:HTDropdownResourceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadHaiTaoDropdownResourcesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="LoadHaiTaoDropdownResourcesResult" nillable="true" type="q32:HTDropdownResourceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlaceHTOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q33:PlaceHTOrderRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlaceHTOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="PlaceHTOrderResult" nillable="true" type="q34:PlaceHTOrderResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveHTOrderInfomation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q35:HTOrderInfoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveHTOrderInfomationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="RetrieveHTOrderInfomationResult" nillable="true" type="q36:HTOrderInfoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q37:ProductRegisterRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="RegisterProductResult" nillable="true" type="q38:ProductRegisterResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckProductRegisterStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="request" nillable="true" type="q39:ProductRegisterStatusCheckRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckProductRegisterStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/YCShipmentService" minOccurs="0" name="CheckProductRegisterStatusResult" nillable="true" type="q40:ProductRegisterStatusCheckResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

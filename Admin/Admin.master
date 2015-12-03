@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../../static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/global_v2.0.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/tpl/t4/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/artDialog/skins/default.css" rel="stylesheet" type="text/css" />  
+    <link href="../static/css/pager.css" rel="stylesheet" type="text/css" />  
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>    
+    
+</head>
+<body>
+    <div class="top-box">
+        <div class="top-fixed">
+            <div class="top">
+                <ul class="rt">
+                    <li><a href="../Default.aspx">首页</a><span class="gap">|</span></li>
+                    <li><a href="">帮助中心</a></li>
+                </ul>
+                <ul>
+                    <li>欢迎来到999parcel管理系统，<font class="col-f60"><%:GetGreeting() %></font><span class="gap">|</span></li>
+                    <li><a href="/accounts/logout/?next=<%: Request.Path %>">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="logo-box">
+        
+    </div>
+    <div id="container">
+        <div id="sidebar">
+            <div class="uitopb uitopb-border">
+                <h3>网站管理</h3>
+                <ul class="link-list">
+                    <li><a href="" runat="server">用户管理</a></li>
+                    <li><a href="CheckApply.aspx" runat="server" id="checkApply">充值审核</a></li>
+                    <li><a href="ProcessedApplys.aspx" runat="server" id="processedApplys">已处理申请</a></li>
+                    <li><a href="CheckOrder.aspx" runat="server" >订单审核</a></li>     
+                    <li><a href="News.aspx" runat="server" id="news">新闻资讯</a></li>     
+                </ul>
+            </div>
+        </div>
+        <div id="container-main">
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="sev">
+            <dl>
+                <dt><b class="fore1"></b>帮助指南</dt>
+                <dd><a href="javascript:;">怎样购物</a></dd>
+                <dd><a href="javascript:;">选择服务</a></dd>
+                <dd><a href="javascript:;">如何打包</a></dd>
+                <dd><a href="javascript:;">是否包税</a></dd>
+                <dd><a href="javascript:;">订单状态说明</a></dd>
+            </dl>
+            <dl>
+                <dt><b class="fore2"></b>999parcel服务</dt>
+                <dd><a href="javascript:;">英国邮政</a></dd>
+                <dd><a href="javascript:;">荷兰邮政</a></dd>
+                <dd><a href="javascript:;">EMS包清</a></dd>
+                <dd><a href="javascript:;">香港包清</a></dd>
+            </dl>
+            <dl>
+                <dt><b class="fore3"></b>关于付款</dt>
+                <dd><a href="javascript:;">银行转账</a></dd>
+                <dd><a href="javascript:;">支付宝转账</a></dd>
+                <dd><a href="javascript:;">站内付款</a></dd>
+            </dl>
+            <dl>
+                <dt><b class="fore4"></b>售后服务</dt>
+                <dd><a href="javascript:;">售后政策</a></dd>
+                <dd><a href="javascript:;">退款说明</a></dd>
+                <dd><a href="javascript:;">取消订单</a></dd>
+                <dd><a href="javascript:;">联系客服</a></dd>
+            </dl>
+            <dl>
+                <dt><b class="fore5"></b>关于999parcel</dt>
+                <dd><a href="/index.php?c=content&a=show&id=6" target="_blank">999parcel简介</a></dd>
+                <dd><a href="javascript:;">大客户优惠</a></dd>
+                <dd><a href="/index.php?c=content&a=show&id=310" target="_blank">Contact Us</a></dd>
+                <dd><a href="/index.php?c=content&a=show&id=311" target="_blank">Privacy Policy</a></dd>
+                <dd><a href="/index.php?c=content&a=show&id=312" target="_blank">Terms & Conditions</a></dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            © Copyright 2010-2013 英国999parcel国际快递. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

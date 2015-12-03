@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a70dfbf6-3f3c-4b58-8f63-1184d8009282" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://sandbox.51parcel.com/YCShipmentService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="YCShipmentService.wsdl" MetadataType="Wsdl" ID="38b4f754-004f-49db-a2d5-52627659dfdd" SourceId="1" SourceUrl="http://sandbox.51parcel.com/YCShipmentService.svc?wsdl" />
+    <MetadataFile FileName="YCShipmentService.xsd" MetadataType="Schema" ID="1952ec6c-03a0-4e8c-919e-1daabccbbb73" SourceId="1" SourceUrl="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd0" />
+    <MetadataFile FileName="YCShipmentService1.xsd" MetadataType="Schema" ID="5cb3e12c-f2bb-4c64-a611-e83365b2c437" SourceId="1" SourceUrl="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd1" />
+    <MetadataFile FileName="YCShipmentService2.xsd" MetadataType="Schema" ID="df694f40-dba0-48ac-a9ea-233585475636" SourceId="1" SourceUrl="http://sandbox.51parcel.com/YCShipmentService.svc?xsd=xsd2" />
+    <MetadataFile FileName="YCShipmentService.disco" MetadataType="Disco" ID="5534a2a3-7df1-4763-a7f0-221845ed69d7" SourceId="1" SourceUrl="http://sandbox.51parcel.com/YCShipmentService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
