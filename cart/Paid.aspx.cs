@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -31,7 +32,8 @@ public partial class cart_Paid : System.Web.UI.Page
         username = Membership.GetUser().UserName;
         apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
 
-        normalOrders = from o in repo.Orders where o.User == username && !(o.IsSheffieldOrder ?? false) && (o.HasPaid ?? false) select o;
+        //normalOrders = from o in repo.Orders where o.User == username && !(o.IsSheffieldOrder ?? false) && (o.HasPaid ?? false) select o;
+        normalOrders = GetNormalOrders();
         sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username select o;
 
         balance = apUser.Balance;
@@ -40,6 +42,64 @@ public partial class cart_Paid : System.Web.UI.Page
 
         normalField.Visible = normalOrders.Count() != 0 ? true : false;
         sheffieldField.Visible = sheffieldOrders.Count() != 0 ? true : false;
+    }
+
+    public IEnumerable<Order> GetNormalOrders()
+    {
+        var orders = from o in repo.Orders where o.User == username && !(o.IsSheffieldOrder ?? false) && (o.HasPaid ?? false) select o;
+
+        foreach (Order o in orders.Where(o => o.Service.Name.Contains("Bpost") && !(o.SuccessPaid ?? false)))
+        {
+            FtpWeb ftp = new FtpWeb("ftp://transfert.post.be/out", "999_parcels", "dkfoec36");
+            string path = HttpRuntime.AppDomainAppPath + "bpost_files/" + username;
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string resultFile = string.Format("m2m_result_cn09320000_09320000_{0}.txt", o.Id.ToString().PadLeft(5, '0'));
+            ftp.Download(path, resultFile);
+            string file = Path.Combine(path, resultFile);
+            if (!File.Exists(file))
+            {
+                throw new Exception("从Bpost下载结果文件失败，请联系管理员。");
+            }
+            StreamReader sr = new StreamReader(file);
+            string header = sr.ReadLine();
+            string status = header.Split('|')[5];
+            List<string> attachedFiles = new List<string>();
+
+            if (status == "SUCCES")
+            {
+                foreach (Recipient r in o.Recipients)
+                {
+                    foreach (Package p in r.Packages)
+                    {
+                        string line = sr.ReadLine();
+                        if (line.Contains("BB001"))
+                        {
+                            string s = line.Split('|')[2];
+                            if (s == "OK")
+                            {
+                                p.Status = "SUCCESS";
+                                p.Pdf = Bpost.GeneratePdf(p, line.Split('|')[1]);
+                                attachedFiles.Add(HttpRuntime.AppDomainAppPath + p.Pdf);
+                            }
+                            else
+                            {
+                                p.Status = "FAIL";
+                            }
+                        }
+                    }
+                    r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");
+                }
+                o.SuccessPaid = o.Recipients.All(r => r.SuccessPaid.Value);
+            }
+            repo.Context.SaveChanges();
+            sr.Close();
+        }
+
+        repo.Context.SaveChanges();
+        return orders;
     }
 
     public IEnumerable<Order> GetNoneSheffieldOrders()
@@ -128,5 +188,16 @@ public partial class cart_Paid : System.Web.UI.Page
                 return "<img height=18 width=18 style=\"margin-left:2px;\" src=\"../static/images/icon/t17.ico\" title=\"已发送到Bpost，请等待比利时邮政确认(约1个小时)\">";
             }
         }
+    }
+    protected void LinkButtonReset_Click(object sender, EventArgs e)
+    {
+        int id;
+        if (int.TryParse((sender as LinkButton).Attributes["data-id"], out id))
+        {
+            Order o = repo.Context.Orders.Find(id);
+            o.HasPaid = false;
+            repo.Context.SaveChanges();
+            Response.Redirect("/cart/cart.aspx");
+        }   
     }
 }

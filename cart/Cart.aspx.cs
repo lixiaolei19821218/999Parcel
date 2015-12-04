@@ -459,16 +459,24 @@ public partial class cart_Cart : System.Web.UI.Page
     private void SendBpostLciFile(Order o)
     {
         lciFile = Bpost.GenerateLciFile("BPI/2015/9320", o, Application, repo);
-        System.Timers.Timer timer = new System.Timers.Timer(60000 * 60);//60000 * 60
+
+        System.Timers.Timer timer = Application["Timer"] as System.Timers.Timer;
+        if (timer == null)
+        {
+            timer = new System.Timers.Timer(1000 * 60 * 30);
+        }
 
         timer.Elapsed += new ElapsedEventHandler((s, e) => OnTimedEvent(s, e, o));
         timer.AutoReset = false;
         timer.Enabled = true;
-        //Application["t"] = timer;
+        Application["Timer"] = timer;
     }
 
     private void OnTimedEvent(object source, ElapsedEventArgs e, Order o)
     {
+        string path0 = HttpRuntime.AppDomainAppPath + "bpost_files/" + username;
+        File.Create(path0 + "/bpost_ftp_log_" + DateTime.Now.Ticks.ToString() + ".txt");
+
         FtpWeb ftp = new FtpWeb("ftp://transfert.post.be/out", "999_parcels", "dkfoec36");
         string path = HttpRuntime.AppDomainAppPath + "bpost_files/" + username;
         if (!Directory.Exists(path))
@@ -478,6 +486,10 @@ public partial class cart_Cart : System.Web.UI.Page
         string resultFile = "m2m_result_cn09320000_" + Path.GetFileName(lciFile);
         ftp.Download(path, resultFile);
         string file = Path.Combine(path, resultFile);
+        if (!File.Exists(file))
+        {
+            throw new Exception("从Bpost下载结果文件失败，请联系管理员。");
+        }
         StreamReader sr = new StreamReader(file);
         string header = sr.ReadLine();
         string status = header.Split('|')[5];

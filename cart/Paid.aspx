@@ -31,6 +31,7 @@
                                 <th>服务</th>
                                 <th>状态</th>
                                 <th colspan="2"></th>
+                                <th colspan="2"></th>
                             </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
@@ -44,6 +45,10 @@
                                 <td><%#GetIcon(Item) %></td>
                                 <td colspan="2">
                                     <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />  
+                                    
+                                </td>
+                                 <td colspan="2">
+                                    <asp:LinkButton ID="LinkButtonReset" OnClick="LinkButtonReset_Click" runat="server" Text="重设" data-id="<%#Item.Id %>" Font-Size="Medium" />  
                                     
                                 </td>
                             </tr>

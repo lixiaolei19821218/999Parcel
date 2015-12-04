@@ -114,7 +114,7 @@ public class FtpWeb
             response.Close();
         }
         catch (Exception ex)
-        {
+        {            
             Insert_Standard_ErrorLog.Insert("FtpWeb", "Download Error --> " + ex.Message);
         }
     }
