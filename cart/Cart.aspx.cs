@@ -1,6 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-//using SevenSeasAPIClient.YCShipmentService;
+using SevenSeasAPIClient.YCShipmentService;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,7 +19,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
-//using WMOrderService;
+using WMOrderService;
 
 public partial class cart_Cart : System.Web.UI.Page
 {
@@ -37,7 +37,7 @@ public partial class cart_Cart : System.Web.UI.Page
         get;
         set;
     }
-  
+
     protected void Page_Load(object sender, EventArgs e)
     {
         username = Membership.GetUser().UserName;
@@ -219,19 +219,19 @@ public partial class cart_Cart : System.Web.UI.Page
                        
                         break;
                     case "Parcelforce Economy - 上门取件":
-                        //SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyPickup, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyPickup, attachmentPaths);
                         break;
                     case "Parcelforce Priority - 上门取件":
-                        //SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
                         break;
                     case "Parcelforce Economy - 自送仓库":
-                        //SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
                         break;
                     case "Parcelforce Economy - 自送邮局":
-                        //SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
                         break;
                     case "Parcelforce Priority - 自送邮局":
-                        //SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForcePriority, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForcePriority, attachmentPaths);
                         break;
                     case "Bpost - 免费取件":
                     case "Bpost - UKMail 取件":
@@ -459,24 +459,18 @@ public partial class cart_Cart : System.Web.UI.Page
     private void SendBpostLciFile(Order o)
     {
         lciFile = Bpost.GenerateLciFile("BPI/2015/9320", o, Application, repo);
+        //System.Timers.Timer timer = new System.Timers.Timer(1);//60000 * 60
 
-        System.Timers.Timer timer = Application["Timer"] as System.Timers.Timer;
-        if (timer == null)
-        {
-            timer = new System.Timers.Timer(1000 * 60 * 30);
-        }
-
-        timer.Elapsed += new ElapsedEventHandler((s, e) => OnTimedEvent(s, e, o));
-        timer.AutoReset = false;
-        timer.Enabled = true;
-        Application["Timer"] = timer;
+        //timer.Elapsed += new ElapsedEventHandler((s, e) => OnTimedEvent(s, e, o));
+        //timer.AutoReset = false;
+        //timer.Enabled = true;
+        //Application["t"] = timer;
     }
 
     private void OnTimedEvent(object source, ElapsedEventArgs e, Order o)
     {
         string path0 = HttpRuntime.AppDomainAppPath + "bpost_files/" + username;
         File.Create(path0 + "/bpost_ftp_log_" + DateTime.Now.Ticks.ToString() + ".txt");
-
         FtpWeb ftp = new FtpWeb("ftp://transfert.post.be/out", "999_parcels", "dkfoec36");
         string path = HttpRuntime.AppDomainAppPath + "bpost_files/" + username;
         if (!Directory.Exists(path))
@@ -486,10 +480,6 @@ public partial class cart_Cart : System.Web.UI.Page
         string resultFile = "m2m_result_cn09320000_" + Path.GetFileName(lciFile);
         ftp.Download(path, resultFile);
         string file = Path.Combine(path, resultFile);
-        if (!File.Exists(file))
-        {
-            throw new Exception("从Bpost下载结果文件失败，请联系管理员。");
-        }
         StreamReader sr = new StreamReader(file);
         string header = sr.ReadLine();
         string status = header.Split('|')[5];
@@ -528,7 +518,7 @@ public partial class cart_Cart : System.Web.UI.Page
         object[] mail = new object[] { Membership.GetUser().Email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray() };
         sendThread.Start(mail);
     }   
-    /*
+    
     private List<List<string>> SendTo51Parcel(Order order, UKShipmentType shipType, ServiceProvider provider, List<string> attachedFiles)
     {
         List<List<string>> responseList = new List<List<string>>();
@@ -695,7 +685,7 @@ public partial class cart_Cart : System.Web.UI.Page
 
         return response;
     }
-    */
+    
     private void SendBpost(Order o)
     {
         foreach (Recipient r in o.Recipients)
