@@ -919,7 +919,7 @@
                 else
                     $this.data('timer',
                         setTimeout(function () {
-                            $.get('send2china.co.uk/pinyin/', { 's': val }, func);
+                            $.get('999Parcel.co.uk/pinyin/', { 's': val }, func);
                         }, 500)
                     );
             });

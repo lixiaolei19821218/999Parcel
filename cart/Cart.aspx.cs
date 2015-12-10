@@ -390,61 +390,7 @@ public partial class cart_Cart : System.Web.UI.Page
         {
             Response.Redirect("RedirectToRecharge.aspx");
         }
-    }
-
-    public void SendThreadMethod(object obj)
-    {
-        object[] contents = obj as object[];
-        string address = contents[0] as string;
-        string title = contents[1] as string;
-        string content = contents[2] as string;
-        string[] attachments = contents[3] as string[];
-        SendEmail(address, title, content, attachments);
-    }
-
-    /// <summary>
-    /// 发送邮件
-    /// </summary>
-    /// <param name="mailTo">要发送的邮箱</param>
-    /// <param name="mailSubject">邮箱主题</param>
-    /// <param name="mailContent">邮箱内容</param>
-    /// <returns>返回发送邮箱的结果</returns>
-    public bool SendEmail(string mailTo, string mailSubject, string mailContent, params string[] attachmentPaths)
-    {
-        // 设置发送方的邮件信息,例如使用网易的smtp
-        string smtpServer = "smtp.163.com"; //SMTP服务器
-        string mailFrom = "iir_lee@163.com"; //登陆用户名
-        string userPassword = "llc^181925";//登陆密码
-
-        // 邮件服务设置
-        SmtpClient smtpClient = new SmtpClient();
-        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;//指定电子邮件发送方式
-        smtpClient.Host = smtpServer; //指定SMTP服务器
-        smtpClient.Credentials = new System.Net.NetworkCredential(mailFrom, userPassword);//用户名和密码
-
-        // 发送邮件设置        
-        MailMessage mailMessage = new MailMessage(mailFrom, mailTo); // 发送人和收件人
-        mailMessage.Subject = mailSubject;//主题
-        mailMessage.Body = mailContent;//内容
-        mailMessage.BodyEncoding = Encoding.UTF8;//正文编码
-        mailMessage.IsBodyHtml = true;//设置为HTML格式
-        mailMessage.Priority = MailPriority.Low;//优先级
-
-        foreach (string path in attachmentPaths)
-        {
-            mailMessage.Attachments.Add(new Attachment(path));
-        }
-
-        try
-        {
-            smtpClient.Send(mailMessage); // 发送邮件
-            return true;
-        }
-        catch (SmtpException ex)
-        {
-            return false;
-        }
-    }
+    }        
 
     protected int GetCounter()
     {
@@ -513,10 +459,9 @@ public partial class cart_Cart : System.Web.UI.Page
         }
         repo.Context.SaveChanges();
         sr.Close();
-
-        Thread sendThread = new Thread(SendThreadMethod);
-        object[] mail = new object[] { Membership.GetUser().Email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray() };
-        sendThread.Start(mail);
+                
+        EmailService.SendEmailAync(Membership.GetUser().Email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray());
+        
     }   
     
     private List<List<string>> SendTo51Parcel(Order order, UKShipmentType shipType, ServiceProvider provider, List<string> attachedFiles)
@@ -678,10 +623,8 @@ public partial class cart_Cart : System.Web.UI.Page
             package.Status = "EXCEPTION";
         }
         package.Response = response;
-
-        Thread sendThread = new Thread(SendThreadMethod);
-        object[] mail = new object[] { Membership.GetUser().Email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray() };
-        sendThread.Start(mail);
+        
+        EmailService.SendEmailAync(Membership.GetUser().Email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray());       
 
         return response;
     }

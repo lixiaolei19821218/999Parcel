@@ -29,7 +29,7 @@
                }%>
         </div>
     <script>
-        $('.main-menu .our-services').parent().siblings().removeClass('active').end().end().addClass('active');
+        $('.main-menu .zy').parent().siblings().removeClass('active').end().end().addClass('active');
 </script>
 
 </asp:Content>

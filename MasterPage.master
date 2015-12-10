@@ -24,7 +24,7 @@
 
     
     <script src="/static/js/contact.js"></script>
-
+    <script src="/static/bootstrap3/js/jquery-1.11.1.min.js"></script>       
     <style type="text/css">
         .carousel-inner img {
             width: 100%;
@@ -119,57 +119,47 @@
                                     <span class="icon-bar"></span>
                                 </button>
                             </div>
-                            <div class="navbar-collapse collapse" style="padding:0px">
-                                <ul class="nav navbar-nav" style="margin:0px">
+                            <div class="navbar-collapse collapse" style="padding:0px;">
+                                <ul class="nav navbar-nav" style="margin:0px;">
                                     <li id="mainPage">
                                         <a href="/" class="hv1 pd3 clrb2 sz16 bold" style="padding-left:8.5px;padding-right:8.5px">首页</a>
                                     </li>
 
                                     <li class="dropdown our-services" id="service">
-                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/our-services/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">速递服务 <span class="caret"></span></a>
+                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/our-services/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">快递服务 <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="/our-services/zy/">国际快递</a></li>
-                                            <li><a href="/our-services/yun/">海外仓储</a></li>
-                                            <li><a href="/our-services/dg/">海外代购</a></li>
+                                            <li><a href="/">新手专线</a></li>
+                                            <li><a href="/xing-li/">行李专线</a></li>
+                                            <li><a href="/products/Sheffield.aspx">谢菲专线</a></li> 
                                             <li class="divider"></li>
-                                            <li><a href="/news/">新闻资询</a></li>
-                                            <li><a href="/products/Sheffield.aspx">谢菲尔德地区服务</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="/cart/Paid.aspx">已完成订单</a></li>
-                                            <!--<li><a href="/cart/Parcel.aspx">已完成包裹</a></li>-->
+                                            <li><a href="/cart/Paid.aspx">已完成订单</a></li>                                            
                                         </ul>
                                     </li>
-
+                                    <!--
                                     <li class="dropdown our-services">
                                         <a aria-expanded="false" role="button" class="hv1 pd3 clrb2 sz16 bold" href="/products/Sheffield.aspx" style="padding-left:8.5px;padding-right:8.5px;" >谢菲服务</a>
                                         
                                     </li>
-
+                                    -->
                                     <li class="dropdown zy">
                                         <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/our-services/zy/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">国际快递 <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="/ju-hua-suan/">巨划算</a></li>
-                                            <li><a href="/xing-li/">行李专线</a></li>
-                                            <li class="divider"></li>
+                                            <li><a href="/our-services/zy/bp/">Bpost</a></li>
+                                            <li><a href="/our-services/zy/bp/">EMS保税专线</a></li>
                                             <li><a href="/our-services/zy/pfe/">Parcelforce经济包</a></li>
                                             <li><a href="/our-services/zy/pfg/">Parcelforce优先包</a></li>
-                                            <li><a href="/our-services/zy/bp/">Bpost</a></li>
-
                                             <li class="divider"></li>
                                             <li><a href="/prices/">网上报价</a></li>
+                                            <li><a href="/our-services/yun/">海外仓储</a></li>
+                                            <li><a href="/our-services/dg/">海外代购</a></li>
+                                            <li><a href="/news/">新闻资询</a></li>
                                         </ul>
                                     </li>
 
                                     <li class="dropdown shop">
-                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/sudi/shop/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">速递商城 <span class="caret"></span></a>
+                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/sudi/shop/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">诚信商城 <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-
-                                            <li><a href="/sudi/shop/category/2/">空气净化器</a></li>
-
-                                            <li><a href="/sudi/shop/category/3/">安全座椅</a></li>
-
                                             <li><a href="/sudi/shop/category/1/">婴儿奶粉</a></li>
-
                                             <li role="presentation"><a href="/sudi/shop/materials/" role="menuitem">包装材料</a></li>
                                         </ul>
                                     </li>
@@ -177,18 +167,13 @@
                                     <li class="dropdown hitao">
                                         <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/hitao/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">海淘转运  <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li role="presentation"><a href="/workflow/">海淘流程</a></li>
-                                            <li role="presentation"><a href="/hitao/netprice">海淘国际运费</a></li>
-                                            <li role="presentation"><a href="/added-service/">加固和增值服务</a></li>
-                                            <li role="presentation"><a href="/hitao_vip/">VIP等级制度</a></li>
+                                            <li role="presentation"><a href="/workflow/">海淘流程</a></li>                                            
+                                            <li role="presentation"><a href="haitao/AddedService.aspx">加固和增值服务</a></li>                                            
                                             <li role="presentation"><a href="/hitao_conditions/">条款和售后服务</a></li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation"><a href="/hitao/address/">获取仓库地址</a></li>
+                                            <li class="divider"></li>                                                                               
                                             <li role="presentation"><a href="/hitao/forecast" role="menuitem">入库预报</a></li>
                                             <li role="presentation"><a href="/hitao/shelf" role="menuitem">我的云仓库</a></li>
-                                            <li role="presentation"><a href="/hitao/order/" role="menuitem">历史订单</a></li>
-                                            <li role="presentation" class="divider"></li>
-
+                                            <li role="presentation"><a href="/hitao/address/">仓库地址</a></li>                                           
                                         </ul>
                                     </li>
 

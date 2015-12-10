@@ -2,8 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" Runat="Server">
     <title>首页 | 诚信物流-可靠,快捷,实惠</title>
-    <%: System.Web.Optimization.Scripts.Render("~/bundle/jquery") %>
-    <script src="/static/bootstrap3/js/jquery-1.11.1.min.js"></script>   
+    <%: System.Web.Optimization.Scripts.Render("~/bundle/jquery") %>   
     <script type="text/javascript">
         function validateSize() {
             var rCount = $("div[class='formset formset_1']").length;
@@ -142,7 +141,7 @@
 
                                 <div class="tar" style="margin-top: 25px">
                                     <div style="float: left; font-size: 14px; margin-top: -5px; color: #0075c2">
-                                        <a href="http://send2china.co.uk/static/media/uploads/%E6%96%B0%E6%89%8B%E4%B8%93%E5%8C%BA.docx">
+                                        <a href="http://999Parcel.co.uk/static/media/uploads/%E6%96%B0%E6%89%8B%E4%B8%93%E5%8C%BA.docx">
                                             <span style="font-weight: bold">温馨提示</span>：点击右侧"+"号添加多箱，<span style="font-weight: bold">有优惠</span>（取件费会随箱数减免）
                                         </a>
                                     </div>

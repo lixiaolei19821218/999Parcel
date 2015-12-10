@@ -17,10 +17,10 @@
     <div style="float:left;margin:10px;padding:10px;width:460px">
         <div>
             <img src="/static/img/static/home.png" style="float:left;margin-right:5px;margin-top:-7px" />
-            <div style="float:left;width:163px;margin-right:5px">官方网站<br><a href="http://www.send2china.co.uk">www.send2china.co.uk</a></div>
-            <div style="float:left;width:140px">官方微博<br><span style="color:#428BCA">Send2China诚信物流</span></div>
-            <div style="float:left;width:163px;margin-right:5px">淘宝店<br><a href="http://send2china.taobao.com">send2china.taobao.com</a></div>
-            <div style="float:left;width:140px">官方微信<br><span style="color:#428BCA">JackieSend2China<br />Send2ChinaUK</span></div>
+            <div style="float:left;width:163px;margin-right:5px">官方网站<br><a href="http://www.999Parcel.com">www.999Parcel.com</a></div>
+            <div style="float:left;width:140px">官方微博<br><span style="color:#428BCA">999Parcel诚信物流</span></div>
+            <div style="float:left;width:163px;margin-right:5px">淘宝店<br><a href="http://999Parcel.taobao.com">999Parcel.taobao.com</a></div>
+            <div style="float:left;width:140px">官方微信<br><span style="color:#428BCA">Jackie999Parcel<br />999ParcelUK</span></div>
             <div style="clear:both"></div>
         </div>
         
@@ -35,9 +35,9 @@
     
     <div style="float:left;margin:10px;padding:10px;width:356px">
         <img src="/static/img/static/person.png" style="float:left;margin-right:5px;margin-top:-7px" />
-        <div style="float:left;width:140px">电子邮箱<br><span style="color:#428BCA">enquiries@send2china.co.uk</span></div>
+        <div style="float:left;width:140px">电子邮箱<br><span style="color:#428BCA">support@999Parcel.com</span></div>
         <div style="float:left;width:140px">官方QQ<br><span style="color:#428BCA">800080639</span></div>
-        <div style="float:left;width:140px">官方旺旺<br><span style="color:#428BCA">Send2china速递</span></div>
+        <div style="float:left;width:140px">官方旺旺<br><span style="color:#428BCA">999Parcel速递</span></div>
         <div style="float:left;width:140px;margin-left:110px">客服电话<br><span style="color:#428BCA">019-0386-3220</span></div>
         <div style="clear:both"></div>
     </div>

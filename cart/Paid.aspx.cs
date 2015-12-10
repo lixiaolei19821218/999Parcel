@@ -118,6 +118,10 @@ public partial class cart_Paid : System.Web.UI.Page
                             }
                         }
                         sr.Close();
+                        if (order.SuccessPaid ?? false)
+                        {
+                            EmailService.SendEmailAync(Membership.GetUser().Email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray());
+                        }
                     }
                 }
                 repo.Context.SaveChanges();

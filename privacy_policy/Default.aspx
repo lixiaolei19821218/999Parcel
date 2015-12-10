@@ -18,7 +18,7 @@
 <div style="margin: 10px 0; border: 1px solid #ccc;">
 <h1 style="padding: 0 15px; margin: 0; line-height: 40px; background-color: #8998ce; border-bottom: 5px solid #E8E8E8; font-size: 20px;">隐私条款</h1>
 <div style="padding: 5px 20px;">
-<p>At send2china.co.uk and all its agent websites we are dedicated to safeguarding and preserving your privacy when visiting our site or communicating electronically with us.&nbsp;</p>
+<p>At 999Parcel.co.uk and all its agent websites we are dedicated to safeguarding and preserving your privacy when visiting our site or communicating electronically with us.&nbsp;</p>
 <div></div>
 <div>This Privacy Policy, together with our Terms and Conditions, provides an explanation as to what happens to any personal data that you provide to us, or that we collect from you.</div>
 <div></div>
