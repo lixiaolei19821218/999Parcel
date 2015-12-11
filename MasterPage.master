@@ -76,14 +76,14 @@
                     <!-- user panel menus -->
                     <div style="padding-top: 5px; background-color: #dfdfdf; border: 1px solid #ccc">
                         <div class="fr" style="margin-right: 10px; margin-bottom: 3px">
-                            <a href="/en/?next=/">
+                            
                                 <img src="/static/img/en.png" style="height: 22px; border: 1px solid #fff" />
-                            </a>
+                           
                         </div>
                         <div class="fr" style="margin-left: 3px; margin-right: 5px">
-                            <a href="/cn/?next=/">
+                            
                                 <img src="/static/img/cn.png" style="height: 22px; margin-right: 3px; border: 1px solid #fff" />
-                            </a>
+                           
                         </div>
 
                         <div runat="server" id="welcomeDiv" visible="false">
@@ -128,8 +128,8 @@
                                     <li class="dropdown our-services" id="service">
                                         <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/our-services/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">快递服务 <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="/">新手专线</a></li>
-                                            <li><a href="/xing-li/">行李专线</a></li>
+                                            <li><a>新手专线</a></li>
+                                            <li><a>行李专线</a></li>
                                             <li><a href="/products/Sheffield.aspx">谢菲专线</a></li> 
                                             <li class="divider"></li>
                                             <li><a href="/cart/Paid.aspx">已完成订单</a></li>                                            
@@ -145,7 +145,7 @@
                                         <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/our-services/zy/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">国际快递 <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="/our-services/zy/bp/">Bpost</a></li>
-                                            <li><a href="/our-services/zy/bp/">EMS保税专线</a></li>
+                                            <li><a href="/our-services/zy/EMS.aspx">EMS保税专线</a></li>
                                             <li><a href="/our-services/zy/pfe/">Parcelforce经济包</a></li>
                                             <li><a href="/our-services/zy/pfg/">Parcelforce优先包</a></li>
                                             <li class="divider"></li>
@@ -157,23 +157,27 @@
                                     </li>
 
                                     <li class="dropdown shop">
-                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/sudi/shop/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px">诚信商城 <span class="caret"></span></a>
+                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px;">诚信商城<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
+                                            <li><a>婴儿奶粉</a></li>
+                                            <li><a>包装材料</a></li>
+                                            <!--
                                             <li><a href="/sudi/shop/category/1/">婴儿奶粉</a></li>
                                             <li role="presentation"><a href="/sudi/shop/materials/" role="menuitem">包装材料</a></li>
+                                            -->
                                         </ul>
                                     </li>
 
                                     <li class="dropdown hitao">
-                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" href="/hitao/" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px;visibility:">海淘转运  <span class="caret"></span></a>
+                                        <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px;">海淘转运<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li role="presentation"><a href="/workflow/">海淘流程</a></li>                                            
+                                            <li role="presentation"><a>海淘流程</a></li>                                            
                                             <li role="presentation"><a href="haitao/AddedService.aspx">加固和增值服务</a></li>                                            
                                             <li role="presentation"><a href="haitao/HitaoConditions.aspx">条款和售后服务</a></li>
                                             <li class="divider"></li>                                                                               
-                                            <li role="presentation"><a href="/hitao/forecast" role="menuitem">入库预报</a></li>
-                                            <li role="presentation"><a href="/hitao/shelf" role="menuitem">我的云仓库</a></li>
-                                            <li role="presentation"><a href="/hitao/address/">仓库地址</a></li>                                           
+                                            <li role="presentation"><a>入库预报</a></li>
+                                            <li role="presentation"><a>我的云仓库</a></li>
+                                            <li role="presentation"><a>仓库地址</a></li>                                           
                                         </ul>
                                     </li>
 
@@ -237,8 +241,7 @@
                     <div style="float: right; width: 220px">
                         <div class="bg2 fl" style="width: 40px; height: 56px; background-position: -229px 5px"></div>
                         <div class="clrw1">咨询电话</div>
-                        <div class="clrb1" style="font-size: 20px">01143272640</div>
-                        <div class="clrb1" style="font-size: 20px">07946560303</div>
+                        <div class="clrb1" style="font-size: 20px">01143272640</div>                        
                     </div>
                     <div style="float: right; margin-top: 13px; width: 220px">
                         <div class="bg2 fl" style="width: 40px; height: 56px; background-position: -278px 5px"></div>
@@ -255,6 +258,7 @@
 
     </div>
 
+    <!--
     <div id="contact-collapsed" class="rds1 clrw1 sz16">
         Contact Us
         <span class="s-maximize" style="position: relative; top: 4px; float: right;"></span>
@@ -268,7 +272,7 @@
             <iframe src="/contact-form/" scolling="no" width="340" height="400" frameborder="0"></iframe>
         </div>
     </div>
-
+    -->
 
 
     <!--[if lt IE 9]>

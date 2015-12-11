@@ -16,7 +16,7 @@
                     var width = $("input[name='addr_" + i + "-" + j + "-width']")[0].value;
                     var height = $("input[name='addr_" + i + "-" + j + "-height']")[0].value;
                     if (length * width * height / 5000 > 30) {
-                        $("input[name='addr_" + i + "-" + j + "-height']")[0].setCustomValidity("体积重量不能大于30");
+                        $("input[name='addr_" + i + "-" + j + "-height']")[0].setCustomValidity("体积重量(长×宽×高÷5000)不能大于30KG。");
                     }
                     else {
                         $("input[name='addr_" + i + "-" + j + "-height']")[0].setCustomValidity("");
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="item">
                                     <img src="/static/img/banner/sudi.png" />
-                                </div>
+                                </div>                                
                             </div>
 
                             <!-- Controls -->
@@ -87,9 +87,9 @@
                                         <span class="tal clrb3 bold">收件地</span>
                                         <select style="margin: 0; width: 50%" name="to_area">
                                             <option value="CN">中国大陆</option>
-                                            <option value="HK">中国香港</option>
+                                            <!--<option value="HK">中国香港</option>
                                             <option value="MO">中国澳门</option>
-                                            <option value="TW">台湾</option>
+                                            <option value="TW">台湾</option>-->
                                         </select>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                         <button type="button" class="add_pkt btn2 fr" title="添加包裹">+</button>
                                         <div class="num clrb3 fl" style="width: 10px">1</div>
                                         <div style="margin-right: 50px; margin-left: 12px">
-                                            <div class="row" style="display: inline-block; width: 100%; margin-top: -3px">
+                                            <div class="row" style="display: inline-block; width: 100%; margin-top: -3px" title="重量不能超过30kg，长宽高分别不能大于105cm，长×宽×高÷5000不能大于30。">
                                                 <div class="attr col-xs-3 input1">                                                    
                                                     <input id="id_addr_0-0-weight" name="addr_0-0-weight" placeholder="重量" type="number" max="30" min="1" style="width:80px;" required="required"/>
                                                     (kg)</div>
@@ -141,7 +141,7 @@
 
                                 <div class="tar" style="margin-top: 25px">
                                     <div style="float: left; font-size: 14px; margin-top: -5px; color: #0075c2">
-                                        <a href="http://999Parcel.co.uk/static/media/uploads/%E6%96%B0%E6%89%8B%E4%B8%93%E5%8C%BA.docx">
+                                        <a href="/static/media/uploads/新手专区.docx">
                                             <span style="font-weight: bold">温馨提示</span>：点击右侧"+"号添加多箱，<span style="font-weight: bold">有优惠</span>（取件费会随箱数减免）
                                         </a>
                                     </div>

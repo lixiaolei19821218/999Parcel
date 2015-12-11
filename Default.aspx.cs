@@ -158,7 +158,7 @@ public partial class Default2 : System.Web.UI.Page
                     
                     if (length * width * height / 5000m > 30m)
                     {
-                        LabelError.Text = "体积重量不能大于30";
+                        LabelError.Text = "有包裹的体积重量(长×宽×高÷5000)不能大于30";
                         LabelError.Visible = true;
                         return;
                     }
