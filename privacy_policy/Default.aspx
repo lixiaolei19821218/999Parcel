@@ -18,24 +18,24 @@
 <div style="margin: 10px 0; border: 1px solid #ccc;">
 <h1 style="padding: 0 15px; margin: 0; line-height: 40px; background-color: #8998ce; border-bottom: 5px solid #E8E8E8; font-size: 20px;">隐私条款</h1>
 <div style="padding: 5px 20px;">
-<p>At 999Parcel.co.uk and all its agent websites we are dedicated to safeguarding and preserving your privacy when visiting our site or communicating electronically with us.&nbsp;</p>
+<p>At 999Parcel.com and all its agent websites we are dedicated to safeguarding and preserving your privacy when visiting our site or communicating electronically with us.</p>
 <div></div>
-<div>This Privacy Policy, together with our Terms and Conditions, provides an explanation as to what happens to any personal data that you provide to us, or that we collect from you.</div>
+<div>This Privacy Policy, together with our <a href="/conditions_terms/Default.aspx">Terms & Conditions</a>, provides an explanation as to what happens to any personal data that you provide to us, or that we collect from you.</div>
 <div></div>
 <div>We do update this Policy from time to time so please do review this Policy regularly.</div>
-<div></div>
-<div>Information We Collect</div>
+<br />
+<div><b>Information We Collect</b></div>
 <div></div>
 <div>In operating our website we may collect and process the following data about you:</div>
 <div>&nbsp; &nbsp; &nbsp;- Details of your visits to our website and the resources that you access, including, but not limited to, traffic data, location data, weblogs and other communication data.</div>
 <div>&nbsp; &nbsp; &nbsp;- Information that you provide by filling in forms on our website, such as when you registered for information or make a purchase.</div>
 <div>&nbsp; &nbsp; &nbsp;- Information provided to us when you communicate with us for any reason.</div>
-<div></div>
-<div>Why we collect personal information about you</div>
+<br />
+<div><b>Why we collect personal information about you</b></div>
 <div></div>
 <div>To provide you with our online services which are detailed on our website.</div>
-<div></div>
-<div>Use of Cookies</div>
+<br />
+<div><b>Use of Cookies</b></div>
 <div></div>
 <div>On occasion, we may gather information about your computer for our services and to provide statistical information regarding the use of our website to our advertisers.</div>
 <div></div>
@@ -51,8 +51,8 @@
 <div>&nbsp; &nbsp; &nbsp;- To show relevant advertisements on sites on the internet</div>
 <div>&nbsp; &nbsp; &nbsp;- To show relevant advertisements based on your prior visit to our website</div>
 <div>&nbsp; &nbsp; &nbsp;- To use Google Analytics data to serve advertisements based on your prior visit to our website</div>
-<div></div>
-<div>Use of Your Information</div>
+<br />
+<div><b>Use of Your Information</b></div>
 <div></div>
 <div>The information that we collect and store relating to you is primarily used to enable us to provide our services to you. In addition, we may use the information for the following purposes:</div>
 <div>&nbsp; &nbsp; &nbsp;- To provide you with information requested from us, relating to our products or services. To provide information on other products which we feel may be of interest to you, where you have consented to receive such information.</div>
@@ -68,16 +68,16 @@
 <div>If you do not want us to use your data for our or third parties you will have the opportunity to withhold your consent to this when you provide your details to us on the form on which we collect your data.</div>
 <div></div>
 <div>Please be advised that we do not reveal information about identifiable individuals to our advertisers but we may, on occasion, provide them with aggregate statistical information about our visitors.</div>
-<div></div>
-<div>Storing Your Personal Data</div>
+<br />
+<div><b>Storing Your Personal Data</b></div>
 <div></div>
 <div>We may transfer data that we collect from you to locations outside of the European Economic Area for processing and storing. Also, it may be processed by staff operating outside the European Economic Area who work for us or for one of our suppliers. For example, such staff maybe engaged in the processing and concluding of your order, the processing of your payment details and the provision of support services. By submitting your personal data, you agree to this transfer, storing or processing. We will take all reasonable steps to make sure that your data is treated securely and in agreement with this Privacy Policy.</div>
 <div></div>
 <div>Data that is provided to us is stored on our secure servers. Details relating to any transactions entered into on our site will be encrypted to ensure its safety.</div>
 <div></div>
 <div>The transmission of information via the internet is not completely secure and therefore we cannot guarantee the security of data sent to us electronically and transmission of such data is therefore entirely at your own risk. Where we have given you (or where you have chosen) a password so that you can access certain parts of our site, you are responsible for keeping this password confidential.</div>
-<div></div>
-<div>Disclosing Your Information</div>
+<br />
+<div><b>Disclosing Your Information</b></div>
 <div></div>
 <div>Where applicable, we may disclose your personal information to any member of our group. This includes, where applicable, our subsidiaries, our holding company and its other subsidiaries (if any).</div>
 <div></div>
@@ -85,16 +85,16 @@
 <div>&nbsp; &nbsp; &nbsp;- Where we sell any or all of our business and/or our assets to a third party.</div>
 <div>&nbsp; &nbsp; &nbsp;- Where we are legally required to disclose your information.</div>
 <div>&nbsp; &nbsp; &nbsp;- To assist fraud protection and minimise credit risk.</div>
-<div></div>
-<div>Third Party Links</div>
+<br />
+<div><b>Third Party Links</b></div>
 <div></div>
 <div>You mind find links to third party websites on our website. These websites should have their own privacy policies which you should check. We do not accept any responsibility or liability for their policies whatsoever as we have no control over them.</div>
-<div></div>
+<br />
 <div>Access To Information</div>
 <div></div>
 <div>The Data Protection Act 1998 gives you the right to access the information that we hold about you. Please note that any demand for access may be subject to payment of a fee of &pound;10 which covers our costs in providing you with the information requested. Should you wish to receive details that we hold about you please contact us using the contact details below.</div>
-<div></div>
-<div>Contact Us</div>
+<br />
+<div><b>Contact Us</b></div>
 <div></div>
 <div>We welcome any queries, comments or requests you may have regarding this Privacy Policy. Please do not hesitate to contact us.</div>
 </div>

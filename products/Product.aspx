@@ -267,7 +267,7 @@
                             <li class="addrItem" style="list-style: none; margin-top: 20px; background-color: #ffffcd; border: 1px solid #ddd">
                                 <div class="clrw1" style="background-color: #FD7F23; padding: 5px 20px">
                                     <div class="pull-left" style="padding-top: 4px">收件人地址 <span class="addr_item_num"><%#Container.ItemIndex + 1 %></span></div>
-                                    <div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>                                    
+                                    <!--<div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>-->                               
                                     <div style="clear: both"></div>
                                 </div>
                                 <input id="id_addr-0-id" name="addr-0-id" type="hidden" />
