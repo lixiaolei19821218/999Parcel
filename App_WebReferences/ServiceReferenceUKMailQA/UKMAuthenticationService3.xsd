@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/DataContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" />
+  <xs:import schemaLocation="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="LoginWebRequest">
+    <xs:sequence>
+      <xs:element name="Password" nillable="true" type="xs:string" />
+      <xs:element name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginWebRequest" nillable="true" type="tns:LoginWebRequest" />
+  <xs:complexType name="UKMLoginResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Accounts" nillable="true" type="tns:ArrayOfAccountWebModel" />
+          <xs:element name="AuthenticationToken" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMLoginResponse" nillable="true" type="tns:UKMLoginResponse" />
+  <xs:complexType name="UKMWebResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfUKMWebError" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" name="Result" type="q1:UKMResultState" />
+      <xs:element minOccurs="0" name="Warnings" nillable="true" type="tns:ArrayOfUKMWebWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UKMWebResponse" nillable="true" type="tns:UKMWebResponse" />
+  <xs:complexType name="ArrayOfUKMWebError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UKMWebError" nillable="true" type="tns:UKMWebError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUKMWebError" nillable="true" type="tns:ArrayOfUKMWebError" />
+  <xs:complexType name="UKMWebError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UKMWebError" nillable="true" type="tns:UKMWebError" />
+  <xs:complexType name="ArrayOfUKMWebWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UKMWebWarning" nillable="true" type="tns:UKMWebWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUKMWebWarning" nillable="true" type="tns:ArrayOfUKMWebWarning" />
+  <xs:complexType name="UKMWebWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UKMWebWarning" nillable="true" type="tns:UKMWebWarning" />
+  <xs:complexType name="ArrayOfAccountWebModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountWebModel" nillable="true" type="tns:AccountWebModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccountWebModel" nillable="true" type="tns:ArrayOfAccountWebModel" />
+  <xs:complexType name="AccountWebModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountStatus" type="tns:AccountStatusEnum" />
+      <xs:element minOccurs="0" name="AccountType" type="tns:AccountTypeEnum" />
+      <xs:element minOccurs="0" name="AlternativeRefAlias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerRefAlias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Postcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Region" type="tns:RegionEnum" />
+      <xs:element minOccurs="0" name="TradingAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VATNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountWebModel" nillable="true" type="tns:AccountWebModel" />
+  <xs:simpleType name="AccountStatusEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Closed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">94</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Active">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">95</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ExemptFromStop">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">96</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Under7DayReview">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">97</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FastTrack">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">98</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OnStop">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">99</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AccountStatusEnum" nillable="true" type="tns:AccountStatusEnum" />
+  <xs:simpleType name="AccountTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="International">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">55</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EURoad">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">56</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Domestic">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">57</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MailPackets">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">58</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AccountTypeEnum" nillable="true" type="tns:AccountTypeEnum" />
+  <xs:simpleType name="RegionEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="England">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Scotland">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Wales">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Northern_Ireland">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RegionEnum" nillable="true" type="tns:RegionEnum" />
+  <xs:complexType name="WebRequest">
+    <xs:sequence>
+      <xs:element name="AuthenticationToken" nillable="true" type="xs:string" />
+      <xs:element name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebRequest" nillable="true" type="tns:WebRequest" />
+  <xs:complexType name="UKMLogoutResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMLogoutResponse" nillable="true" type="tns:UKMLogoutResponse" />
+</xs:schema>

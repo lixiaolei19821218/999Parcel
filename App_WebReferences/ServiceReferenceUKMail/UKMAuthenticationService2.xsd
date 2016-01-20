@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/ServiceContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/ServiceContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd2" namespace="http://www.UKMail.com/Services/Contracts/DataContracts" />
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="loginWebRequest" nillable="true" type="q1:LoginWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="LoginResult" nillable="true" type="q2:UKMLoginResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Logout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="webRequest" nillable="true" type="q3:WebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogoutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="LogoutResult" nillable="true" type="q4:UKMLogoutResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
