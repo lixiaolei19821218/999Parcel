@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dfecdf9c-1c5a-4f84-b8d0-2a82134edf31" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UKMCollectionService.xsd" MetadataType="Schema" ID="3632cbf3-d115-4f79-a61c-9eefd5d55132" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UKMCollectionService.wsdl" MetadataType="Wsdl" ID="0ff54d7f-6761-4fe2-8752-29971636a6bc" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="UKMCollectionService1.wsdl" MetadataType="Wsdl" ID="1bf553dc-7e50-4054-ae62-2b7f6177d294" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?wsdl=wsdl1" />
+    <MetadataFile FileName="UKMCollectionService1.xsd" MetadataType="Schema" ID="8a9cb224-948f-4b30-a244-5ac732aaec01" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UKMCollectionService2.xsd" MetadataType="Schema" ID="1be2143a-e4f6-4c93-a311-691fc91b4823" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UKMCollectionService3.xsd" MetadataType="Schema" ID="ae339110-1ecd-4cf9-9262-6b6214c12a24" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UKMCollectionService2.wsdl" MetadataType="Wsdl" ID="79a39be7-ced7-4c3e-901e-519412afa3bf" SourceId="1" SourceUrl="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

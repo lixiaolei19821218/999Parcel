@@ -30,6 +30,10 @@ public partial class Default2 : System.Web.UI.Page
             {
                 message.InnerText = UKMResultState.Unknown.ToString();
             }
+            UKMCollectionService.UKMCollectionServiceClient c = new UKMCollectionService.UKMCollectionServiceClient();
+            UKMCollectionService.AddCollectionWebRequest r = new UKMCollectionService.AddCollectionWebRequest();
+            
+            c.BookCollection(r);
         }
         catch (Exception ex)
         {
