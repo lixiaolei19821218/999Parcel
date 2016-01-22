@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4411d653-25cc-4a1c-9ce5-4d87572d455c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UKMConsignmentService.wsdl" MetadataType="Wsdl" ID="07a0e030-d45f-4c5e-b938-4805f51dd1b1" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?wsdl" />
+    <MetadataFile FileName="UKMConsignmentService.xsd" MetadataType="Schema" ID="c6a8f923-4da9-4f50-b16a-83089bb8e820" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UKMConsignmentService1.xsd" MetadataType="Schema" ID="69fc3912-215b-4d64-a252-865b1d4e21ac" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd4" />
+    <MetadataFile FileName="UKMConsignmentService2.xsd" MetadataType="Schema" ID="6c8e230e-f476-422b-86d1-bf587750d749" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UKMConsignmentService3.xsd" MetadataType="Schema" ID="2b77c920-b21e-4968-9262-6d7c8c69dc53" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UKMConsignmentService4.xsd" MetadataType="Schema" ID="bf9d0075-c4c5-45dd-b0b6-b194381ca21e" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UKMConsignmentService1.wsdl" MetadataType="Wsdl" ID="1eb73e76-bc30-41e3-ad0f-44ac22b966d5" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="UKMConsignmentService2.wsdl" MetadataType="Wsdl" ID="65bdbfa9-921b-460c-b96a-722e4ec0d1f2" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?wsdl=wsdl1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
