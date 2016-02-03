@@ -30,8 +30,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="row" style="position: relative">
-                <div style="position: absolute; right: -125px; top: 160px">
-                    <img src="/static/img/kefu.png" /></div>
+                <div style="position: absolute; right: -330px; top: 160px;">
+                    <img src="/static/img/kefu-01.png" width="350" height="93"  /></div>
 
                 <div class="col-sm-8 col-xs-12" style="padding-right: 5px">
 
@@ -43,15 +43,18 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="/static/img/banner/bpost_banner_new.png" />
+                                    <img src="/static/img/banner/sudi1副本.jpg" />
                                 </div>
                                 <div class="item">
                                     <a href="/sudi/shop/">
-                                        <img src="/static/img/banner/sudi_shop3.jpg" /></a>
+                                        <img src="/static/img/banner/sudi2副本.jpg" /></a>
                                 </div>
                                 <div class="item">
-                                    <img src="/static/img/banner/sudi.png" />
-                                </div>                                
+                                    <img src="/static/img/banner/sudi3副本.jpg" />
+                                </div>   
+                                <div class="item">
+                                    <img src="/static/img/banner/图标7-2副本.jpg" />
+                                </div>                              
                             </div>
 
                             <!-- Controls -->

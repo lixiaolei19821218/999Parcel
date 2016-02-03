@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ServiceReferenceUKMailQA;
 using UKMCollectionService;
+using UKMConsignmentService;
 
 public partial class Default2 : System.Web.UI.Page
 {
@@ -30,9 +31,9 @@ public partial class Default2 : System.Web.UI.Page
         collectionRequest.AccountNumber = "S900118";
         collectionRequest.AuthenticationToken = loginResponse.AuthenticationToken;
         collectionRequest.ClosedForLunch = false;
-        collectionRequest.EarliestTime = DateTime.Today.AddDays(3).AddHours(11);
-        collectionRequest.LatestTime = DateTime.Today.AddDays(3).AddHours(17);
-        collectionRequest.RequestedCollectionDate = DateTime.Today.AddDays(3).AddHours(17);
+        collectionRequest.EarliestTime = DateTime.Today.AddDays(2).AddHours(11);
+        collectionRequest.LatestTime = DateTime.Today.AddDays(2).AddHours(17);
+        collectionRequest.RequestedCollectionDate = DateTime.Today.AddDays(2).AddHours(17);
         collectionRequest.SpecialInstructions = "Test";
         collectionRequest.Username = "735534185@qq.com";
 
@@ -44,12 +45,19 @@ public partial class Default2 : System.Web.UI.Page
             {
                 message.InnerText += error.Description + "\n\r";
             }
-            //message.InnerText = colloctionResponse.Result.ToString();
-            //message.InnerText = collectionRequest.AuthenticationToken;
+            message.InnerText = colloctionResponse.CollectionJobNumber;            
         }
         catch (Exception ex)
         {
             message.InnerText = ex.Message;
         }
+        UKMConsignmentServiceClient consignmentService = new UKMConsignmentServiceClient();
+        AddDomesticConsignmentWebRequest consignmentRequest = new AddDomesticConsignmentWebRequest();
+        consignmentRequest.AccountNumber = "S900118";
+        consignmentRequest.AuthenticationToken = loginResponse.AuthenticationToken;
+        
+        consignmentRequest.Address = new AddressWebModel() { Address1 = "" };
+        UKMAddDomesticConsignmentWebResponse consignmentResponse = consignmentService.AddDomesticConsignment(consignmentRequest);
+        //consignmentResponse.
     }
 }
