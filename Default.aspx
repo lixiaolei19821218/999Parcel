@@ -52,9 +52,7 @@
                                 <div class="item">
                                     <img src="/static/img/banner/sudi3副本.jpg" />
                                 </div>   
-                                <div class="item">
-                                    <img src="/static/img/banner/图标7-2副本.jpg" />
-                                </div>                              
+                                                          
                             </div>
 
                             <!-- Controls -->
@@ -302,11 +300,12 @@
                     
                             </div>
                             <div style="margin-left: 20px">
-
+                                <!--
                                 <div class="fl bg2" style="display: block; width: 119px; height: 110px; background-position: 1px -110px; margin-left: 20px"></div>
                                 <div class="fl bg2" style="display: block; width: 119px; height: 110px; background-position: -121px -110px; margin-left: 20px"></div>
                                 <div class="fl bg2" style="display: block; width: 119px; height: 110px; background-position: -250px -110px; margin-left: 20px"></div>
-
+                                -->
+                                <img src="static/img/bg5_new.png.jpg" style="width:500px; margin-left:-20px;" />
                                 <div class="cb"></div>
                             </div>
                         </div>
