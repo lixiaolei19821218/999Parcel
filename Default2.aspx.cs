@@ -55,8 +55,23 @@ public partial class Default2 : System.Web.UI.Page
         AddDomesticConsignmentWebRequest consignmentRequest = new AddDomesticConsignmentWebRequest();
         consignmentRequest.AccountNumber = "S900118";
         consignmentRequest.AuthenticationToken = loginResponse.AuthenticationToken;
-        
-        consignmentRequest.Address = new AddressWebModel() { Address1 = "" };
+        //consignmentRequest.AlternativeRef = 
+
+        consignmentRequest.Address = new AddressWebModel() { Address1 = "test1", Address2 = "test2", Address3 = "test3", CountryCode = "GBR", County = "West Midlands", PostalTown = "Birmingham", Postcode = "B8 2SQ" };
+        consignmentRequest.BookIn = true;
+        consignmentRequest.BusinessName = "999Parcel";
+        //consignmentRequest.CODAmount = 
+        consignmentRequest.CollectionJobNumber = colloctionResponse.CollectionJobNumber;
+        consignmentRequest.ConfirmationEmail = "735534185@qq.com";
+        consignmentRequest.ConfirmationOfDelivery = false;
+        consignmentRequest.ConfirmationTelephone = "123";
+        consignmentRequest.ContactName = "Amy";
+        consignmentRequest.Email = "735534185@qq.com";
+        consignmentRequest.ExchangeOnDelivery = false;
+        consignmentRequest.ExtendedCover = 0;
+        consignmentRequest.Items = 3;
+        consignmentRequest.LongLength = false;
+        consignmentRequest.PreDeliveryNotification = PreDeliveryNotificationType.Email;
         UKMAddDomesticConsignmentWebResponse consignmentResponse = consignmentService.AddDomesticConsignment(consignmentRequest);
         //consignmentResponse.
     }
