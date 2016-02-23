@@ -62,6 +62,8 @@ public partial class Order
     public Nullable<decimal> Cost { get; set; }
     public string SenderEmail { get; set; }
     public Nullable<bool> SuccessPaid { get; set; }
+    public string UKMConsignmentNumber { get; set; }
+    public string UKMErrors { get; set; }
 
     public virtual ICollection<Recipient> Recipients { get; set; }
     public virtual Reinforce Reinforce { get; set; }

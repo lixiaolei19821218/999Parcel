@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using ServiceReferenceUKMailQA;
 using SevenSeasAPIClient.YCShipmentService;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
+using UKMCollectionService;
+using UKMConsignmentService;
 using WMOrderService;
 
 public partial class cart_Cart : System.Web.UI.Page
@@ -234,8 +237,13 @@ public partial class cart_Cart : System.Web.UI.Page
                         SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForcePriority, attachmentPaths);
                         break;
                     case "Bpost - 免费取件":
-                    case "Bpost - UKMail 取件":
                         SendBpostLciFile(o);
+                        break;
+                    case "Bpost - UKMail 取件":
+                        if (UKMailCollection(o))
+                        {
+                            SendBpostLciFile(o);
+                        }
                         break;
                     default:                       
                         break;
@@ -400,6 +408,76 @@ public partial class cart_Cart : System.Web.UI.Page
         Application["counter"] = ++result;
         Application.UnLock();
         return result;
+    }
+
+    private bool UKMailCollection(Order o)
+    {
+        LoginWebRequest loginRequest = new LoginWebRequest();
+        loginRequest.Username = "735534185@qq.com";
+        loginRequest.Password = "UKMail123";
+        UKMLoginResponse loginResponse = null;
+        UKMAuthenticationServiceClient auth = new UKMAuthenticationServiceClient();
+        try
+        {
+            loginResponse = auth.Login(loginRequest);
+            //message.InnerText = loginResponse.Result.ToString();
+        }
+        catch (Exception ex)
+        {
+            //message.InnerText = ex.Message;
+        }
+
+        UKMConsignmentServiceClient consignmentService = new UKMConsignmentServiceClient();
+        AddReturnWebRequest returnReq = new AddReturnWebRequest();
+        returnReq.Username = "735534185@qq.com";
+        returnReq.AuthenticationToken = loginResponse.AuthenticationToken;
+        returnReq.AccountNumber = "S900118";
+        returnReq.CollectionDate = o.PickupTime.Value.Date;
+        returnReq.CollectionContactName = o.SenderName;
+        //returnReq.CollectionBusinessName = "Delcam Ltd";
+        returnReq.CollectionAddress = new AddressWebModel()
+        {
+            Address1 = o.SenderAddress1,
+            Address2 = o.SenderAddress2,
+            Address3 = o.SenderAddress3,
+            CountryCode = "GBR",
+            //County = "Berkshire",
+            PostalTown = o.SenderCity,// "Slough",
+            Postcode = o.SenderZipCode//"SL1 4PL"
+        };
+        //returnReq.CollectionEmail = o.SenderEmail;
+        returnReq.CollectionTelephone = o.SenderPhone;
+        //returnReq.CollectionCustomersRef = "";
+        returnReq.ServiceKey = 401;
+        returnReq.CollectionSpecialInstructions1 = "Please call me or text.";
+        //returnReq.CollectionSpecialInstructions2 = "CollectionSpecialInstructions2";
+        //returnReq.DeliverySpecialInstructions1 = "DeliverySpecialInstructions1";
+        //returnReq.DeliverySpecialInstructions2 = "DeliverySpecialInstructions2";
+        returnReq.DescriptionOfGoods1 = o.Recipients.Sum(r => r.Packages.Count).ToString();
+        //returnReq.DescriptionOfGoods2 = "DescriptionOfGoods2";
+        returnReq.CollectionTimeReady = returnReq.CollectionDate.AddHours(9);
+        returnReq.CollectionOpenLunchtime = false;
+        returnReq.CollectionLatestPickup = returnReq.CollectionDate.AddHours(17);
+        returnReq.BookIn = false;
+        UKMAddReturnToSenderWebResponse returnResponse = consignmentService.AddReturnToSender(returnReq);
+        if (returnResponse.Result == UKMConsignmentService.UKMResultState.Successful)
+        {
+            o.UKMConsignmentNumber = returnResponse.ConsignmentNumber;
+            return true;
+        }
+        else if (returnResponse.Result == UKMConsignmentService.UKMResultState.Failed)
+        {
+            foreach (UKMConsignmentService.UKMWebError error in returnResponse.Errors)
+            {
+                o.UKMErrors += error.Description + ";";
+            }
+            return false;
+        }
+        else
+        {
+            o.UKMErrors = returnResponse.Result.ToString();
+            return false;
+        }        
     }
 
     private void SendBpostLciFile(Order o)
@@ -862,7 +940,7 @@ public class PostHelp
         byte[] data = encoding.GetBytes(url);
 
         // 准备请求,设置参数
-        request = WebRequest.Create(url) as HttpWebRequest;
+        request = System.Net.WebRequest.Create(url) as HttpWebRequest;
         request.Method = "POST";
         request.ContentType = "text/xml";
         //request.ContentLength = data.Length;
@@ -888,7 +966,7 @@ public class PostHelp
         string result = "";
 
         StreamWriter myWriter = null;
-        HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
+        HttpWebRequest objRequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
         objRequest.Method = "POST";
         //objRequest.ContentLength = strPost.Length;
         objRequest.ContentType = "text/xml";//提交xml 

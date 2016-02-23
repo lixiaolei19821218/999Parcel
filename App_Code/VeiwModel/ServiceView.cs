@@ -133,7 +133,7 @@ public class ServiceView
             case 6://Bpost UKMail取件
             case 12://post nl免 UKMail取件
                 //ukmail取件费用，单箱5镑，2-3箱7镑，4箱以上每箱2镑的
-                //2015-6-16改为单想5镑，两箱7镑，三箱或以上免费
+                //2015-6-16改为单箱5镑，两箱7镑，三箱或以上免费
                 int packageCount = order.Recipients.Sum(r => r.Packages.Count);
                 if (packageCount == 1)
                 {

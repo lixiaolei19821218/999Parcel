@@ -172,8 +172,8 @@
                                         <a aria-expanded="false" role="button" class="dropdown-toggle hv1 pd3 clrb2 sz16 bold" data-hover="dropdown" style="padding-left:8.5px;padding-right:8.5px;">海淘转运<span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li role="presentation"><a>海淘流程</a></li>                                            
-                                            <li role="presentation"><a href="haitao/AddedService.aspx">加固和增值服务</a></li>                                            
-                                            <li role="presentation"><a href="haitao/HitaoConditions.aspx">条款和售后服务</a></li>
+                                            <li role="presentation"><a href="/haitao/AddedService.aspx">加固和增值服务</a></li>                                            
+                                            <li role="presentation"><a href="/haitao/HitaoConditions.aspx">条款和售后服务</a></li>
                                             <li class="divider"></li>                                                                               
                                             <li role="presentation"><a>入库预报</a></li>
                                             <li role="presentation"><a>我的云仓库</a></li>
@@ -253,7 +253,7 @@
                         <div style="clear: both"></div>
                     </div>
                     -->
-                    <img src="static/img/weixin.jpg" style="width:300px;" />
+                    <img src="/static/img/weixin.jpg" style="width:300px;" />
                 </div>
             </div>
 

@@ -56,6 +56,8 @@
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SenderEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="SuccessPaid" Type="bit" />
+          <Property Name="UKMConsignmentNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="UKMErrors" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PackageItems">
           <Key>
@@ -1189,6 +1191,8 @@
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="SenderEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SuccessPaid" Type="Boolean" />
+          <Property Name="UKMConsignmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UKMErrors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -1627,6 +1631,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="UK_ExpressModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="UKMErrors" ColumnName="UKMErrors" />
+                <ScalarProperty Name="UKMConsignmentNumber" ColumnName="UKMConsignmentNumber" />
                 <ScalarProperty Name="SuccessPaid" ColumnName="SuccessPaid" />
                 <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
