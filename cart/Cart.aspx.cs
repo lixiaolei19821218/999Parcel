@@ -243,7 +243,7 @@ public partial class cart_Cart : System.Web.UI.Page
                         if (UKMailCollection(o))
                         {
                             SendBpostLciFile(o);
-                        }
+                        }                        
                         break;
                     default:                       
                         break;
@@ -467,15 +467,18 @@ public partial class cart_Cart : System.Web.UI.Page
         }
         else if (returnResponse.Result == UKMConsignmentService.UKMResultState.Failed)
         {
+            int i = 1;
             foreach (UKMConsignmentService.UKMWebError error in returnResponse.Errors)
             {
-                o.UKMErrors += error.Description + ";";
+                o.UKMErrors += i++ + error.Description;
+                o.SuccessPaid = false;               
             }
             return false;
         }
         else
         {
             o.UKMErrors = returnResponse.Result.ToString();
+            o.SuccessPaid = false;
             return false;
         }        
     }

@@ -39,6 +39,25 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         sv = new ServiceView(service);
     }
 
+    public string GetUKM()
+    {
+        if (order.Service.Name.Contains("UKMail"))
+        {
+            if (string.IsNullOrWhiteSpace(order.UKMConsignmentNumber))
+            {
+                return string.Format("<li>发送UK Mail取件错误：{0}</li>", order.UKMErrors);
+            }
+            else
+            {
+                return string.Format("<li>UK Mail取件号：{0}</li>", order.UKMConsignmentNumber);
+            }
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
+
     public IEnumerable<Recipient> GetRecipients()
     {        
         int id;
@@ -98,7 +117,14 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             }
             else
             {
-                return "<div style=\"float:right;font-size:medium;color:lightblue;\">已发送到Bpost，等待返回信息</div>";
+                if (string.IsNullOrWhiteSpace(r.Order.UKMErrors))
+                {
+                    return "<div style=\"float:right;font-size:medium;color:lightblue;\">已发送到Bpost，等待返回信息</div>";
+                }
+                else
+                {
+                    return "<div style=\"float:right;font-size:medium;color:red;\">发送UK Mail失败</div>";
+                }
             }            
         }
     }
@@ -110,7 +136,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
         }
         else//bpost
-        {
+        {            
             if (!string.IsNullOrEmpty(p.Status))
             {
                 if (p.Status == "SUCCESS")
@@ -124,7 +150,14 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             }
             else
             {
-                return "<a title=\"已发送Bpost\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + "等待Bpost返回结果" + "\">已发送Bpost</a>";
+                if (string.IsNullOrWhiteSpace(p.Recipient.Order.UKMErrors))
+                {
+                    return "<a title=\"已发送Bpost\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + "等待Bpost返回结果" + "\">已发送Bpost</a>";
+                }
+                else
+                {
+                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Recipient.Order.UKMErrors + "\">错误详情</a>";
+                }
             }    
         }
     }

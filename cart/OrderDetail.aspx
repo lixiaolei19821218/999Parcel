@@ -31,6 +31,7 @@
                 <li>地址：<%:Order.SenderAddress1 + " " + Order.SenderAddress2 + " " + Order.SenderAddress3 %></li>
                 <li>手机：<%:Order.SenderPhone%></li>
                 <li>邮编：<%:Order.SenderZipCode%></li>
+                <%=GetUKM() %>
             </ul>
         </fieldset>
     </div>
