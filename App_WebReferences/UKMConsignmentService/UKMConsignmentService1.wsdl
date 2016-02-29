@@ -1,94 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.UKMail.com/Services/Contracts/ServiceContracts" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.UKMail.com/Services/Contracts/ServiceContracts" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <xsd:schema targetNamespace="http://www.UKMail.com/Services/Contracts/ServiceContracts/Imports">
-      <xsd:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd0" namespace="http://www.UKMail.com/Services/Contracts/ServiceContracts" />
-      <xsd:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd2" namespace="http://www.UKMail.com/Services/Contracts/DataContracts" />
-      <xsd:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" />
-      <xsd:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="IUKMConsignmentService_AddDomesticConsignment_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddDomesticConsignment" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddDomesticConsignment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddDomesticConsignmentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddPacketConsignment_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddPacketConsignment" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddPacketConsignment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddPacketConsignmentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddInternationalConsignment_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddInternationalConsignment" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddInternationalConsignment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddInternationalConsignmentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddReturnToSender_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddReturnToSender" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddReturnToSender_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddReturnToSenderResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddSendToThirdParty_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddSendToThirdParty" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddSendToThirdParty_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddSendToThirdPartyResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_CancelConsignment_InputMessage">
-    <wsdl:part name="parameters" element="tns:CancelConsignment" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_CancelConsignment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CancelConsignmentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_CancelReturn_InputMessage">
-    <wsdl:part name="parameters" element="tns:CancelReturn" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_CancelReturn_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CancelReturnResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddDomesticConsignmentDeferred_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddDomesticConsignmentDeferred" />
-  </wsdl:message>
-  <wsdl:message name="IUKMConsignmentService_AddDomesticConsignmentDeferred_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddDomesticConsignmentDeferredResponse" />
-  </wsdl:message>
-  <wsdl:portType name="IUKMConsignmentService">
-    <wsdl:operation name="AddDomesticConsignment">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/AddDomesticConsignment" message="tns:IUKMConsignmentService_AddDomesticConsignment_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/AddDomesticConsignmentResponse" message="tns:IUKMConsignmentService_AddDomesticConsignment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddPacketConsignment">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/AddPacketConsignment" message="tns:IUKMConsignmentService_AddPacketConsignment_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/AddPacketConsignmentResponse" message="tns:IUKMConsignmentService_AddPacketConsignment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddInternationalConsignment">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/AddInternationalConsignment" message="tns:IUKMConsignmentService_AddInternationalConsignment_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/AddInternationalConsignmentResponse" message="tns:IUKMConsignmentService_AddInternationalConsignment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddReturnToSender">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/AddReturnToSender" message="tns:IUKMConsignmentService_AddReturnToSender_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/AddReturnToSenderResponse" message="tns:IUKMConsignmentService_AddReturnToSender_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddSendToThirdParty">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/AddSendToThirdParty" message="tns:IUKMConsignmentService_AddSendToThirdParty_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/AddSendToThirdPartyResponse" message="tns:IUKMConsignmentService_AddSendToThirdParty_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CancelConsignment">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/CancelConsignment" message="tns:IUKMConsignmentService_CancelConsignment_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/CancelConsignmentResponse" message="tns:IUKMConsignmentService_CancelConsignment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CancelReturn">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/CancelReturn" message="tns:IUKMConsignmentService_CancelReturn_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/CancelReturnResponse" message="tns:IUKMConsignmentService_CancelReturn_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddDomesticConsignmentDeferred">
-      <wsdl:input wsaw:Action="http://www.UKMail.com/Services/IUKMConsignmentService/AddDomesticConsignmentDeferred" message="tns:IUKMConsignmentService_AddDomesticConsignmentDeferred_InputMessage" />
-      <wsdl:output wsaw:Action="http://www.UKMail.com/Services/Contracts/ServiceContracts/IUKMConsignmentService/AddDomesticConsignmentDeferredResponse" message="tns:IUKMConsignmentService_AddDomesticConsignmentDeferred_OutputMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.UKMail.com/Services" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://tempuri.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UKMConsignmentService" targetNamespace="http://www.UKMail.com/Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://tempuri.org/" location="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?wsdl=wsdl1" />
+  <wsdl:types />
+  <wsdl:service name="UKMConsignmentService">
+    <wsdl:port name="BasicHttpEndpoint_IUKMConsignmentService" binding="i0:BasicHttpEndpoint_IUKMConsignmentService">
+      <soap:address location="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc" />
+    </wsdl:port>
+  </wsdl:service>
 </wsdl:definitions>

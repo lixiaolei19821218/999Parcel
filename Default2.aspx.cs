@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ServiceReferenceUKMailQA;
-using UKMCollectionService;
-using UKMConsignmentService;
+using UKMAuthenticationServiceQA;
+using UKMCollectionServiceQA;
+using UKMConsignmentServiceQA;
 using System.IO;
 
 public partial class Default2 : System.Web.UI.Page
@@ -42,7 +42,7 @@ public partial class Default2 : System.Web.UI.Page
         try
         {
             colloctionResponse = collectionService.BookCollection(collectionRequest);
-            foreach (UKMCollectionService.UKMWebError error in colloctionResponse.Errors)
+            foreach (UKMCollectionServiceQA.UKMWebError error in colloctionResponse.Errors)
             {
                 message.InnerText += error.Description + "\n\r";
             }
@@ -244,13 +244,13 @@ public partial class Default2 : System.Web.UI.Page
         returnReq.CollectionLatestPickup = returnReq.CollectionTimeReady.AddHours(3);
         returnReq.BookIn = false;
         UKMAddReturnToSenderWebResponse returnResponse = consignmentService.AddReturnToSender(returnReq);
-        if (returnResponse.Result == UKMConsignmentService.UKMResultState.Successful)
+        if (returnResponse.Result == UKMConsignmentServiceQA.UKMResultState.Successful)
         {
             message.InnerText = returnResponse.ConsignmentNumber;
         }
-        else if (returnResponse.Result == UKMConsignmentService.UKMResultState.Failed)
+        else if (returnResponse.Result == UKMConsignmentServiceQA.UKMResultState.Failed)
         {
-            foreach (UKMConsignmentService.UKMWebError error in returnResponse.Errors)
+            foreach (UKMConsignmentServiceQA.UKMWebError error in returnResponse.Errors)
             {
                 message.InnerText += error.Description + "\r\n";
             }

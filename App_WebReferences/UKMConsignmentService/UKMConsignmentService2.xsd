@@ -1,42 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="anyType" nillable="true" type="xs:anyType" />
-  <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
-  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
-  <xs:element name="boolean" nillable="true" type="xs:boolean" />
-  <xs:element name="byte" nillable="true" type="xs:byte" />
-  <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
-  <xs:element name="decimal" nillable="true" type="xs:decimal" />
-  <xs:element name="double" nillable="true" type="xs:double" />
-  <xs:element name="float" nillable="true" type="xs:float" />
-  <xs:element name="int" nillable="true" type="xs:int" />
-  <xs:element name="long" nillable="true" type="xs:long" />
-  <xs:element name="QName" nillable="true" type="xs:QName" />
-  <xs:element name="short" nillable="true" type="xs:short" />
-  <xs:element name="string" nillable="true" type="xs:string" />
-  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
-  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
-  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
-  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
-  <xs:element name="char" nillable="true" type="tns:char" />
-  <xs:simpleType name="char">
-    <xs:restriction base="xs:int" />
-  </xs:simpleType>
-  <xs:element name="duration" nillable="true" type="tns:duration" />
-  <xs:simpleType name="duration">
-    <xs:restriction base="xs:duration">
-      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
-      <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
-      <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="guid" nillable="true" type="tns:guid" />
-  <xs:simpleType name="guid">
+<xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/DataContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" />
+  <xs:complexType name="AddDomesticConsignmentWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AddConsignmentWebRequest">
+        <xs:sequence>
+          <xs:element name="BookIn" type="xs:boolean" />
+          <xs:element name="CODAmount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ConfirmationEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ConfirmationTelephone" nillable="true" type="xs:string" />
+          <xs:element name="ExchangeOnDelivery" type="xs:boolean" />
+          <xs:element name="ExtendedCover" type="xs:int" />
+          <xs:element name="LongLength" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PreDeliveryNotification" type="tns:PreDeliveryNotificationType" />
+          <xs:element minOccurs="0" name="SecureLocation1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SecureLocation2" nillable="true" type="xs:string" />
+          <xs:element name="SignatureOptional" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddDomesticConsignmentWebRequest" nillable="true" type="tns:AddDomesticConsignmentWebRequest" />
+  <xs:complexType name="AddConsignmentWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebRequest">
+        <xs:sequence>
+          <xs:element name="AccountNumber" nillable="true" type="xs:string" />
+          <xs:element name="Address" nillable="true" type="tns:AddressWebModel" />
+          <xs:element minOccurs="0" name="AlternativeRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BusinessName" nillable="true" type="xs:string" />
+          <xs:element name="CollectionJobNumber" nillable="true" type="xs:string" />
+          <xs:element name="ConfirmationOfDelivery" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ContactName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomersRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element name="Items" type="xs:int" />
+          <xs:element name="ServiceKey" type="xs:int" />
+          <xs:element minOccurs="0" name="SpecialInstructions1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SpecialInstructions2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
+          <xs:element name="Weight" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddConsignmentWebRequest" nillable="true" type="tns:AddConsignmentWebRequest" />
+  <xs:complexType name="WebRequest">
+    <xs:sequence>
+      <xs:element name="AuthenticationToken" nillable="true" type="xs:string" />
+      <xs:element name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebRequest" nillable="true" type="tns:WebRequest" />
+  <xs:complexType name="AddressWebModel">
+    <xs:sequence>
+      <xs:element name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address3" nillable="true" type="xs:string" />
+      <xs:element name="CountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostalTown" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddressWebModel" nillable="true" type="tns:AddressWebModel" />
+  <xs:simpleType name="PreDeliveryNotificationType">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+      <xs:enumeration value="NonRequired" />
+      <xs:enumeration value="Telephone" />
+      <xs:enumeration value="Email" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:attribute name="FactoryType" type="xs:QName" />
-  <xs:attribute name="Id" type="xs:ID" />
-  <xs:attribute name="Ref" type="xs:IDREF" />
+  <xs:element name="PreDeliveryNotificationType" nillable="true" type="tns:PreDeliveryNotificationType" />
+  <xs:complexType name="UKMAddDomesticConsignmentWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConsignmentNumber" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Labels" nillable="true" type="q1:ArrayOfbase64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMAddDomesticConsignmentWebResponse" nillable="true" type="tns:UKMAddDomesticConsignmentWebResponse" />
+  <xs:complexType name="UKMWebResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfUKMWebError" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" name="Result" type="q2:UKMResultState" />
+      <xs:element minOccurs="0" name="Warnings" nillable="true" type="tns:ArrayOfUKMWebWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UKMWebResponse" nillable="true" type="tns:UKMWebResponse" />
+  <xs:complexType name="ArrayOfUKMWebError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UKMWebError" nillable="true" type="tns:UKMWebError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUKMWebError" nillable="true" type="tns:ArrayOfUKMWebError" />
+  <xs:complexType name="UKMWebError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UKMWebError" nillable="true" type="tns:UKMWebError" />
+  <xs:complexType name="ArrayOfUKMWebWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UKMWebWarning" nillable="true" type="tns:UKMWebWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUKMWebWarning" nillable="true" type="tns:ArrayOfUKMWebWarning" />
+  <xs:complexType name="UKMWebWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UKMWebWarning" nillable="true" type="tns:UKMWebWarning" />
+  <xs:complexType name="AddPacketConsignmentWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebRequest">
+        <xs:sequence>
+          <xs:element name="AccountNumber" nillable="true" type="xs:string" />
+          <xs:element name="CollectionJobNumber" nillable="true" type="xs:string" />
+          <xs:element name="ContactName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BusinessName" nillable="true" type="xs:string" />
+          <xs:element name="Address" nillable="true" type="tns:PacketAddressWebModel" />
+          <xs:element minOccurs="0" name="CustomersRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AlternativeRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WeightInGrams" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="PacketLength" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="PacketWidth" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="PacketHeight" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DeliveryMessage1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DeliveryMessage2" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddPacketConsignmentWebRequest" nillable="true" type="tns:AddPacketConsignmentWebRequest" />
+  <xs:complexType name="PacketAddressWebModel">
+    <xs:sequence>
+      <xs:element name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostalTown" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PacketAddressWebModel" nillable="true" type="tns:PacketAddressWebModel" />
+  <xs:complexType name="UKMAddPacketConsignmentWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConsignmentNumber" nillable="true" type="xs:string" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Labels" nillable="true" type="q3:ArrayOfbase64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMAddPacketConsignmentWebResponse" nillable="true" type="tns:UKMAddPacketConsignmentWebResponse" />
+  <xs:complexType name="AddInternationalConsignmentWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AddConsignmentWebRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+          <xs:element name="DocumentsOnly" type="xs:boolean" />
+          <xs:element name="ExtendedCoverRequired" type="xs:boolean" />
+          <xs:element minOccurs="0" name="GoodsDescription1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GoodsDescription2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GoodsDescription3" nillable="true" type="xs:string" />
+          <xs:element name="Height" type="xs:int" />
+          <xs:element name="InFreeCirculationEU" type="xs:boolean" />
+          <xs:element name="InvoiceType" type="tns:InvoiceTypeList" />
+          <xs:element name="Length" type="xs:int" />
+          <xs:element name="NoDangerousGoods" type="xs:boolean" />
+          <xs:element name="Value" type="xs:decimal" />
+          <xs:element name="Width" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddInternationalConsignmentWebRequest" nillable="true" type="tns:AddInternationalConsignmentWebRequest" />
+  <xs:simpleType name="InvoiceTypeList">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="ProForma" />
+      <xs:enumeration value="Commercial" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InvoiceTypeList" nillable="true" type="tns:InvoiceTypeList" />
+  <xs:complexType name="UKMAddInternationalConsignmentWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConsignmentNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InvoiceBytes" nillable="true" type="xs:base64Binary" />
+          <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Labels" nillable="true" type="q4:ArrayOfbase64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMAddInternationalConsignmentWebResponse" nillable="true" type="tns:UKMAddInternationalConsignmentWebResponse" />
+  <xs:complexType name="AddReturnWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebRequest">
+        <xs:sequence>
+          <xs:element name="AccountNumber" nillable="true" type="xs:string" />
+          <xs:element name="BookIn" type="xs:boolean" />
+          <xs:element name="CollectionAddress" nillable="true" type="tns:AddressWebModel" />
+          <xs:element minOccurs="0" name="CollectionBusinessName" nillable="true" type="xs:string" />
+          <xs:element name="CollectionContactName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CollectionCustomersRef" nillable="true" type="xs:string" />
+          <xs:element name="CollectionDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CollectionEmail" nillable="true" type="xs:string" />
+          <xs:element name="CollectionLatestPickup" type="xs:dateTime" />
+          <xs:element name="CollectionOpenLunchtime" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CollectionSpecialInstructions1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CollectionSpecialInstructions2" nillable="true" type="xs:string" />
+          <xs:element name="CollectionTelephone" nillable="true" type="xs:string" />
+          <xs:element name="CollectionTimeReady" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DeliverySpecialInstructions1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DeliverySpecialInstructions2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DescriptionOfGoods1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DescriptionOfGoods2" nillable="true" type="xs:string" />
+          <xs:element name="ServiceKey" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddReturnWebRequest" nillable="true" type="tns:AddReturnWebRequest" />
+  <xs:complexType name="UKMAddReturnToSenderWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConsignmentNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMAddReturnToSenderWebResponse" nillable="true" type="tns:UKMAddReturnToSenderWebResponse" />
+  <xs:complexType name="AddSendToThirdPartyWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AddReturnWebRequest">
+        <xs:sequence>
+          <xs:element name="DeliveryAddress" nillable="true" type="tns:AddressWebModel" />
+          <xs:element minOccurs="0" name="DeliveryBusinessName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DeliveryContactName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DeliveryEmail" nillable="true" type="xs:string" />
+          <xs:element name="DeliveryTelephone" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddSendToThirdPartyWebRequest" nillable="true" type="tns:AddSendToThirdPartyWebRequest" />
+  <xs:complexType name="UKMAddSendToThirdPartyWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConsignmentNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMAddSendToThirdPartyWebResponse" nillable="true" type="tns:UKMAddSendToThirdPartyWebResponse" />
+  <xs:complexType name="CancelConsignmentWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebRequest">
+        <xs:sequence>
+          <xs:element name="ConsignmentNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CancelConsignmentWebRequest" nillable="true" type="tns:CancelConsignmentWebRequest" />
+  <xs:complexType name="UKMCancelConsignmentWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMCancelConsignmentWebResponse" nillable="true" type="tns:UKMCancelConsignmentWebResponse" />
+  <xs:complexType name="CancelReturnWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebRequest">
+        <xs:sequence>
+          <xs:element name="ConsignmentNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CancelReturnWebRequest" nillable="true" type="tns:CancelReturnWebRequest" />
+  <xs:complexType name="UKMCancelReturnWebResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UKMWebResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UKMCancelReturnWebResponse" nillable="true" type="tns:UKMCancelReturnWebResponse" />
+  <xs:complexType name="AddDomesticConsignmentDeferredWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AddConsignmentDeferredWebRequest">
+        <xs:sequence>
+          <xs:element name="BookIn" type="xs:boolean" />
+          <xs:element name="CODAmount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ConfirmationEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ConfirmationTelephone" nillable="true" type="xs:string" />
+          <xs:element name="ExchangeOnDelivery" type="xs:boolean" />
+          <xs:element name="ExtendedCover" type="xs:int" />
+          <xs:element name="LongLength" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PreDeliveryNotification" type="tns:PreDeliveryNotificationType" />
+          <xs:element minOccurs="0" name="SecureLocation1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SecureLocation2" nillable="true" type="xs:string" />
+          <xs:element name="SignatureOptional" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddDomesticConsignmentDeferredWebRequest" nillable="true" type="tns:AddDomesticConsignmentDeferredWebRequest" />
+  <xs:complexType name="AddConsignmentDeferredWebRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebRequest">
+        <xs:sequence>
+          <xs:element name="AccountNumber" nillable="true" type="xs:string" />
+          <xs:element name="Address" nillable="true" type="tns:AddressWebModel" />
+          <xs:element minOccurs="0" name="AlternativeRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BusinessName" nillable="true" type="xs:string" />
+          <xs:element name="CollectionDate" type="xs:dateTime" />
+          <xs:element name="ConfirmationOfDelivery" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ContactName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomersRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element name="Items" type="xs:int" />
+          <xs:element name="LabelFormat" type="tns:LabelFormatType" />
+          <xs:element name="ServiceKey" type="xs:int" />
+          <xs:element minOccurs="0" name="SpecialInstructions1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SpecialInstructions2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
+          <xs:element name="Weight" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddConsignmentDeferredWebRequest" nillable="true" type="tns:AddConsignmentDeferredWebRequest" />
+  <xs:simpleType name="LabelFormatType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PNG6x4" />
+      <xs:enumeration value="ZPL200dpi6x4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LabelFormatType" nillable="true" type="tns:LabelFormatType" />
 </xs:schema>

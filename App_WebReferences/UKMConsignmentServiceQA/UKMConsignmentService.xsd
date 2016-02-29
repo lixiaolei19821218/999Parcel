@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/ServiceContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/ServiceContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd2" namespace="http://www.UKMail.com/Services/Contracts/DataContracts" />
+  <xs:element name="AddDomesticConsignment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q1:AddDomesticConsignmentWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDomesticConsignmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="AddDomesticConsignmentResult" nillable="true" type="q2:UKMAddDomesticConsignmentWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPacketConsignment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q3:AddPacketConsignmentWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPacketConsignmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="AddPacketConsignmentResult" nillable="true" type="q4:UKMAddPacketConsignmentWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddInternationalConsignment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q5:AddInternationalConsignmentWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddInternationalConsignmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="AddInternationalConsignmentResult" nillable="true" type="q6:UKMAddInternationalConsignmentWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddReturnToSender">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q7:AddReturnWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddReturnToSenderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="AddReturnToSenderResult" nillable="true" type="q8:UKMAddReturnToSenderWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSendToThirdParty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q9:AddSendToThirdPartyWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSendToThirdPartyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="AddSendToThirdPartyResult" nillable="true" type="q10:UKMAddSendToThirdPartyWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelConsignment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q11:CancelConsignmentWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelConsignmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="CancelConsignmentResult" nillable="true" type="q12:UKMCancelConsignmentWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelReturn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q13:CancelReturnWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="CancelReturnResult" nillable="true" type="q14:UKMCancelReturnWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDomesticConsignmentDeferred">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q15:AddDomesticConsignmentDeferredWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDomesticConsignmentDeferredResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="AddDomesticConsignmentDeferredResult" nillable="true" type="q16:UKMAddDomesticConsignmentWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -41,9 +41,9 @@ public partial class accounts_Recover : System.Web.UI.Page
     public bool SendEmail(string mailTo, string mailSubject, string mailContent, params string[] attachmentPaths)
     {
         // 设置发送方的邮件信息,例如使用网易的smtp
-        string smtpServer = "smtp.163.com"; //SMTP服务器
-        string mailFrom = "iir_lee@163.com"; //登陆用户名
-        string userPassword = "llc^181925";//登陆密码
+        string smtpServer = "999parcel.com"; //SMTP服务器
+        string mailFrom = "support@999parcel.com"; //登陆用户名
+        string userPassword = "999parcel";//登陆密码
 
         // 邮件服务设置
         SmtpClient smtpClient = new SmtpClient();

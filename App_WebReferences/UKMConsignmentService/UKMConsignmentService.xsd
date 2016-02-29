@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/ServiceContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/ServiceContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd2" namespace="http://www.UKMail.com/Services/Contracts/DataContracts" />
+  <xs:import schemaLocation="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc?xsd=xsd2" namespace="http://www.UKMail.com/Services/Contracts/DataContracts" />
   <xs:element name="AddDomesticConsignment">
     <xs:complexType>
       <xs:sequence>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="L4kQMJrZyglIqtVZIJJL2b0xAbA=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="fq/EOyKRreg1wP/xiPH8CaZabUQ=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpEndpoint_IUKMConsignmentService">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpEndpoint_IUKMConsignmentService1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpEndpoint_IUKMConsignmentService</serializedValue>
+          <serializedValue>BasicHttpEndpoint_IUKMConsignmentService1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpEndpoint_IUKMConsignmentService" contract="UKMConsignmentService.IUKMConsignmentService" bindingType="basicHttpBinding" address="https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc" bindingConfiguration="BasicHttpEndpoint_IUKMConsignmentService">
+    <endpoint name="BasicHttpEndpoint_IUKMConsignmentService1" contract="UKMConsignmentService.IUKMConsignmentService" bindingType="basicHttpBinding" address="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc" bindingConfiguration="BasicHttpEndpoint_IUKMConsignmentService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://qa-api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc</serializedValue>
+          <serializedValue>https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,7 +124,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpEndpoint_IUKMConsignmentService</serializedValue>
+          <serializedValue>BasicHttpEndpoint_IUKMConsignmentService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>UKMConsignmentService.IUKMConsignmentService</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpEndpoint_IUKMConsignmentService</serializedValue>
+          <serializedValue>BasicHttpEndpoint_IUKMConsignmentService1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

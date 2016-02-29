@@ -1,71 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/DataContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="https://qa-api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" />
-  <xs:complexType name="AddCollectionWebRequest">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:WebRequest">
-        <xs:sequence>
-          <xs:element name="AccountNumber" nillable="true" type="xs:string" />
-          <xs:element name="ClosedForLunch" type="xs:boolean" />
-          <xs:element name="EarliestTime" type="xs:dateTime" />
-          <xs:element name="LatestTime" type="xs:dateTime" />
-          <xs:element name="RequestedCollectionDate" type="xs:dateTime" />
-          <xs:element name="SpecialInstructions" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="AddCollectionWebRequest" nillable="true" type="tns:AddCollectionWebRequest" />
-  <xs:complexType name="WebRequest">
-    <xs:sequence>
-      <xs:element name="AuthenticationToken" nillable="true" type="xs:string" />
-      <xs:element name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="WebRequest" nillable="true" type="tns:WebRequest" />
-  <xs:complexType name="UKMAddCollectionWebResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:UKMWebResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="BookingMessage" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="CollectionJobNumber" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="UKMAddCollectionWebResponse" nillable="true" type="tns:UKMAddCollectionWebResponse" />
-  <xs:complexType name="UKMWebResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfUKMWebError" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/UKMWebAPICommon.WebResponses" name="Result" type="q1:UKMResultState" />
-      <xs:element minOccurs="0" name="Warnings" nillable="true" type="tns:ArrayOfUKMWebWarning" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UKMWebResponse" nillable="true" type="tns:UKMWebResponse" />
-  <xs:complexType name="ArrayOfUKMWebError">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UKMWebError" nillable="true" type="tns:UKMWebError" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUKMWebError" nillable="true" type="tns:ArrayOfUKMWebError" />
-  <xs:complexType name="UKMWebError">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Code" type="xs:int" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UKMWebError" nillable="true" type="tns:UKMWebError" />
-  <xs:complexType name="ArrayOfUKMWebWarning">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UKMWebWarning" nillable="true" type="tns:UKMWebWarning" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUKMWebWarning" nillable="true" type="tns:ArrayOfUKMWebWarning" />
-  <xs:complexType name="UKMWebWarning">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Code" type="xs:int" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UKMWebWarning" nillable="true" type="tns:UKMWebWarning" />
+<xs:schema xmlns:tns="http://www.UKMail.com/Services/Contracts/ServiceContracts" elementFormDefault="qualified" targetNamespace="http://www.UKMail.com/Services/Contracts/ServiceContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc?xsd=xsd2" namespace="http://www.UKMail.com/Services/Contracts/DataContracts" />
+  <xs:element name="BookCollection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="request" nillable="true" type="q1:AddCollectionWebRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookCollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.UKMail.com/Services/Contracts/DataContracts" minOccurs="0" name="BookCollectionResult" nillable="true" type="q2:UKMAddCollectionWebResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

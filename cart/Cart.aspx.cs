@@ -1,6 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using ServiceReferenceUKMailQA;
+using UKMAuthenticationServiceQA;
 using SevenSeasAPIClient.YCShipmentService;
 using System;
 using System.Collections.Generic;
@@ -20,8 +20,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
-using UKMCollectionService;
-using UKMConsignmentService;
+//using UKMCollectionService;
+using UKMConsignmentServiceQA;
 using WMOrderService;
 
 public partial class cart_Cart : System.Web.UI.Page
@@ -231,10 +231,10 @@ public partial class cart_Cart : System.Web.UI.Page
                         SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
                         break;
                     case "Parcelforce Economy - 自送邮局":
-                        SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
                         break;
                     case "Parcelforce Priority - 自送邮局":
-                        SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForcePriority, attachmentPaths);
+                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
                         break;
                     case "Bpost - 免费取件":
                         SendBpostLciFile(o);
@@ -460,15 +460,15 @@ public partial class cart_Cart : System.Web.UI.Page
         returnReq.CollectionLatestPickup = returnReq.CollectionDate.AddHours(17);
         returnReq.BookIn = false;
         UKMAddReturnToSenderWebResponse returnResponse = consignmentService.AddReturnToSender(returnReq);
-        if (returnResponse.Result == UKMConsignmentService.UKMResultState.Successful)
+        if (returnResponse.Result == UKMConsignmentServiceQA.UKMResultState.Successful)
         {
             o.UKMConsignmentNumber = returnResponse.ConsignmentNumber;
             return true;
         }
-        else if (returnResponse.Result == UKMConsignmentService.UKMResultState.Failed)
+        else if (returnResponse.Result == UKMConsignmentServiceQA.UKMResultState.Failed)
         {
             int i = 1;
-            foreach (UKMConsignmentService.UKMWebError error in returnResponse.Errors)
+            foreach (UKMConsignmentServiceQA.UKMWebError error in returnResponse.Errors)
             {
                 o.UKMErrors += i++ + error.Description;
                 o.SuccessPaid = false;               

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="130233ba-873b-4446-b472-1fd029dba08e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UKMAuthenticationService.wsdl" MetadataType="Wsdl" ID="ab7d2f61-1d28-4bd5-9a60-dfd7347206f8" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?wsdl=wsdl1" />
+    <MetadataFile FileName="UKMAuthenticationService1.wsdl" MetadataType="Wsdl" ID="7c78ef03-1c8b-47da-adea-dcfc00ba1e6e" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="UKMAuthenticationService2.wsdl" MetadataType="Wsdl" ID="b90d967a-0af8-4c3d-a4a9-37a0e3d6f3ce" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?wsdl" />
+    <MetadataFile FileName="UKMAuthenticationService.xsd" MetadataType="Schema" ID="2dc362f2-45c8-4584-8470-0c78a38d228e" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UKMAuthenticationService1.xsd" MetadataType="Schema" ID="a1882acf-25b8-4858-8eb5-dc6add3caa3a" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UKMAuthenticationService2.xsd" MetadataType="Schema" ID="97b418fe-89ec-4a76-b6c8-73eba5a618e3" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UKMAuthenticationService3.xsd" MetadataType="Schema" ID="1e57528d-9d3f-4130-8561-2ecc07d61f5c" SourceId="1" SourceUrl="https://qa-api.ukmail.com/Services/UKMAuthenticationServices/UKMAuthenticationService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
