@@ -197,8 +197,14 @@
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_postcode">邮编</label>
                                 <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()" />
-                                
-
+                                <select name="addr_0_insurance" class="addr_insurance" id="addr_0_insurance">
+                                    <option value="0">无</option>
+                                    <option value="0">£5</option>
+                                    <option value="0">£10</option>
+                                    <option value="0">£15</option>
+                                    <option value="0">£20</option>
+                                    <option value="0">£25</option>
+                                </select>
                             </div>
 
                             
