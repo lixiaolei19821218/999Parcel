@@ -25,6 +25,10 @@
                 }
             }            
         }
+        function refreshImg()
+        {            
+            codeImg.src = codeImg.src + "?";            
+        }
     </script>
 </asp:Content>
 
@@ -140,7 +144,7 @@
                                 </div>
 
 
-                                <div class="tar" style="margin-top: 25px">
+                                <div class="tar" style="margin-top: 40px">
                                     <div style="float: left; font-size: 14px; margin-top: -5px; color: #0075c2">
                                         <a href="/static/media/uploads/新手专区.docx">
                                             <span style="font-weight: bold">温馨提示</span>：点击右侧"+"号添加多箱，<span style="font-weight: bold">有优惠</span>（取件费会随箱数减免）
@@ -162,7 +166,7 @@
                         </div>
 
                         <div style="background-color: #fff; padding: 15px 20px">
-                            <div style="min-height: 275px">
+                            <div style="min-height: 295px">
                                 <asp:Repeater runat="server" ItemType="News" SelectMethod="GetNews" >
                                     <ItemTemplate>
                                         <a href="/news/newsdetail.aspx?id=<%#Item.Id %>" class="mg2 bg2" style="background-position: -356px -4px; background-repeat: no-repeat">
@@ -206,16 +210,21 @@
                         <div class="rds2" style="background-color: #fff; padding: 10px 20px 0">
                             <form method="post" style="margin: 0">
                                 <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
-                                <table style="width: 100%">
+                                <table style="width: 100%;">
                                     <tr>
-                                        <td class="sz16" style="width: 40%">名字/Email</td>
+                                        <td class="sz16"><div style="float:right;">名字/Email</div></td>
                                         <td style="width: 60%">
                                             <input autofocus="" id="id_username" name="username" required="" type="text" /></td>
                                     </tr>
                                     <tr>
-                                        <td class="sz16">密码</td>
+                                        <td class="sz16"><div style="float:right;">密码</div></td>
                                         <td>
                                             <input id="id_password" name="password" required="" type="password" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="sz16"><img id="codeImg" name="codeImg" onclick="refreshImg()" runat="server" style="float:right;" src="/ValidateCode.aspx" title="看不清楚？点击刷新。" /></td>
+                                        <td>
+                                            <input id="id_validateCode" name="validateCode" required="" type="text" title="请输入左侧验证码。" /></td>
                                     </tr>
                                 </table>
                                 <div style="margin: 5px 6px">
@@ -234,10 +243,10 @@
                         <div class="bg1 rds1 clrw1 sz16" style="height: 38px; background-position: 0 -129px; background-repeat: repeat-x; padding: 10px 20px">
                             欢迎回来
                         </div>
-                        <div class="rds2" style="background-color: #fff; padding: 10px 20px; min-height: 143px">
+                        <div class="rds2" style="background-color: #fff; padding: 10px 20px; min-height: 184px">
                             <p>欢迎回来  <%: GetGreeting() %>.</p>
 
-                            <p>上次登陆日期: <%: GetLastLoginTime() %></p>
+                            <p>此次登陆日期: <%: GetLastLoginTime() %></p>
 
                             <p>                                             
                                 <a href="/accounts/logout/?next=<%: Request.Path %>" >退出</a>

@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/static/css/cartridge.css">
 
     <link rel="stylesheet" href="/static/css/theme.css">
+    <script type="text/javascript">
+        function refreshImg() {
+            codeImg.src = codeImg.src + "?";
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <ul class="breadcrumb" style="background: none; margin-top: 15px">
@@ -63,7 +68,17 @@
 
                     </div>
                 </div>
+                <div class="control-group input_id_password">
+                    <label class="control-label" for="id_password">
+                        验证码
+                    </label>
+                    <div class="controls">
+                        <input id="id_validateCode" name="validateCode" required="" type="text" title="请输入右侧验证码。" />
+                        <img id="codeImg" name="codeImg" onclick="refreshImg()" runat="server" src="/ValidateCode.aspx" title="看不清楚？点击刷新。" />
+                        <span class="help-inline"></span>
 
+                    </div>
+                </div>
 
 
                 <div class="form-actions">

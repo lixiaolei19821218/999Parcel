@@ -98,6 +98,7 @@ public partial class cart_Paid : System.Web.UI.Page
                                         else
                                         {
                                             p.Status = "FAIL";
+                                            p.Response = "Bpost returned a error message.";
                                         }
                                     }
                                 }

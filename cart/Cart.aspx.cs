@@ -227,7 +227,7 @@ public partial class cart_Cart : System.Web.UI.Page
                     case "Parcelforce Priority - 上门取件":
                         SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
                         break;
-                    case "Parcelforce Economy - 自送仓库":
+                    case "Parcelforce Economy - 自送Depot":
                         SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
                         break;
                     case "Parcelforce Economy - 自送邮局":

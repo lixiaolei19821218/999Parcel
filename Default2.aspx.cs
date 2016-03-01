@@ -27,7 +27,9 @@ public partial class Default2 : System.Web.UI.Page
         {
             message.InnerText = ex.Message;
         }
+        /*
         UKMCollectionServiceClient collectionService = new UKMCollectionServiceClient();
+        
         AddCollectionWebRequest collectionRequest = new AddCollectionWebRequest();
         collectionRequest.AccountNumber = "S900118";
         collectionRequest.AuthenticationToken = loginResponse.AuthenticationToken;
@@ -52,7 +54,7 @@ public partial class Default2 : System.Web.UI.Page
         {
             message.InnerText = ex.Message;
         }
-        
+        */
         UKMConsignmentServiceClient consignmentService = new UKMConsignmentServiceClient();
         /*
         AddDomesticConsignmentWebRequest consignmentRequest = new AddDomesticConsignmentWebRequest();

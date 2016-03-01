@@ -5,8 +5,7 @@
     <title>填写订单信息 | 诚信物流-可靠,快捷,实惠</title>
 
      <%: System.Web.Optimization.Scripts.Render("~/bundle/jquery") %>
-    <script type="text/javascript" src="../Scripts/jquery-1.8.0.min.js"></script>
-    <script type="text/javascript" src="../Scripts/jQuery.Hz2Py-min.js"></script>
+    
      
     <script>
         $(document).ready(function () {
@@ -77,7 +76,8 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
+   <script type="text/javascript" src="../Scripts/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jQuery.Hz2Py-min.js"></script>
     <ul class="breadcrumb" style="background: none; margin-top: 15px">
     </ul>
 

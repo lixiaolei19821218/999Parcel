@@ -58,14 +58,22 @@ public partial class Default2 : System.Web.UI.Page
             {
                 string user = Request["username"];
                 string pass = Request["password"];
-                
-                if (Membership.ValidateUser(user, pass))
+                string code = Request["validateCode"];
+
+                if (String.Compare(Request.Cookies["validateCode"].Value, code, true) != 0)
                 {
-                    FormsAuthentication.RedirectFromLoginPage(user, false);
+                    this.Page.RegisterStartupScript(" " , "<script>alert('请输入正确的验证码。'); </script> ");                    
                 }
                 else
                 {
-                    Response.Redirect("accounts/login/");
+                    if (Membership.ValidateUser(user, pass))
+                    {
+                        FormsAuthentication.RedirectFromLoginPage(user, false);
+                    }
+                    else
+                    {
+                        Response.Redirect("accounts/login/");
+                    }
                 }
             }
         }       

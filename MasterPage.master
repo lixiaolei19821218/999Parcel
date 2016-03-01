@@ -24,7 +24,7 @@
 
     
     <script src="/static/js/contact.js"></script>
-    <script src="/static/bootstrap3/js/jquery-1.11.1.min.js"></script>       
+    <script src="/static/bootstrap3/js/jquery-1.11.1.min.js"></script> 
     <style type="text/css">
         .carousel-inner img {
             width: 100%;
@@ -88,7 +88,7 @@
 
                         <div runat="server" id="welcomeDiv" visible="false">
                             <a class="fr pd2 clrb2" href="/accounts/logout/?next=<%: Request.Path %>">退出</a>
-                            <a class="fr pd2 clrb2" href="/Admin/CheckApply.aspx">管理入口</a>
+                            
                             <div class="fr clrb2">|</div>
                             <a class="fr pd2 clrb2" href="/sudi/shop/cart/">商城购物车</a>
                             <div class="fr clrb2">|</div>
