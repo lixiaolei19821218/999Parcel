@@ -47,14 +47,14 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="/static/img/banner/sudi1副本.jpg" />
+                                    <img src="/static/img/banner/sudi1.jpg" />
                                 </div>
                                 <div class="item">
                                     <a href="/sudi/shop/">
-                                        <img src="/static/img/banner/sudi2副本.jpg" /></a>
+                                        <img src="/static/img/banner/sudi2.jpg" /></a>
                                 </div>
                                 <div class="item">
-                                    <img src="/static/img/banner/sudi3副本.jpg" />
+                                    <img src="/static/img/banner/sudi3.jpg" />
                                 </div>   
                                                           
                             </div>
@@ -276,15 +276,15 @@
                                 <div style="min-height: 195px">
                                     <div style="margin: 5px 0 10px">
                                         <a href="#">
-                                            <img src="/static/img/adv/adv1.jpg" style="width: 100%" /></a>
+                                            <img src="/static/img/adv/adv1.png" style="width: 100%" /></a>
                                     </div>
                                     <div style="margin: 0 0 10px">
                                         <a href="#">
-                                            <img src="/static/img/adv/adv2.jpg" style="width: 100%" /></a>
+                                            <img src="/static/img/adv/adv2.png" style="width: 100%" /></a>
                                     </div>
                                     <div style="margin: 0 0 10px">
                                         <a href="#">
-                                            <img src="/static/img/adv/adv3.jpg" style="width: 100%" /></a>
+                                            <img src="/static/img/adv/adv3.png" style="width: 100%" /></a>
                                     </div>
                                 </div>
 
@@ -314,7 +314,7 @@
                                 <div class="fl bg2" style="display: block; width: 119px; height: 110px; background-position: -121px -110px; margin-left: 20px"></div>
                                 <div class="fl bg2" style="display: block; width: 119px; height: 110px; background-position: -250px -110px; margin-left: 20px"></div>
                                 -->
-                                <img src="static/img/bg5_new.png.jpg" style="width:500px; margin-left:-20px;" />
+                                <img src="static/img/bg5_new.jpg" style="width:500px; margin-left:-20px;" />
                                 <div class="cb"></div>
                             </div>
                         </div>

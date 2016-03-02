@@ -101,7 +101,7 @@ public class ServiceView
                     string[] temp = order.SenderZipCode.Split(new char[]{' ', '\t'}, StringSplitOptions.RemoveEmptyEntries);
                     if (temp.Length == 2)
                     {
-                        string head = temp[0];
+                        string head = temp[0].ToUpper();
                         string freeAreas = ConfigurationManager.AppSettings["_999ParcelFreeAreas"];
                         if (freeAreas.Contains(head))
                         {
