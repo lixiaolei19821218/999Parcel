@@ -1,0 +1,13 @@
+*BPI_IN*            09320000*V 3.1 *00150
+A0101412015932000000000000000065854          09320000139                              Charlie Li                                                                      Charlie Li                                                                    Tower Bridge                  B8 2SQ                              Birmingham GB          3344556678                                                                                                    Li Xiao Lu                                                                      Li Xiao Lu                                             Cheng Du Shi Zhong He Da Dao 189Hao                  610000                                Cheng Du CN         18010631890                                                           180106318900007000010
+D01461EA954500256BE
+D01900GOODS
+D01901RTS
+D02960001000003
+D02961001000000030,00
+D02962001GBP
+D02963001Baby Milk Powder
+D029640017000
+D02965001999999
+D02966001GB
+*END*00000011

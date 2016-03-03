@@ -46,6 +46,8 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <script type="text/javascript" src="../Scripts/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jQuery.Hz2Py-min.js"></script>
     <form class="form-inline" id="tree" method="post" runat="server">
         <div class="row" style="background-color: #fff; padding: 20px 15px; margin: 20px 0 30px">
             <!-- main -->
@@ -87,14 +89,14 @@
 
                                 </div>
                                 <div style="float: left; margin: 5px" class="control-group ">
-                                    <input class="input-medium" id="id_billing_detail_street2" maxlength="24" name="billing_detail_street2" style="width: 180px" type="text" value="<%:SheffieldOrder.Orders.ElementAt(0).SenderAddress2 %>" required="required" />
+                                    <input class="input-medium" id="id_billing_detail_street2" maxlength="24" name="billing_detail_street2" style="width: 180px" type="text" value="<%:SheffieldOrder.Orders.ElementAt(0).SenderAddress2 %>"/>
 
 
 
 
                                 </div>
                                 <div style="float: left; margin: 5px" class="control-group ">
-                                    <input class="input-medium" id="id_billing_detail_street3" maxlength="24" name="billing_detail_street3" style="width: 173px" type="text" value="<%:SheffieldOrder.Orders.ElementAt(0).SenderAddress3 %>" required="required" />
+                                    <input class="input-medium" id="id_billing_detail_street3" maxlength="24" name="billing_detail_street3" style="width: 173px" type="text" value="<%:SheffieldOrder.Orders.ElementAt(0).SenderAddress3 %>"/>
 
 
 
@@ -189,17 +191,36 @@
                             </div>
 
                             <div class="rds2" style="border: 1px solid #ddd; background-color: #F2F8FC; padding: 5px 1px">
+                                <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px">
+                                        <div style="float: left; width: 162px; padding-left: 60px" id="py_name"><%#Recipient.PyName %></div><input type="hidden" value="<%#Recipient.PyName %>" name="hd_name" id="hd_name"/>
+                                        <div style="float: left; width: 162px; padding-left: 28px" id="py_city"><%#Recipient.PyCity %></div><input type="hidden" value="<%#Recipient.PyCity %>" name="hd_city" id="hd_city"/>
+                                        <div style="margin-left: 324px; margin-right: 38px" id="py_street"><%#Recipient.PyAddress %></div><input type="hidden" value="<%#Recipient.PyAddress %>" name="hd_street" id="hd_street"/>
+                                        <button class="display_hidden btn btn-small" type="button" style="position: absolute; right: 0; top: 0; background-color: #BFBFBF" title="修改转换">编辑</button>
+                                       
+                                    </div>
+
                                 <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_name">中文姓名</label>                                 
-                                        <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="24" name="addr-0-cn_name" style="width: 60px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().Name%>"  required="required" />
+                                        <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="24" name="addr-0-cn_name" style="width: 60px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().Name%>"  required="required" 
+                                            onblur="var py=($('#id_addr-0-cn_name').toPinyin());py_name.innerText=py;hd_name.value=py;" 
+                                            onchange="var py=($('#id_addr-0-cn_name').toPinyin());py_name.innerText=py;hd_name.value=py;" 
+                                            onkeydown="var py=($('#id_addr-0-cn_name').toPinyin());py_name.innerText=py;hd_name.value=py;"/>
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_city">中文城市</label>
-                                        <input class="cn_fields cn_city" id="id_addr-0-cn_city" maxlength="24" name="addr-0-cn_city" style="width: 60px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().City%>" required="required" />
+                                        <input class="cn_fields cn_city" id="id_addr-0-cn_city" maxlength="24" name="addr-0-cn_city" style="width: 60px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().City%>" required="required" 
+                                            onblur="var py=($('#id_addr-0-cn_city').toPinyin());py_city.innerText=py;hd_city.value=py;"
+                                            onchange="var py=($('#id_addr-0-cn_city').toPinyin());py_city.innerText=py;hd_city.value=py;" 
+                                            onkeydown="var py=($('#id_addr-0-cn_city').toPinyin());py_city.innerText=py;hd_city.value=py;"/>
+                                    
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_street">中文地址</label>
-                                        <input class="cn_fields cn_street" id="id_addr-0-cn_street" maxlength="72" name="addr-0-cn_street" style="width: 415px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().Address%>" required="required" />
+                                        <input class="cn_fields cn_street" id="id_addr-0-cn_street" maxlength="72" name="addr-0-cn_street" style="width: 415px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().Address%>" required="required"
+                                            onblur="var py=($('#id_addr-0-cn_street').toPinyin());py_street.innerText=py;hd_street.value=py;" 
+                                            onchange="var py=($('#id_addr-0-cn_street').toPinyin());py_street.innerText=py;hd_street.value=py;" 
+                                            onkeydown="var py=($('#id_addr-0-cn_street').toPinyin());py_street.innerText=py;hd_street.value=py;"/>
+                                   
                                     </div>
                                 <div style="float: left; margin: 5px; margin-left: 17px; font-weight: bold">
                                         收件地<span style="padding: 2px 4px; background-color: #e1e1e1; font-weight: normal">中国大陆</span>
@@ -216,14 +237,7 @@
                                             <input id="id_addr-0-phone" maxlength="11" name="addr-0-phone" style="width: 100px" type="text" value="<%:SheffieldOrder.Orders.First().Recipients.First().PhoneNumber%>"  required="required"/>
                                         </div>
                                     </div>
-                                    <div style="float: left; margin: 5px; margin-left: 20px" class="control-group">
-                                        <label>
-                                            额外保险
-                                                    <select name="addr_0_insurance" class="addr_insurance" id="addr_0_insurance">
-                                                        <option value="0">无</option>
-                                                    </select>
-                                        </label>
-                                    </div>
+                                    
                                     <div style="clear: both"></div>
                                     
                             </div>  
@@ -285,70 +299,82 @@
 
                                                         <!-- parcel content details -->
 
-                                                        <div class="mx">
-                                                            <div class="ib pd7">(<span class="mx_sq">1</span>)</div>
-                                                            <div class="ib mx_type">
-                                                                <select id="id_parcel-0-content-0-type" name="parcel-0-content-0-type" style="width: 100px">
-                                                                    <option value="婴儿奶粉" selected="selected">婴儿奶粉</option>
-                                                                    <option value="婴儿食品">婴儿食品</option>
-                                                                    <option value="成人奶粉">成人奶粉</option>
-                                                                    <option value="婴儿推车">婴儿推车</option>
-                                                                    <option value="安全座椅">安全座椅</option>
-                                                                    <option value="婴儿用品">婴儿用品</option>
-                                                                    <option value="食品">食品</option>
-                                                                    <option value="保健品">保健品</option>
-                                                                    <option value="服装服饰">服装服饰</option>
-                                                                    <option value="服饰配件">服饰配件</option>
-                                                                    <option value="箱包">箱包</option>
-                                                                    <option value="鞋靴">鞋靴</option>
-                                                                    <option value="钟表">钟表</option>
-                                                                    <option value="钟表配件">钟表配件</option>
-                                                                    <option value="化妆品">化妆品</option>
-                                                                    <option value="护肤品">护肤品</option>
-                                                                    <option value="洗漱用品">洗漱用品</option>
-                                                                    <option value="厨卫清洁用品">厨卫清洁用品</option>
-                                                                    <option value="小家电（含游戏机等）">小家电（含游戏机等）</option>
-                                                                    <option value="家用医疗用品">家用医疗用品</option>
-                                                                    <option value="美容保健器材">美容保健器材</option>
-                                                                    <option value="影音设备">影音设备</option>
-                                                                    <option value="手机和移动设备">手机和移动设备</option>
-                                                                    <option value="手机和移动设备配件">手机和移动设备配件</option>
-                                                                    <option value="计算机">计算机</option>
-                                                                    <option value="计算机外围设备">计算机外围设备</option>
-                                                                    <option value="书报、刊物">书报、刊物</option>
-                                                                    <option value="音响制品（唱片、影片等）">音响制品（唱片、影片等）</option>
-                                                                    <option value="文具">文具</option>
-                                                                    <option value="玩具">玩具</option>
-                                                                    <option value="教育用品">教育用品</option>
-                                                                    <option value="体育用品">体育用品</option>
-                                                                    <option value="户外用品">户外用品</option>
-                                                                    <option value="邮票">邮票</option>
-                                                                    <option value="乐器">乐器</option>
-                                                                    <option value="茶包">茶包</option>
-                                                                    <option value="个人行李 - 旧箱包">个人行李 - 旧箱包</option>
-                                                                    <option value="个人行李 - 旧文具">个人行李 - 旧文具</option>
-                                                                    <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
-                                                                    <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
-                                                                    <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
-                                                                    <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="ib mx_quantity mx_cal">
-                                                                数量:                                                       
-                                                                <input id="id_parcel-0-content-0-quantity" name="parcel-0-content-0-quantity" style="width: 40px" type="text" />
-                                                            </div>
-                                                            <div class="ib mx_cost mx_cal">
-                                                                单价(£):                                                       
-                                                                <input id="id_parcel-0-content-0-cost" name="parcel-0-content-0-cost" style="width: 40px" type="text" />
-                                                            </div>
-                                                            <div class="ib">
-                                                                <button style="border: 1px solid #ddd; background: none" class="btn add_mx btn_mx" type="button" title="添加包裹明细"><i class="icon-plus icon-white"></i></button>
-                                                            </div>
-                                                            <div class="ib">
-                                                                <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
-                                                            </div>
-                                                        </div>
-                                                        <input id="id_parcel-0-content-TOTAL_FORMS" name="parcel-0-content-TOTAL_FORMS" type="hidden" value="1" /><input id="id_parcel-0-content-INITIAL_FORMS" name="parcel-0-content-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-0-content-MAX_NUM_FORMS" name="parcel-0-content-MAX_NUM_FORMS" type="hidden" value="1000" />
+                                                        <asp:Repeater runat="server" DataSource="<%#Item.PackageItems %>" ItemType="PackageItem">
+                                                            <ItemTemplate>
+                                                                <div class="mx">
+                                                                    <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
+                                                                    <div class="ib mx_type">
+                                                                        <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width: 100px">
+                                                                            <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
+                                                                            <option value="Baby Food">婴儿食品</option>
+                                                                            <option value="Adult Milk Powder">成人奶粉</option>
+                                                                            <option value="Strollers">婴儿推车</option>
+                                                                            <option value="Baby Car Seats">安全座椅</option>
+                                                                            <option value="Baby Product">婴儿用品</option>
+                                                                            <option value="Food">食品</option>
+                                                                            <option value="Health Care">保健品</option>
+                                                                            <option value="Clothing">服装服饰</option>
+                                                                            <option value="Accessories">服饰配件</option>
+                                                                            <option value="Bag">箱包</option>
+                                                                            <option value="Shoes">鞋靴</option>
+                                                                            <option value="Watches">钟表</option>
+                                                                            <option value="Watch Accessories">钟表配件</option>
+                                                                            <option value="Cosmetic">化妆品</option>
+                                                                            <option value="Skincare">护肤品</option>
+                                                                            <option value="Toiletries">洗漱用品</option>
+                                                                            <option value="Kitchen Cleaning Supplies">厨卫清洁用品</option>
+                                                                            <option value="Electric Products">小家电（含游戏机等）</option>
+                                                                            <option value="Home Medical Equipment">家用医疗用品</option>
+                                                                            <option value="Beauty Apparatus">美容保健器材</option>
+                                                                            <option value="Visual Equipment">影音设备</option>
+                                                                            <option value="Mobile Phones and Devices">手机和移动设备</option>
+                                                                            <option value="Mobile Phones and Devices Accessories">手机和移动设备配件</option>
+                                                                            <option value="Computer">计算机</option>
+                                                                            <option value="Computer Peripherals">计算机外围设备</option>
+                                                                            <option value="Books and Newspapers">书报、刊物</option>
+                                                                            <option value="Impact products">音响制品（唱片、影片等）</option>
+                                                                            <option value="Stationary">文具</option>
+                                                                            <option value="Toys">玩具</option>
+                                                                            <option value="Educational Supplies">教育用品</option>
+                                                                            <option value="Sporting Goods">体育用品</option>
+                                                                            <option value="Outdoor Product">户外用品</option>
+                                                                            <option value="Stamp">邮票</option>
+                                                                            <option value="Musical Instruments">乐器</option>
+                                                                            <option value="Tea">茶包</option>
+                                                                            <option value="汽车配件">汽车配件</option>
+                                                                            <option value="个人行李 - 旧箱包">个人行李 - 旧箱包</option>
+                                                                            <option value="个人行李 - 旧文具">个人行李 - 旧文具</option>
+                                                                            <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
+                                                                            <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
+                                                                            <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
+                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
+                                                                        </select>
+                                                                       
+                                                                    </div>
+
+
+                                                                    <div class="ib mx_quantity mx_cal">
+                                                                        数量:
+                                                               <input id="id_parcel-0--content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
+
+                                                                    </div>
+
+                                                                    <div class="ib mx_cost mx_cal">
+                                                                        单价(£):
+                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
+                                                                    </div>
+
+                                                                    <div class="ib">
+                                                                        <button style="border: 1px solid #ddd; background: none" class="btn add_mx btn_mx" type="button" title="添加包裹明细"><i class="icon-plus icon-white"></i></button>
+                                                                    </div>
+                                                                    <div class="ib">
+                                                                        <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+
+                                                        <input id="id_parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" name="parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" type="hidden" value="<%#Item.PackageItems.Count %>" /><input id="id_parcel-0-content-INITIAL_FORMS" name="parcel-0-content-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-0-content-MAX_NUM_FORMS" name="parcel-0-content-MAX_NUM_FORMS" type="hidden" value="1000" />
                                                     </div>
                                                 </div>
                                             </li>

@@ -25,10 +25,11 @@ public partial class accounts_Recover : System.Web.UI.Page
         }
         else
         {
-            string newPassword;
-            while ((newPassword = mUser.ResetPassword("answer")).Contains('&'))
+            string newPassword = mUser.ResetPassword("answer");
+            while (newPassword.Any(c => !char.IsLetterOrDigit(c)))
             {
-
+                //去掉特殊字符
+                newPassword = mUser.ResetPassword("answer");
             }
 
             string requestString = Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/accounts/ResetPassword.aspx?user=" + mUser.UserName + "&password=" + newPassword;

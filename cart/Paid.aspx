@@ -62,7 +62,7 @@
             <fieldset runat="server" id="sheffieldField">
                 <legend>谢菲尔德地区订单</legend>
                 <table class="table table-orders">
-                    <asp:Repeater runat="server" ItemType="SheffieldOrder" SelectMethod="GetSheffieldOrders">
+                    <asp:Repeater runat="server" ItemType="SheffieldOrder" SelectMethod="GetPageSheffApplys">
                         <HeaderTemplate>
                             <tr>
                                 <th class="tac">订单号</th>
@@ -84,12 +84,19 @@
                                 <td class="tac"><%#Item.Orders.First().SenderName %></td>
                                 <td class="right">谢菲尔德地区服务</td>
                                 <td colspan="2">
-                                    <asp:LinkButton ID="ButtonSheffieldEdit" runat="server" Text="详情" data-id="<%#Item.Id %>" ToolTip="<%#Item.Id %>" />                                    
+                                    <asp:LinkButton ID="SheffielDetail" runat="server" Text="详情" data-id="<%#Item.Id %>" OnClick="SheffielDetail_Click" />                                    
                                 </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </table>
+                <div class="pager">
+            <% for (int i = 1; i <= MaxPageSheff; i++)
+               {
+                   Response.Write(
+                   string.Format("<a href='/cart/Paid.aspx?pageSheff={0}' {1}>{2}</a>", i, i == CurrentSheffPage ? "class='selected'" : "", i));
+               }%>
+                     </div>
             </fieldset>
         </form>
     </div>    

@@ -64,8 +64,8 @@
                                 <td class="tac"><%#Item.SenderName %></td>
                                 <td class="right"><%#Item.Service.Name %></td>
                                 <td colspan="2">
-                                    <asp:Button ID="ButtonEdit" class="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" OnClick="ButtonEdit_Click" />
-                                    <asp:Button ID="ButtonDel" class="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click" />
+                                    <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" OnClick="ButtonEdit_Click" />
+                                    <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click" />
                                 </td>
                             </tr>
                         </ItemTemplate>

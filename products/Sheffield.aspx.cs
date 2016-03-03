@@ -18,7 +18,10 @@ public partial class products_Sheffield : System.Web.UI.Page
         priceListViews = new List<PriceListView>();
         foreach (PriceList p in repo.PriceLists)
         {
-            priceListViews.Add( new PriceListView(p));
+            if (p.ShortName.Trim() != "荷兰邮政")
+            {
+                priceListViews.Add(new PriceListView(p));
+            }
         }
     }
 
@@ -63,6 +66,18 @@ public partial class products_Sheffield : System.Web.UI.Page
                 Order order = new Order();
                 order.PriceListID = int.Parse(senders[i]);
                 order.PriceList = repo.PriceLists.FirstOrDefault(p => p.Id == order.PriceListID);
+                switch (order.PriceList.Name.Trim())
+                {
+                    case "比利时Bpost":
+                        order.ServiceID = 1;                        
+                        break;
+                    case "Parcelforce Economy":
+                        order.ServiceID = 15;
+                        break;
+                    case "Parcelforce PRIORITY":
+                        order.ServiceID = 17;
+                        break;
+                }
                 order.IsSheffieldOrder = true;
                 order.SheffieldServiceID = sheffied_id;
                 order.SheffieldService = ss;
@@ -72,6 +87,7 @@ public partial class products_Sheffield : System.Web.UI.Page
                 for (int j = 0; j < count; j++)
                 {
                     Package p = new Package { Weight = ss.PackageWeight, Length = ss.PackageWidth, Width = ss.PackageWidth, Height = ss.PackageHeight };
+                    p.PackageItems.Add(new PackageItem() { Description = "Baby Milk Powder" });
                     r.Packages.Add(p);
                 }
                 order.Recipients.Add(r);

@@ -238,6 +238,7 @@ public partial class SheffieldOrder
 
     public int Id { get; set; }
     public string User { get; set; }
+    public bool HasPaid { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; }
 }

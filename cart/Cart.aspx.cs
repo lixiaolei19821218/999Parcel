@@ -23,6 +23,7 @@ using System.Xml.Linq;
 //using UKMCollectionService;
 using UKMConsignmentServiceQA;
 using WMOrderService;
+using System.Collections;
 
 public partial class cart_Cart : System.Web.UI.Page
 {
@@ -47,11 +48,11 @@ public partial class cart_Cart : System.Web.UI.Page
         apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
 
         normalOrders = from o in repo.Orders where o.User == username && !(o.IsSheffieldOrder ?? false) && !(o.HasPaid ?? false) select o;
-        sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username select o;
+        sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
 
         balance = apUser.Balance;
-        totalPrice = normalOrders.Sum(o => o.Cost.Value);
-        //totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
+        //totalPrice = normalOrders.Sum(o => o.Cost.Value);
+        totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
 
         normalField.Visible = normalOrders == null || normalOrders.Count() != 0 ? true : false;
         sheffieldField.Visible = sheffieldOrders == null || sheffieldOrders.Count() != 0 ? true : false;
@@ -207,50 +208,48 @@ public partial class cart_Cart : System.Web.UI.Page
         }
         Response.Redirect(Request.Path);
     }
-    
-    protected void pay_Click(object sender, EventArgs e)
-    { 
-        if (balance >= totalPrice)
-        {            
-            List<string> attachmentPaths = new List<string>();
-            foreach (Order o in normalOrders)
-            {               
-                switch (o.Service.Name.Trim())
-                {
-                    case "荷兰邮政 - 免费取件":
-                    case "荷兰邮政 - UKMail 取件":
-                       
-                        break;
-                    case "Parcelforce Economy - 上门取件":
-                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyPickup, attachmentPaths);
-                        break;
-                    case "Parcelforce Priority - 上门取件":
-                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
-                        break;
-                    case "Parcelforce Economy - 自送Depot":
-                        SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
-                        break;
-                    case "Parcelforce Economy - 自送邮局":
-                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
-                        break;
-                    case "Parcelforce Priority - 自送邮局":
-                        SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
-                        break;
-                    case "Bpost - 免费取件":
-                        SendBpostLciFile(o);
-                        break;
-                    case "Bpost - UKMail 取件":
-                        if (UKMailCollection(o))
-                        {
-                            SendBpostLciFile(o);
-                        }                        
-                        break;
-                    default:                       
-                        break;
-                }
 
-                #region 华盟
-                /*
+    private void PayOrders(IEnumerable<Order> orders)
+    {
+        List<string> attachmentPaths = new List<string>();
+        foreach (Order o in orders)
+        {
+            switch (o.Service.Name.Trim())
+            {
+                case "荷兰邮政 - 免费取件":
+                case "荷兰邮政 - UKMail 取件":
+
+                    break;
+                case "Parcelforce Economy - 上门取件":
+                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyPickup, attachmentPaths);
+                    break;
+                case "Parcelforce Priority - 上门取件":
+                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
+                    break;
+                case "Parcelforce Economy - 自送Depot":
+                    SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
+                    break;
+                case "Parcelforce Economy - 自送邮局":
+                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
+                    break;
+                case "Parcelforce Priority - 自送邮局":
+                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
+                    break;
+                case "Bpost - 免费取件":
+                    SendBpostLciFile(o);
+                    break;
+                case "Bpost - UKMail 取件":
+                    if (UKMailCollection(o))
+                    {
+                        SendBpostLciFile(o);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            #region 华盟
+            /*
                 foreach (Recipient r in o.Recipients)
                 {
                     OrderServiceClient client = new OrderServiceClient();
@@ -385,8 +384,22 @@ public partial class cart_Cart : System.Web.UI.Page
                     }                    
                 }
         */
-                #endregion
-                o.HasPaid = true;                
+            #endregion
+
+            o.HasPaid = true;
+        }
+    }
+    
+    protected void pay_Click(object sender, EventArgs e)
+    { 
+        if (balance >= totalPrice)
+        {
+            PayOrders(normalOrders);
+
+            foreach (SheffieldOrder sOrder in sheffieldOrders)
+            {
+                PayOrders(sOrder.Orders);
+                sOrder.HasPaid = true;
             }
 
             apUser.Balance -= totalPrice;            
