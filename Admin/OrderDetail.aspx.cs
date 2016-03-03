@@ -54,4 +54,23 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             return order;
         }
     }
+
+    public string GetPickupTime(Order o)
+    {
+        if (o.Service.PickUpCompany.Trim() == "999Parcel")
+        {
+            if (o.PickupTime.Value.Hour < 12)
+            {
+                return o.PickupTime.Value.ToShortDateString() + " AM";
+            }
+            else
+            {
+                return o.PickupTime.Value.ToShortDateString() + " PM";
+            }
+        }
+        else
+        {
+            return o.PickupTime.Value.ToShortDateString();
+        }
+    }
 }

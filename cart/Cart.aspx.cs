@@ -605,7 +605,7 @@ public partial class cart_Cart : System.Web.UI.Page
         objRequest.ShipFromName = package.Recipient.Order.SenderName;
         objRequest.ShipFromPostalCode = package.Recipient.Order.SenderZipCode;
 
-        DateTime shippingDate = DateTime.UtcNow.AddDays(1);
+        DateTime shippingDate = package.Recipient.Order.PickupTime.Value;
         if (shippingDate.DayOfWeek == DayOfWeek.Saturday)
             shippingDate = shippingDate.AddDays(2);
         if (shippingDate.DayOfWeek == DayOfWeek.Sunday)

@@ -364,12 +364,7 @@
                                                                <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
                                                                     </div>
 
-                                                                    <div class="ib">
-                                                                        <button style="border: 1px solid #ddd; background: none" class="btn add_mx btn_mx" type="button" title="添加包裹明细"><i class="icon-plus icon-white"></i></button>
-                                                                    </div>
-                                                                    <div class="ib">
-                                                                        <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
-                                                                    </div>
+                                                                   
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>

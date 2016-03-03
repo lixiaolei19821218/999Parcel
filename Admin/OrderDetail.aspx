@@ -17,7 +17,7 @@
     <div class="sz16 bold colorb2" style="margin-top: 20px">
         订单详情
         <div style="float: right; font-size: smaller">
-            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
+            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;取件时间：<%:GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
         </div>
     </div>
 

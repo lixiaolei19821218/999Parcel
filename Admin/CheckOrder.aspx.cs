@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_CheckOrder : System.Web.UI.Page
 {
-    private int pageSize = 30;
+    private int pageSize = 20;
 
     private IEnumerable<Order> normalOrders;
     private IEnumerable<SheffieldOrder> sheffieldOrders;    
@@ -28,7 +28,7 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
         string content = Request.QueryString["content"];
         if (content == null)
         {
-            normalOrders = from o in repo.Orders where !(o.IsSheffieldOrder ?? false) && (o.HasPaid ?? false) && !(o.SuccessPaid ?? false) select o;
+            normalOrders = from o in repo.Orders where !(o.IsSheffieldOrder ?? false) && (o.HasPaid ?? false) select o;
             sheffieldOrders = from o in repo.Context.SheffieldOrders select o;
         }
         else

@@ -20,9 +20,7 @@
             </div>
         </div>
 
-        <div class="sz16 bold colorb2" style="margin-top: 30px">
-            问题订单      
-        </div>
+       
         <div style="margin-top: 15px; background-color: #fff; padding: 15px">
             <fieldset runat="server" id="normalField">
                 <legend>直邮订单</legend>

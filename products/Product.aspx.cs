@@ -232,6 +232,17 @@ public partial class products_Product : System.Web.UI.Page
         if (DateTime.TryParse(Request["pickup_time_0"], out date))
         {
             order.PickupTime = date;
+            if (_999parcel.Visible)
+            {
+                if (_999parcel.Value == "am")
+                {
+                    order.PickupTime = order.PickupTime.Value.AddHours(9);
+                }
+                else
+                {
+                    order.PickupTime = order.PickupTime.Value.AddHours(13);
+                }
+            }
         }
         else
         {
