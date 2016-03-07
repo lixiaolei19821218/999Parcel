@@ -15,10 +15,10 @@
         已支付订单      
     </div>
 
-    <div style="margin-top: 15px; background-color: #fff; padding: 15px">
+    <div style="margin-top: 15px; background-color: #fff; padding: 0px">
         <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
             <fieldset runat="server" id="normalField">
-                <legend>直邮订单</legend>
+                
                 <table class="table table-orders">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetPageApplys">
                         <HeaderTemplate>

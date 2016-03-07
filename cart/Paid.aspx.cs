@@ -16,7 +16,7 @@ public partial class cart_Paid : System.Web.UI.Page
     private IEnumerable<Order> normalOrders;
     
     private decimal balance;
-    private decimal totalPrice;
+    //private decimal totalPrice;
     private string username;
     private aspnet_User apUser;
 
@@ -35,7 +35,7 @@ public partial class cart_Paid : System.Web.UI.Page
             apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
             normalOrders = GetNormalOrders();
             balance = apUser.Balance;
-            totalPrice = normalOrders.Sum(o => o.Cost.Value);          
+            //totalPrice = normalOrders.Sum(o => o.Cost.Value);          
         }
     }
 
