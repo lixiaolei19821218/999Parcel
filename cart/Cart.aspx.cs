@@ -47,15 +47,15 @@ public partial class cart_Cart : System.Web.UI.Page
         username = Membership.GetUser().UserName;
         apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
 
-        normalOrders = from o in repo.Orders where o.User == username && !(o.IsSheffieldOrder ?? false) && !(o.HasPaid ?? false) select o;
-        sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
+        normalOrders = from o in repo.Orders where o.User == username && !(o.HasPaid ?? false) select o;
+        //sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
 
         balance = apUser.Balance;
-        //totalPrice = normalOrders.Sum(o => o.Cost.Value);
-        totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
+        totalPrice = normalOrders.Sum(o => o.Cost.Value);
+        //totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
 
         normalField.Visible = normalOrders == null || normalOrders.Count() != 0 ? true : false;
-        sheffieldField.Visible = sheffieldOrders == null || sheffieldOrders.Count() != 0 ? true : false;
+        //sheffieldField.Visible = sheffieldOrders == null || sheffieldOrders.Count() != 0 ? true : false;
     }
 
     public IEnumerable<Order> GetNoneSheffieldOrders()
@@ -395,13 +395,13 @@ public partial class cart_Cart : System.Web.UI.Page
         if (balance >= totalPrice)
         {
             PayOrders(normalOrders);
-
+            /*
             foreach (SheffieldOrder sOrder in sheffieldOrders)
             {
                 PayOrders(sOrder.Orders);
                 sOrder.HasPaid = true;
             }
-
+            */
             apUser.Balance -= totalPrice;            
             repo.Context.SaveChanges();      
             

@@ -581,11 +581,11 @@
                                 </label>
                             </div>
                             <asp:Button runat="server" name="order" ClientIDMode="Static" ID="add2cart" CssClass ="btn btn-primary btn-large" Text="下一步" Enabled="false" OnClick="add2cart_Click" Width="120" />
-               
+                                            <!--
                                            <div style="margin:10px">
 
                                                <asp:Button ID="LinkButtonEdit" runat="server" style="width: 100px; height: 23px; border: none; background-color:transparent; font-size: 12px; color:steelblue" OnClick="LinkButtonEdit_Click" Text="添加/修改包裹"></asp:Button>
-                                           </div>
+                                           </div>-->
                         </div>
                         <!-- .panel -->
                     </div>                  

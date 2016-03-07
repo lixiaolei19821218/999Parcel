@@ -298,353 +298,8 @@ public class Bpost
         document.Add(details);
         document.Add(imageTable);
 
-        document.NewPage();
-        iTextSharp.text.Font font = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, 1);
-        iTextSharp.text.Font font70 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, 0);
-        iTextSharp.text.Font font71 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, 1);
-
-        int noRight = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
-        int noLeft = iTextSharp.text.Rectangle.RIGHT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
-        
-        PdfPTable title = new PdfPTable(6);
-        PdfPTable content = new PdfPTable(1);
-
-        cell = new PdfPCell(new Phrase("Customs Declaration - CN 23", font));
-        cell.Border = 0;
-        content.AddCell(cell);
-        cell = new PdfPCell(new Phrase("may be opened officially - peut être ouvert d'office", font70));
-        cell.Border = 0;
-        content.AddCell(cell);
-        cell = new PdfPCell(new Phrase(string.Format("                      {0}", barcode), new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, 1)));
-        cell.Border = 0;
-        content.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.TrackNumber, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, 1)));
-        cell.Border = 0;
-        content.AddCell(cell);
-
-        cell = new PdfPCell(content);
-        cell.Colspan = 5;
-        cell.Border = 0;
-        title.AddCell(cell);
-
-        img = iTextSharp.text.Image.GetInstance(HttpRuntime.AppDomainAppPath + "static/img/bpost_logo.bmp");
-        img.Border = 0;
-        img.BorderWidth = 0;
-        cell = new PdfPCell(img);
-        cell.Border = 0;
-        title.AddCell(cell);
-
-        from = new PdfPTable(6);
-        from.SetTotalWidth(new float[] { 5, 15, 25, 15, 25, 15 });
-
-        cell = new PdfPCell(new Phrase("From"));
-        cell.Rowspan = 7;
-        cell.HorizontalAlignment = 2;
-        cell.Rotation = 90;
-        from.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Name", font71));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("999 PARCEL LTD", font70));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        cell.Colspan = 3;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Customs ref:", font71));
-        cell.Rowspan = 2;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Business", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase(" ", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        from.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Street", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("PO Box 9320", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        from.AddCell(cell);
-
-        cell = new PdfPCell();
-        cell.Rowspan = 5;
-        cell.Border = noLeft;
-        from.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Zipcode", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("1934", font70));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("City", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("EMC Brucargo", font70));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Country", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Belgium", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Tel*", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Email*", font71));
-        cell.Border = 0;
-        from.AddCell(cell);
-        cell = new PdfPCell(new Phrase("", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        from.AddCell(cell);
-
-        to = new PdfPTable(6);
-        to.SetTotalWidth(new float[] { 5, 15, 25, 15, 25, 15 });
-
-        cell = new PdfPCell(new Phrase("To"));
-        cell.Rowspan = 7;
-        cell.HorizontalAlignment = 2;
-        cell.Rotation = 90;
-        to.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Name", font71));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.Recipient.PyName, font70));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        cell.Colspan = 3;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Importer ref:", font71));
-        cell.Rowspan = 2;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Business", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.Recipient.PyName, font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        to.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Street", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.Recipient.PyAddress, font70));
-        cell.Colspan = 3;
-        cell.Border = 0;
-        to.AddCell(cell);
-
-        cell = new PdfPCell();
-        cell.Rowspan = 5;
-        cell.Border = noLeft;
-        to.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Zipcode", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.Recipient.ZipCode, font70));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("City", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.Recipient.PyCity, font70));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Country", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("China", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Tel*", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase(p.Recipient.PhoneNumber, font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Email*", font71));
-        cell.Border = 0;
-        to.AddCell(cell);
-        cell = new PdfPCell(new Phrase("alanmelai@hotmail.com", font70));
-        cell.Border = 0;
-        cell.Colspan = 3;
-        to.AddCell(cell);
-
-        PdfPTable tableTo = new PdfPTable(1);
-        PdfPCell cellTo = new PdfPCell(to);
-        cellTo.BorderWidth = 2;
-        tableTo.AddCell(cellTo);
-
-        PdfPTable info = new PdfPTable(2);
-        info.SetTotalWidth(new float[] { 38, 62 });
-        cell = new PdfPCell(new Phrase("Sender's instruction in case of non-delivery:", font71));
-        cell.Border = noRight;
-        info.AddCell(cell);
-        cell = new PdfPCell(new Phrase("RETURN TO SENDER (SAL)", font70));
-        cell.Border = noLeft;
-        info.AddCell(cell);
-
-        PdfPTable cate = new PdfPTable(4);
-        cate.SetTotalWidth(new float[] { 15, 25, 40, 20 });
-        cell = new PdfPCell(new Phrase("Category of item:", font71));
-        cell.Border = noRight;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("GIFT", font70));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Explanation:", font71));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("", font70));
-        cell.Border = noLeft;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Service level:", font71));
-        cell.Border = noRight;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("PRI", font70));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Customs documents to be validated for export:", font71));
-        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
-        cate.AddCell(cell);
-        cell = new PdfPCell(new Phrase("NO", font70));
-        cell.Border = noLeft;
-        cate.AddCell(cell);
-
-        PdfPTable detail = new PdfPTable(6);
-        detail.SetTotalWidth(new float[] { 20, 20, 9, 9, 12, 30 });
-        cell = new PdfPCell(new Phrase("Comments (e.g. quarantine...):", font71));
-        cell.Colspan = 5;
-        detail.AddCell(cell);
-
-
-
-        PdfPTable comTable = new PdfPTable(2);
-
-        PdfPCell comCell = new PdfPCell(new Phrase("Commercial items only", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, 2)));
-        comCell.Colspan = 2;
-        comCell.HorizontalAlignment = 1;
-        comTable.AddCell(comCell);
-        comCell = new PdfPCell(new Phrase("HS Tariff N°", font71));
-        comCell.HorizontalAlignment = 1;
-        comTable.AddCell(comCell);
-        comCell = new PdfPCell(new Phrase("Origin of goods", font71));
-        comCell.HorizontalAlignment = 1;
-        comTable.AddCell(comCell);
-        for (int i = 0; i < 10; i++)
-        {
-            comCell = new PdfPCell(new Phrase(" ", font71));
-            comTable.AddCell(comCell);
-            if (i < p.PackageItems.Count)
-            {
-                comCell = new PdfPCell(new Phrase("UK", font70));
-            }
-            else
-            {
-                comCell = new PdfPCell();
-            }
-            comCell.HorizontalAlignment = 1;
-            comTable.AddCell(comCell);
-        }
-
-        cell = new PdfPCell(comTable);
-        cell.BorderWidth = 2;
-        cell.Rowspan = 12;
-        detail.AddCell(cell);
-
-        cell = new PdfPCell(new Phrase("Detailed Description of Contents", font71));
-        cell.Colspan = 2;
-        cell.HorizontalAlignment = 1;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Qty", font71));
-        cell.HorizontalAlignment = 1;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Net kg", font71));
-        cell.HorizontalAlignment = 1;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Value", font71));
-        cell.HorizontalAlignment = 1;
-        detail.AddCell(cell);
-
-        for (int i = 0; i < 10; i++)
-        {
-            if (i < p.PackageItems.Count)
-            {
-                PackageItem item = p.PackageItems.ElementAt(i);
-                cell = new PdfPCell(new Phrase(item.Description, font70));
-                cell.Colspan = 2;
-                detail.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(item.Count.ToString(), font70));
-                cell.HorizontalAlignment = 1;
-                detail.AddCell(cell);
-                cell = new PdfPCell(new Phrase(item.NettoWeight.Value.ToString(), font70));
-                cell.HorizontalAlignment = 1;
-                detail.AddCell(cell);
-                cell = new PdfPCell(new Phrase(item.Value.Value.ToString() + " GBP", font70));
-                cell.HorizontalAlignment = 1;
-                detail.AddCell(cell);
-            }
-            else
-            {
-                cell = new PdfPCell(new Phrase(" ", font70));
-                cell.Colspan = 2;
-                detail.AddCell(cell);
-
-                cell = new PdfPCell();
-                detail.AddCell(cell);
-                cell = new PdfPCell();
-                detail.AddCell(cell);
-                cell = new PdfPCell();
-                detail.AddCell(cell);
-            }            
-        }
-
-        cell = new PdfPCell(new Phrase("Total gross weight:", font71));
-        cell.Border = noRight;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase(string.Format("{0}kg", p.Weight), font70));
-        cell.Border = noLeft;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Postage fee:                       License:                        Certificate:", font71));
-        cell.Colspan = 5;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Total value:", font71));
-        cell.Border = noRight;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase(string.Format("{0} GBP", p.Value), font70));
-        cell.Border = noLeft;
-        detail.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Invoice:                               Office & date of posting:", font71));
-        cell.Colspan = 5;
-        detail.AddCell(cell);
-
-        PdfPTable notice = new PdfPTable(1);
-        Phrase phrase = new Phrase("I certify that the particulars in this customs declaration are correct and this item does not contain any dangerous articles prohibited by legislation or by postal or customs regulations. These data shall be transmitted to the destination country operator and to customs authorities to pre-announce shipments (except for the information marked with (*): this is only used for delivery purposes). Unless you thick the box below, data related to the sender and addressee may also be used for the provision of information as to our services. As sender, you confirm having duly informed the addressee of these intended uses and having obtained his/her consent. The sender or addressee may request in writing the provision of its personal data as held in our registers by sending a signed and dated request to bpost, Contact Center, PO box 5000, 1000 Brussels, Belgium.\n\n[ ] I do not wish that my personal data and the personal data related to the addressee be used by bpost/its affiliates for providing us with information as to their services.\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 6, 0));
-        phrase.Add(new Phrase("Date and sender signature:", font71));
-        phrase.Add(new Phrase(string.Format(" {0}", DateTime.Today.ToString("dd/MM/yyyy")), font70));
-        cell = new PdfPCell(phrase);
-        notice.AddCell(cell);
-
-        document.Add(title);
-        document.Add(from);
-        document.Add(tableTo);
-        document.Add(info);
-        document.Add(cate);
-        document.Add(detail);
-        document.Add(notice);
+        GeneratePage2Or3(document, p, barceode);
+        GeneratePage2Or3(document, p, barceode);
 
         document.Close();
 
@@ -1047,5 +702,356 @@ public class Bpost
         document.Add(notice);
 
         document.Close();
+    }
+
+    private static void GeneratePage2Or3(Document document, Package p, iTextSharp.text.Image barcode)
+    {
+        document.NewPage();
+        iTextSharp.text.Font font = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, 1);
+        iTextSharp.text.Font font70 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, 0);
+        iTextSharp.text.Font font71 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, 1);
+
+        int noRight = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
+        int noLeft = iTextSharp.text.Rectangle.RIGHT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
+
+        PdfPTable title = new PdfPTable(6);
+        PdfPTable content = new PdfPTable(1);
+
+        PdfPCell cell = new PdfPCell(new Phrase("Customs Declaration - CN 23", font));
+        cell.Border = 0;
+        content.AddCell(cell);
+        cell = new PdfPCell(new Phrase("may be opened officially - peut être ouvert d'office", font70));
+        cell.Border = 0;
+        content.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("                      {0}", barcode), new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, 1)));
+        cell.Border = 0;
+        content.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.TrackNumber, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, 1)));
+        cell.Border = 0;
+        content.AddCell(cell);
+
+        cell = new PdfPCell(content);
+        cell.Colspan = 5;
+        cell.Border = 0;
+        title.AddCell(cell);
+
+        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(HttpRuntime.AppDomainAppPath + "static/img/bpost_logo.bmp");
+        img.Border = 0;
+        img.BorderWidth = 0;
+        cell = new PdfPCell(img);
+        cell.Border = 0;
+        title.AddCell(cell);
+
+        PdfPTable from = new PdfPTable(6);
+        from.SetTotalWidth(new float[] { 5, 15, 25, 15, 25, 15 });
+
+        cell = new PdfPCell(new Phrase("From"));
+        cell.Rowspan = 7;
+        cell.HorizontalAlignment = 2;
+        cell.Rotation = 90;
+        from.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Name", font71));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("999 PARCEL LTD", font70));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cell.Colspan = 3;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Customs ref:", font71));
+        cell.Rowspan = 2;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Business", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase(" ", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        from.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Street", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("PO Box 9320", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        from.AddCell(cell);
+
+        cell = new PdfPCell();
+        cell.Rowspan = 5;
+        cell.Border = noLeft;
+        from.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Zipcode", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("1934", font70));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("City", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("EMC Brucargo", font70));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Country", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Belgium", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Tel*", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Email*", font71));
+        cell.Border = 0;
+        from.AddCell(cell);
+        cell = new PdfPCell(new Phrase("", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        from.AddCell(cell);
+
+        PdfPTable to = new PdfPTable(6);
+        to.SetTotalWidth(new float[] { 5, 15, 25, 15, 25, 15 });
+
+        cell = new PdfPCell(new Phrase("To"));
+        cell.Rowspan = 7;
+        cell.HorizontalAlignment = 2;
+        cell.Rotation = 90;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Name", font71));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PyName, font70));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cell.Colspan = 3;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Importer ref:", font71));
+        cell.Rowspan = 2;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Business", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PyName, font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Street", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PyAddress, font70));
+        cell.Colspan = 3;
+        cell.Border = 0;
+        to.AddCell(cell);
+
+        cell = new PdfPCell();
+        cell.Rowspan = 5;
+        cell.Border = noLeft;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Zipcode", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.ZipCode, font70));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("City", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PyCity, font70));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Country", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("China", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Tel*", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PhoneNumber, font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Email*", font71));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("alanmelai@hotmail.com", font70));
+        cell.Border = 0;
+        cell.Colspan = 3;
+        to.AddCell(cell);
+
+        PdfPTable tableTo = new PdfPTable(1);
+        PdfPCell cellTo = new PdfPCell(to);
+        cellTo.BorderWidth = 2;
+        tableTo.AddCell(cellTo);
+
+        PdfPTable info = new PdfPTable(2);
+        info.SetTotalWidth(new float[] { 38, 62 });
+        cell = new PdfPCell(new Phrase("Sender's instruction in case of non-delivery:", font71));
+        cell.Border = noRight;
+        info.AddCell(cell);
+        cell = new PdfPCell(new Phrase("RETURN TO SENDER (SAL)", font70));
+        cell.Border = noLeft;
+        info.AddCell(cell);
+
+        PdfPTable cate = new PdfPTable(4);
+        cate.SetTotalWidth(new float[] { 15, 25, 40, 20 });
+        cell = new PdfPCell(new Phrase("Category of item:", font71));
+        cell.Border = noRight;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("GIFT", font70));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Explanation:", font71));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("", font70));
+        cell.Border = noLeft;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Service level:", font71));
+        cell.Border = noRight;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("PRI", font70));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Customs documents to be validated for export:", font71));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cate.AddCell(cell);
+        cell = new PdfPCell(new Phrase("NO", font70));
+        cell.Border = noLeft;
+        cate.AddCell(cell);
+
+        PdfPTable detail = new PdfPTable(6);
+        detail.SetTotalWidth(new float[] { 20, 20, 9, 9, 12, 30 });
+        cell = new PdfPCell(new Phrase("Comments (e.g. quarantine...):", font71));
+        cell.Colspan = 5;
+        detail.AddCell(cell);
+
+
+
+        PdfPTable comTable = new PdfPTable(2);
+
+        PdfPCell comCell = new PdfPCell(new Phrase("Commercial items only", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, 2)));
+        comCell.Colspan = 2;
+        comCell.HorizontalAlignment = 1;
+        comTable.AddCell(comCell);
+        comCell = new PdfPCell(new Phrase("HS Tariff N°", font71));
+        comCell.HorizontalAlignment = 1;
+        comTable.AddCell(comCell);
+        comCell = new PdfPCell(new Phrase("Origin of goods", font71));
+        comCell.HorizontalAlignment = 1;
+        comTable.AddCell(comCell);
+        for (int i = 0; i < 10; i++)
+        {
+            comCell = new PdfPCell(new Phrase(" ", font71));
+            comTable.AddCell(comCell);
+            if (i < p.PackageItems.Count)
+            {
+                comCell = new PdfPCell(new Phrase("UK", font70));
+            }
+            else
+            {
+                comCell = new PdfPCell();
+            }
+            comCell.HorizontalAlignment = 1;
+            comTable.AddCell(comCell);
+        }
+
+        cell = new PdfPCell(comTable);
+        cell.BorderWidth = 2;
+        cell.Rowspan = 12;
+        detail.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("Detailed Description of Contents", font71));
+        cell.Colspan = 2;
+        cell.HorizontalAlignment = 1;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Qty", font71));
+        cell.HorizontalAlignment = 1;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Net kg", font71));
+        cell.HorizontalAlignment = 1;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Value", font71));
+        cell.HorizontalAlignment = 1;
+        detail.AddCell(cell);
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (i < p.PackageItems.Count)
+            {
+                PackageItem item = p.PackageItems.ElementAt(i);
+                cell = new PdfPCell(new Phrase(item.Description, font70));
+                cell.Colspan = 2;
+                detail.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(item.Count.ToString(), font70));
+                cell.HorizontalAlignment = 1;
+                detail.AddCell(cell);
+                cell = new PdfPCell(new Phrase(item.NettoWeight.Value.ToString(), font70));
+                cell.HorizontalAlignment = 1;
+                detail.AddCell(cell);
+                cell = new PdfPCell(new Phrase(item.Value.Value.ToString() + " GBP", font70));
+                cell.HorizontalAlignment = 1;
+                detail.AddCell(cell);
+            }
+            else
+            {
+                cell = new PdfPCell(new Phrase(" ", font70));
+                cell.Colspan = 2;
+                detail.AddCell(cell);
+
+                cell = new PdfPCell();
+                detail.AddCell(cell);
+                cell = new PdfPCell();
+                detail.AddCell(cell);
+                cell = new PdfPCell();
+                detail.AddCell(cell);
+            }
+        }
+
+        cell = new PdfPCell(new Phrase("Total gross weight:", font71));
+        cell.Border = noRight;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("{0}kg", p.Weight), font70));
+        cell.Border = noLeft;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Postage fee:                       License:                        Certificate:", font71));
+        cell.Colspan = 5;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Total value:", font71));
+        cell.Border = noRight;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("{0} GBP", p.Value), font70));
+        cell.Border = noLeft;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Invoice:                               Office & date of posting:", font71));
+        cell.Colspan = 5;
+        detail.AddCell(cell);
+
+        PdfPTable notice = new PdfPTable(1);
+        Phrase phrase = new Phrase("I certify that the particulars in this customs declaration are correct and this item does not contain any dangerous articles prohibited by legislation or by postal or customs regulations. These data shall be transmitted to the destination country operator and to customs authorities to pre-announce shipments (except for the information marked with (*): this is only used for delivery purposes). Unless you thick the box below, data related to the sender and addressee may also be used for the provision of information as to our services. As sender, you confirm having duly informed the addressee of these intended uses and having obtained his/her consent. The sender or addressee may request in writing the provision of its personal data as held in our registers by sending a signed and dated request to bpost, Contact Center, PO box 5000, 1000 Brussels, Belgium.\n\n[ ] I do not wish that my personal data and the personal data related to the addressee be used by bpost/its affiliates for providing us with information as to their services.\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 6, 0));
+        phrase.Add(new Phrase("Date and sender signature:", font71));
+        phrase.Add(new Phrase(string.Format(" {0}", DateTime.Today.ToString("dd/MM/yyyy")), font70));
+        cell = new PdfPCell(phrase);
+        notice.AddCell(cell);
+
+        document.Add(title);
+        document.Add(from);
+        document.Add(tableTo);
+        document.Add(info);
+        document.Add(cate);
+        document.Add(detail);
+        document.Add(notice);
     }
 }

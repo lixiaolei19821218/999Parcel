@@ -73,6 +73,7 @@
                 </table>
             </fieldset>
             <br />
+            <!--
             <fieldset runat="server" id="sheffieldField">
                 <legend>谢菲尔德地区订单</legend>
                 <table class="table table-orders">
@@ -106,7 +107,7 @@
                     </asp:Repeater>
                 </table>
 
-            </fieldset>
+            </fieldset>-->
             <div>
                 
                 <div style="float: right">总金额: <strong class="total-price" style="color: #f00"><%:GetTotalPrice().ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></strong></div>

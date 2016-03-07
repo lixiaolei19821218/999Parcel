@@ -130,7 +130,7 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a>新手专线</a></li>
                                             <li><a>行李专线</a></li>
-                                            <li><a href="/products/Sheffield.aspx">谢菲专线</a></li> 
+                                            <li><a href="/products/Sheffield.aspx">谢菲包裹专线</a></li> 
                                             <li class="divider"></li>
                                             <li><a href="/cart/Paid.aspx">已完成订单</a></li>                                            
                                         </ul>

@@ -15,9 +15,9 @@
                     count = parseInt(this.parentElement.parentElement.parentElement.children[3].lastElementChild.value);
                 }
                 var price = parseFloat(this.selectedOptions[0].attributes['data-price'].value);
-                this.parentElement.parentElement.parentElement.lastElementChild.innerText = (price * count).toFixed(2);
+                this.parentElement.parentElement.parentElement.children[4].innerText = (price * count).toFixed(2);
 
-                getTotal();
+                //getTotal();
             });
 
 
@@ -32,9 +32,9 @@
                 count = parseInt(e.value);
             }
             var price = parseFloat(e.parentElement.parentElement.children[2].children[0].children[0].selectedOptions[0].attributes['data-price'].value);
-            e.parentElement.parentElement.lastElementChild.innerText = (price * count).toFixed(2);
+            e.parentElement.parentElement.children[4].innerText = (price * count).toFixed(2);
 
-            getTotal();
+            //getTotal();
         }
 
         function getTotal() {
@@ -58,6 +58,8 @@
             }
         }
 
+        
+
     </script>
 </asp:Content>
 
@@ -68,11 +70,12 @@
         <div style="margin-top: 15px; background-color: #fff">
             <table class="table table-products">
                 <tr>
-                    <th style="min-width: 180px">服务</th>
+                    <th style="min-width: 163px">服务</th>
                     <th>描述</th>
-                    <th style="min-width: 73px; text-align: center">快递公司</th>
+                    <th style="min-width: 90px; text-align: center">快递公司</th>
                     <th style="min-width: 73px; text-align: center">数量</th>
-                    <th style="min-width: 147px; text-align: center">价格 / £</th>
+                    <th style="min-width: 90px; text-align: center">价格 / £</th>
+                    <th style="min-width: 73px; text-align: center"></th>
                 </tr>
                 <tbody runat="server">
                     <asp:Repeater runat="server" ID="rpServices" ItemType="SheffieldService" SelectMethod="GetSheffieldService">
@@ -100,21 +103,25 @@
                                 </td>
                                 <td style="vertical-align: middle; text-align: center">
                                     <input type="hidden" value="<%#Item.Id %>" name="service" />
-                                    <input type="number" min="0" max="10000" required="required" value="0" style="width: 40px" id="id_count" name="count" oninput="countChange(this)" />
+                                    <input type="number" min="1" max="10000" required="required" value="1" style="width: 40px" id="id_count" name="count" oninput="countChange(this)" />
                                 </td>
-                                <td style="vertical-align: middle; text-align: center"></td>
+                                <td style="vertical-align: middle; text-align: center"><%#GetInitPrice(Item) %></td>
+                                <td style="vertical-align: middle; text-align: center">                                    
+                                    <asp:Button runat="server" CssClass="btn btn-warning" Text="购买" db-ssid="<%#Item.Id %>" db-index="<%#Container.ItemIndex %>" OnClick="Buy_Click" />
+                                </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
         </div>
-
+        <!--
         <div>
             <div style="float: left" class="total-price">总金额: <strong class="total-price" id="total_price" style="color: #f00">£0.0</strong></div>
             <div style="margin-top: -5px; margin-bottom: 10px; float: right">
                 <asp:Button ID="ButtonAddToCart" ClientIDMode="Static" runat="server" CssClass="btn btn-info" Enabled="false" Style="line-height: 1" Text="下一步" OnClick="ButtonAddToCart_Click" />
             </div>
         </div>
+        -->
     </form>
 </asp:Content>
