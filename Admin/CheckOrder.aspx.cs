@@ -13,9 +13,7 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
     private int pageSize = 20;
 
     private IEnumerable<Order> normalOrders;
-    private IEnumerable<SheffieldOrder> sheffieldOrders;    
     
-
     [Ninject.Inject]
     public IRepository repo
     {
@@ -28,8 +26,8 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
         string content = Request.QueryString["content"];
         if (content == null)
         {
-            normalOrders = from o in repo.Orders where !(o.IsSheffieldOrder ?? false) && (o.HasPaid ?? false) select o;
-            sheffieldOrders = from o in repo.Context.SheffieldOrders select o;
+            normalOrders = from o in repo.Orders where (o.HasPaid ?? false) select o;
+            
         }
         else
         {           
@@ -37,28 +35,28 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
             if (int.TryParse(content, out id))
             {
                 normalOrders = repo.Orders.Where(o => o.Id == id);
-                sheffieldOrders = from o in repo.Context.SheffieldOrders select o;
+
             }
             else
             {
                 normalOrders = repo.Orders.Where(o => o.User == content);
-                sheffieldOrders = from o in repo.Context.SheffieldOrders select o;
             }
+                
         }
 
         normalField.Visible = normalOrders.Count() != 0 ? true : false;
-        sheffieldField.Visible = sheffieldOrders.Count() != 0 ? true : false;
+        
     }
 
     public IEnumerable<Order> GetNoneSheffieldOrders()
     {
         return normalOrders;
     }
-
+    /*
     public IEnumerable<SheffieldOrder> GetSheffieldOrders()
     {
         return sheffieldOrders;
-    }
+    }*/
 
     public string GetOrderTip(Order order)
     {

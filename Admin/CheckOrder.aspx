@@ -21,9 +21,9 @@
         </div>
 
        
-        <div style="margin-top: 15px; background-color: #fff; padding: 15px">
+        <div style="margin-top: 15px; background-color: #fff; padding: 0px">
             <fieldset runat="server" id="normalField">
-                <legend>直邮订单</legend>
+                
                 <table class="table table-orders">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetPageApplys">
                         <HeaderTemplate>
@@ -63,38 +63,7 @@
                 </div>
             </fieldset>
             <br />
-            <fieldset runat="server" id="sheffieldField">
-                <legend>谢菲尔德地区订单</legend>
-                <table class="table table-orders">
-                    <asp:Repeater runat="server" ItemType="SheffieldOrder" SelectMethod="GetSheffieldOrders">
-                        <HeaderTemplate>
-                            <tr>
-                                <th class="tac">订单号</th>
-                                <th class="left">下单日期</th>
-                                <th class="tac">价格</th>
-                                <th class="tac">包裹数量</th>
-                                <th class="tac">发件人</th>
-                                <th>服务</th>
-                                <th colspan="2"></th>
-                            </tr>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <input type='hidden' name='orders' />
-                            <tr id="<%#Item.Id %>">
-                                <td class="tac"><%#string.Format("{0:d9}", Item.Id) %></td>
-                                <td class="left"><%#Item.Orders.First().OrderTime.HasValue ? Item.Orders.First().OrderTime.Value.ToShortDateString() : string.Empty %></td>
-                                <td class="tac"><%#Item.Orders.Sum(o => o.Cost) %></td>
-                                <td class="tac"><%#Item.Orders.Sum(o => o.Recipients.First().Packages.Count)%></td>
-                                <td class="tac"><%#Item.Orders.First().SenderName %></td>
-                                <td class="right">谢菲尔德地区服务</td>
-                                <td colspan="2">
-                                    <asp:LinkButton ID="ButtonSheffieldEdit" runat="server" Text="详情" data-id="<%#Item.Id %>" ToolTip="<%#Item.Id %>" />
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </table>
-            </fieldset>
+           
         </div>
     </form>
 </asp:Content>

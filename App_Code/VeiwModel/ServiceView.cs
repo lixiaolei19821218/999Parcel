@@ -89,8 +89,8 @@ public class ServiceView
         
         switch (Id)
         {
-            case 1://Bpost免费取件
-            case 11://post nl免费取件
+            case 1://Bpost 999Parcel取件
+            case 11://post nl 999Parcel免费取件
                 if (string.IsNullOrEmpty(order.SenderZipCode))
                 {
                     price = 0m;
@@ -134,23 +134,31 @@ public class ServiceView
             case 12://post nl免 UKMail取件
                 //ukmail取件费用，单箱5镑，2-3箱7镑，4箱以上每箱2镑的
                 //2015-6-16改为单箱5镑，两箱7镑，三箱或以上免费
+                //2016-03-08改为ukmail取件单箱加10镑 2-3箱加8镑 4-6箱加6镑 7-9箱加4镑 10箱以上加3镑
                 int packageCount = order.Recipients.Sum(r => r.Packages.Count);
                 if (packageCount == 1)
                 {
-                    price = 5m;
+                    price = 10m;
                 }
-                else if (packageCount == 2)
+                else if (packageCount == 2 || packageCount == 3)
                 {
-                    price = 7m;
+                    price = 8m;
+                }
+                else if (packageCount >= 4 && packageCount <= 6)
+                {
+                    price = 6;
                 }
                 else
                 {
-                    price = 0m;
+                    price = 3m;
                 }                
                 break;
             case 32://Bpost - DPD 取件      
                 packageCount = order.Recipients.Sum(r => r.Packages.Count);
                 price = 5m * packageCount;
+                break;
+            case 36://Bpost - 自送仓库
+                price = 0m;
                 break;
             default:
                 price = 0m;

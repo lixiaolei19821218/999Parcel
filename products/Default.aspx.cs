@@ -44,7 +44,7 @@ public partial class product_Default : System.Web.UI.Page
             svs.Add(new ServiceView(s));
         }
         
-        return svs;
+        return svs.OrderBy(s => s.PriceListID);
     }
 
     public Order Order
