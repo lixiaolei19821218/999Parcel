@@ -54,7 +54,7 @@ public partial class cart_Cart : System.Web.UI.Page
         totalPrice = normalOrders.Sum(o => o.Cost.Value);
         //totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
 
-        normalField.Visible = normalOrders == null || normalOrders.Count() != 0 ? true : false;
+        //normalField.Visible = normalOrders == null || normalOrders.Count() != 0 ? true : false;
         //sheffieldField.Visible = sheffieldOrders == null || sheffieldOrders.Count() != 0 ? true : false;
     }
 
@@ -235,7 +235,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "Parcelforce Priority - 自送邮局":
                     SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
                     break;
-                case "Bpost - 免费取件":
+                case "Bpost - 诚信物流取件":
                     SendBpostLciFile(o);
                     break;
                 case "Bpost - UKMail 取件":
