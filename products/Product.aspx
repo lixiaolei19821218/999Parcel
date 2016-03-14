@@ -196,7 +196,7 @@
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_postcode">邮编</label>
-                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()" />
+                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>
                                
                             </div>
 
@@ -1105,7 +1105,7 @@
         });
 
         $('.form_datetime').datetimepicker().on('changeDate', function (ev) {
-            if ($('#pickUpCompany')[0].innerText == '999Parcel') {
+            if ($('#pickUpCompany')[0].innerText == '999 Parcel') {
 
 
                 var selected = new Date($('#id_pickup_time_0')[0].value);
@@ -1136,7 +1136,7 @@
         var sendPrice = parseFloat($('#total')[0].innerText.replace('£', '')) - oldPickup;
 
         function zip_code_change() {
-            if ($('#pickUpCompany')[0].innerText == '999Parcel') {
+            if ($('#pickUpCompany')[0].innerText == '999 Parcel') {
                 var zip_code = new String();
                 zip_code = $('#id_billing_detail_postcode')[0].value;
 
@@ -1149,7 +1149,10 @@
                     $('#pickup_price')[0].innerText = '£' + price.toFixed(2);
                     $('#total')[0].innerText = '£' + (price + sendPrice).toFixed(2);
                 }
-
+                else
+                {
+                    alert(zip_code + "不属于诚信物流取件的地区。");
+                }
             }
         }
 
