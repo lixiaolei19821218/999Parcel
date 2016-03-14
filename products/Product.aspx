@@ -1138,7 +1138,7 @@
         function zip_code_change() {
             if ($('#pickUpCompany')[0].innerText == '999 Parcel') {
                 var zip_code = new String();
-                zip_code = $('#id_billing_detail_postcode')[0].value;
+                zip_code = $('#id_billing_detail_postcode')[0].value.toUpperCase();
 
                 var head = zip_code.split(' ')[0];
                 if ($.inArray(head, areas_free) != -1) {
