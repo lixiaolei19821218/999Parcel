@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- header-bottom -->
-	<div class="header-bottom">
+
 		<div class="header-bottom-top">
 			<ul>
 				<li><a href="#" class="g"> </a></li>
@@ -416,6 +416,6 @@
 				<div class="clearfix"> </div>
 			</div>
 <!-- //blog -->
-	</div>
+	
 <!-- //header-bottom -->
 </asp:Content>

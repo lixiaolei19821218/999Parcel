@@ -29,6 +29,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
             });
         });
+        function onhover(e) {
+            e.children[1].style.display = 'block';
+        }
+        function onleave(e) {
+            e.children[1].style.display = 'none';
+        }
     </script>
     <!-- start-smoth-scrolling -->
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -57,9 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li class="hvr-bounce-to-bottom active"><a href="index.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">首页</a></li>
-                                <li class="hvr-bounce-to-bottom">
+                                <li class="hvr-bounce-to-bottom" onmouseover="onhover(this)" onmouseout="onleave(this)">
                                     <a href="about.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;">快递服务</a>
-                                    <ul>
+                                    <ul style="display:none;" class="dropdown-menu" role="menu">
                                         <li><a>新手专线</a></li>
                                         <li><a>行李专线</a></li>
                                         <li><a href="/products/Sheffield.aspx">谢菲包裹专线</a></li>
@@ -93,8 +99,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </script>
                 <!-- //search-scripts -->
             </div>
+            <div class="header-bottom">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+                </div>
             <!-- //header -->
         </div>
     </div>
