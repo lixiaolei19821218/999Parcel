@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage_Old.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" Runat="Server">
     <title>首页 | 诚信物流-可靠,快捷,实惠</title>
@@ -38,7 +38,7 @@
                     <img src="/static/img/kefu-01.png" width="350" height="93"  /></div>
 
                 <div class="col-sm-8 col-xs-12" style="padding-right: 5px">
-
+                    
                     <!-- banners -->
                     <div class="mg1">
                         <div id="banners" class="carousel slide" data-ride="carousel" data-interval="5000">
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="rds2" style="background-color: #F2F8FC; text-align: center; border-left: 1px solid #0075C2; border-right: 1px solid #0075C2; border-bottom: 1px solid #0075C2; padding: 20px 15px 0">
-                            <form method="post" style="margin: 0" runat="server">
+                            <form id="Form1" method="post" style="margin: 0" runat="server">
                                 <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
 
                                 <div class="row">

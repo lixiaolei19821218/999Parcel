@@ -11,4 +11,24 @@ public partial class Default3 : System.Web.UI.Page
     {
 
     }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+       
+         
+    }
+    protected string GetGreeting()
+    {
+        return "";
+    }
+
+    protected DateTime GetLastLoginTime()
+    {
+        return DateTime.Now;
+    }
+
+    public IEnumerable<News> GetNews()
+    {
+        return new List<News>();
+    }
 }

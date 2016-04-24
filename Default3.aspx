@@ -3,6 +3,21 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <title>首页 | 诚信物流-可靠,快捷,实惠</title>
+    <style type="text/css">
+        .loginText {
+            font-size:12px;
+            margin-right:5px;
+        }
+            .loginText td {
+                margin: 5px;
+            }
+        .tab_list1 a, .tab_list1 p, .tab_list1 p span {
+            font-family:'Microsoft YaHei UI';
+        }
+        p {
+           font-family:'Microsoft YaHei UI';
+        }      
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -10,184 +25,65 @@
 
 		<div class="header-bottom-top">
 			<ul>
-				<li><a href="#" class="g"> </a></li>
-				<li><a href="#" class="p"> </a></li>
-				<li><a href="#" class="facebook"> </a></li>
-				<li><a href="#" class="twitter"> </a></li>
+				
 			</ul>
 		</div>
 		<div class="clearfix"> </div>
 <!-- banner -->
-		<div class="banner">
-<!-- Slider-starts-Here -->
-				<script src="js/responsiveslides.min.js"></script>
-				 <script>
-				    // You can also use "$(window).load(function() {"
-				    $(function () {
-				      // Slideshow 4
-				      $("#slider3").responsiveSlides({
-				        auto: true,
-				        pager: false,
-				        nav: true,
-				        speed: 500,
-				        namespace: "callbacks",
-				        before: function () {
-				          $('.events').append("<li>before event fired.</li>");
-				        },
-				        after: function () {
-				          $('.events').append("<li>after event fired.</li>");
-				        }
-				      });
-				
-				    });
-				  </script>
-			<!--//End-slider-script -->
-				<div  id="top" class="callbacks_container wow fadeInUp" data-wow-delay="0.5s">
-					<ul class="rslides" id="slider3">
-						<li>
-							<div class="banner-inf">
-								<h3>soluta nobis est eligendi cumque</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, ante interdum vehicula pretium, dui enim porta
-								lectus, non euismod tortor ante eu libero</p>
-								<a href="single.html">See More</a>
-							</div>
-						</li>
-						<li>
-							<div class="banner-inf">
-								<h3>euismod nobis est eligendi cumque</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, ante interdum vehicula pretium, dui enim porta
-								lectus, non euismod tortor ante eu libero</p>
-								<a href="single.html">See More</a>
-							</div>
-						</li>
-						<li>
-							<div class="banner-inf">
-								<h3>tortor nobis est eligendi cumque</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, ante interdum vehicula pretium, dui enim porta
-								lectus, non euismod tortor ante eu libero</p>
-								<a href="single.html">See More</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-		</div>
+		
+<!-- Slider-starts-Here -->				
+			<!--//End-slider-script -->            
+            <div id="banners" class="carousel slide" data-ride="carousel" data-interval="5000">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="/static/img/banner/sudi1.jpg" />
+                    </div>
+                    <div class="item">
+                        <img src="/static/img/banner/sudi2.jpg" />
+                    </div>
+                    <div class="item">
+                        <img src="/static/img/banner/sudi3.jpg" />
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#banners" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#banners" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>                
+            </div> 
+		
 <!-- //banner -->
-<!-- banner-bottom -->
-			<div class="banner-bottom">
-				<ul id="flexiselDemo1">			
-					<li>
-						<div class="banner-bottom-grid">
-							<img src="images/1.jpg" alt=" " class="img-responsive" />
-							<p>At vero eos et accusamus et iusto odio dignissimos ducimus 
-								qui blanditiis praesentium voluptatum deleniti atque corrupti 
-								quos dolores et quas molestias excepturi sint occaecati
-								cupiditate non provident</p>
-							<div class="more">
-								<a href="single.html" class="hvr-bounce-to-bottom sint">Read More</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="banner-bottom-grid">
-							<img src="images/2.jpg" alt=" " class="img-responsive" />
-							<p>At vero eos et accusamus et iusto odio dignissimos ducimus 
-								qui blanditiis praesentium voluptatum deleniti atque corrupti 
-								quos dolores et quas molestias excepturi sint occaecati
-								cupiditate non provident</p>
-							<div class="more">
-								<a href="single.html" class="hvr-bounce-to-bottom sint">Read More</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="banner-bottom-grid">
-							<img src="images/3.jpg" alt=" " class="img-responsive" />
-							<p>At vero eos et accusamus et iusto odio dignissimos ducimus 
-								qui blanditiis praesentium voluptatum deleniti atque corrupti 
-								quos dolores et quas molestias excepturi sint occaecati
-								cupiditate non provident</p>
-							<div class="more">
-								<a href="single.html" class="hvr-bounce-to-bottom sint">Read More</a>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<script type="text/javascript">
-							$(window).load(function() {
-								$("#flexiselDemo1").flexisel({
-									visibleItems: 3,
-									animationSpeed: 1000,
-									autoPlay: false,
-									autoPlaySpeed: 3000,    		
-									pauseOnHover: true,
-									enableResponsiveBreakpoints: true,
-									responsiveBreakpoints: { 
-										portrait: { 
-											changePoint:480,
-											visibleItems: 1
-										}, 
-										landscape: { 
-											changePoint:640,
-											visibleItems:2
-										},
-										tablet: { 
-											changePoint:768,
-											visibleItems: 3
-										}
-									}
-								});
-								
-							});
-					</script>
-					<script type="text/javascript" src="js/jquery.flexisel.js"></script>
-			</div>
-<!-- //banner-bottom -->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+
 <!-- blog -->
 			<div class="blog">
 				<div class="blog-left">
 					<div class="blog-left-grid">
-						<div class="blog-left-grid-left">
-							<h3><a href="single.html">voluptates repudiandae sint non recusandae</a></h3>
-							<p>by <span>Charlie</span> | June 29,2015 | <span>Sint</span></p>
+										
+						<div style="width:640px;height:520px;border:solid #C34C21 1px;">
+                            <div>
+                                <div>
+                                    <span>发件地</span>
+                                    <select style="margin: 0; width: 50%">
+                                        <option>英国</option>
+                                    </select>
+                                </div>
+                            </div>
+                                
+                            
 						</div>
-						<div class="blog-left-grid-right">
-							<a href="#" class="hvr-bounce-to-bottom non">20 Comments</a>
-						</div>
-						<div class="clearfix"> </div>
-						<a href="single.html"><img src="images/4.jpg" alt=" " class="img-responsive" /></a>
-						<p class="para"> Itaque earum rerum hic tenetur a sapiente delectus, 
-							ut aut reiciendis voluptatibus maiores alias consequatur aut 
-							perferendis doloribus asperiores repellat.Et harum quidem rerum 
-							facilis est et expedita distinctio. Nam libero tempore, cum 
-							soluta nobis est eligendi optio cumque nihil impedit quo minus 
-							id quod maxime placeat facere possimus, omnis voluptas assumenda 
-							est, omnis dolor repellendus. Temporibus autem quibusdam et 
-							aut officiis debitis.</p>
+						
 						<div class="rd-mre">
-							<a href="single.html" class="hvr-bounce-to-bottom quod">Read More</a>
+							<a href="single.html" class="hvr-bounce-to-bottom quod">立即下单</a>
 						</div>
 					</div>
-					<div class="blog-left-grid">
-						<div class="blog-left-grid-left">
-							<h3><a href="single.html">voluptates repudiandae sint non recusandae</a></h3>
-							<p>by <span>Charlie</span> | June 29,2015 | <span>Sint</span></p>
-						</div>
-						<div class="blog-left-grid-right">
-							<a href="#" class="hvr-bounce-to-bottom non">40 Comments</a>
-						</div>
-						<div class="clearfix"> </div>
-						<a href="single.html"><img src="images/5.jpg" alt=" " class="img-responsive" /></a>
-						<p class="para"> Itaque earum rerum hic tenetur a sapiente delectus, 
-							ut aut reiciendis voluptatibus maiores alias consequatur aut 
-							perferendis doloribus asperiores repellat.Et harum quidem rerum 
-							facilis est et expedita distinctio. Nam libero tempore, cum 
-							soluta nobis est eligendi optio cumque nihil impedit quo minus 
-							id quod maxime placeat facere possimus, omnis voluptas assumenda 
-							est, omnis dolor repellendus. Temporibus autem quibusdam et 
-							aut officiis debitis.</p>
+					<div class="blog-left-grid">										
+						<a href="single.html"><img src="static/img/mall_640_426.png" alt=" " class="img-responsive" /></a>
+						<p class="para"> 诚信商场提供UK到China的海淘服务。保证正品，物美价廉。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆 盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
 						<div class="rd-mre">
-							<a href="single.html" class="hvr-bounce-to-bottom quod">Read More</a>
+							<a href="single.html" class="hvr-bounce-to-bottom quod">开始购物</a>
 						</div>
 					</div>
 				</div>
@@ -195,227 +91,169 @@
 					<div class="sap_tabs">	
 					<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 						  <ul class="resp-tabs-list">
-							  <li class="resp-tab-item grid1" aria-controls="tab_item-0" role="tab"><span>Popular</span></li>
-							  <li class="resp-tab-item grid2" aria-controls="tab_item-1" role="tab"><span>Recent</span></li>
-							  <li class="resp-tab-item grid3" aria-controls="tab_item-2" role="tab"><span>Comments</span></li>
-							  <div class="clear"></div>
+							  <li class="resp-tab-item grid1" aria-controls="tab_item-0" role="tab"><span>热销产品</span></li>
+							  
 						  </ul>				  	 
 							<div class="resp-tabs-container">
 								<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 									<div class="facts">
 									  <div class="tab_list">
 										<a href="images/7-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/7.jpg" alt=" " class="img-responsive" />
+											<img src="static/img/baby_milk.jpg" alt=" " class="img-responsive" />
 										</a>
 									  </div>
 									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015 <span>Nam libero tempore, cum soluta nobis.</span></p>
+										<a href="#">婴儿奶粉</a>
+										<p>￡10起售 <span>爱他美，牛栏。UK超市购买，可提供原始发票。</span></p>
 									  </div>
 									  <div class="clearfix"> </div>
 									</div>
 									<div class="facts">
 									   <div class="tab_list">
 										<a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/8.jpg" alt=" " class="img-responsive" />
+											<img src="static/img/Car_Seat.jpg" alt=" " class="img-responsive" />
 										</a>
 									  </div>
 									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
+										<a href="#" style="font-family:'Microsoft YaHei UI'" >婴儿安全座椅</a>
+										<p>￡200<span style="font-family:'Microsoft YaHei UI'">安全可靠，做中国好司机，做中国好父母。</span></p>
 									  </div>
 									  <div class="clearfix"> </div>
 									</div>
 									<div class="facts">
 									   <div class="tab_list">
 										<a href="images/9-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/9.jpg" alt=" " class="img-responsive" />
+											<img src="static/img/box.jpg" alt=" " class="img-responsive" />
 										</a>
 									  </div>
 									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
+										<a href="#">打包服务</a>
+										<p>低至￡2每箱<span>诚信物流提供贴心的打包加固服务。</span></p>
 									  </div>
 									  <div class="clearfix"> </div>
 									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/10-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/10.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
+									
 								</div>
-								<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-									<div class="facts">
-									  <div class="tab_list">
-										<a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/8.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/9-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/9.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/10-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/10.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/7-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/7.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-								</div>
-								<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-									<div class="facts">
-									  <div class="tab_list">
-										<a href="images/9-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/9.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/10-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/10.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/7-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/7.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-									<div class="facts">
-									   <div class="tab_list">
-										<a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-											<img src="images/8.jpg" alt=" " class="img-responsive" />
-										</a>
-									  </div>
-									  <div class="tab_list1">
-										<a href="#">excepturi sint occaecati</a>
-										<p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-									  </div>
-									  <div class="clearfix"> </div>
-									</div>
-								</div>
+								
 							</div>
 						 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
 							<script type="text/javascript">
-								$(document).ready(function () {
-									$('#horizontalTab').easyResponsiveTabs({
-										type: 'default', //Types: default, vertical, accordion           
-										width: 'auto', //auto or any width like 600px
-										fit: true   // 100% fit in a container
-									});
-								});
+							    $(document).ready(function () {
+							        $('#horizontalTab').easyResponsiveTabs({
+							            type: 'default', //Types: default, vertical, accordion           
+							            width: 'auto', //auto or any width like 600px
+							            fit: true   // 100% fit in a container
+							        });
+							    });
 							   </script>
 						<link rel="stylesheet" href="css/swipebox.css">
 						<script src="js/jquery.swipebox.min.js"></script> 
 							<script type="text/javascript">
-								jQuery(function($) {
-									$(".swipebox").swipebox();
-								});
+							    jQuery(function ($) {
+							        $(".swipebox").swipebox();
+							    });
 							</script>
 					</div>
 					</div>
 					<div class="newsletter">
-						<h3>Subscribe To Our Newsletter</h3>
+						<h3>订单跟踪</h3>
 						<form>
-							<input type="text" value="Email Address" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Email Address';}" required="">
-							<input type="submit" value="Send">
+							<input type="text" value="订单号" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '订单号';}" required=""/>
+							<input type="submit" value="查询"/>
 						</form>
 					</div>
 					<div class="four-fig">
 						<div class="four-fig1">
 							<a href="images/11-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-								<img src="images/11.jpg" class="img-responsive" alt=" " />
+								<img src="/static/img/adv/adv1_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="four-fig1">
 							<a href="images/14-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-								<img src="images/14.jpg" class="img-responsive" alt=" " />
+								<img src="/static/img/adv/adv2_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="four-fig1">
 							<a href="images/10-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-								<img src="images/21.jpg" class="img-responsive" alt=" " />
+								<img src="/static/img/adv/adv3_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="four-fig1">
 							<a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
-								<img src="images/22.jpg" class="img-responsive" alt=" " />
+								<img src="/static/img/adv/adv1_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
 					<div class="pgs">
-						<h3>Pages</h3>
-						<ul>
-							<li><a href="#">doloribus asperiores repellat</a></li>
-							<li><a href="#">Itaque earum rerum hic tenetur</a></li>
-							<li><a href="#">deserunt mollitia laborum et dolorum</a></li>
-							<li><a href="#">facilis est et expedita distinctio</a></li>
-							<li><a href="#">occaecati cupiditate non provident</a></li>
-							<li><a href="#">deserunt mollitia laborum et dolorum</a></li>
+						<h3>新闻资讯</h3>
+						<ul>							
+							<li><a href="#">针对包税服务的服务调整通知</a></li>
+							<li><a href="#">2016年复活节放假通知</a></li>
+							<li><a href="#">英卖通服务上线</a></li>
+							<li><a href="#">英国皇家邮政小包裹专线， 2公斤低至12.5镑</a></li>
+							<li><a href="#">bpost 价格上调通知</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 <!-- //blog -->
-	
+	<!-- banner-bottom -->
+			<div class="banner-bottom">
+				<ul id="flexiselDemo1">			
+					<li>
+						<div class="banner-bottom-grid">
+							<img src="static/img/999parcel_400_300.png" alt=" " class="img-responsive" />
+							<p>诚信物流 (999Parcel)是一家英国独资综合性质的国际物流公司。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆 盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
+							
+						</div>
+					</li>
+					<li>
+						<div class="banner-bottom-grid">
+							<img src="static/img/partners_400_300.png" alt=" " class="img-responsive" />
+							<p>我们的合作伙伴包括Parcel Force, Bpost, UK Mail, DPD, EMS等国际知名物流公司。同时提供PayPal, 支付宝等多种支付方式，满足您的需求。我们的合作伙伴包括Parcel Force, Bpost, UK Mail, DPD, EMS等国际知名物流公司。同时提供PayPal, 支付宝等多种支付方式，满足您的需求。</p>
+							
+						</div>
+					</li>
+					<li>
+						<div class="banner-bottom-grid">
+							<img src="static/img/SheffieldPickup_400_300.png" alt=" " class="img-responsive" />
+							<p>诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。</p>
+							
+						</div>
+					</li>
+				</ul>
+				<script type="text/javascript">
+				    $(window).load(function () {
+				        $("#flexiselDemo1").flexisel({
+				            visibleItems: 3,
+				            animationSpeed: 1000,
+				            autoPlay: false,
+				            autoPlaySpeed: 3000,
+				            pauseOnHover: true,
+				            enableResponsiveBreakpoints: true,
+				            responsiveBreakpoints: {
+				                portrait: {
+				                    changePoint: 480,
+				                    visibleItems: 1
+				                },
+				                landscape: {
+				                    changePoint: 640,
+				                    visibleItems: 2
+				                },
+				                tablet: {
+				                    changePoint: 768,
+				                    visibleItems: 3
+				                }
+				            }
+				        });
+
+				    });
+					</script>
+					<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+			</div>
+<!-- //banner-bottom -->
+
 <!-- //header-bottom -->
 </asp:Content>
