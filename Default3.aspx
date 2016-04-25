@@ -64,14 +64,27 @@
 										
 						<div style="width:640px;height:520px;border:solid #C34C21 1px;">
                             <div>
-                                <div>
+                                <div style="width:50%;padding:20px;float:left;">
                                     <span>发件地</span>
                                     <select style="margin: 0; width: 50%">
                                         <option>英国</option>
                                     </select>
                                 </div>
+                                <div style="width:50%;padding:20px;float:left;">
+                                    <span class="tal clrb3 bold">收件地</span>
+                                    <select style="margin: 0; width: 50%" name="to_area">
+                                        <option value="CN">中国大陆</option>
+                                        <!--<option value="HK">中国香港</option>
+                                            <option value="MO">中国澳门</option>
+                                            <option value="TW">台湾</option>-->
+                                    </select>
+                                </div>
                             </div>
-                                
+                            <hr />
+                             <div style="width:50%;padding:20px;float:left;">
+                                 收件人<span>1</span>
+                                 <button style="float:right;" title="xx"></button>
+                             </div>   
                             
 						</div>
 						
