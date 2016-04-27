@@ -79,12 +79,34 @@
                                             <option value="TW">台湾</option>-->
                                     </select>
                                 </div>
-                            </div>
-                            <hr />
-                             <div style="width:50%;padding:20px;float:left;">
+                            </div>                         
+                             <div style="width:100%;padding:10px;float:left;color:white;background-color:#C34C21">
                                  收件人<span>1</span>
-                                 <button style="float:right;" title="xx"></button>
-                             </div>   
+                                 <button style="float:right;border:0px;color:white;background-color:transparent;height:20px;width:20px;" title="减少收件人">-</button>
+                                 <button style="float:right;border:0px;color:white;background-color:transparent;height:20px;width:20px;font-size:large;" title="添加收件人">+</button>
+                                 
+                             </div>  
+                            <div style="width:100%;padding:10px;float:left;">
+                            <div style="float:left;">
+                                <div style="padding:10px;float:left;"><input placeholder="重量(KG)" style="float:left;width:100px;margin:5px;padding:5px;" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '重量(KG)';}"/></div>
+                                
+                            </div>
+                            <div style="float:left;">
+                                <div style="padding:10px;float:left;"><input placeholder="宽(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
+                                
+                            </div>
+                            <div style="float:left;">
+                                <div style="padding:10px;float:left;"><input placeholder="宽(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
+                                
+                            </div>
+                            <div style="float:left;">
+                                <div style="padding:10px;float:left;"><input type="text" placeholder="高(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
+                                
+                            </div>
+                            
+                            <button style="float:right;border:0px;color:#C34C21;background-color:transparent;height:20px;width:20px;padding:20px;outline:none;" title="减少收件人">-</button>
+                                 <button style="float:right;border:0px;color:#C34C21;background-color:transparent;height:20px;width:20px;font-size:large;padding:20px;outline:none;" title="添加收件人">+</button>
+                              </div>
                             
 						</div>
 						
