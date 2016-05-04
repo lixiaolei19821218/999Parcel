@@ -17,7 +17,7 @@
         p {
            font-family:'Microsoft YaHei UI';
         }      
-    </style>
+    </style> 
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -62,56 +62,90 @@
 				<div class="blog-left">
 					<div class="blog-left-grid">
 										
-						<div style="width:640px;height:520px;border:solid #C34C21 1px;">
-                            <div>
-                                <div style="width:50%;padding:20px;float:left;">
-                                    <span>发件地</span>
-                                    <select style="margin: 0; width: 50%">
-                                        <option>英国</option>
-                                    </select>
-                                </div>
-                                <div style="width:50%;padding:20px;float:left;">
-                                    <span class="tal clrb3 bold">收件地</span>
-                                    <select style="margin: 0; width: 50%" name="to_area">
-                                        <option value="CN">中国大陆</option>
-                                        <!--<option value="HK">中国香港</option>
+						<div class="pane1 mg1">
+
+<h3>订单跟踪</h3>
+                     
+
+                        <div class="rds2" style="text-align: center; border: 1px solid #c34c21;">
+                            <form id="Form1" method="post" style="margin: 0" runat="server">
+                                <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <span class="tal clrb3 bold">发件地</span>
+                                        <select style="margin: 0; width: 50%">
+                                            <option>英国</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="tal clrb3 bold">收件地</span>
+                                        <select style="margin: 0; width: 50%" name="to_area">
+                                            <option value="CN">中国大陆</option>
+                                            <!--<option value="HK">中国香港</option>
                                             <option value="MO">中国澳门</option>
                                             <option value="TW">台湾</option>-->
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>                         
-                             <div style="width:100%;padding:10px;float:left;color:white;background-color:#C34C21">
-                                 收件人<span>1</span>
-                                 <button style="float:right;border:0px;color:white;background-color:transparent;height:20px;width:20px;" title="减少收件人">-</button>
-                                 <button style="float:right;border:0px;color:white;background-color:transparent;height:20px;width:20px;font-size:large;" title="添加收件人">+</button>
-                                 
-                             </div>  
-                            <div style="width:100%;padding:10px;float:left;">
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input placeholder="重量(KG)" style="float:left;width:100px;margin:5px;padding:5px;" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '重量(KG)';}"/></div>
-                                
-                            </div>
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input placeholder="宽(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
-                                
-                            </div>
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input placeholder="宽(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
-                                
-                            </div>
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input type="text" placeholder="高(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
-                                
-                            </div>
-                            
-                            <button style="float:right;border:0px;color:#C34C21;background-color:transparent;height:20px;width:20px;padding:20px;outline:none;" title="减少收件人">-</button>
-                                 <button style="float:right;border:0px;color:#C34C21;background-color:transparent;height:20px;width:20px;font-size:large;padding:20px;outline:none;" title="添加收件人">+</button>
-                              </div>
-                            
-						</div>
-						
-						<div class="rd-mre">
-							<a href="single.html" class="hvr-bounce-to-bottom quod">立即下单</a>
+
+                                <div style="align-content:flex-start">
+                                <asp:Label ID="LabelError" runat="server" Text="Label" Visible="false" ForeColor="Red"></asp:Label>
+                                    </div>
+                                <div class="formset formset_1">
+                                    <div class="bg4 addr clrb3 bold tal" style="margin: 20px -15px 0; padding: 7px 15px">
+                                        收件人
+                    <span class="addr_num">1</span>
+                                        <button type="button" class="del_addr btn1 fr" title="删除收件人" style="margin-left: 7px">-</button>
+                                        <button type="button" class="add_addr btn1 fr" title="添加收件人">+</button>
+                                    </div>
+
+
+                                    <div class="pkt-err"></div>
+                                    <div class="packet" style="margin: 15px 0 0">
+                                        <button type="button" class="del_pkt btn2 fr" title="删除包裹" style="margin-left: 7px">-</button>
+                                        <button type="button" class="add_pkt btn2 fr" title="添加包裹">+</button>
+                                        <div class="num clrb3 fl" style="width: 10px">1</div>
+                                        <div style="margin-right: 50px; margin-left: 12px">
+                                            <div class="row" style="display: inline-block; width: 100%; margin-top: -3px" title="重量不能超过30kg，长宽高分别不能大于105cm，长×宽×高÷5000不能大于30。">
+                                                <div class="attr col-xs-3 input1">                                                    
+                                                    <input id="id_addr_0-0-weight" name="addr_0-0-weight" placeholder="重量" type="number" max="30" min="1" style="width:80px;" required="required"/>
+                                                    (kg)</div>
+                                                <div class="attr col-xs-3 input1">
+                                                    <input id="id_addr_0-0-length" name="addr_0-0-length" placeholder="长度" type="number" max="105" min="1" style="width:80px;" required="required" />
+                                                    (cm)</div>
+                                                <div class="attr col-xs-3 input1">
+                                                    <input id="id_addr_0-0-width" name="addr_0-0-width" placeholder="宽度" type="number" max="105" min="1" style="width:80px;" required="required" />
+                                                    (cm)</div>
+                                                <div class="attr col-xs-3 input1">
+                                                    <input id="id_addr_0-0-height" name="addr_0-0-height" placeholder="高度" type="number" max="105" min="1" style="width:80px;" required="required" />
+                                                    (cm)</div>
+                                            </div>
+                                        </div>
+                                        <div class="cb"></div>
+                                    </div>
+
+
+
+                                    <input id="id_addr_0-TOTAL_FORMS" name="addr_0-TOTAL_FORMS" type="hidden" value="1" /><input id="id_addr_0-INITIAL_FORMS" name="addr_0-INITIAL_FORMS" type="hidden" value="0" /><input id="id_addr_0-MAX_NUM_FORMS" name="addr_0-MAX_NUM_FORMS" type="hidden" value="100" />
+                                    <script>
+                                        $(function () { add_address('addr_0', $('.formset_1')); });
+                                    </script>
+                                </div>
+
+
+                                <div class="tar" style="margin-top: 40px">
+                                    <div style="float: left; font-size: 14px; margin-top: -5px; color: #0075c2">
+                                        <a href="/static/media/uploads/新手专区.docx">
+                                            <span style="font-weight: bold">温馨提示</span>：点击右侧"+"号添加多箱，<span style="font-weight: bold">有优惠</span>（取件费会随箱数减免）
+                                        </a>
+                                    </div>
+                                    <asp:Button ID="btnSubmit" runat="server" OnClientClick="validateSize1()" CssClass="bg2 clrw1" style="width: 83px; height: 23px; background-position: -100px -63px; border: none; background-color: #F2F8FC; font-size: 12px" Text="立即下单" OnClick="btnSubmit_Click" />                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div><div class="rd-mre">
+							<a href="single.html" class="hvr-bounce-to-bottom quod">开始购物</a>
 						</div>
 					</div>
 					<div class="blog-left-grid">										
@@ -289,6 +323,7 @@
 					<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 			</div>
 <!-- //banner-bottom -->
-
+    <script src="/static/js/jquery.formset2.js"></script>
+    <script src="/static/js/home.js"></script>
 <!-- //header-bottom -->
 </asp:Content>
