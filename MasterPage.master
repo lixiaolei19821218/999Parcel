@@ -114,23 +114,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 footer-grid">
                     
                     <ul>
-                        <li><a href="#">速递服务</a></li>
-                        <li><a href="#">国际快递</a></li>
-                        <li><a href="#">海外仓储</a></li>                                          
+                        <li><a href="/our-services/">速递服务</a></li>
+                        <li><a href="/our-services/zy/">国际快递</a></li>
+                        <li><a href="/our-services/yun/">海外仓储</a></li>                                          
                     </ul>
                 </div>
                 <div class="col-md-3 footer-grid">                    
                     <ul>
-                        <li><a href="#">新闻资讯</a></li>
-                        <li><a href="#">诚信商场</a></li>      
-                        <li><a href="#">网上报价</a></li>                        
+                        <li><a href="/news/">新闻资讯</a></li>
+                        <li><a href="/shop/">诚信商场</a></li>      
+                        <li><a href="/prices/">网上报价</a></li>                        
                     </ul>
                 </div>
               <div class="col-md-3 footer-grid">                    
                     <ul>
-                        <li><a href="#">联系我们</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">常见问题</a></li>
+                        <li><a href="/contact-us/">联系我们</a></li>
+                        <li><a href="/privacy_policy/">Privacy Policy</a></li>
+                        <li><a href="/faq/">常见问题</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-grid">

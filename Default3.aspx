@@ -61,61 +61,83 @@
 			<div class="blog">
 				<div class="blog-left">
 					<div class="blog-left-grid">
-										
-						<div style="width:640px;height:520px;border:solid #C34C21 1px;">
-                            <div>
-                                <div style="width:50%;padding:20px;float:left;">
-                                    <span>发件地</span>
-                                    <select style="margin: 0; width: 50%">
-                                        <option>英国</option>
-                                    </select>
-                                </div>
-                                <div style="width:50%;padding:20px;float:left;">
-                                    <span class="tal clrb3 bold">收件地</span>
-                                    <select style="margin: 0; width: 50%" name="to_area">
-                                        <option value="CN">中国大陆</option>
-                                        <!--<option value="HK">中国香港</option>
+                        <div class="pane1 mg1">
+                            <div style="width: 100px; height: 44px; background-color: #C34C21; color: white; text-align: center; line-height: 44px;">
+                                快速询价
+                            </div>
+                            <div class="rds2" style="text-align: center; border: 1px solid #C34C21; height: 500px;overflow:auto;">
+                                <form id="Form1" method="post" style="margin: 0" runat="server">
+                                    <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
+                                    <div class="row" style="margin: 0px;">
+                                        <div class="col-xs-6" style="width: 50%; padding: 20px; float: left;">
+                                            <span class="tal clrb3 bold">发件地</span>
+                                            <select style="margin: 0; width: 50%">
+                                                <option>英国</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6" style="width: 50%; padding: 20px; float: left;">
+                                            <span class="tal clrb3 bold">收件地</span>
+                                            <select style="margin: 0; width: 50%" name="to_area">
+                                                <option value="CN">中国大陆</option>
+                                                <!--<option value="HK">中国香港</option>
                                             <option value="MO">中国澳门</option>
                                             <option value="TW">台湾</option>-->
-                                    </select>
-                                </div>
-                            </div>                         
-                             <div style="width:100%;padding:10px;float:left;color:white;background-color:#C34C21">
-                                 收件人<span>1</span>
-                                 <button style="float:right;border:0px;color:white;background-color:transparent;height:20px;width:20px;" title="减少收件人">-</button>
-                                 <button style="float:right;border:0px;color:white;background-color:transparent;height:20px;width:20px;font-size:large;" title="添加收件人">+</button>
-                                 
-                             </div>  
-                            <div style="width:100%;padding:10px;float:left;">
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input placeholder="重量(KG)" style="float:left;width:100px;margin:5px;padding:5px;" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '重量(KG)';}"/></div>
-                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div style="align-content: flex-start">
+                                        <asp:Label ID="LabelError" runat="server" Text="Label" Visible="false" ForeColor="Red"></asp:Label>
+                                    </div>
+                                    <div class="formset formset_1">
+                                        <div class="bg4 addr clrb3 bold tal" style="width: 100%; padding: 10px; float: left; color: white; background-color: #C34C21">
+                                            收件人<span class="addr_num">1</span>
+                                            <button type="button" class="del_addr btn1 fr" title="删除收件人" style="float: right; border: 0px; color: white; background-color: transparent; height: 20px; width: 20px; outline: none">-</button>
+                                            <button type="button" class="add_addr btn1 fr" title="添加收件人" style="float: right; border: 0px; color: white; background-color: transparent; height: 20px; width: 20px; font-size: large; outline: none;">+</button>
+                                        </div>
+                                        <div class="pkt-err"></div>
+                                        <div class="packet">
+                                            
+                                            <div style="width: 85%; padding: 0px; float: left;">
+                                                <div class="row" style="display: inline-block; width: 100%; margin-top: -3px" title="重量不能超过30kg，长宽高分别不能大于105cm，长×宽×高÷5000不能大于30。">
+                                                    <div class="attr col-xs-3 input1" style="padding: 10px; float: left;">
+                                                        <input id="id_addr_0-0-weight" name="addr_0-0-weight" placeholder="重量" type="number" max="30" min="1" style="width: 80px;" required="required" />(kg)
+                                                    </div>
+                                                    <div class="attr col-xs-3 input1" style="padding: 10px; float: left;">
+                                                        <input id="id_addr_0-0-length" name="addr_0-0-length" placeholder="长度" type="number" max="105" min="1" style="width: 80px;" required="required" />(cm)
+                                                    </div>
+                                                    <div class="attr col-xs-3 input1" style="padding: 10px; float: left;">
+                                                        <input id="id_addr_0-0-width" name="addr_0-0-width" placeholder="宽度" type="number" max="105" min="1" style="width: 80px;" required="required" />(cm)
+                                                    </div>
+                                                    <div class="attr col-xs-3 input1" style="padding: 10px; float: left;">
+                                                        <input id="id_addr_0-0-height" name="addr_0-0-height" placeholder="高度" type="number" max="105" min="1" style="width: 80px;" required="required" />(cm)
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div style="float: left; width: 15%">
+                                                <button type="button" class="del_pkt btn2 fr" title="删除包裹" style="float: right; border: 0px; color: #C34C21; background-color: transparent; height: 20px; width: 20px; padding: 10px 20px; outline: none;">-</button>
+                                                <button type="button" class="add_pkt btn2 fr" title="添加包裹" style="float: right; border: 0px; color: #C34C21; background-color: transparent; height: 20px; width: 20px; padding: 10px 20px; outline: none;">+</button>
+                                            </div>
+                                            <div class="cb"></div>
+                                        </div>
+                                        <input id="id_addr_0-TOTAL_FORMS" name="addr_0-TOTAL_FORMS" type="hidden" value="1" /><input id="id_addr_0-INITIAL_FORMS" name="addr_0-INITIAL_FORMS" type="hidden" value="0" /><input id="id_addr_0-MAX_NUM_FORMS" name="addr_0-MAX_NUM_FORMS" type="hidden" value="100" />
+                                        <script>
+                                            $(function () { add_address('addr_0', $('.formset_1')); });
+                                        </script>
+                                    </div>
+
+
+                                    
+                                </form>
                             </div>
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input placeholder="宽(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
-                                
-                            </div>
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input placeholder="宽(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
-                                
-                            </div>
-                            <div style="float:left;">
-                                <div style="padding:10px;float:left;"><input type="text" placeholder="高(CM)" style="float:left;width:100px;margin:5px;padding:5px;"/></div>
-                                
-                            </div>
-                            
-                            <button style="float:right;border:0px;color:#C34C21;background-color:transparent;height:20px;width:20px;padding:20px;outline:none;" title="减少收件人">-</button>
-                                 <button style="float:right;border:0px;color:#C34C21;background-color:transparent;height:20px;width:20px;font-size:large;padding:20px;outline:none;" title="添加收件人">+</button>
-                              </div>
-                            
-						</div>
-						
-						<div class="rd-mre">
+                           <div class="rd-mre">
 							<a href="single.html" class="hvr-bounce-to-bottom quod">立即下单</a>
 						</div>
+                    </div>
+						
+						
 					</div>
 					<div class="blog-left-grid">										
-						<a href="single.html"><img src="static/img/mall_640_426.png" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img src="static/img/mall_668_426.png" alt=" " class="img-responsive" /></a>
 						<p class="para"> 诚信商场提供UK到China的海淘服务。保证正品，物美价廉。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆 盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
 						<div class="rd-mre">
 							<a href="single.html" class="hvr-bounce-to-bottom quod">开始购物</a>
@@ -289,6 +311,7 @@
 					<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 			</div>
 <!-- //banner-bottom -->
-
+    <script src="/static/js/jquery.formset2.js"></script>
+    <script src="/static/js/home.js"></script>
 <!-- //header-bottom -->
 </asp:Content>
