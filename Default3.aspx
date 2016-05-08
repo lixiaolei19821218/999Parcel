@@ -17,7 +17,7 @@
         p {
            font-family:'Microsoft YaHei UI';
         }      
-    </style>
+    </style> 
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -61,6 +61,7 @@
 			<div class="blog">
 				<div class="blog-left">
 					<div class="blog-left-grid">
+<<<<<<< HEAD
                         <div class="pane1 mg1">
                             <div style="width: 100px; height: 44px; background-color: #C34C21; color: white; text-align: center; line-height: 44px;">
                                 快速询价
@@ -131,6 +132,93 @@
                             </div>
                            <div class="rd-mre">
 							<a href="single.html" class="hvr-bounce-to-bottom quod">立即下单</a>
+=======
+										
+						<div class="pane1 mg1">
+
+<h3>订单跟踪</h3>
+                     
+
+                        <div class="rds2" style="text-align: center; border: 1px solid #c34c21;">
+                            <form id="Form1" method="post" style="margin: 0" runat="server">
+                                <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <span class="tal clrb3 bold">发件地</span>
+                                        <select style="margin: 0; width: 50%">
+                                            <option>英国</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="tal clrb3 bold">收件地</span>
+                                        <select style="margin: 0; width: 50%" name="to_area">
+                                            <option value="CN">中国大陆</option>
+                                            <!--<option value="HK">中国香港</option>
+                                            <option value="MO">中国澳门</option>
+                                            <option value="TW">台湾</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="align-content:flex-start">
+                                <asp:Label ID="LabelError" runat="server" Text="Label" Visible="false" ForeColor="Red"></asp:Label>
+                                    </div>
+                                <div class="formset formset_1">
+                                    <div class="bg4 addr clrb3 bold tal" style="margin: 20px -15px 0; padding: 7px 15px">
+                                        收件人
+                    <span class="addr_num">1</span>
+                                        <button type="button" class="del_addr btn1 fr" title="删除收件人" style="margin-left: 7px">-</button>
+                                        <button type="button" class="add_addr btn1 fr" title="添加收件人">+</button>
+                                    </div>
+
+
+                                    <div class="pkt-err"></div>
+                                    <div class="packet" style="margin: 15px 0 0">
+                                        <button type="button" class="del_pkt btn2 fr" title="删除包裹" style="margin-left: 7px">-</button>
+                                        <button type="button" class="add_pkt btn2 fr" title="添加包裹">+</button>
+                                        <div class="num clrb3 fl" style="width: 10px">1</div>
+                                        <div style="margin-right: 50px; margin-left: 12px">
+                                            <div class="row" style="display: inline-block; width: 100%; margin-top: -3px" title="重量不能超过30kg，长宽高分别不能大于105cm，长×宽×高÷5000不能大于30。">
+                                                <div class="attr col-xs-3 input1">                                                    
+                                                    <input id="id_addr_0-0-weight" name="addr_0-0-weight" placeholder="重量" type="number" max="30" min="1" style="width:80px;" required="required"/>
+                                                    (kg)</div>
+                                                <div class="attr col-xs-3 input1">
+                                                    <input id="id_addr_0-0-length" name="addr_0-0-length" placeholder="长度" type="number" max="105" min="1" style="width:80px;" required="required" />
+                                                    (cm)</div>
+                                                <div class="attr col-xs-3 input1">
+                                                    <input id="id_addr_0-0-width" name="addr_0-0-width" placeholder="宽度" type="number" max="105" min="1" style="width:80px;" required="required" />
+                                                    (cm)</div>
+                                                <div class="attr col-xs-3 input1">
+                                                    <input id="id_addr_0-0-height" name="addr_0-0-height" placeholder="高度" type="number" max="105" min="1" style="width:80px;" required="required" />
+                                                    (cm)</div>
+                                            </div>
+                                        </div>
+                                        <div class="cb"></div>
+                                    </div>
+
+
+
+                                    <input id="id_addr_0-TOTAL_FORMS" name="addr_0-TOTAL_FORMS" type="hidden" value="1" /><input id="id_addr_0-INITIAL_FORMS" name="addr_0-INITIAL_FORMS" type="hidden" value="0" /><input id="id_addr_0-MAX_NUM_FORMS" name="addr_0-MAX_NUM_FORMS" type="hidden" value="100" />
+                                    <script>
+                                        $(function () { add_address('addr_0', $('.formset_1')); });
+                                    </script>
+                                </div>
+
+
+                                <div class="tar" style="margin-top: 40px">
+                                    <div style="float: left; font-size: 14px; margin-top: -5px; color: #0075c2">
+                                        <a href="/static/media/uploads/新手专区.docx">
+                                            <span style="font-weight: bold">温馨提示</span>：点击右侧"+"号添加多箱，<span style="font-weight: bold">有优惠</span>（取件费会随箱数减免）
+                                        </a>
+                                    </div>
+                                    <asp:Button ID="btnSubmit" runat="server" OnClientClick="validateSize1()" CssClass="bg2 clrw1" style="width: 83px; height: 23px; background-position: -100px -63px; border: none; background-color: #F2F8FC; font-size: 12px" Text="立即下单" OnClick="btnSubmit_Click" />                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div><div class="rd-mre">
+							<a href="single.html" class="hvr-bounce-to-bottom quod">开始购物</a>
+>>>>>>> origin/master
 						</div>
                     </div>
 						

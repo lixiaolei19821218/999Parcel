@@ -36,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             e.children[1].style.display = 'none';
         }
     </script>
-    <!-- start-smoth-scrolling -->
+    <!-- start-smoth-scrolling --> 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
