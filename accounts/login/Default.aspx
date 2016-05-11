@@ -5,11 +5,7 @@
 
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="/static/css/mezzanine.css">
 
-    <link rel="stylesheet" href="/static/css/cartridge.css">
-
-    <link rel="stylesheet" href="/static/css/theme.css">
     <script type="text/javascript">
         function refreshImg() {
             codeImg.src = codeImg.src + "?";
@@ -48,7 +44,7 @@
                         用户名或电子邮件地址
                     </label>
                     <div class="controls">
-                        <input autofocus="" id="id_username" name="username" required="" type="text" />
+                        <input autofocus="" id="id_username" name="username" required="" type="text" style="height:30px;"/>
 
                         <span class="help-inline"></span>
 
@@ -62,7 +58,7 @@
                         密码
                     </label>
                     <div class="controls">
-                        <input id="id_password" name="password" required="" type="password" />
+                        <input id="id_password" name="password" required="" type="password" style="height:30px;"/>
 
                         <span class="help-inline"></span>
 
@@ -73,8 +69,8 @@
                         验证码
                     </label>
                     <div class="controls">
-                        <input id="id_validateCode" name="validateCode" required="" type="text" title="请输入右侧验证码。" />
-                        <img id="codeImg" name="codeImg" onclick="refreshImg()" runat="server" src="/ValidateCode.aspx" title="看不清楚？点击刷新。" />
+                        <input id="id_validateCode" name="validateCode" required="" type="text" title="请输入右侧验证码。" style="height:30px;"/>
+                        <img id="codeImg" name="codeImg" onclick="refreshImg()" runat="server" src="/ValidateCode.aspx" title="看不清楚？点击刷新。" style="margin-bottom:10px;"/>
                         <span class="help-inline"></span>
 
                     </div>

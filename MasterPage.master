@@ -41,8 +41,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <!-- banner-body -->
-    <div class="banner-body" style="padding-top:25px;">
+    <div style="width: 1140px; margin: 0px auto; padding: 0px 5px; font-family: 微软雅黑, 宋体, Tahoma, Arial, sans-serif;">
+        <div runat="server" id="Div1" visible="true" style="margin: 10px 0px; float: left;">
+            <!--欢迎光临诚信物流！请先            
+            <a href="/accounts/login/?next=/" style="color: #C34C21;">登陆</a>
+            或
+            <a href="/accounts/signup/?next=/" style="color: #C34C21;">注册</a>-->
+            您好，<span style="color:#C34C21;">Amy</span>，欢迎光临诚信物流！
+        </div>
+        <div style="margin: 10px 0px; float: right;">
+            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">我的订单</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">个人中心</a>
+             &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">网上报价</a>
+             &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">谢菲专线</a>
+             &nbsp;&nbsp;|&nbsp;&nbsp;            
+            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">增值服务</a>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <!-- banner-body --> 
+    <div class="banner-body" style="padding-top:20px;">    
         <div class="container">
             <!-- header -->
             <div class="header" style="position:relative;z-index:100;">
@@ -57,14 +78,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span class="icon-bar"></span>
                             </button>
                             <a class="navbar-brand" href="/">999Parcel</a>
-                        </div>
-
+                        </div>                                                  
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="hvr-bounce-to-bottom active"><a href="index.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">首页</a></li>
-                                <li class="hvr-bounce-to-bottom dropdown our-services" id="service" onmouseover="onhover(this)" onmouseout="onleave(this)">
-                                    <a href="about.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;">快递服务</a>
+                                <li class="hvr-bounce-to-bottom"><a href="/" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">首页</a></li>
+                                <li class="hvr-bounce-to-bottom" id="service" onmouseover="onhover(this)" onmouseout="onleave(this)">
+                                    <a href="/our-services/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;">快递服务</a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a>新手专线</a></li>
                                         <li><a>行李专线</a></li>
@@ -73,21 +93,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><a href="/cart/Paid.aspx">已完成订单</a></li>
                                     </ul>
                                 </li>                               
-                                <li class="hvr-bounce-to-bottom"><a href="Portfolio.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">国际快递</a></li>
-                                <li class="hvr-bounce-to-bottom"><a href="Pages.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">诚信商场</a></li>
-                                <li class="hvr-bounce-to-bottom"><a href="Portfolio.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">海淘转运</a></li>
-                                <li class="hvr-bounce-to-bottom"><a href="Pages.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">常见问题</a></li>
-                                <li class="hvr-bounce-to-bottom"><a href="contact.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">联系我们</a></li>
+                                <li class="hvr-bounce-to-bottom" onmouseover="onhover(this)" onmouseout="onleave(this)">
+                                    <a href="/our-services/zy/" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">国际快递</a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/our-services/zy/bp/">Bpost</a></li>
+                                        <li><a href="/our-services/zy/EMS.aspx">EMS保税专线</a></li>
+                                        <li><a href="/our-services/zy/pfe/">Parcelforce经济包</a></li>
+                                        <li><a href="/our-services/zy/pfg/">Parcelforce优先包</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="/prices/">网上报价</a></li>
+                                        <li><a href="/our-services/yun/">海外仓储</a></li>
+                                        <li><a href="/our-services/dg/">海外代购</a></li>
+                                        <li><a href="/news/">新闻资询</a></li>
+                                    </ul>
+                                </li>
+                                <li class="hvr-bounce-to-bottom"  onmouseover="onhover(this)" onmouseout="onleave(this)">
+                                    <a style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">诚信商场</a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a>婴儿奶粉</a></li>
+                                        <li><a>包装材料</a></li>
+                                        <!--
+                                            <li><a href="/sudi/shop/category/1/">婴儿奶粉</a></li>
+                                            <li role="presentation"><a href="/sudi/shop/materials/" role="menuitem">包装材料</a></li>
+                                            -->
+                                    </ul>
+                                </li>
+                                <li class="hvr-bounce-to-bottom"   onmouseover="onhover(this)" onmouseout="onleave(this)">
+                                    <a style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">海淘转运</a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li role="presentation"><a>海淘流程</a></li>
+                                        <li role="presentation"><a href="/haitao/AddedService.aspx">加固和增值服务</a></li>
+                                        <li role="presentation"><a href="/haitao/HitaoConditions.aspx">条款和售后服务</a></li>
+                                        <li class="divider"></li>
+                                        <li role="presentation"><a>入库预报</a></li>
+                                        <li role="presentation"><a>我的云仓库</a></li>
+                                        <li role="presentation"><a>仓库地址</a></li>
+                                    </ul>
+                                </li>
+                                <li class="hvr-bounce-to-bottom"><a href="/faq/" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">常见问题</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="/contact-us/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">联系我们</a></li>
+                            
                             </ul>
                                 
-                            <div class="sign-in">
+                            <div class="sign-in" runat="server" id="loginDiv">
                                 <ul>
-                                    <li><a href="login.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">登录 </a>/</li>
-                                    <li><a href="register.html" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">注册</a></li>
+                                    <li><a href="/accounts/login/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">登陆</a>/</li>
+                                    <li><a href="/accounts/signup/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">注册</a></li>
                                 </ul>
-                            </div>
+                            </div> 
+                            
+                                
+                            
                         </div>
-                        <!-- /.navbar-collapse -->
+                        <!-- /.navbar-collapse -->                      
                     </nav>
                 </div>
 
