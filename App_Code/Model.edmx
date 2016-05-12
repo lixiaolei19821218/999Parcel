@@ -193,6 +193,22 @@
           <Property Name="PackageWidth" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PackageHeight" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="TraceMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TraceNumberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TraceNumbers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_ChannelID">
           <End Role="RechargeChannels" Type="Self.RechargeChannels" Multiplicity="1" />
           <End Role="RechargeApplys" Type="Self.RechargeApplys" Multiplicity="*" />
@@ -322,6 +338,18 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="SheffieldServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TraceNumberId">
+          <End Role="TraceNumbers" Type="Self.TraceNumbers" Multiplicity="1" />
+          <End Role="TraceMessage" Type="Self.TraceMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TraceNumbers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TraceMessage">
+              <PropertyRef Name="TraceNumberId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -671,6 +699,8 @@
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SheffieldOrders" EntityType="Self.SheffieldOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SheffieldServices" EntityType="Self.SheffieldServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraceMessage" EntityType="Self.TraceMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraceNumbers" EntityType="Self.TraceNumbers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ChannelID" Association="Self.FK_ChannelID">
             <End Role="RechargeChannels" EntitySet="RechargeChannels" />
             <End Role="RechargeApplys" EntitySet="RechargeApplys" />
@@ -714,6 +744,10 @@
           <AssociationSet Name="FK_SheffieldServiceID" Association="Self.FK_SheffieldServiceID">
             <End Role="SheffieldServices" EntitySet="SheffieldServices" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TraceNumberId" Association="Self.FK_TraceNumberId">
+            <End Role="TraceNumbers" EntitySet="TraceNumbers" />
+            <End Role="TraceMessage" EntitySet="TraceMessage" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1110,6 +1144,12 @@
             <End Role="PackageItem" EntitySet="PackageItems" />
           </AssociationSet>
           <EntitySet Name="News" EntityType="UK_ExpressModel.News" />
+          <EntitySet Name="TraceMessages" EntityType="UK_ExpressModel.TraceMessage" />
+          <EntitySet Name="TraceNumbers" EntityType="UK_ExpressModel.TraceNumber" />
+          <AssociationSet Name="FK_TraceNumberId" Association="UK_ExpressModel.FK_TraceNumberId">
+            <End Role="TraceNumber" EntitySet="TraceNumbers" />
+            <End Role="TraceMessage" EntitySet="TraceMessages" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1502,6 +1542,36 @@
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PulishTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="TraceMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TraceNumberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TraceNumber" Relationship="UK_ExpressModel.FK_TraceNumberId" FromRole="TraceMessage" ToRole="TraceNumber" />
+        </EntityType>
+        <EntityType Name="TraceNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TraceMessages" Relationship="UK_ExpressModel.FK_TraceNumberId" FromRole="TraceNumber" ToRole="TraceMessage" />
+        </EntityType>
+        <Association Name="FK_TraceNumberId">
+          <End Type="UK_ExpressModel.TraceNumber" Role="TraceNumber" Multiplicity="1" />
+          <End Type="UK_ExpressModel.TraceMessage" Role="TraceMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TraceNumber">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TraceMessage">
+              <PropertyRef Name="TraceNumberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1828,6 +1898,24 @@
                 <ScalarProperty Name="PulishTime" ColumnName="PulishTime" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraceMessages">
+            <EntityTypeMapping TypeName="UK_ExpressModel.TraceMessage">
+              <MappingFragment StoreEntitySet="TraceMessage">
+                <ScalarProperty Name="TraceNumberId" ColumnName="TraceNumberId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraceNumbers">
+            <EntityTypeMapping TypeName="UK_ExpressModel.TraceNumber">
+              <MappingFragment StoreEntitySet="TraceNumbers">
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

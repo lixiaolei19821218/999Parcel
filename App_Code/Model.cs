@@ -265,6 +265,29 @@ public partial class SheffieldService
     public virtual ICollection<Order> Orders { get; set; }
 }
 
+public partial class TraceMessage
+{
+    public int Id { get; set; }
+    public System.DateTime DateTime { get; set; }
+    public string Message { get; set; }
+    public int TraceNumberId { get; set; }
+
+    public virtual TraceNumber TraceNumber { get; set; }
+}
+
+public partial class TraceNumber
+{
+    public TraceNumber()
+    {
+        this.TraceMessages = new HashSet<TraceMessage>();
+    }
+
+    public int Id { get; set; }
+    public string Number { get; set; }
+
+    public virtual ICollection<TraceMessage> TraceMessages { get; set; }
+}
+
 public partial class aspnet_Membership_GetPassword_Result
 {
     public string Column1 { get; set; }

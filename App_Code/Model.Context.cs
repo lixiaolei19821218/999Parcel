@@ -39,6 +39,8 @@ public partial class UK_ExpressEntities : DbContext
     public virtual DbSet<aspnet_User> aspnet_User { get; set; }
     public virtual DbSet<PackageItem> PackageItems { get; set; }
     public virtual DbSet<News> News { get; set; }
+    public virtual DbSet<TraceMessage> TraceMessages { get; set; }
+    public virtual DbSet<TraceNumber> TraceNumbers { get; set; }
 
     public virtual ObjectResult<string> aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
     {

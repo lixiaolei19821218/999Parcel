@@ -31,6 +31,9 @@
         <EntityTypeShape EntityType="UK_ExpressModel.PackageItem" Width="1.5" PointX="9.75" PointY="2" />
         <AssociationConnector Association="UK_ExpressModel.FK_PackageID" />
         <EntityTypeShape EntityType="UK_ExpressModel.News" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.TraceMessage" Width="1.5" PointX="14.625" PointY="0.875" />
+        <EntityTypeShape EntityType="UK_ExpressModel.TraceNumber" Width="1.5" PointX="12.375" PointY="1.125" />
+        <AssociationConnector Association="UK_ExpressModel.FK_TraceNumberId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
