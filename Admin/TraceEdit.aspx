@@ -8,7 +8,7 @@
             color: #666;
         }
 
-        li {
+        .track-list li {
             margin: 10px;
         }
 
@@ -16,6 +16,7 @@
             margin-right: 20px;
         }
     </style>
+    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server"><form runat="server">
@@ -26,26 +27,37 @@
 					 
 						 <h5>添加运单:</h5>	
 						 <input type="text" id="txtTraceNumber" runat="server" />
-                         <asp:Button ID="ButtonAdd" runat="server" Text="提交" OnClick="ButtonAdd_Click" />
-                         <h5>已添加运单:</h5>
-                         <asp:ListBox ID="ListBoxAdded" runat="server" Height="300px" Width="300px" DataTextField="Number" DataValueField="Id" AutoPostBack="true" OnSelectedIndexChanged="ListBoxAdded_SelectedIndexChanged"></asp:ListBox>
+                         <input type="submit" id="btnAddTraceNumber" name="btnAddTraceNumber" value="提交"/>		
+                         <h5 style="margin-top:30px;">已添加运单:</h5>
+                         <asp:ListBox ID="ListBoxAdded" runat="server" Height="300px" Width="300px" DataTextField="Number" DataValueField="Id" AutoPostBack="true" OnSelectedIndexChanged="ListBoxAdded_SelectedIndexChanged" SelectionMode="Multiple"></asp:ListBox>
 						
 						 <h5 style="margin-top:30px;">查找运单:</h5>
 						 <input type="password" value="">					
-						 <input type="submit" value="查找">						  
-					 
-					
+						 <input type="submit" value="查找">		             
 			</div>
 			<div class="col-md-6 login-right">
                 <h3>运单轨迹
                 </h3>
-					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" Width="455px" Height="291px">
+					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen">
                         <AlternatingRowStyle BackColor="PaleGoldenrod" />
                         <Columns>
-                            <asp:BoundField DataField="DateTime" />
-                            <asp:BoundField DataField="Message" />
-                            <asp:CommandField ShowEditButton="True" />
-                            <asp:CommandField ShowDeleteButton="True" />
+                            <asp:BoundField DataField="Id">                            
+                            <ItemStyle Width="60px" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="DateTime">
+                                <ControlStyle Width="300px" />
+                                <ItemStyle Width="300px" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Message">
+                                <ControlStyle Width="300px" />
+                                <ItemStyle Width="300px" />
+                            </asp:BoundField>
+                            <asp:CommandField ShowEditButton="True" ButtonType="Button">
+                                <ItemStyle Width="60px" />
+                            </asp:CommandField>
+                            <asp:CommandField ShowDeleteButton="True" ButtonType="Button">
+                                <ControlStyle Width="60px" />
+                            </asp:CommandField>
                         </Columns>
                         <FooterStyle BackColor="Tan" />
                         <HeaderStyle BackColor="Tan" Font-Bold="True" />
@@ -56,9 +68,11 @@
                         <SortedDescendingCellStyle BackColor="#E1DB9C" />
                         <SortedDescendingHeaderStyle BackColor="#C2A47B" />
                     </asp:GridView>
-					<h3>添加轨迹</h3>
-					<input type="text" value="">
-					<input type="submit" value="提交">	
+					<h3 style="margin-top:30px;">添加轨迹</h3>
+
+                <input type="text" id="txtDateTime" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月dd日 HH时mm分ss秒'})" class="Wdate" style="width: 300px; height: 30px; margin: 5px 0px;" />
+                <input type="text" id="txtMessage" runat="server"  style="width: 300px; height: 30px; margin: 5px 0px;"/>
+                <input type="submit" id="btnAddTraceMessage" name="btnAddTraceMessage" value="提交"/>	
 			</div>
 			<div class="clearfix"></div>
 		</div>

@@ -17,27 +17,77 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
             ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
             ListBoxAdded.DataBind();
         }
-        
-    }
-    protected void ButtonAdd_Click(object sender, EventArgs e)
-    {
-        TraceNumber traceNumber = new TraceNumber();
-        if (string.IsNullOrWhiteSpace(txtTraceNumber.Value))
+        else
         {
+            if (Request.Form["btnAddTraceNumber"] != null)
+            {
+                TraceNumber traceNumber = new TraceNumber();
+                if (string.IsNullOrWhiteSpace(txtTraceNumber.Value))
+                {
 
+                }
+                traceNumber.Number = txtTraceNumber.Value;
+                repo.Context.TraceNumbers.Add(traceNumber);
+                repo.Context.SaveChanges();
+                ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
+                ListBoxAdded.DataBind();
+            }
+            if (Request.Form["btnAddTraceMessage"] != null)
+            {                
+                DateTime dateTime;
+                try
+                {
+                    dateTime = DateTime.Parse(txtDateTime.Value);
+                }
+                catch
+                {
+                    dateTime = DateTime.Now;
+                }
+                string message = txtMessage.Value;
+                int[] selectedIndices = ListBoxAdded.GetSelectedIndices();
+                if (selectedIndices != null)
+                {
+                    for (int i = 0; i < selectedIndices.Length; i++)
+                    {
+                        int id = int.Parse(ListBoxAdded.Items[selectedIndices[i]].Value);
+                        TraceNumber traceNumber = repo.Context.TraceNumbers.Find(id);
+                        TraceMessage traceMessage = new TraceMessage() { DateTime = dateTime, Message = message };
+                        traceNumber.TraceMessages.Add(traceMessage);
+                    }
+                    repo.Context.SaveChanges();
+                    GridViewMessage.DataSource = repo.Context.TraceNumbers.Find(int.Parse(ListBoxAdded.Items[selectedIndices[0]].Value)).TraceMessages;
+                    GridViewMessage.DataBind();
+                }
+                
+            }
         }
-        traceNumber.Number = txtTraceNumber.Value;
-        repo.Context.TraceNumbers.Add(traceNumber);
-        repo.Context.SaveChanges();
-        ListBoxAdded.DataBind();
-        this.Page_Load(sender, e);
     }
+
+
     protected void ListBoxAdded_SelectedIndexChanged(object sender, EventArgs e)
     {
         int id = int.Parse(ListBoxAdded.SelectedItem.Value);
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(id);
         GridViewMessage.DataSource = traceNumber.TraceMessages;
         GridViewMessage.DataBind();
-        this.Page_Load(sender, e);
+        GridViewMessage.Attributes.Add("curentTrackNumberId", id.ToString());
+    }
+
+    protected void GridViewMessage_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
+        TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
+        int messageId = int.Parse(e.Values["Id"].ToString());
+        TraceMessage traceMessage = repo.Context.TraceMessages.Find(messageId);
+        traceNumber.TraceMessages.Remove(traceMessage);
+        repo.Context.TraceMessages.Remove(traceMessage);
+        repo.Context.SaveChanges();
+        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataBind();
+    }
+
+    protected void GridViewMessage_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+
     }
 }

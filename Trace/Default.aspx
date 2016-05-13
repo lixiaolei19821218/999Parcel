@@ -8,7 +8,7 @@
             color: #666;
         }
 
-        li {
+        .track-list li {
             margin: 10px;
         }
 
