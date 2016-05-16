@@ -20,14 +20,14 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server"><form runat="server">
-    <div class="login">
-		<div class="login-grids">
+    <div class="login">       
+         
+		<div class="login-grids">           
 			<div class="col-md-6 log">
-					 <h3>编辑运单</h3>					 
-					 
+					 <h3>编辑运单</h3>		 
 						 <h5>添加运单:</h5>	
 						 <input type="text" id="txtTraceNumber" runat="server" />
-                         <input type="submit" id="btnAddTraceNumber" name="btnAddTraceNumber" value="提交"/>		
+                         <input type="submit" id="btnAddTraceNumber" name="btnAddTraceNumber" value="提交"/><asp:Label ID="labelError" ForeColor="Red" runat="server" Visible="false" /> 
                          <h5 style="margin-top:30px;">已添加运单:</h5>
                          <asp:ListBox ID="ListBoxAdded" runat="server" Height="300px" Width="300px" DataTextField="Number" DataValueField="Id" AutoPostBack="true" OnSelectedIndexChanged="ListBoxAdded_SelectedIndexChanged" SelectionMode="Multiple"></asp:ListBox>
 						
@@ -38,7 +38,7 @@
 			<div class="col-md-6 login-right">
                 <h3>运单轨迹
                 </h3>
-					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen">
+					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen" Width="332px">
                         <AlternatingRowStyle BackColor="PaleGoldenrod" />
                         <Columns>
                             <asp:BoundField DataField="Id">                            
@@ -52,11 +52,10 @@
                                 <ControlStyle Width="300px" />
                                 <ItemStyle Width="300px" />
                             </asp:BoundField>
-                            <asp:CommandField ShowEditButton="True" ButtonType="Button">
-                                <ItemStyle Width="60px" />
-                            </asp:CommandField>
                             <asp:CommandField ShowDeleteButton="True" ButtonType="Button">
                                 <ControlStyle Width="60px" />
+                            </asp:CommandField>
+                            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True">
                             </asp:CommandField>
                         </Columns>
                         <FooterStyle BackColor="Tan" />
@@ -72,7 +71,7 @@
 
                 <input type="text" id="txtDateTime" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月dd日 HH时mm分ss秒'})" class="Wdate" style="width: 300px; height: 30px; margin: 5px 0px;" />
                 <input type="text" id="txtMessage" runat="server"  style="width: 300px; height: 30px; margin: 5px 0px;"/>
-                <input type="submit" id="btnAddTraceMessage" name="btnAddTraceMessage" value="提交"/>	
+                <input type="submit" id="btnAddTraceMessage" name="btnAddTraceMessage" value="提交" /><asp:Label ID="labelError2" ForeColor="Red" runat="server" Visible="false" /> 
 			</div>
 			<div class="clearfix"></div>
 		</div>

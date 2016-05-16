@@ -24,13 +24,25 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                 TraceNumber traceNumber = new TraceNumber();
                 if (string.IsNullOrWhiteSpace(txtTraceNumber.Value))
                 {
-
+                    labelError.Visible = true;
+                    labelError.Text = "请输入运单号";
                 }
-                traceNumber.Number = txtTraceNumber.Value;
-                repo.Context.TraceNumbers.Add(traceNumber);
-                repo.Context.SaveChanges();
-                ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
-                ListBoxAdded.DataBind();
+                else
+                {
+                    if (repo.Context.TraceNumbers.Any(t => t.Number == txtTraceNumber.Value))
+                    {
+                        labelError.Visible = true;
+                        labelError.Text = string.Format("已存在运单号为{0}的运单", txtTraceNumber.Value);
+                    }
+                    else
+                    {
+                        traceNumber.Number = txtTraceNumber.Value;
+                        repo.Context.TraceNumbers.Add(traceNumber);
+                        repo.Context.SaveChanges();
+                        ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
+                        ListBoxAdded.DataBind();
+                    }
+                }
             }
             if (Request.Form["btnAddTraceMessage"] != null)
             {                
@@ -42,7 +54,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                 catch
                 {
                     dateTime = DateTime.Now;
-                }
+                }                
                 string message = txtMessage.Value;
                 int[] selectedIndices = ListBoxAdded.GetSelectedIndices();
                 if (selectedIndices != null)
@@ -57,8 +69,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                     repo.Context.SaveChanges();
                     GridViewMessage.DataSource = repo.Context.TraceNumbers.Find(int.Parse(ListBoxAdded.Items[selectedIndices[0]].Value)).TraceMessages;
                     GridViewMessage.DataBind();
-                }
-                
+                }                
             }
         }
     }

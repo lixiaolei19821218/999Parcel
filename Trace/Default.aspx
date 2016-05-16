@@ -27,34 +27,21 @@
 					 <p>如果查询结果有误，请联系我们，我们会尽快为您处理。</p>
 					 <form>
 						 <h5>运单号:</h5>	
-						 <input type="text" value="">						 			
-						 <input type="submit" value="查询">						  
+						 <input type="text" value="" name="txtTraceNumber" id="txtTraceNumber" />						 			
+						 <input type="submit" value="查询"/>						  
 					 </form>					
 			</div>
 			<div class="col-md-6 login-right">
 					<h3>运单轨迹</h3>
-					<div class="track-list">
-                        <ul>
-
-                            <li class="first"><i class="node-icon"></i><span class="time">2016-05-10 16:32:13</span><span class="txt">感谢您在诚信物流购物，欢迎您再次光临！</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-10 15:45:19</span><span class="txt">诚信物流配送员【徐思明】已出发，联系电话【15208429259，感谢您的耐心等待，参加评价还能赢取京豆呦】</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-10 15:30:37</span><span class="txt">您的订单在诚信物流【成都中和站】验货完成，正在分配配送员</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-10 10:59:05</span><span class="txt">您的订单在诚信物流【成都郫县分拣中心】发货完成，准备送往诚信物流【成都中和站】</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-10 10:57:45</span><span class="txt">您的订单在诚信物流【成都郫县分拣中心】分拣完成</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-10 10:04:16</span><span class="txt">您的订单在诚信物流【成都郫县分拣中心】收货完成</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 23:09:33</span><span class="txt">您的订单在诚信物流【广州博展分拣中心】发货完成，准备送往诚信物流【成都郫县分拣中心】</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 21:48:10</span><span class="txt">您的订单在诚信物流【广州太和分拨中心】发货完成，准备送往诚信物流【广州博展分拣中心】</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 20:52:53</span><span class="txt">您的订单在诚信物流【广州太和分拨中心】分拣完成</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 20:15:12</span><span class="txt">您的订单在诚信物流【广州太和分拨中心】收货完成</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 18:39:45</span><span class="txt">配送司机收箱</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 17:17:16</span><span class="txt">您的订单在诚信物流【同德围站】装箱完成</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 17:14:58</span><span class="txt">您的订单已由【同德围站】接货完成</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 17:07:35</span><span class="txt">您的订单由第三方卖家拣货完毕，待出库交付诚信物流快递，运单号为vc26905193895</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 17:02:23</span><span class="txt">第三方卖家已经开始拣货，订单不能修改</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 10:59:07</span><span class="txt">您的订单已进入第三方卖家库房，准备出库</span></li>
-                            <li><i class="node-icon"></i><span class="time">2016-05-08 10:58:39</span><span class="txt">您提交了订单，请等待第三方卖家系统确认</span></li>
-                        </ul>
-                    </div>
+                <div class="track-list">
+                    <ul>
+                        <asp:Repeater runat="server" ItemType="TraceMessage" SelectMethod="GetTraceMessages">
+                            <ItemTemplate>
+                                <li><i class="node-icon"></i><span class="time"><%#Item.DateTime %></span><span class="txt"><%#Item.Message %></span></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
             </div>
 			<div class="clearfix"></div>
 		</div>
