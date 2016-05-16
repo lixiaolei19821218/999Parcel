@@ -43,11 +43,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <div style="width: 1140px; margin: 0px auto; padding: 0px 5px; font-family: 微软雅黑, 宋体, Tahoma, Arial, sans-serif;">
         <div runat="server" id="Div1" visible="true" style="margin: 10px 0px; float: left;">
-            <!--欢迎光临诚信物流！请先            
+            <div id="loginDiv" runat="server">
+                欢迎光临诚信物流！请先            
             <a href="/accounts/login/?next=/" style="color: #C34C21;">登陆</a>
-            或
-            <a href="/accounts/signup/?next=/" style="color: #C34C21;">注册</a>-->
-            您好，<span style="color:#C34C21;">Amy</span>，欢迎光临诚信物流！
+                或
+            <a href="/accounts/signup/?next=/" style="color: #C34C21;">注册</a>
+            </div>
+            <div id="welcomeDiv" runat="server">
+                您好，<span style="color: #C34C21;"><%:GetGreeting() %></span>，欢迎光临诚信物流！
+            </div>
         </div>
         <div style="margin: 10px 0px; float: right;">
             <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">我的订单</a>
@@ -135,10 +139,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             
                             </ul>
                                 
-                            <div class="sign-in" runat="server" id="loginDiv">
+                            <div class="sign-in" runat="server" id="loginDiv2">
                                 <ul>
-                                    <li><a href="/accounts/login/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">登陆</a>/</li>
-                                    <li><a href="/accounts/signup/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">注册</a></li>
+                                    <li><a href="/accounts/UserCentre/Default.aspx" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">个人中心</a></li>
+                                    
                                 </ul>
                             </div> 
                             

@@ -38,26 +38,30 @@
 			<div class="col-md-6 login-right">
                 <h3>运单轨迹
                 </h3>
-					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen" Width="332px">
+					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen" Width="501px">
                         <AlternatingRowStyle BackColor="PaleGoldenrod" />
                         <Columns>
                             <asp:BoundField DataField="Id">                            
                             <ItemStyle Width="60px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="DateTime">
-                                <ControlStyle Width="300px" />
-                                <ItemStyle Width="300px" />
+                                <ControlStyle Width="100px" />
+                                <ItemStyle Width="100px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Message">
-                                <ControlStyle Width="300px" />
-                                <ItemStyle Width="300px" />
-                            </asp:BoundField>
-                            <asp:CommandField ShowDeleteButton="True" ButtonType="Button">
-                                <ControlStyle Width="60px" />
-                            </asp:CommandField>
-                            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True">
-                            </asp:CommandField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <%# Eval("Message")%> 
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox_row_message" runat="server" Width="50px"></asp:TextBox>
+                                    <asp:HiddenField ID="HiddenField_row_message" runat="server" Value='<%# Eval("name") %>' />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
+                            <asp:CommandField ButtonType="Button" ShowEditButton="True" />
                         </Columns>
+                         
                         <FooterStyle BackColor="Tan" />
                         <HeaderStyle BackColor="Tan" Font-Bold="True" />
                         <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />

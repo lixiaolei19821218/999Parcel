@@ -13,13 +13,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             if (Request.IsAuthenticated)
             {
-                //loginDiv.Visible = false;
-                //welcomeDiv.Visible = true;
+                loginDiv.Visible = false;
+                welcomeDiv.Visible = true;
             }
             else
             {
-                //loginDiv.Visible = true;
-                //welcomeDiv.Visible = false;
+                loginDiv.Visible = true;
+                welcomeDiv.Visible = false;
             }
         }
     }
