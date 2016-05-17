@@ -38,28 +38,36 @@
 			<div class="col-md-6 login-right">
                 <h3>运单轨迹
                 </h3>
-					<asp:GridView ID="GridViewMessage" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen" Width="501px">
+					<asp:GridView ID="GridViewMessage" runat="server" DataKeyNames="Id" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen" Width="501px" DeleteMethod="GridViewMessage_DeleteItem">
                         <AlternatingRowStyle BackColor="PaleGoldenrod" />
-                        <Columns>
-                            <asp:BoundField DataField="Id">                            
-                            <ItemStyle Width="60px" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="DateTime">
-                                <ControlStyle Width="100px" />
-                                <ItemStyle Width="100px" />
-                            </asp:BoundField>
-                            <asp:TemplateField>
+                        <Columns>                            
+                            <asp:TemplateField HeaderText="时间">
+                                <ItemTemplate>
+                                    <%# Eval("DateTime")%> 
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox_row_datetime" runat="server" Width="150px"></asp:TextBox>
+                                    <asp:HiddenField ID="HiddenField_row_datetime" runat="server" Value='<%# Eval("DateTime") %>' />
+                                </EditItemTemplate>
+                                <HeaderStyle Font-Bold="True" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="轨迹信息">
                                 <ItemTemplate>
                                     <%# Eval("Message")%> 
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox_row_message" runat="server" Width="50px"></asp:TextBox>
-                                    <asp:HiddenField ID="HiddenField_row_message" runat="server" Value='<%# Eval("name") %>' />
+                                    <asp:TextBox ID="TextBox_row_message" runat="server" Width="200px"></asp:TextBox>
+                                    <asp:HiddenField ID="HiddenField_row_message" runat="server" Value='<%# Eval("Message") %>' />
                                 </EditItemTemplate>
+                                <HeaderStyle Font-Bold="True" />
                             </asp:TemplateField>
                             
-                            <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
-                            <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                            
+                            <asp:CommandField ButtonType="Button" ShowEditButton="True" ShowDeleteButton="True" ItemStyle-Width="120px">
+                            
+
+                            </asp:CommandField>
+                            
                         </Columns>
                          
                         <FooterStyle BackColor="Tan" />

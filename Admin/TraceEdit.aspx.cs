@@ -101,4 +101,10 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
     {
 
     }
+
+    // The id parameter name should match the DataKeyNames value set on the control
+    public void GridViewMessage_DeleteItem(int id)
+    {
+
+    }
 }
