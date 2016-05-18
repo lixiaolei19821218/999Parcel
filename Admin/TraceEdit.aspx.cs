@@ -85,26 +85,46 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
     }
 
     protected void GridViewMessage_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
+    {       
         int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
-        int messageId = int.Parse(e.Values["Id"].ToString());
+        int messageId =  Convert.ToInt32(GridViewMessage.DataKeys[e.RowIndex]["Id"].ToString());
         TraceMessage traceMessage = repo.Context.TraceMessages.Find(messageId);
         traceNumber.TraceMessages.Remove(traceMessage);
         repo.Context.TraceMessages.Remove(traceMessage);
         repo.Context.SaveChanges();
         GridViewMessage.DataSource = traceNumber.TraceMessages;
         GridViewMessage.DataBind();
+    }   
+   
+    protected void GridViewMessage_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridViewMessage.EditIndex = -1;
+        int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
+        TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
+        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataBind();
     }
-
+    protected void GridViewMessage_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        int messageId = Convert.ToInt32(GridViewMessage.DataKeys[e.RowIndex]["Id"].ToString());
+        TraceMessage traceMessage = repo.Context.TraceMessages.Find(messageId);
+        traceMessage.DateTime = DateTime.Parse(((TextBox)GridViewMessage.Rows[e.RowIndex].Cells[0].Controls[1]).Text.Trim());
+        traceMessage.Message = ((TextBox)GridViewMessage.Rows[e.RowIndex].Cells[1].Controls[1]).Text.Trim();
+        repo.Context.SaveChanges(); 
+        GridViewMessage.EditIndex = -1;
+        int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
+        TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
+        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataBind();
+       
+    }
     protected void GridViewMessage_RowEditing(object sender, GridViewEditEventArgs e)
     {
-
-    }
-
-    // The id parameter name should match the DataKeyNames value set on the control
-    public void GridViewMessage_DeleteItem(int id)
-    {
-
+        GridViewMessage.EditIndex = e.NewEditIndex;
+        int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
+        TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
+        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataBind();
     }
 }

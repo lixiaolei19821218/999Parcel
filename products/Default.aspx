@@ -10,16 +10,7 @@
 
     <ul class="breadcrumb" style="background: none; margin-top: 15px"></ul>
 
-    <div style="margin-top: 30px">
-        <div style="margin-left: auto; margin-right: auto; width: 713px; padding-left: 12px; background: url(/static/img/buzou.png) 1px 0 no-repeat;">
-            <a href="/" class="fl buzou" style="padding-left: 20px">快速询价</a>
-            <a href="/products/" class="fl buzou active">产品选择</a>
-            <a href="#" class="fl buzou" style="padding-left: 30px">包裹信息</a>
-            <a href="#" class="fl buzou" style="padding-left: 30px">在线支付</a>
-            <a href="#" class="fl buzou" style="padding-left: 10">邮件查收</a>
-            <div class="cb"></div>
-        </div>
-    </div>
+    
 
     <div class="sz16 bold colorb2" style="margin-top: 20px">请选择一个服务：</div>
 
@@ -28,9 +19,7 @@
             <table class="table table-products">
                 <tr>
                     <th style="min-width: 240px">服务</th>
-                    <th>描述</th>
-                    <th style="min-width: 73px; text-align: center">上门取件</th>
-                    <th style="min-width: 60px; text-align: center">打印</th>
+                    <th>描述</th>                                     
                     <th style="min-width: 160px">价格(<span style="font-size: 12px">包含取件费</span>)</th>
                 </tr>
 
@@ -48,13 +37,7 @@
                                         <img src="<%# Item.DiscribePictureLink %>" width="350" height="78" />
                                     </p>
                                     <p><span style="font-size: small;"><%# Item.Discribe %></span></p>
-                                </td>
-                                <td style="vertical-align: middle; text-align: center">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                </td>
-                                <td style="vertical-align: middle; text-align: center">
-                                    <i class="glyphicon glyphicon-print"></i>
-                                </td>
+                                </td>                                                           
                                 <td style="vertical-align: middle">
                                     <%# Item.GetSendPrice(Order).ToString("C", CultureInfo.CreateSpecificCulture("en-GB")) %>
                                     <br />

@@ -16,7 +16,7 @@
         }
         p {
            font-family:'Microsoft YaHei UI';
-        }      
+        }             
     </style> 
 </asp:Content>
 
@@ -57,7 +57,7 @@
 		
 <!-- //banner -->
 
-<!-- blog -->
+<!-- blog --><form runat="server">
 			<div class="blog">
 				<div class="blog-left">
 					<div class="blog-left-grid">
@@ -66,7 +66,7 @@
                                 快速询价
                             </div>
                             <div class="rds2" style="text-align: center; border: 1px solid #C34C21; height: 500px;overflow:auto;">
-                                <form id="Form1" method="post" style="margin: 0" runat="server">
+                                <form id="Form1" method="post" style="margin: 0">
                                     <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
                                     <div class="row" style="margin: 0px;">
                                         <div class="col-xs-6" style="width: 50%; padding: 20px; float: left;">
@@ -123,16 +123,12 @@
                                         <script>
                                             $(function () { add_address('addr_0', $('.formset_1')); });
                                         </script>
-                                    </div>
-
-
-                                    
+                                    </div>                                    
                                 </form>
                             </div>
-                           <div class="rd-mre">
-							<a href="single.html" class="hvr-bounce-to-bottom quod">立即下单</a>
-
-						</div>
+                            <div class="rd-mre">
+                                <asp:LinkButton runat="server" Text="立即下单" CssClass="hvr-bounce-to-bottom quod" ID="btnSubmit" OnClick="btnSubmit_Click" />
+                            </div>
                     </div>
 						
 						
@@ -255,7 +251,7 @@
 					</div>
 				</div>
 				<div class="clearfix"> </div>
-			</div>
+			</div></form>
 <!-- //blog -->
 	<!-- banner-bottom -->
 			<div class="banner-bottom">

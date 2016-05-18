@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TraceEdit.aspx.cs" Inherits="Admin_TraceEdit" MasterPageFile="~/MasterPage.master"%>
+﻿<%@ Page UICulture="zh-cn" Culture="zh-cn" Language="C#" AutoEventWireup="true" CodeFile="TraceEdit.aspx.cs" Inherits="Admin_TraceEdit" MasterPageFile="~/MasterPage.master"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <title>运单编辑 | 诚信物流-可靠,快捷,实惠</title>
@@ -38,7 +38,7 @@
 			<div class="col-md-6 login-right">
                 <h3>运单轨迹
                 </h3>
-					<asp:GridView ID="GridViewMessage" runat="server" DataKeyNames="Id" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" OnRowEditing="GridViewMessage_RowEditing" SelectedRowStyle-BackColor="YellowGreen" Width="501px" DeleteMethod="GridViewMessage_DeleteItem">
+					<asp:GridView ID="GridViewMessage" runat="server" DataKeyNames="Id" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="GridViewMessage_RowDeleting" SelectedRowStyle-BackColor="YellowGreen" Width="501px" OnRowCancelingEdit="GridViewMessage_RowCancelingEdit" OnRowUpdating="GridViewMessage_RowUpdating" OnRowEditing="GridViewMessage_RowEditing">
                         <AlternatingRowStyle BackColor="PaleGoldenrod" />
                         <Columns>                            
                             <asp:TemplateField HeaderText="时间">
@@ -46,8 +46,7 @@
                                     <%# Eval("DateTime")%> 
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox_row_datetime" runat="server" Width="150px"></asp:TextBox>
-                                    <asp:HiddenField ID="HiddenField_row_datetime" runat="server" Value='<%# Eval("DateTime") %>' />
+                                    <asp:TextBox ID="TextBox_row_datetime" runat="server" Width="150px" Text='<%# Bind("DateTime") %>'></asp:TextBox>                                    
                                 </EditItemTemplate>
                                 <HeaderStyle Font-Bold="True" />
                             </asp:TemplateField>
@@ -56,14 +55,16 @@
                                     <%# Eval("Message")%> 
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox_row_message" runat="server" Width="200px"></asp:TextBox>
-                                    <asp:HiddenField ID="HiddenField_row_message" runat="server" Value='<%# Eval("Message") %>' />
+                                    <asp:TextBox ID="TextBox_row_message" runat="server" Width="200px" Text='<%# Bind("Message") %>'></asp:TextBox>                                    
                                 </EditItemTemplate>
                                 <HeaderStyle Font-Bold="True" />
                             </asp:TemplateField>
                             
                             
                             <asp:CommandField ButtonType="Button" ShowEditButton="True" ShowDeleteButton="True" ItemStyle-Width="120px">
+                            
+
+<ItemStyle Width="120px"></ItemStyle>
                             
 
                             </asp:CommandField>
