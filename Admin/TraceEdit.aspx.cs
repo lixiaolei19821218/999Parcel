@@ -71,8 +71,8 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                         TraceMessage traceMessage = new TraceMessage() { DateTime = dateTime, Message = message };
                         traceNumber.TraceMessages.Add(traceMessage);
                     }
-                    repo.Context.SaveChanges();
-                    GridViewMessage.DataSource = repo.Context.TraceNumbers.Find(int.Parse(ListBoxAdded.Items[selectedIndices[0]].Value)).TraceMessages;
+                    repo.Context.SaveChanges();                    
+                    GridViewMessage.DataSource = repo.Context.TraceNumbers.Find(int.Parse(ListBoxAdded.Items[selectedIndices[0]].Value)).TraceMessages.Reverse();
                     GridViewMessage.DataBind();
                 }                
             }
@@ -84,7 +84,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
     {
         int id = int.Parse(ListBoxAdded.SelectedItem.Value);
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(id);
-        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataSource = traceNumber.TraceMessages.Reverse();
         GridViewMessage.DataBind();
         GridViewMessage.Attributes.Add("curentTrackNumberId", id.ToString());
     }
@@ -98,7 +98,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         traceNumber.TraceMessages.Remove(traceMessage);
         repo.Context.TraceMessages.Remove(traceMessage);
         repo.Context.SaveChanges();
-        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataSource = traceNumber.TraceMessages.Reverse();
         GridViewMessage.DataBind();
     }   
    
@@ -107,7 +107,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         GridViewMessage.EditIndex = -1;
         int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
-        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataSource = traceNumber.TraceMessages.Reverse();
         GridViewMessage.DataBind();
     }
 
@@ -121,7 +121,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         GridViewMessage.EditIndex = -1;
         int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
-        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataSource = traceNumber.TraceMessages.Reverse();
         GridViewMessage.DataBind();
        
     }
@@ -131,7 +131,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         GridViewMessage.EditIndex = e.NewEditIndex;
         int numberId = int.Parse(GridViewMessage.Attributes["curentTrackNumberId"]);
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
-        GridViewMessage.DataSource = traceNumber.TraceMessages;
+        GridViewMessage.DataSource = traceNumber.TraceMessages.Reverse();
         GridViewMessage.DataBind();
     }
 
@@ -148,13 +148,15 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                 repo.Context.TraceNumbers.Remove(traceNumber);
             }
             repo.Context.SaveChanges();
-            ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
+            List<TraceNumber> traceNumbers = repo.Context.TraceNumbers.ToList();
+            traceNumbers.Reverse();
+            ListBoxAdded.DataSource = traceNumbers;            
             ListBoxAdded.DataBind();
             ListBoxAdded.SelectedIndex = 0;
             if (ListBoxAdded.SelectedValue != null)
             {
                 TraceNumber tn = repo.Context.TraceNumbers.Find(int.Parse(ListBoxAdded.SelectedValue));
-                GridViewMessage.DataSource = tn.TraceMessages;
+                GridViewMessage.DataSource = tn.TraceMessages.Reverse();
                 GridViewMessage.DataBind();
             }
             else
@@ -175,7 +177,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                 List<TraceNumber> traceNumbers = repo.Context.TraceNumbers.ToList();
                 traceNumbers.Reverse();
                 ListBoxAdded.SelectedIndex = traceNumbers.IndexOf(traceNumber);
-                GridViewMessage.DataSource = traceNumber.TraceMessages;
+                GridViewMessage.DataSource = traceNumber.TraceMessages.Reverse();
                 GridViewMessage.DataBind();
             }
             else
