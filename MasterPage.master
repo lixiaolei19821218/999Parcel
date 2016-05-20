@@ -50,19 +50,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="/accounts/signup/?next=/" style="color: #C34C21;">注册</a>
             </div>
             <div id="welcomeDiv" runat="server">
-                您好，<span style="color: #C34C21;"><%:GetGreeting() %></span>，欢迎光临诚信物流！
+                您好，<span style="color: #C34C21;"><%:GetGreeting() %></span>，欢迎光临诚信物流！&nbsp;&nbsp;<a class="fr pd2 clrb2" href="/accounts/logout/?next=<%: Request.Path %>">退出</a>
             </div>
         </div>
         <div style="margin: 10px 0px; float: right;">
-            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">我的订单</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">个人中心</a>
+            <a href="/cart/Paid.aspx" style="color:black;">我的订单</a>            
              &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">网上报价</a>
+            <a href="/prices/" style="color:black;">网上报价</a>
              &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">谢菲专线</a>
+            <a href="/products/Sheffield.aspx" style="color:black;">谢菲专线</a>
              &nbsp;&nbsp;|&nbsp;&nbsp;            
-            <a href="https://www.cherry-uk.com/uc/index.aspx" style="color:black;">增值服务</a>
+            <a href="/our-services/dg/" style="color:black;">海外代购</a>
         </div>
         <div style="clear: both"></div>
     </div>
@@ -141,8 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 
                             <div class="sign-in" runat="server" id="loginDiv2">
                                 <ul>
-                                    <li><a href="/accounts/UserCentre/Default.aspx" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">个人中心</a></li>
-                                    
+                                    <li><a href="/accounts/UserCentre/Default.aspx" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">个人中心</a></li>                                    
                                 </ul>
                             </div> 
                             
