@@ -24,17 +24,22 @@
          
 		<div class="login-grids">           
 			<div class="col-md-6 log">
-					 <h3>编辑运单</h3>		 
-						 <h5>添加运单:</h5>	
-						 <input type="text" id="txtTraceNumber" runat="server" />
-                         <input type="submit" id="btnAddTraceNumber" name="btnAddTraceNumber" value="提交"/><asp:Label ID="labelError" ForeColor="Red" runat="server" Visible="false" /> 
-                         <h5 style="margin-top:30px;">已添加运单:</h5>
-                         <asp:ListBox ID="ListBoxAdded" runat="server" Height="300px" Width="300px" DataTextField="Number" DataValueField="Id" AutoPostBack="true" OnSelectedIndexChanged="ListBoxAdded_SelectedIndexChanged" SelectionMode="Multiple"></asp:ListBox>
-						
-						 <h5 style="margin-top:30px;">查找运单:</h5>
-						 <input type="password" value="">					
-						 <input type="submit" value="查找">		             
-			</div>
+                <h3>编辑运单</h3>
+                <h5>添加运单:</h5>
+                <input type="text" id="txtTraceNumber" runat="server" />
+                <input type="submit" id="btnAddTraceNumber" name="btnAddTraceNumber" value="提交" />
+                <br/>
+                <asp:Label ID="labelError" ForeColor="Red" runat="server" Visible="false" />
+                <h5 style="margin-top: 30px;">已添加运单:</h5>
+                <asp:ListBox ID="ListBoxAdded" runat="server" Height="300px" Width="300px" DataTextField="Number" DataValueField="Id" AutoPostBack="true" OnSelectedIndexChanged="ListBoxAdded_SelectedIndexChanged" SelectionMode="Multiple"></asp:ListBox>
+                <br />
+                <asp:Button runat="server" Text="删除已选运单" ID="btnDelete" OnClick="btnDelete_Click" />
+                <h5 style="margin-top: 30px;">查找运单:</h5>
+                <input type="text" id="txtQuery" runat="server"/>
+                <asp:Button runat="server" ID="btnQuery" Text="查找" OnClick="btnQuery_Click" />
+                <br/>
+                <asp:Label ID="labelQueryError" ForeColor="Red" runat="server" Visible="false" />
+            </div>
 			<div class="col-md-6 login-right">
                 <h3>运单轨迹
                 </h3>

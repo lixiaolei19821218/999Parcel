@@ -14,7 +14,9 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
+            List<TraceNumber> traceNumbers = repo.Context.TraceNumbers.ToList();
+            traceNumbers.Reverse();
+            ListBoxAdded.DataSource = traceNumbers;
             ListBoxAdded.DataBind();
         }
         else
@@ -39,8 +41,11 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                         traceNumber.Number = txtTraceNumber.Value;
                         repo.Context.TraceNumbers.Add(traceNumber);
                         repo.Context.SaveChanges();
-                        ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
+                        List<TraceNumber> traceNumbers = repo.Context.TraceNumbers.ToList();
+                        traceNumbers.Reverse();
+                        ListBoxAdded.DataSource = traceNumbers;
                         ListBoxAdded.DataBind();
+                        txtTraceNumber.Value = null;
                     }
                 }
             }
@@ -105,6 +110,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         GridViewMessage.DataSource = traceNumber.TraceMessages;
         GridViewMessage.DataBind();
     }
+
     protected void GridViewMessage_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int messageId = Convert.ToInt32(GridViewMessage.DataKeys[e.RowIndex]["Id"].ToString());
@@ -119,6 +125,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         GridViewMessage.DataBind();
        
     }
+
     protected void GridViewMessage_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridViewMessage.EditIndex = e.NewEditIndex;
@@ -126,5 +133,61 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
         TraceNumber traceNumber = repo.Context.TraceNumbers.Find(numberId);
         GridViewMessage.DataSource = traceNumber.TraceMessages;
         GridViewMessage.DataBind();
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        int[] selectedIndices = ListBoxAdded.GetSelectedIndices();
+        if (selectedIndices != null)
+        {
+            for (int i = 0; i < selectedIndices.Length; i++)
+            {
+                int id = int.Parse(ListBoxAdded.Items[selectedIndices[i]].Value);
+                TraceNumber traceNumber = repo.Context.TraceNumbers.Find(id);
+                repo.Context.TraceMessages.RemoveRange(traceNumber.TraceMessages);                
+                repo.Context.TraceNumbers.Remove(traceNumber);
+            }
+            repo.Context.SaveChanges();
+            ListBoxAdded.DataSource = repo.Context.TraceNumbers.ToList();
+            ListBoxAdded.DataBind();
+            ListBoxAdded.SelectedIndex = 0;
+            if (ListBoxAdded.SelectedValue != null)
+            {
+                TraceNumber tn = repo.Context.TraceNumbers.Find(int.Parse(ListBoxAdded.SelectedValue));
+                GridViewMessage.DataSource = tn.TraceMessages;
+                GridViewMessage.DataBind();
+            }
+            else
+            {
+                GridViewMessage.DataSource = null;
+                GridViewMessage.DataBind();
+            }
+        }   
+    }
+
+    protected void btnQuery_Click(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(txtQuery.Value))
+        {
+            TraceNumber traceNumber = repo.Context.TraceNumbers.Where(t => t.Number == txtQuery.Value.Trim()).FirstOrDefault();
+            if (traceNumber != null)
+            {
+                List<TraceNumber> traceNumbers = repo.Context.TraceNumbers.ToList();
+                traceNumbers.Reverse();
+                ListBoxAdded.SelectedIndex = traceNumbers.IndexOf(traceNumber);
+                GridViewMessage.DataSource = traceNumber.TraceMessages;
+                GridViewMessage.DataBind();
+            }
+            else
+            {
+                labelQueryError.Text = string.Format("没有查找到运单{0}", txtQuery.Value.Trim());
+                labelQueryError.Visible = true;
+            }
+        }
+        else
+        {
+            labelQueryError.Text = "请输入正确的订单号";
+            labelQueryError.Visible = true;
+        }
     }
 }
