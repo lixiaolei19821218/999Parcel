@@ -12,7 +12,7 @@
     </ul>
 
     <div class="sz16 bold colorb2" style="margin-top: 20px">
-        已支付订单      
+        <h3><span style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;color:#C34C21;">已支付订单</span></h3>     
     </div>
 
     <div style="margin-top: 15px; background-color: #fff; padding: 0px">

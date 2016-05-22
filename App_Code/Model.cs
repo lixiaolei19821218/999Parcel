@@ -92,6 +92,9 @@ public partial class Package
     public string Response { get; set; }
     public string Status { get; set; }
     public string Pdf { get; set; }
+    public decimal DeliverCost { get; set; }
+    public decimal PickupCost { get; set; }
+    public decimal ReinforceCost { get; set; }
 
     public virtual Recipient Recipient { get; set; }
     public virtual ICollection<PackageItem> PackageItems { get; set; }

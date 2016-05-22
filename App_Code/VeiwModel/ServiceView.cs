@@ -75,6 +75,7 @@ public class ServiceView
             {
                 foreach (Package p in r.Packages)
                 {
+                    p.ReinforceCost = order.Reinforce.Price.HasValue ? order.Reinforce.Price.Value : 0.0m;
                     price += order.Reinforce.Price.HasValue ? order.Reinforce.Price.Value : 0.0m;
                 }
             }
@@ -131,7 +132,7 @@ public class ServiceView
                 price = 0m;
                 break;
             case 6://Bpost UKMail取件
-            case 12://post nl免 UKMail取件
+            case 12://post nl UKMail取件
                 //ukmail取件费用，单箱5镑，2-3箱7镑，4箱以上每箱2镑的
                 //2015-6-16改为单箱5镑，两箱7镑，三箱或以上免费
                 //2016-03-08改为ukmail取件单箱加10镑 2-3箱加8镑 4-6箱加6镑 7-9箱加4镑 10箱以上加3镑

@@ -46,6 +46,7 @@ public partial class Admin_TraceEdit : System.Web.UI.Page
                         ListBoxAdded.DataSource = traceNumbers;
                         ListBoxAdded.DataBind();
                         txtTraceNumber.Value = null;
+                        txtTraceNumber.Focus();
                     }
                 }
             }

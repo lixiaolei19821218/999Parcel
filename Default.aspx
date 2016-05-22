@@ -57,11 +57,12 @@
 		
 <!-- //banner -->
 
-<!-- blog --><form runat="server">
+<!-- blog -->
 			<div class="blog">
 				<div class="blog-left">
 					<div class="blog-left-grid">
-                        <div class="pane1 mg1">
+                        <form runat="server">
+                            <div class="pane1 mg1">
                             <div style="width: 100px; height: 44px; background-color: #C34C21; color: white; text-align: center; line-height: 44px;">
                                 快速询价
                             </div>
@@ -129,9 +130,8 @@
                             <div class="rd-mre">
                                 <asp:LinkButton runat="server" Text="立即下单" CssClass="hvr-bounce-to-bottom quod" ID="btnSubmit" OnClick="btnSubmit_Click" />
                             </div>
-                    </div>
-						
-						
+                    </div>						
+						</form>
 					</div>
 					<div class="blog-left-grid">										
 						<a href="single.html"><img src="static/img/mall_668_426.png" alt=" " class="img-responsive" /></a>
@@ -211,9 +211,9 @@
 					</div>
 					<div class="newsletter">
 						<h3>订单跟踪</h3>
-						<form>
-							<input type="text" value="订单号" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '订单号';}" required=""/>
-							<input type="submit" value="查询"/>
+						<form method="post" action="./Default.aspx">
+							<input type="text" value="订单号" name="txtTraceNumber" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '订单号';}" required="required"/>
+							<input type="submit" value="查询" name="btnQuery"/>
 						</form>
 					</div>
 					<div class="four-fig">
@@ -251,7 +251,7 @@
 					</div>
 				</div>
 				<div class="clearfix"> </div>
-			</div></form>
+			</div>
 <!-- //blog -->
 	<!-- banner-bottom -->
 			<div class="banner-bottom">

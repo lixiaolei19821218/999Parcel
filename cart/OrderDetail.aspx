@@ -16,7 +16,7 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="sz16 bold colorb2" style="margin-top: 20px">
+    <div class="sz16 bold colorb2" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;color:#C34C21;padding-top:30px;">
         订单详情
         <div style="float: right; font-size: smaller">
             <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>

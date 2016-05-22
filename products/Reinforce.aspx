@@ -5,19 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <title>包裹加固 | 诚信物流-可靠,快捷,实惠</title>
     <script src="../Scripts/jquery-1.8.0.min.js"></script>
+    
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div style="margin-top: 30px">
-        <div style="margin-left: auto; margin-right: auto; width: 713px; padding-left: 12px; background: url(/static/img/buzou.png) 1px 0 no-repeat;">
-            <a href="/" class="fl buzou" style="padding-left: 20px">快速询价</a>
-            <a href="/products/" class="fl buzou" style="padding-left: 20px">产品选择</a>
-            <a href="" class="fl buzou active" style="margin: 0 -14px; width: 150px">订单信息</a>
-            <a href="#" class="fl buzou" style="padding-left: 45px">在线支付</a>
-            <a href="#" class="fl buzou" style="padding-left: 27px">邮件查收</a>
-            <div class="cb"></div>
-        </div>
-    </div>
+    
 
     <form class="form-inline" id="tree" method="post" runat="server">
         <div class="row" style="background-color: #fff; padding: 20px 15px; margin: 20px 0 30px">

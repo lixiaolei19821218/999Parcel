@@ -36,6 +36,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             e.children[1].style.display = 'none';
         }
     </script>
+    
+
     <!-- start-smoth-scrolling --> 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -54,6 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
         <div style="margin: 10px 0px; float: right;">
+            <a href="/cart/cart.aspx" style="color:black;">购物车</a>            
+             &nbsp;&nbsp;|&nbsp;&nbsp;
             <a href="/cart/Paid.aspx" style="color:black;">我的订单</a>            
              &nbsp;&nbsp;|&nbsp;&nbsp;
             <a href="/prices/" style="color:black;">网上报价</a>
@@ -66,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!-- banner-body --> 
     <div class="banner-body" style="padding-top:20px;">    
-        <div class="container">
+        <div class="container" style="max-width:10080px;">
             <!-- header -->
             <div class="header" style="position:relative;z-index:100;">
                 <div class="header-nav">

@@ -2,11 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>注册 | 诚信物流-可靠,快捷,实惠</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css">
-  
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css"/>
+  <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/guofan.css">
 
-    <script type="text/javascript" src="../../Scripts/jquery-1.8.0.min.js"></script>
+    <script src="/static/js/contact.js"></script>
+    <script src="/static/bootstrap3/js/jquery-1.11.1.min.js"></script> 
+    <script type="text/javascript" src="/Scripts/jquery-1.8.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {            
 

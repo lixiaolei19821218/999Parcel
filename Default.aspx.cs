@@ -20,7 +20,11 @@ public partial class Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Request.Form["btnQuery"] != null)
+        {
+            string number = Request.Form["txtTraceNumber"];
+            Response.Redirect(string.Format("http://localhost:42489/Trace/Default.aspx?txtTraceNumber={0}", number));
+        }
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)

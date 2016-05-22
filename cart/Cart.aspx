@@ -10,24 +10,15 @@
     <ul class="breadcrumb" style="background: none; margin-top: 15px">
     </ul>
 
-    <div style="margin-top: 30px">
-        <div style="margin-left: auto; margin-right: auto; width: 713px; padding-left: 12px; background: url(/static/img/buzou.png) 1px 0 no-repeat;">
-            <a href="/" class="fl buzou" style="padding-left: 25px">快速询价</a>
-            <a href="/products/" class="fl buzou" style="padding-left: 20px">产品选择</a>
-            <a href="#" class="fl buzou" style="padding-left: 30px">包裹信息</a>
-            <a href="" class="fl buzou active" style="padding-left: 5px; width: 150px; margin: 0 -16px">在线支付</a>
-            <a href="#" class="fl buzou" style="padding-left: 30px">邮件查收</a>
-            <div class="cb"></div>
-        </div>
-    </div>
+   
 
-    <div class="sz16 bold colorb2" style="margin-top: 20px">
+    <div class="sz16 bold colorb2" style="margin-top: 0px;font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;color:#C34C21;padding-top:30px;"">
         请确认订单
         <div style="float: right; margin-left: 10px"><a href="../accounts/UserCentre/Recharge.aspx" class="btn btn-danger" style="line-height: 1; padding: 5px 15px">立即充值</a></div>
         <div style="float: right">帐户余额:<strong style="color: #f00">£<%:GetAmount() %></strong></div>
     </div>
 
-    <div style="margin-top: 15px; background-color: #fff; padding: 15px">
+    <div style="margin-top: 15px; background-color: #fff; padding: 15px;">
 
 
 
@@ -38,10 +29,10 @@
 
         
 
-        <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">           
+        <form runat="server" method="post" id="placeOrder" style="padding-top:0px;">           
             <fieldset runat="server" id="normalField">
                 <legend>直邮订单</legend>
-                <table class="table table-orders">
+                <table class="table table-orders"  style="min-height:500px;">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetNoneSheffieldOrders">
                         <HeaderTemplate>
                             <tr>

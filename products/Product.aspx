@@ -53,7 +53,9 @@
         }
     </style>
 
-
+       <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet"/>
+    
+    <link rel="stylesheet" href="/static/css/guofan.css"/>
 
 
     <script type="text/javascript">
@@ -84,16 +86,7 @@
 
 
 
-    <div style="margin-top: 30px">
-        <div style="margin-left: auto; margin-right: auto; width: 713px; padding-left: 12px; background: url(/static/img/buzou.png) 1px 0 no-repeat;">
-            <a href="/" class="fl buzou" style="padding-left: 20px">快速询价</a>
-            <a href="/products/" class="fl buzou" style="padding-left: 20px">产品选择</a>
-             <a href="" class="fl buzou active" style="margin: 0 -14px; width: 150px">订单信息</a>            
-            <a href="#" class="fl buzou" style="padding-left: 45px">在线支付</a>
-            <a href="#" class="fl buzou" style="padding-left: 27px">邮件查收</a>
-            <div class="cb"></div>
-        </div>
-    </div>
+    
 
     <form class="form-inline" id="tree" method="post" runat="server">
         <input type='hidden' name='csrfmiddlewaretoken' value='T6iXH4VfX4yjoqPS3DTyrvWjpPcrC7Za' />
@@ -108,7 +101,7 @@
 
                     <div class="alert alert-success">
                         <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>
-                        <ul>
+                        <ul style="margin-left:10px;">
                             <li>收件人信息可以直接中文输入, 拼音地址同步转换呈现。 输入的中文地址会显示在运单条形码文件中， 最大化节省您的时间。</li>
                             <li>中国的手机必须为11位数字, 邮编必须为6位数字。</li>
                             <li>一次下单可添加发往多个收件人的包裹，所产生的文档一键打印即可。</li>

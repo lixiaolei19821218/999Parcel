@@ -704,6 +704,7 @@ public partial class cart_Cart : System.Web.UI.Page
                     file2.Close();
                     attachedFiles.Add(strPathDoc2);
                 }
+                
             }
             else
             {

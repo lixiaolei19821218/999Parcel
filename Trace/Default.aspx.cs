@@ -43,7 +43,15 @@ public partial class Trace_Default : System.Web.UI.Page
                 traceMessages.Add(tm);
             }
         }
-        return traceMessages.OrderBy(t => t.DateTime);
+        if (traceMessages.Count == 0)
+        {
+            traceMessages.Add(new TraceMessage() { DateTime = DateTime.Now, Message = string.Format("没有发现运单{0}的跟踪信息，请稍后再试。", traceNumber) });
+            return traceMessages;
+        }
+        else
+        {
+            return traceMessages.OrderBy(t => t.DateTime);
+        }
     }
 
     ///<summary>
