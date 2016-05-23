@@ -177,7 +177,8 @@ public class ServiceView
         {
             foreach (Package p in r.Packages)
             {
-                price += GetPackageDeliverPrice(p);
+                p.DeliverCost = GetPackageDeliverPrice(p);
+                price += p.DeliverCost;
             }
         }        
         
