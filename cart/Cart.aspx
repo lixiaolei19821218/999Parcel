@@ -4,6 +4,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <title>购物车 | 诚信物流-可靠,快捷,实惠</title>
+    <style type="text/css">
+       
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -30,9 +33,9 @@
         
 
         <form runat="server" method="post" id="placeOrder" style="padding-top:0px;">           
-            <fieldset runat="server" id="normalField">
+            <fieldset runat="server" id="normalField" style="min-height:500px;">
                 <legend>直邮订单</legend>
-                <table class="table table-orders"  style="min-height:500px;">
+                <table class="table table-orders">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetNoneSheffieldOrders">
                         <HeaderTemplate>
                             <tr>
@@ -48,15 +51,15 @@
                         <ItemTemplate>
                             <input type='hidden' name='orders' />
                             <tr id="<%#Item.Id %>" title="<%#GetOrderTip(Item) %>">
-                                <td class="tac"><%#string.Format("{0:d9}", Item.Id) %></td>
-                                <td class="left"><%#Item.OrderTime.Value.ToShortDateString() %></td>
-                                <td class="tac"><%#Item.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></td>
-                                <td class="tac"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
-                                <td class="tac"><%#Item.SenderName %></td>
-                                <td class="right"><%#Item.Service.Name %></td>
+                                <td class="tac" style="vertical-align:middle;"><%#string.Format("{0:d9}", Item.Id) %></td>
+                                <td class="left" style="vertical-align:middle;"><%#Item.OrderTime.Value.ToShortDateString() %></td>
+                                <td class="tac" style="vertical-align:middle;"><%#Item.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></td>
+                                <td class="tac" style="vertical-align:middle;"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
+                                <td class="tac" style="vertical-align:middle;"><%#Item.SenderName %></td>
+                                <td class="right" style="vertical-align:middle;"><%#Item.Service.Name %></td>
                                 <td colspan="2">
-                                    <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" OnClick="ButtonEdit_Click" />
-                                    <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click" />
+                                    <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" OnClick="ButtonEdit_Click" style="padding:0px 10px;" />
+                                    <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click"  style="padding:0px 10px;"/>
                                 </td>
                             </tr>
                         </ItemTemplate>
