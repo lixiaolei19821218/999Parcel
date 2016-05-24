@@ -15,8 +15,24 @@
             font-family:'Microsoft YaHei UI';
         }
         p {
-           font-family:'Microsoft YaHei UI';
-        }             
+            font-family: 'Microsoft YaHei UI';
+        }
+
+        .rd-mre input {
+            padding: 10px 30px;
+            color: #fff;
+            background: url(../images/img-sp.png) no-repeat 61px -191px #c34c21;
+            display: block;
+            width: 130px;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: LobsterTwo-Regular;
+        }
+
+        input.quod:before {
+            background: url(../images/img-sp.png) no-repeat 61px -191px #F04709;
+            display: block;
+        }
     </style> 
 </asp:Content>
 
@@ -128,7 +144,7 @@
                                 </form>
                             </div>
                             <div class="rd-mre">
-                                <asp:LinkButton runat="server" Text="立即下单" CssClass="hvr-bounce-to-bottom quod" ID="btnSubmit" OnClick="btnSubmit_Click" />
+                                <asp:Button runat="server" Text="立即下单" CssClass="hvr-bounce-to-bottom quod" ID="btnSubmit" OnClick="btnSubmit_Click" BorderStyle="None" />
                             </div>
                     </div>						
 						</form>
