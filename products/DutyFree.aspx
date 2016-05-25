@@ -2,7 +2,7 @@
 
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-    <title>填写订单信息 | 诚信物流-可靠,快捷,实惠</title>
+    <title>奶粉包税专线 | 诚信物流-可靠,快捷,实惠</title>
 
      <%: System.Web.Optimization.Scripts.Render("~/bundle/jquery") %>
     
@@ -102,9 +102,9 @@
                     <div class="alert alert-success">
                         <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>
                         <ul style="margin-left:10px;">
-                            <li>收件人信息可以直接中文输入, 拼音地址同步转换呈现。 输入的中文地址会显示在运单条形码文件中， 最大化节省您的时间。</li>
+                            
                             <li>中国的手机必须为11位数字, 邮编必须为6位数字。</li>
-                            <li>一次下单可添加发往多个收件人的包裹，所产生的文档一键打印即可。</li>
+                            
                         </ul>
                     </div>                  
                 </div>
@@ -143,27 +143,27 @@
                         <div class="rds2" style="border: 1px solid #ddd; background-color: #F2F8FC; padding: 5px 1px">
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_name">姓名</label>
-                                <input class="input-medium" id="id_billing_detail_name" maxlength="25" name="billing_detail_name" style="width: 115px" type="text" value="<%:Order.SenderName %>" required="required"/>
+                                <input class="input-medium" id="id_billing_detail_name" maxlength="25" name="billing_detail_name" style="width: 115px" type="text" value="" required="required"/>
 
 
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_street">地址</label>
-                                <input class="input-xxlarge" id="id_billing_detail_street" maxlength="24" name="billing_detail_street" style="width: 180px" type="text" value="<%:Order.SenderAddress1 %>" required="required"/>
+                                <input class="input-xxlarge" id="id_billing_detail_street" maxlength="24" name="billing_detail_street" style="width: 180px" type="text" value="" required="required"/>
 
 
 
 
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
-                                <input class="input-medium" id="id_billing_detail_street2" maxlength="24" name="billing_detail_street2" style="width: 180px" type="text" value="<%:Order.SenderAddress2 %>" />
+                                <input class="input-medium" id="id_billing_detail_street2" maxlength="24" name="billing_detail_street2" style="width: 180px" type="text" value="" />
 
 
 
 
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
-                                <input class="input-medium" id="id_billing_detail_street3" maxlength="24" name="billing_detail_street3" style="width: 173px" type="text" value="<%:Order.SenderAddress3 %>" />
+                                <input class="input-medium" id="id_billing_detail_street3" maxlength="24" name="billing_detail_street3" style="width: 173px" type="text" value="" />
 
 
 
@@ -173,7 +173,7 @@
 
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_city">城市</label>
-                                <input class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" value="<%:Order.SenderCity %>" required="required"/>
+                                <input class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" value="" required="required"/>
 
 
 
@@ -181,7 +181,7 @@
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_phone">电话</label>
-                                <input class="input-medium" id="id_billing_detail_phone" maxlength="15" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d+"/>
+                                <input class="input-medium" id="id_billing_detail_phone" maxlength="15" name="billing_detail_phone" style="width: 180px" type="text" value="" required="required" title="请输入数字" pattern="\d+"/>
 
 
 
@@ -189,7 +189,7 @@
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_postcode">邮编</label>
-                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>
+                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>
                                
                             </div>
 
@@ -200,7 +200,7 @@
                             <div style="clear: both; display: none">
                                 <div style="float: left; margin: 5px" class="control-group ">
                                     <label for="id_billing_detail_email">Email</label>
-                                    <input class="input-medium" id="id_billing_detail_email" maxlength="50" name="billing_detail_email" style="width: 180px" type="text" value="<%:Order.SenderZipCode %>" />
+                                    <input class="input-medium" id="id_billing_detail_email" maxlength="50" name="billing_detail_email" style="width: 180px" type="text" value="" />
                                     
 
 
@@ -216,12 +216,15 @@
                                 取件安排
                             </div>
                             <div class="rds2" style="padding: 5px 2px; border: 1px solid #ddd; background-color: #F2F8FC">
-                                <div style="float: left; margin: 5px; font-weight: bold; margin-right: 10px">取件公司 <span id="pickUpCompany" style="background-color: #e1e1e1; padding: 2px 4px; font-size: 12px; font-weight: normal"><%:ServiceView.PickUpCompany %></span></div>
+                                <div style="float: left; margin: 5px; font-weight: bold; margin-right: 10px">取件公司 <span id="pickUpCompany" style="padding: 2px 4px; font-size: 12px; font-weight: normal"><select runat="server" id="Select1" ClientIDMode="Static">
+                                <option value="am" id="_999ParcelPickup" >诚信物流</option>
+                                <option value="pm" id="UKMail" >UK Mail</option>
+                            </select></span></div>
 
                                 <div style="float: left; margin: 5px" class="control-group ">
                                     <label for="id_pickup_time_0">日期</label>
                                     <div class="input-append date form_datetime">
-                                        <input class="input-medium" foo_bar="prevent_readonly" id="id_pickup_time_0" name="pickup_time_0" type="text" value="<%:Order.PickupTime.HasValue ? Order.PickupTime.Value.ToShortDateString() : null %>"  required="required"/>
+                                        <input class="input-medium" foo_bar="prevent_readonly" id="id_pickup_time_0" name="pickup_time_0" type="text" value=""  required="required"/>
                                         <span id="sp" class="add-on"><i class="icon-th"></i></span>
                                     </div>                                   
                                 </div>
@@ -253,46 +256,39 @@
                         </div>
                     </li>
                     
-                    <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
-                        <ItemTemplate>
+                  
                            
                             <li class="addrItem" style="list-style: none; margin-top: 20px; background-color: #ffffcd; border: 1px solid #ddd">
                                 <div class="clrw1" style="background-color: #FD7F23; padding: 5px 20px">
-                                    <div class="pull-left" style="padding-top: 4px">收件人地址 <span class="addr_item_num"><%#Container.ItemIndex + 1 %></span></div>
+                                    <div class="pull-left" style="padding-top: 4px">收件人地址 </div>
                                     <!--<div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>-->                               
                                     <div style="clear: both"></div>
                                 </div>
                                 <input id="id_addr-0-id" name="addr-0-id" type="hidden" />
                                 <!-- recipient address -->
                                 <div style="padding-top: 10px"> 
-                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px">
-                                        <div style="float: left; width: 162px; padding-left: 60px" id="py_name<%#Container.ItemIndex %>"><%#Item.PyName %></div><input type="hidden" value="<%#Item.PyName %>" name="hd_name<%#Container.ItemIndex %>" id="hd_name<%#Container.ItemIndex %>"></input>
-                                        <div style="float: left; width: 162px; padding-left: 28px" id="py_city<%#Container.ItemIndex %>"><%#Item.PyCity %></div><input type="hidden" value="<%#Item.PyCity %>" name="hd_city<%#Container.ItemIndex %>" id="hd_city<%#Container.ItemIndex %>"></input>
-                                        <div style="margin-left: 324px; margin-right: 38px" id="py_street<%#Container.ItemIndex %>"><%#Item.PyAddress %></div><input type="hidden" value="<%#Item.PyAddress %>" name="hd_street<%#Container.ItemIndex %>" id="hd_street<%#Container.ItemIndex %>"></input>
-                                        <button class="display_hidden btn btn-small" type="button" style="position: absolute; right: 0; top: 0; background-color: #BFBFBF" title="修改转换">编辑</button>
-                                       
-                                    </div>
+                                   
                                     
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_name">中文姓名</label>                                 
-                                        <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="24" name="addr-0-cn_name" style="width: 60px" type="text" value="<%#Item.Name %>"  required="required" 
-                                            onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
-                                            onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
-                                            onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;"/>
+                                        <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="24" name="addr-0-cn_name" style="width: 60px" type="text" value=""  required="required" 
+                                            onblur="var py=($('#id_addr-0-cn_name').toPinyin());py_name0.innerText=py;hd_name0.value=py;" 
+                                            onchange="var py=($('#id_addr-0-cn_name').toPinyin());py_name0.innerText=py;hd_name0.value=py;" 
+                                            onkeydown="var py=($('#id_addr-0-cn_name').toPinyin());py_name0.innerText=py;hd_name0.value=py;"/>
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_city">中文城市</label>
-                                        <input class="cn_fields cn_city" id="id_addr-0-cn_city" maxlength="24" name="addr-0-cn_city" style="width: 60px" type="text" value="<%#Item.City %>" required="required" 
-                                            onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
-                                            onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" 
-                                            onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"/>
+                                        <input class="cn_fields cn_city" id="id_addr-0-cn_city" maxlength="24" name="addr-0-cn_city" style="width: 60px" type="text" value="" required="required" 
+                                            onblur="var py=($('#id_addr-0-cn_city').toPinyin());py_city0.innerText=py;hd_city0.value=py;"
+                                            onchange="var py=($('#id_addr-0-cn_city').toPinyin());py_city0.innerText=py;hd_city0.value=py;" 
+                                            onkeydown="var py=($('#id_addr-0-cn_city').toPinyin());py_city0.innerText=py;hd_city0.value=py;"/>
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_street">中文地址</label>
-                                        <input class="cn_fields cn_street" id="id_addr-0-cn_street" maxlength="30" name="addr-0-cn_street" style="width: 415px" type="text" value="<%#Item.Address %>" required="required" 
-                                            onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_street').toPinyin());py_street<%#Container.ItemIndex %>.innerText=py;hd_street<%#Container.ItemIndex %>.value=py;" 
-                                            onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_street').toPinyin());py_street<%#Container.ItemIndex %>.innerText=py;hd_street<%#Container.ItemIndex %>.value=py;" 
-                                            onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_street').toPinyin());py_street<%#Container.ItemIndex %>.innerText=py;hd_street<%#Container.ItemIndex %>.value=py;"/>
+                                        <input class="cn_fields cn_street" id="id_addr-0-cn_street" maxlength="30" name="addr-0-cn_street" style="width: 415px" type="text" value="" required="required" 
+                                            onblur="var py=($('#id_addr-0-cn_street').toPinyin());py_street0.innerText=py;hd_street0.value=py;" 
+                                            onchange="var py=($('#id_addr-0-cn_street').toPinyin());py_street0.innerText=py;hd_street0.value=py;" 
+                                            onkeydown="var py=($('#id_addr-0-cn_street').toPinyin());py_street0.innerText=py;hd_street0.value=py;"/>
                                     </div>
                                     <div style="clear: both"></div>
                                     <div style="float: left; margin: 5px; margin-left: 17px; font-weight: bold">
@@ -301,28 +297,16 @@
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 9px" class="control-group ">
                                             <label for="id_addr-0-postcode">邮编</label>
-                                            <input id="id_addr-0-postcode" maxlength="6" name="addr-0-postcode" style="width: 60px" type="text" value="<%#Item.ZipCode %>"  required="required"/>
+                                            <input id="id_addr-0-postcode" maxlength="6" name="addr-0-postcode" style="width: 60px" type="text" value=""  required="required"/>
                                         </div>
                                     </div>
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_addr-0-phone">电话</label>
-                                            <input id="id_addr-0-phone" maxlength="11" name="addr-0-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
+                                            <input id="id_addr-0-phone" maxlength="11" name="addr-0-phone" style="width: 100px" type="text" value=""  required="required"/>
                                         </div>
                                     </div>                                   
-                                    <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
-                                        <label runat="server" id="label">
-                                            额外保险
-                                                    <select name="addr_0_insurance" class="addr_insurance" id="addr_0_insurance">
-                                                        <option value="0">无</option>
-                                                        <option value="0">£5</option>
-                                                        <option value="0">£10</option>
-                                                        <option value="0">£15</option>
-                                                        <option value="0">£20</option>
-                                                        <option value="0">£25</option>
-                                                    </select>
-                                        </label>
-                                    </div>
+                                    
                                     <div class="hidden_address modal fade" style="display: none; clear: both">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -373,46 +357,19 @@
                                 </div>
 
                                 <ol class="con" style="padding-left: 20px; padding-right: 10px; padding-bottom: 20px">
-                                    <asp:Repeater runat="server" ItemType="Package" EnableViewState="false" DataSource="<%#Item.Packages %>">                                        
-                                        <ItemTemplate>
+                                    
                                             <li class="parcelItem" style="list-style: none; margin-top: 15px">
                                                 <div class="rds1 clrw1" style="background-color: #0075C2; padding: 5px 20px">
-                                                    包裹 <span class="ordering_number">1</span>                                                    
+                                                    包裹详情                                                
                                                 </div>
                                                 <input id="id_parcel-0-address_id" name="parcel-0-address_id" type="hidden" value="0" />
                                                 <input id="id_parcel-0-id" name="parcel-0-id" type="hidden" />
                                                 <div class="rds2" style="padding-top: 10px; background-color: #E0EDF4; border: 1px solid #ddd;">
-                                                    <div class="ib">
-                                                        <div class="pd7 bold">重量/尺寸</div>
-                                                        <div class="ib pd7">
-                                                            重量(kg)
-                                                            <div style="text-align:center">                                                                
-                                                                 <span class="input-small" id="id_parcel-0-weight" name="parcel-0-weight" style="width: 55px"><strong><%#Item.Weight %></strong></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ib pd7">
-                                                            长度(cm)                                   
-                                                            <div style="text-align:center">
-                                                                 <span class="input-small" id="id_parcel-0-length" name="parcel-0-length"" style="width: 55px"><strong><%#Item.Length %></strong></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ib pd7">
-                                                            宽度(cm)                                   
-                                                            <div style="text-align:center">
-                                                                 <span class="input-small" id="id_parcel-0-width" name="parcel-0-width" style="width: 55px "><strong><%#Item.Width %></strong></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ib pd7">
-                                                            高度(cm)                                
-                                                            <div style="text-align:center">
-                                                                 <span class="input-small" id="id_parcel-0-height" name="parcel-0-height" style="width: 55px"><strong><%#Item.Height %></strong></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
 
                                                     <div class="ib" style="margin-left: 10px">
                                                         <div>
-                                                            <div class="ib pd7 bold">包裹明细</div>
+                                                            <div class="ib pd7 bold">奶粉品牌</div>
 
                                                             <div class="ib pd7 bold" style="margin-left: 128px">
                                                                 总额(£):
@@ -422,13 +379,13 @@
                                                         </div>
 
                                                         <!-- parcel content details -->
-                                                        <asp:Repeater runat="server" DataSource="<%#Item.PackageItems %>" ItemType="PackageItem">
-                                                            <ItemTemplate>
+                                                     
                                                                 <div class="mx">
-                                                                    <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
+                                                                    <div class="ib"></div></div>
                                                                     <div class="ib mx_type">
-                                                                        <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width: 100px">
-                                                                            <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
+                                                                        <select class="item_detail" id="id_parcel-0-content-0-type" name="parcel-0-content-0-type" style="width: 100px">
+                                                                            <option value="Baby Milk Powder" selected="selected">英国版牛栏婴儿奶粉4段
+</option>
                                                                             <option value="Baby Food">婴儿食品</option>
                                                                             <option value="Adult Milk Powder">成人奶粉</option>
                                                                             <option value="Strollers">婴儿推车</option>
@@ -478,13 +435,13 @@
 
                                                                     <div class="ib mx_quantity mx_cal">
                                                                         数量:
-                                                               <input id="id_parcel-0--content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
+                                                               <input id="id_parcel-0--content-0-quantity" name="parcel-0-content-0-quantity" style="width: 50px" type="number" min="1" max="999999" value="" required="required"/>
 
                                                                     </div>
 
                                                                     <div class="ib mx_cost mx_cal">
                                                                         单价(£):
-                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
+                                                               <input id="id_parcel-0-content-0-cost" name="parcel-0-content-0-cost" style="width: 50px" type="number" min="0" max="999999" value="" required="required"/>
                                                                     </div>
 
                                                                     <div class="ib">
@@ -494,19 +451,15 @@
                                                                         <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
                                                                     </div>
                                                                 </div>
-                                                            </ItemTemplate>
-                                                        </asp:Repeater>
+                                                            
 
-                                                        <input id="id_parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" name="parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" type="hidden" value="<%#Item.PackageItems.Count %>" /><input id="id_parcel-0-content-INITIAL_FORMS" name="parcel-0-content-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-0-content-MAX_NUM_FORMS" name="parcel-0-content-MAX_NUM_FORMS" type="hidden" value="1000" />
+                                                        <input id="id_parcel-0-content-TOTAL_FORMS" name="parcel-0-content-TOTAL_FORMS" type="hidden" value="" /><input id="id_parcel-0-content-INITIAL_FORMS" name="parcel-0-content-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-0-content-MAX_NUM_FORMS" name="parcel-0-content-MAX_NUM_FORMS" type="hidden" value="1000" />
                                                     </div>
                                             </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
+                                        
                                 </ol>
                             </li>
-                        </ItemTemplate>
-                    </asp:Repeater>
-
+                     
 
 
 
@@ -538,35 +491,20 @@
             <!-- right column -->            
                     <div class="col-sm-2 col-xs-12" style="border: 1px solid #69ADDB">
                         <div class="panel" style="box-shadow: none">
-                            <div style="margin-top: 10px">
-                                <img src="<%:ServiceView.PictureLink %>" style="width: 130px" />
-                            </div>
-
-                            <p><strong><%:ServiceView.Name %></strong></p>
-                            <p>
-                                <p>
-                                    <img src=<%:ServiceView.DiscribePictureLink %> width="130" height="78" />
-                                </p>
-                                <p><span style="font-size: small;">国际快递时间（不包括清关和旺季延误）: 6-10 天 /&nbsp;自带丢件赔偿: &pound;50磅 /&nbsp;包裹上可贴中文地址</span></p>
-                            </p>
+                            
 
                             <div id="details">
                                 <br />
-                                <%:ServiceView.PickUpCompany %>:
+                               
                                 <br />
-                                <span id="pickup_price"><%:ServiceView.GetPickupPrice(Order).ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span>
+                                <span id="pickup_price"></span>
                                 <br />
                                
-                                <asp:Repeater runat="server" ItemType="Package" SelectMethod="GetAllPackages">
-                                    <ItemTemplate>
-                                        <br />
-                                        包裹 <%#Container.ItemIndex + 1 %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%#GetPackagePrice(Item).ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %><br />-----------------
-                                    </ItemTemplate>
-                                </asp:Repeater>                                
+                                                    
                                
                             </div>
                             <br />
-                            <p>总额: <span id="total" class="sz16 bold clrr1"><%:GetSendPrice().ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span></p>
+                            <p>总额: <span id="total" class="sz16 bold clrr1"></span></p>
                             <div style="margin-bottom: 5px">
                                 <label style="font-weight: bold">
                                     <input type="checkbox" class="agreed" style="margin-top: -3px" />
@@ -1039,12 +977,7 @@
                 }).hide();
             });
 
-            var item_details = new Array(<%=GetDetails()%>);
-            
-            for (var i = 0; i < $('.item_detail').length; i++)
-            {
-                $('.item_detail')[i].value = item_details[i];
-            }
+           
         });
 
         var today = new Date();

@@ -20,33 +20,7 @@ public partial class DutyFree : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        order = (Order)Session["Order"];
-        if (order == null)
-        {
-            Response.Redirect("/");
-        }
-
-        Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
-        sv = new ServiceView(service);
-        //order.Service = service;
-
-        //ParcelForce
-        if (sv.Name.Contains("Parcelforce"))
-        {
-            add2cart.Text = "添加到购物车";
-        }
-
-        //根据用户选取的服务，确定不同的取件时间
-        if (sv.Name.Contains("Parcelforce") || sv.Name.Contains("UKMail"))
-        {
-            pfuk.Visible = true;
-            _999parcel.Visible = false;
-        }
-        else
-        {
-            pfuk.Visible = false;
-            _999parcel.Visible = true;            
-        }       
+       
     }
 
     public IEnumerable<Recipient> GetRecipients()
@@ -322,20 +296,5 @@ public partial class DutyFree : System.Web.UI.Page
         }
     }
 
-    public string GetDetails()
-    {
-        StringBuilder sb = new StringBuilder();
-        foreach (Recipient r in order.Recipients)
-        {
-            foreach (Package p in r.Packages)
-            {               
-                foreach (PackageItem i in p.PackageItems)
-                {
-                    sb.Append(string.Format("'{0}',", i.Description));
-                }
-            }
-        }
-        sb.Remove(sb.Length - 1, 1);
-        return sb.ToString();
-    }
+   
 }
