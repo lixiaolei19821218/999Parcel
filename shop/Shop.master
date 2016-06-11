@@ -445,34 +445,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="footer">
         <div class="container">
             <div class="col-md-3 footer-grid">
-                <h6>About us</h6>
-                <p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
+                <h6>关于我们</h6>
+                <p>诚信物流 (999Parcel)是一家英国独资综合性质的国际物流公司，总部设在谢菲尔德。我们的业务覆盖全英国， 我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
             </div>
             <div class="col-md-3 footer-grid">
-                <h6>Information</h6>
+                <h6>资讯</h6>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Delivery Information</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">物流信息</a></li>
+                    <li><a href="#">隐私政策</a></li>
                     <li><a href="#">Terms &amp; Conditions</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">
-                <h6>My Account</h6>
+                <h6>我的账户</h6>
                 <ul>
-                    <li><a href="login.html">My Account</a></li>
-                    <li><a href="#">Order History</a></li>
-                    <li><a href="#">Wish List</a></li>
+                    <li><a href="login.html">我的账户</a></li>
+                    <li><a href="#">历史订单</a></li>
+                    <li><a href="#">心愿单</a></li>
                     <li><a href="#">Newsletter</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">
-                <h6>Extras</h6>
+                <h6>常用链接</h6>
                 <ul>
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="#">Gift Vouchers</a></li>
-                    <li><a href="#">Affiliates</a></li>
-                    <li><a href="#">Specials</a></li>
+                    <li><a href="#">用户注册</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">服务条款</a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>

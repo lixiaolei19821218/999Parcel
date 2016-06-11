@@ -36,45 +36,21 @@
 					<li>
 						<div class="banner-info">
 							<div class="banner-info1">
-								<div class="banner-inf">
-									<h1>maiores alias consequatur aut perferendis</h1>
-									<p>Itaque earum rerum hic tenetur a sapiente delectus, 
-										ut aut reiciendis voluptatibus maiores alias consequatur 
-										aut perferendis doloribus asperiores repellat.</p>
-									<div class="buy">
-										<a href="single.html">Explore</a>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="banner-info">
 							<div class="banner-info1">
-								<div class="banner-inf">
-									<h1>asperiores alias consequatur aut perferendis</h1>
-									<p>Alias earum rerum hic tenetur a sapiente delectus, 
-										ut aut reiciendis voluptatibus maiores alias consequatur 
-										aut perferendis doloribus asperiores repellat.</p>
-									<div class="buy">
-										<a href="single.html">Explore</a>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="banner-info">
 							<div class="banner-info1">
-								<div class="banner-inf">
-									<h1>doloribus alias consequatur aut perferendis</h1>
-									<p>Repellat earum rerum hic tenetur a sapiente delectus, 
-										ut aut reiciendis voluptatibus maiores alias consequatur 
-										aut perferendis doloribus asperiores repellat.</p>
-									<div class="buy">
-										<a href="single.html">Explore</a>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</li>
@@ -150,8 +126,8 @@
 <!-- cate-bottom -->
 	<div class="cate-bottom">
 		<div class="container">
-			<div class="cate-bottom-info">
-				<h3>热卖产品</h3>
+			<div class="cate-bottom-info" style="font-family:YouYuan;">
+				<h3>新品上架</h3>
 				<p>英国原装奶粉特卖
 				<span>直降到底</span></p>
 				<div class="buy let">
@@ -164,12 +140,12 @@
 <!-- welcome -->
 	<div class="welcome">
 		<div class="container">
-			<div class="welcome-info">
+			<div class="welcome-info" style="font-family:YouYuan;">
 				<h3>热卖商品</h3>
-				<p class="non">Repellat molestiae non recusandae<span>Asperiores repellat</span></p>
-				<p class="rep">Perferendis doloribus asperiores repellat</p>
+				<p class="non">B2C直邮包税专线<span>闪电清关</span></p>
+				<p class="rep">英国原装婴儿奶粉，爱尔兰天然牧场奶源</p>
 				<div class="buy wel">
-					<a href="single.html">Read More</a>
+					<a href="single.html">更多</a>
 				</div>
 			</div>
 		</div>
@@ -182,44 +158,32 @@
 				<div class="banner-bot-grd">
 					<div class="col-md-7 banner-bot-grid">
 						<div class="jel-video">
-							<iframe src="https://player.vimeo.com/video/45541146" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+							<img src="images/new-product.jpg" width="500" height="281"></img>
 						</div>
 					</div>
 					<div class="col-md-5 banner-bot-grid">
 						<div class="banner-bot-grid1">
                             <a href="#"><img src="images/a3.jpg" alt=" " class="img responsive" /></a>							
-							<div class="pos-absolt">
-								<h3>omnis voluptas assumenda</h3>
-								<p>Temporibus autem quibusdam et aut officiis debitis aut 
-								rerum necessitatibus saepe eveniet ut et voluptates.</p>
-							</div>
+							
 						</div>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="col-md-4 banner-bottom1-grid">
 					<div class="banner-bottom1-grid1">
-						<img src="images/6.jpg" alt=" " class="img-responsive" />
-						<div class="head-para">
-							<h3>omnis voluptas assumenda</h3>
-							<p>Temporibus autem quibusdam et aut officiis debitis aut 
-								rerum necessitatibus saepe eveniet ut et voluptates.</p>
-						</div>
+						<a href="#"><img src="images/6.jpg" alt=" " class="img-responsive" /></a>
+						
 					</div>
 				</div>
 				<div class="col-md-4 banner-bottom1-grid">
 					<div class="banner-bottom1-grid1">
-						<img src="images/5.jpg" alt=" " class="img-responsive" />
-						<div class="head-para">
-							<h3>omnis voluptas assumenda</h3>
-							<p>Temporibus autem quibusdam et aut officiis debitis aut 
-								rerum necessitatibus saepe eveniet ut et voluptates.</p>
-						</div>
+						<a href="#"><img src="images/5.jpg" alt=" " class="img-responsive" /></a>
+						
 					</div>
 				</div>
 				<div class="col-md-4 banner-bottom1-grid">
 					<div class="banner-bottom1-grid1">
-						<img src="images/7.jpg" alt=" " class="img-responsive" />
+						<a href="#"><img src="images/7.jpg" alt=" " class="img-responsive" /></a>
 						<div class="head-para">
 							<h3>omnis voluptas assumenda</h3>
 							<p>Temporibus autem quibusdam et aut officiis debitis aut 
