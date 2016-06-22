@@ -39,7 +39,7 @@ public partial class product_Default : System.Web.UI.Page
         List<ServiceView> svs = new List<ServiceView>();
 
         //去掉荷兰邮政
-        foreach (Service s in repo.Services.Where(s => !s.Name.Contains("荷兰邮政") && !s.Name.Contains("DPD 取件")))
+        foreach (Service s in repo.Services.Where(s => !s.Name.Contains("荷兰邮政") && !s.Name.Contains("DPD 取件") && !s.Name.Contains("奶粉包税专线")))
         {            
             svs.Add(new ServiceView(s));
         }

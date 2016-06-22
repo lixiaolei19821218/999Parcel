@@ -180,6 +180,11 @@
 
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
+                                <label for="id_billing_detail_postcode">邮编</label>
+                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>
+                               
+                            </div>
+                            <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_phone">电话</label>
                                 <input class="input-medium" id="id_billing_detail_phone" maxlength="15" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d+"/>
 
@@ -187,11 +192,7 @@
 
 
                             </div>
-                            <div style="float: left; margin: 5px" class="control-group ">
-                                <label for="id_billing_detail_postcode">邮编</label>
-                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>
-                               
-                            </div>
+                            
 
                             
 

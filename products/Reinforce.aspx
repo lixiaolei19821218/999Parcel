@@ -17,16 +17,16 @@
             <!-- main --> 
             <div class="col-sm-10 col-xs-12" style="padding-left: 0">
                 <div style="border: 0px solid #ccc; padding: 0px; margin: 0px 0px 0px 100px">
-                    <img width="550" src="<%:Reinforce1.PictureLink %>" style="cursor: pointer" title="<%:Reinforce1.Type %>" />
+                    <img width="400" src="<%:Reinforce1.PictureLink %>" style="cursor: pointer" title="<%:Reinforce1.Type %>" />
                 </div>
                 <div style="border: 0px solid #ccc; padding: 0px;margin: 0px 0px 0px 100px">                    
-                    <input type="radio" name="reinforce" id="reinforce1" checked="checked" value="<%:Reinforce1.Id %>"/><%:Reinforce1.Describe %>    
+                    <input disabled="disabled" type="radio" name="reinforce" id="reinforce1" checked="checked" value="<%:Reinforce1.Id %>"/><%:Reinforce1.Describe %>    
                 </div>
                 <div style="border: 0px solid #ccc; padding: 0px; margin: 30px 0px 0px 100px">
-                    <img width="550" src="<%:Reinforce2.PictureLink %>" style="cursor: pointer" title="<%:Reinforce2.Type %>" />
+                    <img width="400" src="<%:Reinforce2.PictureLink %>" style="cursor: pointer" title="<%:Reinforce2.Type %>" />
                 </div>
                 <div style="border: 0px solid #ccc; padding: 0px; margin: 0px 0px 0px 100px">
-                    <input type="radio" name="reinforce" id="reinforce2" value="<%:Reinforce2.Id %>"/><%:Reinforce2.Describe %> 
+                    <input disabled="disabled" type="radio" name="reinforce" id="reinforce2" value="<%:Reinforce2.Id %>"/><%:Reinforce2.Describe %> 
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
                     <p>总额:&nbsp;<span class="sz16 bold clrr1">£</span><span id="total" class="sz16 bold clrr1"></span></p>
                     <div style="margin-bottom: 5px">
                         <label style="font-weight: bold">
-                            <input type="checkbox" id="needReforce" class="agreed" checked="checked" style="margin-top: -3px" />
+                            <input type="checkbox" id="needReforce" class="agreed"  style="margin-top: -3px" />
                             需要加固服务
                         </label>
                     </div>
@@ -85,8 +85,8 @@
 
         $(document).ready(function () {
             $(window).load(function () {           
-                $('#reiforcePrice')[0].innerText = reinforcePrice1.toFixed(2);
-                $('#total')[0].innerText = (sendPrice + reinforcePrice1).toFixed(2);
+                $('#reiforcePrice')[0].innerText = 0;
+                $('#total')[0].innerText = sendPrice.toFixed(2);
             });
 
             $('#needReforce').change(function (e) {                
@@ -133,6 +133,7 @@
                     $('#total')[0].innerText = (reinforcePrice2 + sendPrice).toFixed(2);
                 }
             });
+
            
         });
     </script>

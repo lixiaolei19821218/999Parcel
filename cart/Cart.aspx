@@ -33,7 +33,7 @@
         
 
         <form runat="server" method="post" id="placeOrder" style="padding-top:0px;">           
-            <fieldset runat="server" id="normalField" style="min-height:500px;">
+            <fieldset runat="server" id="normalField" style="min-height:300px;">
                 <legend>直邮订单</legend>
                 <table class="table table-orders">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetNoneSheffieldOrders">

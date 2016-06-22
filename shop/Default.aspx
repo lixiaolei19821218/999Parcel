@@ -134,6 +134,15 @@
 					<a href="single.html">更多</a>
 				</div>
 			</div>
+		</div><div class="container">
+			<div class="cate-bottom-info" style="font-family:YouYuan;">
+				<h3>新品上架</h3>
+				<p>英国原装奶粉特卖
+				<span>直降到底</span></p>
+				<div class="buy let">
+					<a href="single.html">更多</a>
+				</div>
+			</div>
 		</div>
 	</div>
 <!-- //cate-bottom -->
@@ -213,6 +222,7 @@
 					<div class="p-one simpleCart_shelfItem jwe">							
 							<a href="single.html">
 								<img src="images/1-.jpg" alt="" class="img-responsive" />
+                                <a href="#" style="font-size:x-small;">【英国原装爱他美】1段 0-6个月 奶粉900g</a>
 								<div class="mask">
 									<span>Quick View</span>
 								</div>
