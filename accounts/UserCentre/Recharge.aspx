@@ -1,9 +1,42 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Recharge.aspx.cs" Inherits="accounts_UserCentre_Recharge" MasterPageFile="~/accounts/UserCentre/UserCentre.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Recharge.aspx.cs" Inherits="accounts_UserCentre_Recharge" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <title>账户充值</title>
+    <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/global_v2.0.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/tpl/t4/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/artDialog/skins/default.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/pager.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/artDialog/jquery.artDialog.js" type="text/javascript"></script>
+    <script src="/static/js/artDialog/iframeTools.js" type="text/javascript"></script>
+    <script src="/static/js/formValidator/formValidator.min.js" type="text/javascript"></script>
+    <script src="/static/js/formValidator/formValidator.regex.js" type="text/javascript"></script>
+    <style type="text/css">
+        #sidebar .link-list li a {
+            margin: 0 auto;
+            padding: 9px 10px;
+            display: block;
+            width: 107px;
+            height: 35px;
+            line-height: 18px;
+            text-shadow: none;
+            text-align: center;
+            font-family: YouYuan;
+        }
 
-    
+        #sidebar ul li {
+            padding: 5px;
+            background: url('image/side-line.png') no-repeat 50% 100%;
+        }
+        .table-form th {
+    font-weight: normal;
+    padding: 6px 0;
+    width: 50px;
+    text-align: right;
+}
+       
+    </style>
     <style type="text/css">  
     .myul  
     {  
@@ -147,9 +180,25 @@
     </script>
 </asp:Content>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="body" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div id="container" style="margin-left: -20px;">
+        <div id="sidebar">
+            <div class="uitopb uitopb-border" style="border-top: 1px solid #CCC; margin-top: 20px; width: 120px;">
+                <h3 style="font-family: 'Microsoft YaHei';">我的账户</h3>
+                <ul class="link-list">
+                    <li><a href="OrderRecords.aspx" runat="server" id="total">账户金额</a></li>
+                    <li><a href="Recharge.aspx" runat="server" id="rechange">我要充值</a></li>
+                    <li><a href="~/cart/Paid.aspx" runat="server" id="parcel">我的订单</a></li>
+                    <li><a href="" runat="server" id="addmoney">补款记录</a></li>
+                    <li><a href="" runat="server" id="claim">索赔中心</a></li>
+                    <li><a href="Default.aspx" class="" runat="server" id="default">个人资料</a></li>
+                    <li><a href="" runat="server" id="reset">重置密码</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="container-main" style="margin-top: 20px; width: 755px; margin-left: -20px;">
     <div class="uitopg">
-        <h3 class="uitopg-title mt10">
+        <h3 class="uitopg-title mt10" style="font-family:'Microsoft YaHei'">
             <span class="rt"><a href="OrderRecords.aspx" class="back">返回</a></span>
             账户充值
         </h3>
@@ -160,11 +209,11 @@
                         <th><em>*</em>方式：</th>
                         <td>
                             <span class="f14">
-                                <input type="radio" name="channelid" value="1" checked="checked" />
+                                <input type="radio" name="channelid" value="1" checked="checked" style="margin:0px;" />
                                 英镑支付(转帐或存现)&nbsp;
-                                <input type="radio" name="channelid" value="2" />
+                                <input type="radio" name="channelid" value="2"  style="margin:0px;"/>
                                 人民币支付(淘宝拍)&nbsp;
-                                <input type="radio" name="channelid" value="3" />
+                                <input type="radio" name="channelid" value="3"  style="margin:0px;"/>
                                 支付宝&nbsp;                                
                             </span>
                             <span id="typeTip"></span>
@@ -200,20 +249,20 @@
                             </div>
                             <div id="alipay" class="message" style="display: none;">
                                 <ul>
-                                    <li><em>·</em>淘宝拍付汇率以星弛官网显示为准， 支付宝充值以支付宝实时汇率为准</li>
-                                    <li><em>·</em>凡使用支付宝进行冲值的客户，均可享受冲100镑送3镑的优惠活动。（星弛折扣与冲值奖励不能同时享受）</li>
+                                    <li><em>·</em>淘宝拍付汇率以诚信物流官网显示为准， 支付宝充值以支付宝实时汇率为准</li>
+                                    <li><em>·</em>凡使用支付宝进行冲值的客户，均可享受冲100镑送3镑的优惠活动。（诚信物流折扣与冲值奖励不能同时享受）</li>
                                     <li><em>·</em>所有客户使用支付宝冲值时均无需支付手续费。</li>
-                                    <li><em>·</em>星弛允许客户退回星弛余额里的款项，只需支付退款手续费3%（手续费不足3镑的按3镑收），如享受过奖励活动的，需扣除活动奖励金额。</li>
-                                    <li><em>·</em>此活动的最终解释权属星弛快递公司(XC LINK LTD)</li>
+                                    <li><em>·</em>诚信物流允许客户退回诚信物流余额里的款项，只需支付退款手续费3%（手续费不足3镑的按3镑收），如享受过奖励活动的，需扣除活动奖励金额。</li>
+                                    <li><em>·</em>此活动的最终解释权属诚信物流公司(999 Parcel LTD)</li>
                                 </ul>
                             </div>
                             <div id="worldpay" class="message" style="display: none;">
                                 <ul>
                                     <li><em>·</em>所有支付最终结算货币是英镑,汇率内天随中国银行汇率变动 （We only accept £GBP.)</li>
-                                    <li><em>·</em>凡使用worldpay进行冲值的客户，均可享受冲100镑送3镑的优惠活动。（星弛折扣与冲值奖励不能同时享受）</li>
+                                    <li><em>·</em>凡使用worldpay进行冲值的客户，均可享受冲100镑送3镑的优惠活动。（诚信物流折扣与冲值奖励不能同时享受）</li>
                                     <li><em>·</em>所有客户使用worldpay冲值时均无需支付手续费。</li>
-                                    <li><em>·</em>星弛允许客户退回星弛余额里的款项，只需支付退款手续费3%（手续费不足3镑的按3镑收），如享受过奖励活动的，需扣除活动奖励金额。</li>
-                                    <li><em>·</em>此活动的最终解释权属星弛快递公司(XC LINK LTD)</li>
+                                    <li><em>·</em>诚信物流允许客户退回诚信物流余额里的款项，只需支付退款手续费3%（手续费不足3镑的按3镑收），如享受过奖励活动的，需扣除活动奖励金额。</li>
+                                    <li><em>·</em>此活动的最终解释权属诚信物流快递公司(999 Parcel LTD)</li>
                                 </ul>                                
                             </div>
                         </td>
@@ -258,7 +307,7 @@
                     <tr id="image">
                         <th valign="top">凭证：</th>
                         <td>
-                            <input type="file" id="fileupload"/>
+                            <input type="file" id="fileupload" style="margin-bottom:0px;"/>
                         </td>
                     </tr>
                     <tr>
@@ -281,7 +330,7 @@
         </div>
         <span runat="server" id="message">您有正在审核的充值申请，请等待审核后再进行下次充值。<a href="RechargeList.aspx">查看</a>正在审核的申请。</span>
     </div>
-
+            </div>
     <script type="text/javascript">
         $(function () {
             //表单提交

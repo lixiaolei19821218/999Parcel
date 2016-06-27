@@ -15,7 +15,7 @@ public partial class accounts_UserCentre_Recharge : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        (Master.FindControl("rechange") as HtmlAnchor).Attributes["class"] = "on";
+        rechange.Attributes["class"] = "on";
         
         string user = Membership.GetUser().UserName;
         
