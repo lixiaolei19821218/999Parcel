@@ -51,6 +51,12 @@
         .red-border {
             border: 1px solid #f00;
         }
+         a{
+            font-size:medium;
+        }
+        #welcomeDiv{
+            font-size:medium;
+        }
     </style>
 
        <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet"/>

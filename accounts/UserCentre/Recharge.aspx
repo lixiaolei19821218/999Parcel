@@ -23,8 +23,14 @@
             text-shadow: none;
             text-align: center;
             font-family: YouYuan;
+            font-size:medium;
         }
-
+         a{
+            font-size:medium;
+        }
+        #welcomeDiv{
+            font-size:medium;
+        }
         #sidebar ul li {
             padding: 5px;
             background: url('image/side-line.png') no-repeat 50% 100%;
@@ -186,17 +192,17 @@
             <div class="uitopb uitopb-border" style="border-top: 1px solid #CCC; margin-top: 20px; width: 120px;">
                 <h3 style="font-family: 'Microsoft YaHei';">我的账户</h3>
                 <ul class="link-list">
-                    <li><a href="OrderRecords.aspx" runat="server" id="total">账户金额</a></li>
+                    <li><a href="RechargeList.aspx" runat="server" id="total">充值明细</a></li>
                     <li><a href="Recharge.aspx" runat="server" id="rechange">我要充值</a></li>
                     <li><a href="~/cart/Paid.aspx" runat="server" id="parcel">我的订单</a></li>
-                    <li><a href="" runat="server" id="addmoney">补款记录</a></li>
-                    <li><a href="" runat="server" id="claim">索赔中心</a></li>
-                    <li><a href="Default.aspx" class="" runat="server" id="default">个人资料</a></li>
-                    <li><a href="" runat="server" id="reset">重置密码</a></li>
+                    <!--<li><a href="" runat="server" id="addmoney">补款记录</a></li>
+                    <li><a href="" runat="server" id="claim">索赔中心</a></li>-->
+                    <li><a href="Default.aspx" class="" runat="server" id="personal">个人资料</a></li>
+                    <!--<li><a href="" runat="server" id="reset">重置密码</a></li>-->
                 </ul>
             </div>
         </div>
-        <div id="container-main" style="margin-top: 20px; width: 755px; margin-left: -20px;">
+        <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
     <div class="uitopg">
         <h3 class="uitopg-title mt10" style="font-family:'Microsoft YaHei'">
             <span class="rt"><a href="OrderRecords.aspx" class="back">返回</a></span>

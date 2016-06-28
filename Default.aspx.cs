@@ -8,6 +8,9 @@ using System.Web.UI.WebControls;
 
 public partial class Default : System.Web.UI.Page
 {
+    [Ninject.Inject]
+    public IRepository repo { get; set; }
+
     private Order order = new Order();
 
     public Order Order
@@ -126,8 +129,10 @@ public partial class Default : System.Web.UI.Page
         return DateTime.Now;
     }
 
+    
+
     public IEnumerable<News> GetNews()
     {
-        return new List<News>();
+        return repo.Context.News.Take(5);
     }
 }

@@ -16,7 +16,7 @@ public partial class accounts_UserCentre_RechargeList : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        rechange.Attributes["class"] = "on";
+        
     }
 
     public decimal GetTotalApplyMoney()

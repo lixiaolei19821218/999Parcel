@@ -23,11 +23,25 @@
             text-shadow: none;
             text-align: center;
             font-family: YouYuan;
+            font-size:medium;
         }
 
         #sidebar ul li {
             padding: 5px;
             background: url('image/side-line.png') no-repeat 50% 100%;
+        }
+        .table-form tr {
+            font-size:medium;
+        }
+         .table-form tr th {
+            font-size:medium;
+            font-family:YouYuan;
+        }
+          a{
+            font-size:medium;
+        }
+        #welcomeDiv{
+            font-size:medium;
         }
     </style>
 </asp:Content>
@@ -36,21 +50,21 @@
     <div id="container" style="margin-left: -20px;">
         <div id="sidebar">
             <div class="uitopb uitopb-border" style="border-top: 1px solid #CCC; margin-top: 20px; width: 120px;">
-                <h3 style="font-family: 'Microsoft YaHei';">我的账户</h3>
+                <h3 style="font-family: 'Microsoft YaHei';font-size:large;">我的账户</h3>
                 <ul class="link-list">
-                    <li><a href="OrderRecords.aspx" runat="server" id="total">账户金额</a></li>
+                    <li><a href="RechargeList.aspx" runat="server" id="total">充值明细</a></li>
                     <li><a href="Recharge.aspx" runat="server" id="rechange">我要充值</a></li>
                     <li><a href="~/cart/Paid.aspx" runat="server" id="parcel">我的订单</a></li>
-                    <li><a href="" runat="server" id="addmoney">补款记录</a></li>
-                    <li><a href="" runat="server" id="claim">索赔中心</a></li>
+                    <!--<li><a href="" runat="server" id="addmoney">补款记录</a></li>
+                    <li><a href="" runat="server" id="claim">索赔中心</a></li>-->
                     <li><a href="Default.aspx" class="" runat="server" id="personal">个人资料</a></li>
-                    <li><a href="" runat="server" id="reset">重置密码</a></li>
+                    <!--<li><a href="" runat="server" id="reset">重置密码</a></li>-->
                 </ul>
             </div>
         </div>
-        <div id="container-main" style="margin-top: 20px; width: 755px; margin-left: -20px;">
-            <div class="uitopg" style="height: 365.6px;">
-                <h3 class="uitopg-title mt10" style="font-family: 'Microsoft YaHei';">个人资料
+        <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
+            <div class="uitopg" style="height: 450px;">
+                <h3 class="uitopg-title mt10" style="font-family: 'Microsoft YaHei';font-size:large">个人资料
                 </h3>
                 <div class="form">
                     <table class="table-form">
@@ -60,7 +74,7 @@
                         </tr>
                         <tr>
                             <th>邮箱</th>
-                            <td><%:User.Email %><a href="/index.php?c=member&a=user_profile&op=edit&field=sendmail">编辑</a>
+                            <td><%:User.Email %><!--<a href="/index.php?c=member&a=user_profile&op=edit&field=sendmail">编辑</a>-->
                             </td>
                         </tr>
                         <tr>
@@ -73,7 +87,7 @@
                         </tr>
                         <tr>
                             <th>联系电话</th>
-                            <td><%:APUser.CellPhone %><a href="/index.php?c=member&a=user_profile&op=edit&field=phone">编辑</a>
+                            <td><%:APUser.CellPhone %><!--<a href="/index.php?c=member&a=user_profile&op=edit&field=phone">编辑</a>-->
                             </td>
                         </tr>
 

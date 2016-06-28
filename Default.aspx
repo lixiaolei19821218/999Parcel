@@ -153,7 +153,7 @@
 						<a href="single.html"><img src="static/img/mall_668_426.png" alt=" " class="img-responsive" /></a>
 						<p class="para"> 诚信商场提供UK到China的海淘服务。保证正品，物美价廉。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆 盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
 						<div class="rd-mre">
-							<a href="single.html" class="hvr-bounce-to-bottom quod">开始购物</a>
+							<a class="hvr-bounce-to-bottom quod">开始购物</a>
 						</div>
 					</div>
 				</div>
@@ -168,36 +168,36 @@
 								<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 									<div class="facts">
 									  <div class="tab_list">
-										<a href="images/7-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+										<a title="">
 											<img src="static/img/baby_milk.jpg" alt=" " class="img-responsive" />
 										</a>
 									  </div>
 									  <div class="tab_list1">
-										<a href="#">婴儿奶粉</a>
+										<a>婴儿奶粉</a>
 										<p>￡10起售 <span>爱他美，牛栏。UK超市购买，可提供原始发票。</span></p>
 									  </div>
 									  <div class="clearfix"> </div>
 									</div>
 									<div class="facts">
 									   <div class="tab_list">
-										<a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+										<a title="">
 											<img src="static/img/Car_Seat.jpg" alt=" " class="img-responsive" />
 										</a>
 									  </div>
 									  <div class="tab_list1">
-										<a href="#" style="font-family:'Microsoft YaHei UI'" >婴儿安全座椅</a>
+										<a style="font-family:'Microsoft YaHei UI'" >婴儿安全座椅</a>
 										<p>￡200<span style="font-family:'Microsoft YaHei UI'">安全可靠，做中国好司机，做中国好父母。</span></p>
 									  </div>
 									  <div class="clearfix"> </div>
 									</div>
 									<div class="facts">
 									   <div class="tab_list">
-										<a href="images/9-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+										<a title="">
 											<img src="static/img/box.jpg" alt=" " class="img-responsive" />
 										</a>
 									  </div>
 									  <div class="tab_list1">
-										<a href="#">打包服务</a>
+										<a>打包服务</a>
 										<p>低至￡2每箱<span>诚信物流提供贴心的打包加固服务。</span></p>
 									  </div>
 									  <div class="clearfix"> </div>
@@ -234,22 +234,22 @@
 					</div>
 					<div class="four-fig">
 						<div class="four-fig1">
-							<a href="images/11-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+							<a title="">
 								<img src="/static/img/adv/adv1_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="four-fig1">
-							<a href="images/14-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+							<a title="">
 								<img src="/static/img/adv/adv2_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="four-fig1">
-							<a href="images/10-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+							<a title="">
 								<img src="/static/img/adv/adv3_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
 						<div class="four-fig1">
-							<a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"  title="">
+							<a title="">
 								<img src="/static/img/adv/adv1_300_200.png" class="img-responsive" alt=" " />
 							</a>
 						</div>
@@ -257,12 +257,14 @@
 					</div>
 					<div class="pgs">
 						<h3>新闻资讯</h3>
-						<ul>							
-							<li><a href="#">针对包税服务的服务调整通知</a></li>
-							<li><a href="#">2016年复活节放假通知</a></li>
-							<li><a href="#">英卖通服务上线</a></li>
-							<li><a href="#">英国皇家邮政小包裹专线， 2公斤低至12.5镑</a></li>
-							<li><a href="#">bpost 价格上调通知</a></li>
+						<ul>					
+                            <asp:Repeater runat="server" ItemType="News" SelectMethod="GetNews" >
+                                <ItemTemplate>
+                                        
+                                    <li><a href="/news/newsdetail.aspx?id=<%#Item.Id %>"><%#Item.Title %></a></li>
+                                    </ItemTemplate>
+                            </asp:Repeater>		
+							
 						</ul>
 					</div>
 				</div>

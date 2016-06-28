@@ -23,6 +23,7 @@
             text-shadow: none;
             text-align: center;
             font-family: YouYuan;
+            font-size:medium;
         }
 
         #sidebar ul li {
@@ -34,6 +35,12 @@
             padding: 8px 10px;
             text-align: center;
         }
+        a{
+            font-size:medium;
+        }
+        #welcomeDiv{
+            font-size:medium;
+        }
     </style>
 </asp:Content>
 
@@ -43,21 +50,21 @@
             <div class="uitopb uitopb-border" style="border-top: 1px solid #CCC; margin-top: 20px; width: 120px;">
                 <h3 style="font-family: 'Microsoft YaHei';">我的账户</h3>
                 <ul class="link-list">
-                    <li><a href="OrderRecords.aspx" runat="server" id="total">账户金额</a></li>
+                    <li><a href="RechargeList.aspx" runat="server" id="total" class="on">充值明细</a></li>
                     <li><a href="Recharge.aspx" runat="server" id="rechange">我要充值</a></li>
                     <li><a href="~/cart/Paid.aspx" runat="server" id="parcel">我的订单</a></li>
-                    <li><a href="" runat="server" id="addmoney">补款记录</a></li>
-                    <li><a href="" runat="server" id="claim">索赔中心</a></li>
-                    <li><a href="Default.aspx" class="" runat="server" id="default">个人资料</a></li>
-                    <li><a href="" runat="server" id="reset">重置密码</a></li>
+                    <!--<li><a href="" runat="server" id="addmoney">补款记录</a></li>
+                    <li><a href="" runat="server" id="claim">索赔中心</a></li>-->
+                    <li><a href="Default.aspx" class="" runat="server" id="personal">个人资料</a></li>
+                    <!--<li><a href="" runat="server" id="reset">重置密码</a></li>-->
                 </ul>
             </div>
         </div>
-        <div id="container-main" style="margin-top: 20px; width: 755px; margin-left: -20px;">
+        <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
             <h2>充值明细</h2>
             <div class="sub-nav">
-                <span class="rt">充值<em>£<%:GetTotalApplyMoney() %></em>，剩余<em>£0</em>(赠送<em>£0</em>)</span>
-                <a href="OrderRecords.aspx" class="back">返回</a>
+                <span class="rt">充值<em>£<%:GetTotalApplyMoney() %></em></span>
+                <a href="Recharge.aspx" class="back">充值</a>
             </div>
             <div class="uitopb uitopb-border mt10" style="border-top: 1px solid #CCC;">
                 <div class="table-div">
