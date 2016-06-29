@@ -205,7 +205,7 @@
         <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
     <div class="uitopg">
         <h3 class="uitopg-title mt10" style="font-family:'Microsoft YaHei'">
-            <span class="rt"><a href="OrderRecords.aspx" class="back">返回</a></span>
+            <span class="rt"><a href="RechargeList.aspx" class="back">查看明细</a></span>
             账户充值
         </h3>
         <div class="form" runat="server" id="form">
