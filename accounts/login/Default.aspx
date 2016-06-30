@@ -11,6 +11,17 @@
             codeImg.src = codeImg.src + "?";
         }
     </script>
+    <style type="text/css">
+        a{
+            font-size:medium;
+        }
+        #welcomeDiv{
+            font-size:medium;
+        }
+        #loginDiv{
+            font-size:medium;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <ul class="breadcrumb" style="background: none; margin-top: 15px">

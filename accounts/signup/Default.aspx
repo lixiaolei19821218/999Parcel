@@ -7,7 +7,17 @@
   <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="/static/css/guofan.css">
-
+    <style type="text/css">
+        a{
+            font-size:medium;
+        }
+        #welcomeDiv{
+            font-size:medium;
+        }
+        #loginDiv{
+            font-size:medium;
+        }
+    </style>
     <script src="/static/js/contact.js"></script>
     <script src="/static/bootstrap3/js/jquery-1.11.1.min.js"></script> 
     <script type="text/javascript" src="/Scripts/jquery-1.8.0.min.js"></script>

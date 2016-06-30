@@ -105,6 +105,7 @@ public partial class products_Product : System.Web.UI.Page
                 old.SenderName = order.SenderName;
                 old.SenderPhone = order.SenderPhone;
                 old.SenderZipCode = order.SenderZipCode;
+                old.SenderEmail = order.SenderEmail;
                 foreach (Recipient r in order.Recipients)
                 {
                     old.Recipients.Add(r);
@@ -186,6 +187,7 @@ public partial class products_Product : System.Web.UI.Page
         order.SenderAddress2 = Request.Form.Get("billing_detail_street2").Trim();
         order.SenderAddress3 = Request.Form.Get("billing_detail_street3").Trim();
         order.SenderZipCode = Request.Form.Get("billing_detail_postcode").Trim();
+        order.SenderEmail = Request.Form.Get("id_billing_detail_email").Trim();
 
         List<Recipient> recipientList = order.Recipients.ToList();
         for (int i = 0; i < recipientList.Count; i++)

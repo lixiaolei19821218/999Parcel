@@ -33,6 +33,9 @@
             background: url(../images/img-sp.png) no-repeat 61px -191px #F04709;
             display: block;
         }
+
+        .glyphicon-chevron-right::before {
+        }
     </style> 
 </asp:Content>
 
@@ -64,10 +67,10 @@
                 </div>
                 <!-- Controls -->
                 <a class="left carousel-control" href="#banners" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
+                   <!--<span class="glyphicon glyphicon-chevron-left"></span>去掉小白框-->
                 </a>
                 <a class="right carousel-control" href="#banners" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <!--<span class="glyphicon glyphicon-chevron-right"></span>去掉小白框-->
                 </a>                
             </div> 
 		

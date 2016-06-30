@@ -198,22 +198,16 @@
 
 
                             </div>
-                            
+                           <div style="float: left; margin: 5px" class="control-group ">
+                                <label for="id_billing_detail_email">E-Mail</label>
+                                <input class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" value="<%:Order.SenderEmail %>" title="电子邮箱"/>
 
-                            
-
-                            <div id="crafty_postcode_result_display_1" style="float: left; margin: 5px"></div>
-
-                            <div style="clear: both; display: none">
-                                <div style="float: left; margin: 5px" class="control-group ">
-                                    <label for="id_billing_detail_email">Email</label>
-                                    <input class="input-medium" id="id_billing_detail_email" maxlength="50" name="billing_detail_email" style="width: 180px" type="text" value="<%:Order.SenderZipCode %>" />
-                                    
+                                   
 
 
-
-                                </div>
                             </div>
+
+                            
 
                             <div style="clear: both"></div>
                         </div>
@@ -434,7 +428,7 @@
                                                                 <div class="mx">
                                                                     <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
                                                                     <div class="ib mx_type">
-                                                                        <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width: 100px">
+                                                                        <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:100px;height:23px;">
                                                                             <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
                                                                             <option value="Baby Food">婴儿食品</option>
                                                                             <option value="Adult Milk Powder">成人奶粉</option>
@@ -485,13 +479,13 @@
 
                                                                     <div class="ib mx_quantity mx_cal">
                                                                         数量:
-                                                               <input id="id_parcel-0--content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
+                                                               <input id="id_parcel-0--content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
 
                                                                     </div>
 
                                                                     <div class="ib mx_cost mx_cal">
                                                                         单价(£):
-                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
+                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
                                                                     </div>
 
                                                                     <div class="ib">
