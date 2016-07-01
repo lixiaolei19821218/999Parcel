@@ -226,7 +226,7 @@
                             <div id="bankpay" class="message">
                                 <ul>
                                     <li>请转帐或存入英镑现金至公司帐户：</li>
-                                    <li><em>·</em><span>Bank：NATWEST</span><span>Account：10902619</span><span>Sort Code：602469</span><span>Name: J CHEN</span></li>
+                                    <li><em>·</em><span>Bank：Santander</span><span>Account：77232963</span><span>Sort Code：09-01-28</span><span>Name: Miss X Tang</span></li>
                                     <li><em>·</em>转帐请输入以下信息，并在REF处写上您的邮箱@前部份，以便查帐。例如：123@qq.com，Ref：123</li>
                                     <li><em>·</em>存现金时，请一定告诉银行职员写上您的备注REF。</li>
                                     <li><em>·</em>转帐好后请截图保存并上传给我们。存现的请保留收据，如能拍照上传最好。这样便于我们更快的审核。</li>
@@ -237,8 +237,9 @@
                             <div id="taobaopay" style="display: none;">
                                 <div class="message">
                                     <ul>
+                                         
                                         <li><em>·</em>请按1比9.57的汇率计算人民币数额到以下地址拍下等额数量即可。如冲值100镑换算人民币是957元，请拍957件即可。拍后请立即确认付款，我们审核通过后您就可以在系统内查到您的冲值余额。</li>
-                                        <li><em>·</em><a href="http://item.taobao.com/item.htm?spm=a230r.1.14.4.jQDViP&id=19933634526&initiative_new=1" target="_blank">http://item.taobao.com/item.htm?spm=a230r.1.14.4.jQDViP&id=19933634526&initiative_new=1</a></li>
+                                        <li><em>·</em><a href="https://world.taobao.com/item/527163952049.htm?fromSite=main&_u=1eiv6lc21b4" target="_blank">https://world.taobao.com/item/527163952049.htm?fromSite=main&_u=1eiv6lc21b4</a></li>
                                         <li><em>·</em>审核时间是工作日周一至周五10点至18点。您确认后请给我们1至2小时进行查帐并审核，超过两小时还未看到冲值余额的请联系我们客服查询。18点后冲值的，我们将会在第二个工作日为您审核。</li>
                                         <li><em>·</em>冲值一次超过1万镑的请联系我们客服，我们会按单独汇率计算。</li>
                                     </ul>
@@ -255,6 +256,7 @@
                             </div>
                             <div id="alipay" class="message" style="display: none;">
                                 <ul>
+                                    <li><em>·</em>户名:严谊&nbsp&nbsp&nbsp&nbsp&nbsp账号：13568880569</li>
                                     <li><em>·</em>淘宝拍付汇率以诚信物流官网显示为准， 支付宝充值以支付宝实时汇率为准</li>
                                     <li><em>·</em>凡使用支付宝进行冲值的客户，均可享受冲100镑送3镑的优惠活动。（诚信物流折扣与冲值奖励不能同时享受）</li>
                                     <li><em>·</em>所有客户使用支付宝冲值时均无需支付手续费。</li>
