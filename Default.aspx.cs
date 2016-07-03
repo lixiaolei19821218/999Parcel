@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Default : System.Web.UI.Page
 {
-    [Ninject.Inject]
-    public IRepository repo { get; set; }
+    //[Ninject.Inject]
+    //public IRepository repo { get; set; }
 
     private Order order = new Order();
 
@@ -132,7 +132,8 @@ public partial class Default : System.Web.UI.Page
     
 
     public IEnumerable<News> GetNews()
-    {
-        return repo.Context.News.Take(5);
+    {        
+        UK_ExpressEntities entities = new UK_ExpressEntities();
+        return entities.News.ToList().Take(5);
     }
 }

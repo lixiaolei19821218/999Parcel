@@ -51,11 +51,13 @@
         .red-border {
             border: 1px solid #f00;
         }
-         a{
-            font-size:medium;
+
+        a {
+            font-size: medium;
         }
-        #welcomeDiv{
-            font-size:medium;
+
+        #welcomeDiv {
+            font-size: medium;
         }
     </style>
 
@@ -637,19 +639,13 @@
     <div id="dialog-addrs" title="地址簿" style="background-color: #fff; display: none; font-size: 13px">
 
         <style style="text/css">
-            
-                  bac groun
-            
-                margin: 1px 0;
-        }
+            bac groun margin: 1px 0;
+            }
 
-                .ad _ro :
-                ver {
-                
-                     ;
-             
-                    background-color: d;
-                }
+            .ad _ro : ver {
+                ;
+                background-color: d;
+            }
         </style>
         <script>var recv_addr_dict = {};</script>
 
@@ -1041,9 +1037,8 @@
             });
 
             var item_details = new Array(<%=GetDetails()%>);
-            
-            for (var i = 0; i < $('.item_detail').length; i++)
-            {
+
+            for (var i = 0; i < $('.item_detail').length; i++) {
                 $('.item_detail')[i].value = item_details[i];
             }
         });
@@ -1055,16 +1050,47 @@
 
 
         if ($('#pickUpCompany')[0].innerText == 'UK Mail' || $('#pickUpCompany')[0].innerText == 'Parcelforce') {
-            myStartDate.setDate(today.getDate() + 1);
-            myEndDate.setDate(today.getDate() + 2);
+            if (today.getDay() == 4) {
+                myStartDate.setDate(today.getDate() + 1);
+                myEndDate.setDate(today.getDate() + 4);
+            }
+            else if (today.getDay() == 5) {
+                myStartDate.setDate(today.getDate() + 3);
+                myEndDate.setDate(today.getDate() + 4);
+            }
+            else if (today.getDay() == 6) {
+                myStartDate.setDate(today.getDate() + 2);
+                myEndDate.setDate(today.getDate() + 3);
+            }
+            else {
+                myStartDate.setDate(today.getDate() + 1);
+                myEndDate.setDate(today.getDate() + 2);
+            }            
         }
         else {
-            if (today.getHours() > 15) {
-                myStartDate.setDate(today.getDate() + 1);
+            if (today.getDay() == 4) {
+                if (today.getHours() > 12) {
+                    myStartDate.setDate(today.getDate() + 1);
+                }                
+                myEndDate.setDate(today.getDate() + 3);
             }
-
-            myEndDate.setDate(myEndDate.getDate() + 7);
-
+            else if (today.getDay() == 5) {
+                if (today.getHours() > 12) {
+                    myStartDate.setDate(today.getDate() + 2);
+                }
+                myEndDate.setDate(today.getDate() + 3);
+            }
+            else if (today.getDay() == 6) {
+                myStartDate.setDate(today.getDate() + 1);
+                myEndDate.setDate(today.getDate() + 2);
+            }
+            else
+            {
+                if (today.getHours() > 12) {
+                    myStartDate.setDate(today.getDate() + 1);
+                }
+                myEndDate.setDate(today.getDate() + 2);
+            }
         }
 
         if ($('#pickUpCompany')[0].innerText == '999Parcel') {
@@ -1081,7 +1107,7 @@
             startDate: myStartDate,
             endDate: myEndDate,
             weekStart: 0,
-            daysOfWeekDisabled: [6],
+            daysOfWeekDisabled: [0, 6],
             autoclose: true,
             startView: 2,
             minView: 2,
@@ -1095,7 +1121,7 @@
             language: 'en',
             initialDate: myStartDate,
 
-            daysDisabled: ['2014-04-18', '2014-04-21', '2014-05-05', '2014-05-26', '2014-08-25', '2014-12-24', '2014-12-25', '2014-12-26', '2015-01-01', '2015-04-03', '2015-04-06', '2015-05-04', '2015-05-25', '2015-08-31', '2015-12-25', '2015-12-28']
+            
         });
 
         $('.form_datetime').datetimepicker().on('changeDate', function (ev) {
@@ -1143,8 +1169,7 @@
                     $('#pickup_price')[0].innerText = '£' + price.toFixed(2);
                     $('#total')[0].innerText = '£' + (price + sendPrice).toFixed(2);
                 }
-                else
-                {
+                else {
                     alert(zip_code + "不属于诚信物流取件的地区。");
                 }
             }

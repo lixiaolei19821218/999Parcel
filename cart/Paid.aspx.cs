@@ -197,7 +197,7 @@ public partial class cart_Paid : System.Web.UI.Page
             }
             else
             {
-                return "<img height=18 width=18 style=\"margin-left:2px;\" src=\"../static/images/icon/t17.ico\" title=\"已发送到Bpost，请等待比利时邮政确认(约1个小时)\">";
+                return "<img height=18 width=18 style=\"margin-left:2px;\" src=\"../static/images/icon/t17.ico\" title=\"已发送到Bpost，请等待比利时邮政确认\">";
             }
         }
     }

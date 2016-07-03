@@ -2,22 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>找回密码 | 诚信物流-可靠,快捷,实惠</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon-gf.ico">
+   
 
-
-    <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/bootstrap3/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/guofan.css">
-
-
-
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="/static/css/mezzanine.css">
-
-    <link rel="stylesheet" href="/static/css/cartridge.css">
-
-    <link rel="stylesheet" href="/static/css/theme.css">
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">

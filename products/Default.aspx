@@ -25,7 +25,7 @@
 
                 <tbody>
                     <asp:Repeater ItemType="ServiceView" EnableViewState="false"
-                        SelectMethod="GetServices" runat="server">
+                        SelectMethod="GetBpostServices" runat="server">
                         <ItemTemplate>
                             <tr>
                                 <td style="vertical-align: middle">
@@ -42,7 +42,30 @@
                                     <%# Item.GetSendPrice(Order).ToString("C", CultureInfo.CreateSpecificCulture("en-GB")) %>
                                     <br />
                                     <br />
-                                    <button class="btn btn-warning" name="order" value="<%#Item.Id %>" type="submit">购买</button>
+                                    <button class="btn btn-warning" name="order" value="<%#Item.Id %>" type="submit">购买</button>                                    
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <asp:Repeater ItemType="ServiceView" EnableViewState="false"
+                        SelectMethod="GetPFServices" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td style="vertical-align: middle">
+                                    <img src="<%# Item.PictureLink %>" style="float: left; min-height: 40px; max-width: 60px; margin-right: 3px" />
+                                    <%# Item.Name %>
+                                </td>
+                                <td>
+                                    <p>
+                                        <img src="<%# Item.DiscribePictureLink %>" width="350" height="78" />
+                                    </p>
+                                    <p><span style="font-size: small;"><%# Item.Discribe %></span></p>
+                                </td>                                                           
+                                <td style="vertical-align: middle">
+                                    <%# Item.GetSendPrice(Order).ToString("C", CultureInfo.CreateSpecificCulture("en-GB")) %>
+                                    <br />
+                                    <br />                                    
+                                    <span style="font-family:YouYuan">请联系客服</span>
                                 </td>
                             </tr>
                         </ItemTemplate>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Default" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Default" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" ViewStateEncryptionMode ="Never"%>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">

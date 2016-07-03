@@ -2,13 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>重设密码 | 诚信物流-可靠,快捷,实惠</title>
-   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="/static/css/mezzanine.css">
-
-    <link rel="stylesheet" href="/static/css/cartridge.css">
-
-    <link rel="stylesheet" href="/static/css/theme.css">
+  
     <script type="text/javascript" src="../../Scripts/jquery-1.8.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
