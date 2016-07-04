@@ -188,7 +188,7 @@
                 </div>
 
                 <div class="control-group">
-                    <label class="control-label" id="message" runat="server">
+                    <label class="control-label" id="message" runat="server" style="font-family:YouYuan;">
                         
                     </label>
                     

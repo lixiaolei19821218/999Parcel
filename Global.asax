@@ -2,13 +2,20 @@
 
 <script runat="server">
 
+    System.Timers.Timer myTimer;
+    string _999parcelBpost;
+    string ukmailBpost;
+    System.IO.StreamReader sr1, sr2;
+    
     void Application_Start(object sender, EventArgs e) 
     {
         // 在应用程序启动时运行的代码
         BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
         ASP.App_Start.NinjectWebCommon.Start();
 
-        System.Timers.Timer myTimer = new System.Timers.Timer(5000);
+        sr1 = new System.IO.StreamReader();
+
+        myTimer = new System.Timers.Timer(1000 * 60 * 10);
 
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
 
@@ -19,10 +26,95 @@
 
     void myTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
     {
-        
-
+        myTimer.Enabled = false;
+        GetNormalOrders();
+        myTimer.Enabled = true;
     }
     
+    public void GetNormalOrders()
+    {
+        UK_ExpressEntities entities = new UK_ExpressEntities();
+        var orders = from o in entities.Orders where (o.HasPaid ?? false) && (o.Service.Name.Contains("Bpost") && o.SuccessPaid.HasValue == false) select o;
+
+        if (orders.Count() != 0)
+        {
+            FtpWeb ftp = new FtpWeb("ftp://transfert.post.be/out", "999_parcels", "dkfoec36");
+            string[] allFiles = ftp.GetFileList("*.*");
+            if (allFiles != null)
+            {
+                foreach (Order order in orders)
+                {
+                    string path = HttpRuntime.AppDomainAppPath + "bpost_files/" + order.User;
+                    if (!System.IO.Directory.Exists(path))
+                    {
+                        System.IO.Directory.CreateDirectory(path);
+                    }
+                    string resultFile = string.Format("m2m_result_cn09320000_09320000_{0}.txt", order.Id.ToString().PadLeft(5, '0'));
+                    if (allFiles.Contains(resultFile))
+                    {
+                        ftp.Download(path, resultFile);
+                        string file = System.IO.Path.Combine(path, resultFile);
+                        if (!System.IO.File.Exists(file))
+                        {
+                            throw new Exception("从Bpost下载结果文件失败，请联系管理员。");
+                        }
+                        System.IO.StreamReader sr = new System.IO.StreamReader(file);
+                        string header = sr.ReadLine();
+                        string status = header.Split('|')[5];
+                        List<string> attachedFiles = new List<string>();
+
+                        if (status == "SUCCES")
+                        {
+                            foreach (Recipient r in order.Recipients)
+                            {
+                                foreach (Package p in r.Packages)
+                                {
+                                    string line = sr.ReadLine();
+                                    if (line.Contains("BB001"))
+                                    {
+                                        string s = line.Split('|')[2];
+                                        if (s == "OK")
+                                        {
+                                            p.Status = "SUCCESS";
+                                            p.Pdf = Bpost.GeneratePdf(p, line.Split('|')[1]);
+                                            attachedFiles.Add(HttpRuntime.AppDomainAppPath + p.Pdf);
+                                        }
+                                        else
+                                        {
+                                            p.Status = "FAIL";
+                                            p.Response = "Bpost returned a error message.";
+                                        }
+                                    }
+                                }
+                                r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");
+                            }
+                            order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid.Value);
+                        }
+                        else
+                        {
+                            order.SuccessPaid = false;
+                            foreach (Recipient r in order.Recipients)
+                            {
+                                r.SuccessPaid = false;
+                                foreach (Package p in r.Packages)
+                                {
+                                    p.Status = "FAIL";
+                                }
+                            }
+                        }
+                        sr.Close();
+                        if (order.SuccessPaid ?? false)
+                        {
+                            string email = string.IsNullOrWhiteSpace(order.SenderEmail) ? Membership.GetUser(order.User).Email : order.SenderEmail;
+                            EmailService.SendEmailAync(email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray());
+                        }
+                    }
+                }
+                entities.SaveChanges();                
+            }
+        }
+        entities.Dispose();        
+    }
     
     void Application_End(object sender, EventArgs e) 
     {

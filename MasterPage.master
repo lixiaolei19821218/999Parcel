@@ -193,7 +193,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul>
                         <li><a href="/contact-us/">联系我们</a></li>
                         <li><a href="/privacy_policy/">Privacy Policy</a></li>
-                        <li><a href="/faq/">常见问题</a></li>
+                        <!--<li><a href="/faq/">常见问题</a></li>-->
+                        <li><a href="/accounts/signup/Activate.aspx">激活账号</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-grid">

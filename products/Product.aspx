@@ -96,7 +96,7 @@
 
     
 
-    <form class="form-inline" id="tree" method="post" runat="server">
+    <form class="form-inline" id="tree" method="post" runat="server" autocomplete="on">
         <input type='hidden' name='csrfmiddlewaretoken' value='T6iXH4VfX4yjoqPS3DTyrvWjpPcrC7Za' />
         <input id="id_addr-TOTAL_FORMS" name="addr-TOTAL_FORMS" type="hidden" value="2" /><input id="id_addr-INITIAL_FORMS" name="addr-INITIAL_FORMS" type="hidden" value="0" /><input id="id_addr-MAX_NUM_FORMS" name="addr-MAX_NUM_FORMS" type="hidden" value="1000" />
         <input id="id_parcel-TOTAL_FORMS" name="parcel-TOTAL_FORMS" type="hidden" value="3" /><input id="id_parcel-INITIAL_FORMS" name="parcel-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-MAX_NUM_FORMS" name="parcel-MAX_NUM_FORMS" type="hidden" value="1000" />
@@ -181,7 +181,7 @@
 
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_city">城市</label>
-                                <input class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" value="<%:Order.SenderCity %>" required="required"/>
+                                <input autocomplete="on" class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" value="<%:Order.SenderCity %>" required="required"/>
 
 
 

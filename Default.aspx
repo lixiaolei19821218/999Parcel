@@ -120,7 +120,7 @@
                                             <div style="width: 85%; padding: 0px; float: left;">
                                                 <div class="row" style="display: inline-block; width: 100%; margin-top: -3px" title="重量不能超过30kg，长宽高分别不能大于105cm，长×宽×高÷5000不能大于30。">
                                                     <div class="attr col-xs-3 input1" style="padding: 10px; float: left;">
-                                                        <input id="id_addr_0-0-weight" name="addr_0-0-weight" placeholder="重量" type="number" max="30" min="1" style="width: 80px;" required="required" />(kg)
+                                                        <input autocomplete="on" id="id_addr_0-0-weight" name="addr_0-0-weight" placeholder="重量" type="number" max="30" min="1" style="width: 80px;" required="required" />(kg)
                                                     </div>
                                                     <div class="attr col-xs-3 input1" style="padding: 10px; float: left;">
                                                         <input id="id_addr_0-0-length" name="addr_0-0-length" placeholder="长度" type="number" max="105" min="1" style="width: 80px;" required="required" />(cm)

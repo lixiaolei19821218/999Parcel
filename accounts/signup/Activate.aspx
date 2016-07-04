@@ -1,21 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Recover.aspx.cs" Inherits="accounts_Recover" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Activate.aspx.cs" Inherits="accounts_signup_Activate" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <title>找回密码 | 诚信物流-可靠,快捷,实惠</title>
-   
-
-    
+    <title>激活账号 | 诚信物流-可靠,快捷,实惠</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
-
-
-
-    <div style="background-color: #fff; padding: 30px">
-        <fieldset>
+    <fieldset>
             <form method="post" runat="server">
-               <li style="font-family:YouYuan;">输入您的用户名，您将收到一封包含可点击的链接的邮件，在您的邮箱里点击该链接后可登录并修改密码。</li>
+                <br />
+               <li style="font-family:YouYuan;">如果您长时间没有收到激活账号的邮件，请在此处填写您注册时使用的用户名并点击激活按钮，系统重新发送一份邮件给您。</li>
                 <br />
                 <br />
                 <div class="control-group input_id_username">
@@ -23,7 +16,7 @@
                         用户名
                     </label>
                     <div class="controls">
-                        <input autofocus="" id="id_username" name="username" required="required" type="text" />
+                        <input autofocus="" id="username" name="username" required="required" type="text" runat="server" />
 
                         <span class="help-inline"></span>
 
@@ -39,11 +32,8 @@
 
 
                 <div class="form-actions">
-                    <asp:Button runat="server" ID="Reset" cssclass="btn btn-primary btn-large" type="submit" text="重置密码" OnClick="Reset_Click"/>
+                    <asp:Button runat="server" ID="Activate" OnClick="Activate_Click" cssclass="btn btn-primary btn-large" type="submit" text="激活" />
                 </div>
             </form>
         </fieldset>
-    </div>
-
-    
 </asp:Content>
