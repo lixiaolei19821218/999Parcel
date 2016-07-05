@@ -13,7 +13,12 @@
         BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
         ASP.App_Start.NinjectWebCommon.Start();
 
-        sr1 = new System.IO.StreamReader();
+        sr1 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/999BpostMail.html");
+        sr2 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/UKMailBpostMail.html");
+        _999parcelBpost = sr1.ReadToEnd();
+        ukmailBpost = sr2.ReadToEnd();
+        sr1.Close();
+        sr2.Close();
 
         myTimer = new System.Timers.Timer(1000 * 60 * 10);
 
@@ -106,7 +111,16 @@
                         if (order.SuccessPaid ?? false)
                         {
                             string email = string.IsNullOrWhiteSpace(order.SenderEmail) ? Membership.GetUser(order.User).Email : order.SenderEmail;
-                            EmailService.SendEmailAync(email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray());
+                            string content;
+                            if (order.Service.Name.Contains("UKMail"))
+                            {
+                                content = string.Format(ukmailBpost, order.UKMConsignmentNumber);
+                            }
+                            else
+                            {
+                                content = _999parcelBpost;
+                            }
+                            EmailService.SendEmailAync(email, "您在999Parcel的订单", _999parcelBpost, attachedFiles.ToArray());
                         }
                     }
                 }

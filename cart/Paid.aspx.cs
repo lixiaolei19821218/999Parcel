@@ -42,6 +42,7 @@ public partial class cart_Paid : System.Web.UI.Page
     public IEnumerable<Order> GetNormalOrders()
     {
         var orders = from o in repo.Orders where o.User == username && (o.HasPaid ?? false) select o;
+        var o0 = orders.Last();
         return orders;
         if (!orders.All(o => o.SuccessPaid.HasValue))
         {

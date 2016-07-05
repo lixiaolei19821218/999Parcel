@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Default : System.Web.UI.Page
 {
-    //[Ninject.Inject]
-    //public IRepository repo { get; set; }
+    [Ninject.Inject]
+    public IRepository repo { get; set; }
 
     private Order order = new Order();
 
@@ -22,7 +22,7 @@ public partial class Default : System.Web.UI.Page
     }
 
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {        
         if (Request.Form["btnQuery"] != null)
         {
             string number = Request.Form["txtTraceNumber"];
