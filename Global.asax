@@ -1,4 +1,5 @@
 ﻿<%@ Application Language="C#" %>
+<%@ Import Namespace="System.IO" %>
 
 <script runat="server">
 
@@ -114,7 +115,9 @@
                             string content;
                             if (order.Service.Name.Contains("UKMail"))
                             {
-                                content = string.Format(ukmailBpost, order.UKMConsignmentNumber);
+                                //写入UK Mail取件号
+                                string[] v = ukmailBpost.Split(new string[] { "UKMAIL_NUMBER" }, StringSplitOptions.None);
+                                content = v[0] + order.UKMConsignmentNumber + v[1] + order.UKMConsignmentNumber + v[2];                       
                             }
                             else
                             {
