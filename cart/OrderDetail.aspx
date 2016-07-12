@@ -13,6 +13,15 @@
     });
 });
     </script>
+    <style type="text/css">
+        a {
+            font-size: medium;
+        }
+
+        #welcomeDiv {
+            font-size: medium;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">

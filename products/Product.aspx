@@ -224,7 +224,7 @@
                                 <div style="float: left; margin: 5px" class="control-group ">
                                     <label for="id_pickup_time_0">日期</label>
                                     <div class="input-append date form_datetime">
-                                        <input class="input-medium" foo_bar="prevent_readonly" id="id_pickup_time_0" name="pickup_time_0" type="text" value="<%:Order.PickupTime.HasValue ? Order.PickupTime.Value.ToShortDateString() : null %>"  required="required"/>
+                                        <input readonly="true" class="input-medium" foo_bar="prevent_readonly" id="id_pickup_time_0" name="pickup_time_0" type="text" value="<%:Order.PickupTime.HasValue ? Order.PickupTime.Value.ToShortDateString() : null %>"  required="required"/>
                                         <span id="sp" class="add-on"><i class="icon-th"></i></span>
                                     </div>                                   
                                 </div>
