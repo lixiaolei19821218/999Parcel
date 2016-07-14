@@ -7,6 +7,7 @@
     string _999parcelBpost;
     string ukmailBpost;
     System.IO.StreamReader sr1, sr2;
+    UK_ExpressEntities entities = new UK_ExpressEntities();
     
     void Application_Start(object sender, EventArgs e) 
     {
@@ -21,7 +22,7 @@
         sr1.Close();
         sr2.Close();
 
-        myTimer = new System.Timers.Timer(1000 * 60 * 10);
+        myTimer = new System.Timers.Timer(1000);
 
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
 
@@ -38,8 +39,7 @@
     }
     
     public void GetNormalOrders()
-    {
-        UK_ExpressEntities entities = new UK_ExpressEntities();
+    {     
         var orders = from o in entities.Orders where (o.HasPaid ?? false) && (o.Service.Name.Contains("Bpost") && o.SuccessPaid.HasValue == false) select o;
 
         if (orders.Count() != 0)
@@ -130,7 +130,7 @@
                 entities.SaveChanges();                
             }
         }
-        entities.Dispose();        
+        //entities.Dispose();        
     }
     
     void Application_End(object sender, EventArgs e) 
