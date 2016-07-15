@@ -11,6 +11,10 @@ using System.Web.UI.WebControls;
 
 public partial class cart_Paid : System.Web.UI.Page
 {
+    System.IO.StreamReader sr1, sr2;
+    string _999parcelBpost;
+    string ukmailBpost;
+
     private int pageSize = 20;
 
     private IEnumerable<Order> normalOrders;
@@ -35,7 +39,14 @@ public partial class cart_Paid : System.Web.UI.Page
             apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
             normalOrders = GetNormalOrders();
             balance = apUser.Balance;
-            //totalPrice = normalOrders.Sum(o => o.Cost.Value);          
+            //totalPrice = normalOrders.Sum(o => o.Cost.Value);  
+
+            sr1 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/999BpostMail.html");
+            sr2 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/UKMailBpostMail.html");
+            _999parcelBpost = sr1.ReadToEnd();
+            ukmailBpost = sr2.ReadToEnd();
+            sr1.Close();
+            sr2.Close();
         }
     }
 
@@ -114,8 +125,19 @@ public partial class cart_Paid : System.Web.UI.Page
                         sr.Close();
                         if (order.SuccessPaid ?? false)
                         {
-                            string email = string.IsNullOrWhiteSpace(order.SenderEmail) ? Membership.GetUser().Email : order.SenderEmail;
-                            EmailService.SendEmailAync(email, "您在999Parcel的订单", "请查收您在999Parcel的订单。", attachedFiles.ToArray());
+                            string email = string.IsNullOrWhiteSpace(order.SenderEmail) ? Membership.GetUser(order.User).Email : order.SenderEmail;
+                            string content;
+                            if (order.Service.Name.Contains("UKMail"))
+                            {
+                                //写入UK Mail取件号
+                                string[] v = ukmailBpost.Split(new string[] { "UKMAIL_NUMBER" }, StringSplitOptions.None);
+                                content = v[0] + order.UKMConsignmentNumber + v[1] + order.UKMConsignmentNumber + v[2];
+                            }
+                            else
+                            {
+                                content = _999parcelBpost;
+                            }
+                            EmailService.SendEmailAync(email, "您在999Parcel的订单", _999parcelBpost, attachedFiles.ToArray());
                         }
                     }
                 }

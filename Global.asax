@@ -22,7 +22,7 @@
         sr1.Close();
         sr2.Close();
 
-        myTimer = new System.Timers.Timer(1000);
+        myTimer = new System.Timers.Timer(1000 * 60 * 5);
 
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
 
