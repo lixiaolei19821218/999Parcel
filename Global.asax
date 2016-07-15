@@ -123,7 +123,7 @@
                             {
                                 content = _999parcelBpost;
                             }
-                            EmailService.SendEmailAync(email, "您在999Parcel的订单", _999parcelBpost, attachedFiles.ToArray());
+                            EmailService.SendEmailAync(email, "您在999Parcel的订单", content, attachedFiles.ToArray());
                         }
                     }
                 }

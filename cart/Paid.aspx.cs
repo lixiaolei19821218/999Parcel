@@ -39,19 +39,19 @@ public partial class cart_Paid : System.Web.UI.Page
             apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
             normalOrders = GetNormalOrders();
             balance = apUser.Balance;
-            //totalPrice = normalOrders.Sum(o => o.Cost.Value);  
-
-            sr1 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/999BpostMail.html");
-            sr2 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/UKMailBpostMail.html");
-            _999parcelBpost = sr1.ReadToEnd();
-            ukmailBpost = sr2.ReadToEnd();
-            sr1.Close();
-            sr2.Close();
+            //totalPrice = normalOrders.Sum(o => o.Cost.Value);             
         }
     }
 
     public IEnumerable<Order> GetNormalOrders()
     {
+        sr1 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/999BpostMail.html");
+        sr2 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/UKMailBpostMail.html");
+        _999parcelBpost = sr1.ReadToEnd();
+        ukmailBpost = sr2.ReadToEnd();
+        sr1.Close();
+        sr2.Close();
+      
         var orders = from o in repo.Orders where o.User == username && (o.HasPaid ?? false) select o;
         //var o0 = orders.Last();
         //return orders;
@@ -137,7 +137,7 @@ public partial class cart_Paid : System.Web.UI.Page
                             {
                                 content = _999parcelBpost;
                             }
-                            EmailService.SendEmailAync(email, "您在999Parcel的订单", _999parcelBpost, attachedFiles.ToArray());
+                            EmailService.SendEmailAync(email, "您在999Parcel的订单", content, attachedFiles.ToArray());
                         }
                     }
                 }
