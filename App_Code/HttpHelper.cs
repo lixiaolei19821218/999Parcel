@@ -14,7 +14,7 @@ public static class HttpHelper
 
 
 
-    public static string HttpPost(string Url, string postDataStr)
+    public static string HttpPost(string postUrl, string postData)
     {
         Stream outstream = null;
         Stream instream = null;
@@ -27,7 +27,7 @@ public static class HttpHelper
         try
         {
             // 设置参数  
-            request = WebRequest.Create(posturl) as HttpWebRequest;
+            request = WebRequest.Create(postUrl) as HttpWebRequest;
             CookieContainer cookieContainer = new CookieContainer();
             request.CookieContainer = cookieContainer;
             request.AllowAutoRedirect = true;
