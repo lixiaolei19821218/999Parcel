@@ -25,7 +25,7 @@
 
                 <tbody>
                     <asp:Repeater ItemType="ServiceView" EnableViewState="false"
-                        SelectMethod="GetBpostServices" runat="server">
+                        SelectMethod="GetBpostAnd4PXServices" runat="server">
                         <ItemTemplate>
                             <tr>
                                 <td style="vertical-align: middle">
@@ -70,6 +70,7 @@
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
+                    
                 </tbody>
             </table>
         </form>

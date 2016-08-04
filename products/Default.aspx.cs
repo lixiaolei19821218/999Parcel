@@ -39,7 +39,7 @@ public partial class product_Default : System.Web.UI.Page
         List<ServiceView> svs = new List<ServiceView>();
 
         //去掉荷兰邮政
-        foreach (Service s in repo.Services.Where(s => s.Name.Contains("Bpost") || s.Name.Contains("Parcelforce")))
+        foreach (Service s in repo.Services.Where(s => s.Name.Contains("Bpost") || s.Name.Contains("Parcelforce") || s.Name.Contains("杂物包税专线")))
         {            
             svs.Add(new ServiceView(s));
         }
@@ -47,11 +47,11 @@ public partial class product_Default : System.Web.UI.Page
         return svs.OrderBy(s => s.PriceListID);
     }
 
-    public IEnumerable<ServiceView> GetBpostServices()
+    public IEnumerable<ServiceView> GetBpostAnd4PXServices()
     {
         List<ServiceView> svs = new List<ServiceView>();
-        
-        foreach (Service s in repo.Services.Where(s => s.Name.Contains("Bpost") && !s.Name.Contains("DPD")))
+
+        foreach (Service s in repo.Services.Where(s => (s.Name.Contains("Bpost") && !s.Name.Contains("DPD") || s.Name.Contains("杂物包税专线"))))
         {
             svs.Add(new ServiceView(s));
         }
@@ -64,6 +64,18 @@ public partial class product_Default : System.Web.UI.Page
         List<ServiceView> svs = new List<ServiceView>();
         
         foreach (Service s in repo.Services.Where(s => s.Name.Contains("Parcelforce")))
+        {
+            svs.Add(new ServiceView(s));
+        }
+
+        return svs.OrderBy(s => s.PriceListID);
+    }
+
+    public IEnumerable<ServiceView> Get4PXServices()
+    {
+        List<ServiceView> svs = new List<ServiceView>();
+
+        foreach (Service s in repo.Services.Where(s => s.Name.Contains("杂物包税专线")))
         {
             svs.Add(new ServiceView(s));
         }

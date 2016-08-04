@@ -56,7 +56,7 @@ public static class HttpHelper
 
 
 
-    public string HttpGet(string Url, string postDataStr)
+    public static string HttpGet(string Url, string postDataStr)
     {
 
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);

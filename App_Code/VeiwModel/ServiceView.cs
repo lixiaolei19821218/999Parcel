@@ -161,6 +161,18 @@ public class ServiceView
             case 36://Bpost - 自送仓库
                 price = 0m;
                 break;
+            case 46:
+                price = 0m;
+                break;
+            case 48:
+                price = decimal.Parse(ConfigurationManager.AppSettings["_999ParcelChargePrice"]);
+                break;
+            case 49:
+                price = 0m;
+                break;
+            case 50:
+                price = decimal.Parse(ConfigurationManager.AppSettings["_999ParcelChargePrice"]);
+                break;
             default:
                 price = 0m;
                 break;
