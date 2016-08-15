@@ -244,6 +244,8 @@ public partial class cart_Cart : System.Web.UI.Page
                         SendBpostLciFile(o);
                     }
                     break;
+                case "杂物包税专线（100镑以内） - 自送仓库":
+                    break;
                 default:
                     break;
             }
@@ -388,6 +390,11 @@ public partial class cart_Cart : System.Web.UI.Page
 
             o.HasPaid = true;
         }
+    }
+
+    private void SendTo4PX(Order order)
+    {
+
     }
     
     protected void pay_Click(object sender, EventArgs e)

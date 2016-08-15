@@ -141,6 +141,12 @@ public partial class PriceList
     public virtual ICollection<Order> Orders { get; set; }
 }
 
+public partial class Rank3Types
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
 public partial class RechargeApply
 {
     public int Id { get; set; }
@@ -191,6 +197,7 @@ public partial class Recipient
     public string PyCity { get; set; }
     public string PyAddress { get; set; }
     public string Email { get; set; }
+    public string IDNumber { get; set; }
 
     public virtual Order Order { get; set; }
     public virtual ICollection<Package> Packages { get; set; }

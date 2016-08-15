@@ -94,8 +94,7 @@
                 dataType: "json",
                 success: function (data) {
                     //返回的数据用data.d获取内容       
-                    $(data.d).each(function () {
-                        $(".item_detail").empty();
+                    $(data.d).each(function () {                        
                         $(".item_detail").append("<option>" + this + "</option>");
                     });
                 },
@@ -107,7 +106,8 @@
         
         $(function () {
             var service = '<%:ServiceView.Name%>';
-            if (service == "杂物保税"){
+            if (service.indexOf("杂物包税") != -1) {
+                $('.item_detail').empty();
                 $('.item_detail').load(loadItems());
             }
         });
@@ -350,7 +350,7 @@
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id-0-idnum" maxlength="18" name="idnum" style="width: 218px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-0-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("杂物包税") ? "" :  "required=\"required\""%>/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >

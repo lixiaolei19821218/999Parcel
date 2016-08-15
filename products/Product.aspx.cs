@@ -187,7 +187,7 @@ public partial class products_Product : System.Web.UI.Page
         order.SenderAddress2 = Request.Form.Get("billing_detail_street2").Trim();
         order.SenderAddress3 = Request.Form.Get("billing_detail_street3").Trim();
         order.SenderZipCode = Request.Form.Get("billing_detail_postcode").Trim();
-        order.SenderEmail = Request.Form.Get("id_billing_detail_email").Trim();
+        order.SenderEmail = Request.Form.Get("id_billing_detail_email").Trim();        
 
         List<Recipient> recipientList = order.Recipients.ToList();
         for (int i = 0; i < recipientList.Count; i++)
@@ -201,6 +201,7 @@ public partial class products_Product : System.Web.UI.Page
             recipient.PyName = Request.Form.Get(string.Format("hd_name{0}", i)).Trim();
             recipient.PyCity = Request.Form.Get(string.Format("hd_city{0}", i)).Trim();
             recipient.PyAddress = Request.Form.Get(string.Format("hd_street{0}", i)).Trim();
+            recipient.IDNumber = Request.Form.Get(string.Format("addr-0-idnumber", i)).Trim();
             if (recipient.PyAddress.Length > 72)
             {
                 return string.Format("收件人{0}的拼音地址超出72个字符", recipient.Name);
@@ -342,10 +343,10 @@ public partial class products_Product : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static List<string> GetItems()
+    public static IEnumerable<string> GetItems()
     {
-        List<string> items = new List<string>();
-        items.Add("111");
-        return items;
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+        var t = repo.Rank3Types.Select(r => r.Name).ToList();
+        return repo.Rank3Types.Select(r => r.Name);
     }
 }
