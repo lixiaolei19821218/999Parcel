@@ -7,7 +7,7 @@
      <%: System.Web.Optimization.Scripts.Render("~/bundle/jquery") %>
     
      
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("button").click(function (e) {
                 var inputElem = $("#Name")[0];
@@ -22,6 +22,8 @@
             });
 
         });
+
+
     </script>
 
     <link rel="stylesheet" href="/static/jquery-ui-1.11/jquery-ui.min.css">
@@ -65,6 +67,7 @@
     
     <link rel="stylesheet" href="/static/css/guofan.css"/>
 
+    <script type="text/javascript" src="../Scripts/jquery-1.8.0.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -79,6 +82,37 @@
             if (Sys.ie && parseFloat(Sys.ie) < 9)
                 $('.check-br-ver').html('<div style="color:#f00;text-align:center">你的浏览器版本太低，请使用IE9.0以上版本，Google Chrome或者Firefox浏览器。</div>');
         });
+
+        function loadItems() {         
+            $.ajax({
+                //要用post方式       
+                type: "Post",
+                //方法所在页面和方法名       
+                url: "Product.aspx/GetItems",
+                data: "{ 'id': '1' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    //返回的数据用data.d获取内容       
+                    $(data.d).each(function () {
+                        $(".item_detail").empty();
+                        $(".item_detail").append("<option>" + this + "</option>");
+                    });
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        }
+        
+        $(function () {
+            var service = '<%:ServiceView.Name%>';
+            if (service == "杂物保税"){
+                $('.item_detail').load(loadItems());
+            }
+        });
+        
+        
     </script>
 
    
@@ -313,10 +347,10 @@
                                             <input id="id_addr-0-phone" maxlength="11" name="addr-0-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
                                         </div>
                                     </div>      
-                                     <div style="margin-left: 26px; float: left">
+                                     <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
-                                            <label for="id_addr-0-id">身份证号</label>
-                                            <input id="id_addr-0-id" maxlength="18" name="addr-0-id" style="width: 218px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
+                                            <label for="id_idnum">身份证号</label>
+                                            <input id="id-0-idnum" maxlength="18" name="idnum" style="width: 218px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
@@ -392,7 +426,7 @@
                                                 <input id="id_parcel-0-id" name="parcel-0-id" type="hidden" />
                                                 <div class="rds2" style="padding-top: 10px; background-color: #E0EDF4; border: 1px solid #ddd; padding-bottom:20px;">
                                                     <div class="ib">
-                                                        <div class="pd7 bold" style="visibility:<%:GetVisible2()%>;">重量/尺寸</div>
+                                                        <div class="pd7 bold" >重量/尺寸</div>
                                                         <div class="ib pd7">
                                                             重量(kg)
                                                             <div style="text-align:center">                                                                
@@ -418,7 +452,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="ib" style="margin-left: 10px; visibility:<%:GetVisible2()%>;">
+                                                    <div class="ib" style="margin-left: 10px;">
                                                         <div>
                                                             <div class="ib pd7 bold">包裹明细</div>
 
@@ -436,7 +470,7 @@
                                                                     <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
                                                                     <div class="ib mx_type">
                                                                         
-                                                                    <select class="item_detail" id="Select2" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:100px;height:23px;">
+                                                                    <select class="item_detail" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:160px;height:23px;">
                                                                             <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
                                                                             <option value="Baby Food">婴儿食品</option>
                                                                             <option value="Adult Milk Powder">成人奶粉</option>
@@ -507,184 +541,7 @@
 
                                                         <input id="Hidden1" name="parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" type="hidden" value="<%#Item.PackageItems.Count %>" /><input id="Hidden2" name="parcel-0-content-INITIAL_FORMS" type="hidden" value="0" /><input id="Hidden3" name="parcel-0-content-MAX_NUM_FORMS" type="hidden" value="1000" />
                                                     </div>
-                                                    <div class="ib" style="margin-left: 10px; visibility:<%:GetVisible1()%>;">
-                                                        <div>
-                                                            <div class="ib pd7 bold">包裹明细</div>
-
-                                                            <div class="ib pd7 bold" style="margin-left: 128px;">
-                                                                总额(£):
-                                        <span class="mx_total"></span>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <!-- parcel content details -->
-                                                        <asp:Repeater runat="server" DataSource="<%#Item.PackageItems %>" ItemType="PackageItem">
-                                                            <ItemTemplate>
-                                                                <div class="mx">
-                                                                    <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
-                                                                    <div class="ib mx_type">
-                                                                        <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:100px;height:23px;">
-                                                                            <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
-                                                                            <option value="Baby Food">婴儿食品</option>
-                                                                            <option value="Adult Milk Powder">成人奶粉</option>
-                                                                            <option value="Strollers">婴儿推车</option>
-                                                                            <option value="Baby Car Seats">安全座椅</option>
-                                                                            <option value="Baby Product">婴儿用品</option>
-                                                                            <option value="Food">食品</option>
-                                                                            <option value="Health Care">保健品</option>
-                                                                            <option value="Clothing">服装服饰</option>
-                                                                            <option value="Accessories">服饰配件</option>
-                                                                            <option value="Bag">箱包</option>
-                                                                            <option value="Shoes">鞋靴</option>
-                                                                            <option value="Watches">钟表</option>
-                                                                            <option value="Watch Accessories">钟表配件</option>
-                                                                            <option value="Cosmetic">化妆品</option>
-                                                                            <option value="Skincare">护肤品</option>
-                                                                            <option value="Toiletries">洗漱用品</option>
-                                                                            <option value="Kitchen Cleaning Supplies">厨卫清洁用品</option>
-                                                                            <option value="Electric Products">小家电（含游戏机等）</option>
-                                                                            <option value="Home Medical Equipment">家用医疗用品</option>
-                                                                            <option value="Beauty Apparatus">美容保健器材</option>
-                                                                            <option value="Visual Equipment">影音设备</option>
-                                                                            <option value="Mobile Phones and Devices">手机和移动设备</option>
-                                                                            <option value="Mobile Phones and Devices Accessories">手机和移动设备配件</option>
-                                                                            <option value="Computer">计算机</option>
-                                                                            <option value="Computer Peripherals">计算机外围设备</option>
-                                                                            <option value="Books and Newspapers">书报、刊物</option>
-                                                                            <option value="Impact products">音响制品（唱片、影片等）</option>
-                                                                            <option value="Stationary">文具</option>
-                                                                            <option value="Toys">玩具</option>
-                                                                            <option value="Educational Supplies">教育用品</option>
-                                                                            <option value="Sporting Goods">体育用品</option>
-                                                                            <option value="Outdoor Product">户外用品</option>
-                                                                            <option value="Stamp">邮票</option>
-                                                                            <option value="Musical Instruments">乐器</option>
-                                                                            <option value="Tea">茶包</option>
-                                                                            <option value="汽车配件">汽车配件</option>
-                                                                            <option value="个人行李 - 旧箱包">个人行李 - 旧箱包</option>
-                                                                            <option value="个人行李 - 旧文具">个人行李 - 旧文具</option>
-                                                                            <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
-                                                                            <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
-                                                                            <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
-                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
-                                                                        </select>
-                                                                       <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:100px;height:23px;">
-                                                                            <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
-                                                                            <option value="Baby Food">婴儿食品</option>
-                                                                            <option value="Adult Milk Powder">成人奶粉</option>
-                                                                            <option value="Strollers">婴儿推车</option>
-                                                                            <option value="Baby Car Seats">安全座椅</option>
-                                                                            <option value="Baby Product">婴儿用品</option>
-                                                                            <option value="Food">食品</option>
-                                                                            <option value="Health Care">保健品</option>
-                                                                            <option value="Clothing">服装服饰</option>
-                                                                            <option value="Accessories">服饰配件</option>
-                                                                            <option value="Bag">箱包</option>
-                                                                            <option value="Shoes">鞋靴</option>
-                                                                            <option value="Watches">钟表</option>
-                                                                            <option value="Watch Accessories">钟表配件</option>
-                                                                            <option value="Cosmetic">化妆品</option>
-                                                                            <option value="Skincare">护肤品</option>
-                                                                            <option value="Toiletries">洗漱用品</option>
-                                                                            <option value="Kitchen Cleaning Supplies">厨卫清洁用品</option>
-                                                                            <option value="Electric Products">小家电（含游戏机等）</option>
-                                                                            <option value="Home Medical Equipment">家用医疗用品</option>
-                                                                            <option value="Beauty Apparatus">美容保健器材</option>
-                                                                            <option value="Visual Equipment">影音设备</option>
-                                                                            <option value="Mobile Phones and Devices">手机和移动设备</option>
-                                                                            <option value="Mobile Phones and Devices Accessories">手机和移动设备配件</option>
-                                                                            <option value="Computer">计算机</option>
-                                                                            <option value="Computer Peripherals">计算机外围设备</option>
-                                                                            <option value="Books and Newspapers">书报、刊物</option>
-                                                                            <option value="Impact products">音响制品（唱片、影片等）</option>
-                                                                            <option value="Stationary">文具</option>
-                                                                            <option value="Toys">玩具</option>
-                                                                            <option value="Educational Supplies">教育用品</option>
-                                                                            <option value="Sporting Goods">体育用品</option>
-                                                                            <option value="Outdoor Product">户外用品</option>
-                                                                            <option value="Stamp">邮票</option>
-                                                                            <option value="Musical Instruments">乐器</option>
-                                                                            <option value="Tea">茶包</option>
-                                                                            <option value="汽车配件">汽车配件</option>
-                                                                            <option value="个人行李 - 旧箱包">个人行李 - 旧箱包</option>
-                                                                            <option value="个人行李 - 旧文具">个人行李 - 旧文具</option>
-                                                                            <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
-                                                                            <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
-                                                                            <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
-                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
-                                                                        </select>
-                                                                    <select class="item_detail" id="id_parcel-0-content-<%#Container.ItemIndex %>-type" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:100px;height:23px;">
-                                                                            <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
-                                                                            <option value="Baby Food">婴儿食品</option>
-                                                                            <option value="Adult Milk Powder">成人奶粉</option>
-                                                                            <option value="Strollers">婴儿推车</option>
-                                                                            <option value="Baby Car Seats">安全座椅</option>
-                                                                            <option value="Baby Product">婴儿用品</option>
-                                                                            <option value="Food">食品</option>
-                                                                            <option value="Health Care">保健品</option>
-                                                                            <option value="Clothing">服装服饰</option>
-                                                                            <option value="Accessories">服饰配件</option>
-                                                                            <option value="Bag">箱包</option>
-                                                                            <option value="Shoes">鞋靴</option>
-                                                                            <option value="Watches">钟表</option>
-                                                                            <option value="Watch Accessories">钟表配件</option>
-                                                                            <option value="Cosmetic">化妆品</option>
-                                                                            <option value="Skincare">护肤品</option>
-                                                                            <option value="Toiletries">洗漱用品</option>
-                                                                            <option value="Kitchen Cleaning Supplies">厨卫清洁用品</option>
-                                                                            <option value="Electric Products">小家电（含游戏机等）</option>
-                                                                            <option value="Home Medical Equipment">家用医疗用品</option>
-                                                                            <option value="Beauty Apparatus">美容保健器材</option>
-                                                                            <option value="Visual Equipment">影音设备</option>
-                                                                            <option value="Mobile Phones and Devices">手机和移动设备</option>
-                                                                            <option value="Mobile Phones and Devices Accessories">手机和移动设备配件</option>
-                                                                            <option value="Computer">计算机</option>
-                                                                            <option value="Computer Peripherals">计算机外围设备</option>
-                                                                            <option value="Books and Newspapers">书报、刊物</option>
-                                                                            <option value="Impact products">音响制品（唱片、影片等）</option>
-                                                                            <option value="Stationary">文具</option>
-                                                                            <option value="Toys">玩具</option>
-                                                                            <option value="Educational Supplies">教育用品</option>
-                                                                            <option value="Sporting Goods">体育用品</option>
-                                                                            <option value="Outdoor Product">户外用品</option>
-                                                                            <option value="Stamp">邮票</option>
-                                                                            <option value="Musical Instruments">乐器</option>
-                                                                            <option value="Tea">茶包</option>
-                                                                            <option value="汽车配件">汽车配件</option>
-                                                                            <option value="个人行李 - 旧箱包">个人行李 - 旧箱包</option>
-                                                                            <option value="个人行李 - 旧文具">个人行李 - 旧文具</option>
-                                                                            <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
-                                                                            <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
-                                                                            <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
-                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
-                                                                        </select>
-                                                                    </div>
-
-
-                                                                    <div class="ib mx_quantity mx_cal">
-                                                                        数量:
-                                                               <input id="id_parcel-0--content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
-
-                                                                    </div>
-
-                                                                    <div class="ib mx_cost mx_cal">
-                                                                        单价(£):
-                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
-                                                                    </div>
-
-                                                                    <div class="ib">
-                                                                        <button style="border: 1px solid #ddd; background: none" class="btn add_mx btn_mx" type="button" title="添加包裹明细"><i class="icon-plus icon-white"></i></button>
-                                                                    </div>
-                                                                    <div class="ib">
-                                                                        <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
-                                                                    </div>
-                                                                </div>
-                                                            </ItemTemplate>
-                                                        </asp:Repeater>
-
-                                                        <input id="id_parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" name="parcel-<%#Container.ItemIndex %>-content-TOTAL_FORMS" type="hidden" value="<%#Item.PackageItems.Count %>" /><input id="id_parcel-0-content-INITIAL_FORMS" name="parcel-0-content-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-0-content-MAX_NUM_FORMS" name="parcel-0-content-MAX_NUM_FORMS" type="hidden" value="1000" />
-                                                    </div>
+                                                    
                                             </li>
                                         </ItemTemplate>
                                     </asp:Repeater>

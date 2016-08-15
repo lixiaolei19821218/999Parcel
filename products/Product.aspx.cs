@@ -46,8 +46,8 @@ public partial class products_Product : System.Web.UI.Page
         {
             pfuk.Visible = false;
             _999parcel.Visible = true;            
-        }       
-    }
+        }     
+    }   
 
     public IEnumerable<Recipient> GetRecipients()
     {
@@ -78,7 +78,7 @@ public partial class products_Product : System.Web.UI.Page
                 order.User = Membership.GetUser().UserName;
                 order.OrderTime = DateTime.Now;
                 order.Cost = sv.GetSendPrice(order);
-                repo.Context.Orders.Add(order);             
+                repo.Context.Orders.Add(order);        
             }
             else
             {
@@ -339,5 +339,13 @@ public partial class products_Product : System.Web.UI.Page
         }
         sb.Remove(sb.Length - 1, 1);
         return sb.ToString();
+    }
+
+    [WebMethod]
+    public static List<string> GetItems()
+    {
+        List<string> items = new List<string>();
+        items.Add("111");
+        return items;
     }
 }
