@@ -302,7 +302,7 @@
                                 <input id="id_addr-0-id" name="addr-0-id" type="hidden" />
                                 <!-- recipient address -->
                                 <div style="padding-top: 10px"> 
-                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px">
+                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px" <%:ServiceView.Name.Contains("杂物包税") ? "hidden=\"hidden\"" : "" %>>
                                         <div style="float: left; width: 162px; padding-left: 60px" id="py_name<%#Container.ItemIndex %>"><%#Item.PyName %></div><input type="hidden" value="<%#Item.PyName %>" name="hd_name<%#Container.ItemIndex %>" id="hd_name<%#Container.ItemIndex %>"></input>
                                         <div style="float: left; width: 162px; padding-left: 28px" id="py_city<%#Container.ItemIndex %>"><%#Item.PyCity %></div><input type="hidden" value="<%#Item.PyCity %>" name="hd_city<%#Container.ItemIndex %>" id="hd_city<%#Container.ItemIndex %>"></input>
                                         <div style="margin-left: 324px; margin-right: 38px" id="py_street<%#Container.ItemIndex %>"><%#Item.PyAddress %></div><input type="hidden" value="<%#Item.PyAddress %>" name="hd_street<%#Container.ItemIndex %>" id="hd_street<%#Container.ItemIndex %>"></input>
@@ -317,12 +317,20 @@
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;"/>
                                     </div>
+                                    <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                        <label for="id_addr-0-cn_province">中文省份</label>
+                                        <input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%> />
+                                    </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_city">中文城市</label>
                                         <input class="cn_fields cn_city" id="id_addr-0-cn_city" maxlength="24" name="addr-0-cn_city" style="width: 60px" type="text" value="<%#Item.City %>" required="required" 
                                             onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"/>
+                                    </div>
+                                    <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                        <label for="id_addr-0-cn_district">中文区/县</label>
+                                        <input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%> />
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_street">中文地址</label>
@@ -350,7 +358,7 @@
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-0-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("杂物包税") ? "" :  "required=\"required\""%>/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-0-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%>/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
@@ -902,55 +910,58 @@
 
 
             $('#root').on('keyup change', '.cn_fields', function () {
-                var $this = $(this);
-                var $addr_item = $this.closest('.addrItem');
-                if ($this.data('timer'))
-                    clearTimeout($this.data('timer'));
-                var func = function (s) {
-                    $addr_item.find('.py_fields').show();
-                    if ($this.hasClass('cn_name')) {
-                        if (s == '')
-                            $addr_item.find('.py_name').html('&nbsp;');
-                        else
-                            $addr_item.find('.py_name').html(s);
-                        $addr_item.find('.en_name').val(s);
-                    }
-                    if ($this.hasClass('cn_city')) {
-                        var arr = smart_split(s, 24);
-                        if (arr[1] == '')
-                            $addr_item.find('.py_city').html(arr[0]);
-                        else
-                            $addr_item.find('.py_city').html(arr[0] + ' <span style="color:#f00">(字太多截断了请缩短中文城市)</span>');
-                        $addr_item.find('.en_city').val(arr[0]);
-                    }
-                    if ($this.hasClass('cn_street')) {
-                        var arr = smart_split(s, 24);
-                        if (arr[3] == '')
-                            $addr_item.find('.py_street').html(arr[0] + ' ' + arr[1] + ' ' + arr[2]);
-                        else
-                            $addr_item.find('.py_street').html(arr[0] + ' ' + arr[1] + ' ' + arr[2] + ' <span style="color:#f00">(字太多截断了请缩短中文地址)</span>');
-                        $addr_item.find('.en_street').val(arr[0]);
-                        $addr_item.find('.en_street2').val(arr[1]);
-                        $addr_item.find('.en_street3').val(arr[2]);
-                    }
-                };
-                var val = $.trim($this.val());
+                var serivce = '<%:ServiceView.Name%>';
+                if (service.indexOf("杂物包税") == -1) {
+                    var $this = $(this);
+                    var $addr_item = $this.closest('.addrItem');
+                    if ($this.data('timer'))
+                        clearTimeout($this.data('timer'));
+                    var func = function (s) {
+                        $addr_item.find('.py_fields').show();
+                        if ($this.hasClass('cn_name')) {
+                            if (s == '')
+                                $addr_item.find('.py_name').html('&nbsp;');
+                            else
+                                $addr_item.find('.py_name').html(s);
+                            $addr_item.find('.en_name').val(s);
+                        }
+                        if ($this.hasClass('cn_city')) {
+                            var arr = smart_split(s, 24);
+                            if (arr[1] == '')
+                                $addr_item.find('.py_city').html(arr[0]);
+                            else
+                                $addr_item.find('.py_city').html(arr[0] + ' <span style="color:#f00">(字太多截断了请缩短中文城市)</span>');
+                            $addr_item.find('.en_city').val(arr[0]);
+                        }
+                        if ($this.hasClass('cn_street')) {
+                            var arr = smart_split(s, 24);
+                            if (arr[3] == '')
+                                $addr_item.find('.py_street').html(arr[0] + ' ' + arr[1] + ' ' + arr[2]);
+                            else
+                                $addr_item.find('.py_street').html(arr[0] + ' ' + arr[1] + ' ' + arr[2] + ' <span style="color:#f00">(字太多截断了请缩短中文地址)</span>');
+                            $addr_item.find('.en_street').val(arr[0]);
+                            $addr_item.find('.en_street2').val(arr[1]);
+                            $addr_item.find('.en_street3').val(arr[2]);
+                        }
+                    };
+                    var val = $.trim($this.val());
 
-                if ($this.hasClass('cn_name'))
-                    $addr_item.find('.cn_name_en').html(val);
-                if ($this.hasClass('cn_city'))
-                    $addr_item.find('.cn_city_en').html(val);
-                if ($this.hasClass('cn_street'))
-                    $addr_item.find('.cn_street_en').html(val);
+                    if ($this.hasClass('cn_name'))
+                        $addr_item.find('.cn_name_en').html(val);
+                    if ($this.hasClass('cn_city'))
+                        $addr_item.find('.cn_city_en').html(val);
+                    if ($this.hasClass('cn_street'))
+                        $addr_item.find('.cn_street_en').html(val);
 
-                if (/^[a-zA-Z0-9 ]*$/.test(val))     // printable ascii chars
-                    func(val.toUpperCase());
-                else
-                    $this.data('timer',
-                        setTimeout(function () {
-                            $.get('999Parcel.co.uk/pinyin/', { 's': val }, func);
-                        }, 500)
-                    );
+                    if (/^[a-zA-Z0-9 ]*$/.test(val))     // printable ascii chars
+                        func(val.toUpperCase());
+                    else
+                        $this.data('timer',
+                            setTimeout(function () {
+                                $.get('999Parcel.co.uk/pinyin/', { 's': val }, func);
+                            }, 500)
+                        );
+                }
             });
 
             $('.addrItem').each(function () {

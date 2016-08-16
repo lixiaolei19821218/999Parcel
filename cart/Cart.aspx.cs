@@ -24,6 +24,8 @@ using System.Xml.Linq;
 using UKMConsignmentServiceQA;
 using WMOrderService;
 using System.Collections;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public partial class cart_Cart : System.Web.UI.Page
 {
@@ -245,6 +247,10 @@ public partial class cart_Cart : System.Web.UI.Page
                     }
                     break;
                 case "杂物包税专线（100镑以内） - 自送仓库":
+                case "杂物包税专线（100镑以内） - 诚信物流取件":
+                case "杂物包税专线（200镑以内） - 自送仓库":
+                case "杂物包税专线（200镑以内） - 诚信物流取件":
+                    SendTo4PX(o);
                     break;
                 default:
                     break;
@@ -394,7 +400,76 @@ public partial class cart_Cart : System.Web.UI.Page
 
     private void SendTo4PX(Order order)
     {
+        foreach (Recipient r in order.Recipients)
+        {
+            foreach (Package p in r.Packages)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("{");
+                sb.Append("\"Token\": \"104FC78C-7923-404C-82CF-CD88153912AH\",");
+                sb.Append("\"Data\": {");
+                sb.Append("\"TaxMode\": \"DDP\",");
+                sb.Append("\"DestinationCountry\": \"China\",");
+                sb.Append("\"ReceiptCountry\": \"China\",");
+                sb.AppendFormat("\"Province\": \"{0}\",", r.Province);
+                sb.AppendFormat("\"City\": \"{0}\",", r.City);
+                sb.AppendFormat("\"District\": \"{0}\",", r.District);
+                sb.Append("\"ConsigneeEMail\": \"\",");
+                sb.AppendFormat("\"ConsigneeIDNumber\": \"{0}\",", r.IDNumber);
+                sb.Append("\"ConsigneeIDBackCopy\": \"http://www.baidu.com/img/bd_logo1.png\",");
+                sb.Append("\"ConsigneeIDFrontCopy\": \"http://www.baidu.com/img/bd_logo1.png\",");
+                sb.AppendFormat("\"ConsigneeMobile\": \"{0}\",", r.PhoneNumber);
+                sb.AppendFormat("\"ConsigneeName\": \"{0}\",", r.Name);
+                sb.AppendFormat("\"ConsigneePostCode\": \"{0}\",", r.ZipCode);
+                sb.AppendFormat("\"ConsigneeStreetDoorNo\": \"{0}\",", r.Address);
+                sb.Append("\"ITEMS\": [");                
+                foreach (PackageItem i in p.PackageItems)
+                {
+                    sb.Append("{");
+                    sb.AppendFormat("\"ItemDeclareType\": \"{0}\",", "07010210001");
+                    sb.AppendFormat("\"ItemNameLocalLang\": \"{0}\",", i.Description);
+                    sb.AppendFormat("\"ItemNumber\": \"{0}\",", i.Count);
+                    sb.AppendFormat("\"ItemUnitPrice\": \"{0}\",", i.UnitPrice);
+                    sb.AppendFormat("\"ItemTotalAmount\": \"{0}\"", i.Value);
+                    if (i == p.PackageItems.Last())
+                    {
+                        sb.Append("}");
+                    }
+                    else
+                    {
+                        sb.Append("},");
+                    }
+                }
+                sb.Append("],");
+                sb.Append("\"ItemDeclareCurrency\": \"CNY\",");
+                sb.Append("\"ServiceTypeCode\": \"IPS\",");
+                sb.Append("\"UserCode\": \"RMXKRA\",");
+                sb.Append("\"WarehouseOperateMode\": \"NON\",");
+                sb.Append("\"CarrierCompanyCode\": \"OTHER\",");
+                sb.AppendFormat("\"CarrierDeliveryNo\": \"{0}\",", p.Id);
+                sb.AppendFormat("\"ShipperOrderNo\": \"{0}\",", p.Id);
+                sb.Append("\"WarehouseCode\": \"GBLHR\",");
+                sb.AppendFormat("\"OrderWeight\": \"{0}\",", p.Weight);
+                sb.Append("\"DeliveryCompany\": \"TTKD\"");
+                sb.Append("}");
+                sb.Append("}");
 
+                string data = sb.ToString();
+                string result = HttpHelper.HttpPost("http://sandbox.tr.4px.com/TRSAPI/Agent/CreateAgent", data);
+                var response = JsonConvert.DeserializeAnonymousType(result, new { Data = string.Empty, Message = string.Empty, ResponseCode = string.Empty});
+                if (response.ResponseCode == "10000")
+                {
+                    p.Status = "SUCCESS";
+                    p.TrackNumber = response.Data;
+
+                }
+                else
+                {
+                    p.Status = "FAIL";
+                }
+                p.Response = response.Message;
+            }
+        }
     }
     
     protected void pay_Click(object sender, EventArgs e)

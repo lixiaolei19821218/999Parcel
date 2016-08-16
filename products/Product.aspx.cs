@@ -202,6 +202,8 @@ public partial class products_Product : System.Web.UI.Page
             recipient.PyCity = Request.Form.Get(string.Format("hd_city{0}", i)).Trim();
             recipient.PyAddress = Request.Form.Get(string.Format("hd_street{0}", i)).Trim();
             recipient.IDNumber = Request.Form.Get(string.Format("addr-0-idnumber", i)).Trim();
+            recipient.Province = Request.Form.Get(string.Format("addr-0-cn_province", i)).Trim();
+            recipient.District = Request.Form.Get(string.Format("addr-0-cn_district", i)).Trim();
             if (recipient.PyAddress.Length > 72)
             {
                 return string.Format("收件人{0}的拼音地址超出72个字符", recipient.Name);
@@ -224,6 +226,7 @@ public partial class products_Product : System.Web.UI.Page
                 item.TariffCode = "999999";
                 item.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", i, j)));
                 decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", i, j)));
+                item.UnitPrice = unitPrice;
                 item.Value = Math.Round(unitPrice * (decimal)item.Count, 2);
                 item.NettoWeight = Math.Round(weight, 3);                
                 packages[i].PackageItems.Add(item);

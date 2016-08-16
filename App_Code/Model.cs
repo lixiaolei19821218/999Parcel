@@ -109,6 +109,7 @@ public partial class PackageItem
     public string TariffCode { get; set; }
     public Nullable<int> PackageID { get; set; }
     public Nullable<int> Count { get; set; }
+    public Nullable<decimal> UnitPrice { get; set; }
 
     public virtual Package Package { get; set; }
 }
@@ -198,6 +199,8 @@ public partial class Recipient
     public string PyAddress { get; set; }
     public string Email { get; set; }
     public string IDNumber { get; set; }
+    public string Province { get; set; }
+    public string District { get; set; }
 
     public virtual Order Order { get; set; }
     public virtual ICollection<Package> Packages { get; set; }
