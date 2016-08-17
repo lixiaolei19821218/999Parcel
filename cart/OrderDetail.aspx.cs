@@ -100,11 +100,11 @@ public partial class cart_OrderDetail : System.Web.UI.Page
 
     public string GetStatus(Recipient r)
     {
-        if (r.Order.Service.Name.Contains("Parcelforce"))
+        if (r.Order.Service.Name.Contains("Parcelforce") || r.Order.Service.Name.Contains("杂物包税"))
         {
             return (r.SuccessPaid ?? false) ? "<div style=\"float:right;font-size:medium;color:green;\">发送成功</div>" : "<div style=\"float:right;font-size:medium;color:red;\">发送失败</div>";
         }
-        else//bpost
+        else if (r.Order.Service.Name.Contains("Bpost"))
         {
             if (r.SuccessPaid.HasValue)
             {
@@ -127,7 +127,11 @@ public partial class cart_OrderDetail : System.Web.UI.Page
                 {
                     return "<div style=\"float:right;font-size:medium;color:red;\">发送UK Mail失败</div>";
                 }
-            }            
+            }
+        }
+        else
+        {
+            return string.Empty;
         }
     }
 
@@ -137,7 +141,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
         }
-        else//bpost
+        else if(p.Recipient.Order.Service.Name.Contains("Bpost"))
         {            
             if (!string.IsNullOrEmpty(p.Status))
             {
@@ -161,6 +165,14 @@ public partial class cart_OrderDetail : System.Web.UI.Page
                     return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Recipient.Order.UKMErrors + "\">错误详情</a>";
                 }
             }    
+        }
+        else if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+        {
+            return (p.Status == "SUCCESS") ? "发送成功" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+        }
+        else
+        {
+            return string.Empty;
         }
     }
 

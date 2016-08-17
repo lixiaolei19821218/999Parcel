@@ -426,7 +426,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 foreach (PackageItem i in p.PackageItems)
                 {
                     sb.Append("{");
-                    sb.AppendFormat("\"ItemDeclareType\": \"{0}\",", "07010210001");
+                    string typeCode = repo.Context.Rank3Types.Where(rt => rt.Name == i.Description).First().Code;
+                    sb.AppendFormat("\"ItemDeclareType\": \"{0}\",", typeCode);
                     sb.AppendFormat("\"ItemNameLocalLang\": \"{0}\",", i.Description);
                     sb.AppendFormat("\"ItemNumber\": \"{0}\",", i.Count);
                     sb.AppendFormat("\"ItemUnitPrice\": \"{0}\",", i.UnitPrice);
@@ -469,7 +470,9 @@ public partial class cart_Cart : System.Web.UI.Page
                 }
                 p.Response = response.Message;
             }
+            r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");
         }
+        order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid.HasValue && r.SuccessPaid.Value);
     }
     
     protected void pay_Click(object sender, EventArgs e)
@@ -484,6 +487,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 sOrder.HasPaid = true;
             }
             */
+            
             apUser.Balance -= totalPrice;            
             repo.Context.SaveChanges();      
             
