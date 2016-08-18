@@ -138,6 +138,7 @@
           <Property Name="PackageID" Type="int" />
           <Property Name="Count" Type="int" />
           <Property Name="UnitPrice" Type="decimal" Scale="2" />
+          <Property Name="Brand" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Packages">
           <Key>
@@ -1544,6 +1545,7 @@
           <Property Name="Count" Type="Int32" />
           <NavigationProperty Name="Package" Relationship="UK_ExpressModel.FK_PackageID" FromRole="PackageItem" ToRole="Package" />
           <Property Type="Decimal" Name="UnitPrice" Precision="18" Scale="2" />
+          <Property Type="String" Name="Brand" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_PackageID">
           <End Type="UK_ExpressModel.Package" Role="Package" Multiplicity="0..1" />
@@ -1920,6 +1922,7 @@
           <EntitySetMapping Name="PackageItems">
             <EntityTypeMapping TypeName="UK_ExpressModel.PackageItem">
               <MappingFragment StoreEntitySet="PackageItems">
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="PackageID" ColumnName="PackageID" />

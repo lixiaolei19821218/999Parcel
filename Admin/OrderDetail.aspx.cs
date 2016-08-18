@@ -73,4 +73,45 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             return o.PickupTime.Value.ToShortDateString();
         }
     }
+
+    public string GetPacakgeDetail(Package p)
+    {
+        if (p.Recipient.Order.Service.Name.Contains("Parcelforce"))
+        {
+            return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+        }
+        else if (p.Recipient.Order.Service.Name.Contains("Bpost"))
+        {
+            if (!string.IsNullOrEmpty(p.Status))
+            {
+                if (p.Status == "SUCCESS")
+                {
+                    return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                }
+                else
+                {
+                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                }
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(p.Recipient.Order.UKMErrors))
+                {
+                    return "<a title=\"已发送Bpost\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + "等待Bpost返回结果" + "\">已发送Bpost</a>";
+                }
+                else
+                {
+                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Recipient.Order.UKMErrors + "\">错误详情</a>";
+                }
+            }
+        }
+        else if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+        {
+            return (p.Status == "SUCCESS") ? "发送成功" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
 }

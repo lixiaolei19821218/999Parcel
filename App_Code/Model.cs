@@ -110,6 +110,7 @@ public partial class PackageItem
     public Nullable<int> PackageID { get; set; }
     public Nullable<int> Count { get; set; }
     public Nullable<decimal> UnitPrice { get; set; }
+    public string Brand { get; set; }
 
     public virtual Package Package { get; set; }
 }
