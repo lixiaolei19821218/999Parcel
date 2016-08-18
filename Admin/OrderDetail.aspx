@@ -44,7 +44,7 @@
                                             <th class="tac">状态</th>
                                             <th class="tac">跟踪号</th>
                                             <th class="tac">运费</th>
-                                            <th colspan="2">详情</th>
+                                            <th colspan="2">详情</th>                                            
                                         </tr>
                                     </HeaderTemplate>
                                     <ItemTemplate>
@@ -58,8 +58,8 @@
                                             <td class="tac"><%#Item.TrackNumber %></td>
                                             <td class="tac">130</td>
                                             <td colspan="2">
-                                                <%#(Item.Status == "SUCCESS") ? "<a href=\"/" + Item.Pdf +"\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + Item.Response + "\">错误详情</a>"%>
-                                            </td>
+                                                <%#GetPacakgeDetail(Item)%>
+                                            </td>                                            
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
