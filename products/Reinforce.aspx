@@ -50,13 +50,17 @@
                         <br />
                         <%:ServiceView.PickUpCompany %>:
                         <br />
-                        <%:ServiceView.GetPickupPrice(Order).ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %>
+                        <%:Order.PickupPrice.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %>
                         <br />                        
                         
                         <asp:Repeater runat="server" ItemType="Package" SelectMethod="GetAllPackages">
                             <ItemTemplate>
                                 <br />
-                                包裹 <%#Container.ItemIndex + 1 %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%#GetPackagePrice(Item).ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %><br />
+                                包裹 <%#Container.ItemIndex + 1 %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%#Item.DeliverCost.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %><br />
+                                <div <%#Item.Discount == 0.0m ? "hidden=\"hidden\"" : "" %>>
+                                    <span style="color: forestgreen; font-size: small;">折扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-<%#Item.Discount.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span>
+                                    <br />
+                                </div>
                                 -----------------
                             </ItemTemplate>
                         </asp:Repeater>                        

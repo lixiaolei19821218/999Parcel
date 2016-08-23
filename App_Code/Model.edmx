@@ -64,11 +64,15 @@
           <Property Name="SheffieldOrderID" Type="int" />
           <Property Name="SheffieldServiceID" Type="int" />
           <Property Name="PriceListID" Type="int" />
-          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SenderEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="SuccessPaid" Type="bit" />
           <Property Name="UKMConsignmentNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="UKMErrors" Type="nvarchar(max)" />
+          <Property Name="PickupPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DeliverPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ReinforcePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PackageItems">
           <Key>
@@ -1287,6 +1291,10 @@
           <Property Name="SuccessPaid" Type="Boolean" />
           <Property Name="UKMConsignmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UKMErrors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PickupPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DeliverPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ReinforcePrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -1799,6 +1807,10 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="UK_ExpressModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ReinforcePrice" ColumnName="ReinforcePrice" />
+                <ScalarProperty Name="DeliverPrice" ColumnName="DeliverPrice" />
+                <ScalarProperty Name="PickupPrice" ColumnName="PickupPrice" />
                 <ScalarProperty Name="UKMErrors" ColumnName="UKMErrors" />
                 <ScalarProperty Name="UKMConsignmentNumber" ColumnName="UKMConsignmentNumber" />
                 <ScalarProperty Name="SuccessPaid" ColumnName="SuccessPaid" />

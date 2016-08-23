@@ -76,6 +76,10 @@ public partial class Order
     public Nullable<bool> SuccessPaid { get; set; }
     public string UKMConsignmentNumber { get; set; }
     public string UKMErrors { get; set; }
+    public decimal PickupPrice { get; set; }
+    public decimal DeliverPrice { get; set; }
+    public decimal ReinforcePrice { get; set; }
+    public decimal Discount { get; set; }
 
     public virtual ICollection<Recipient> Recipients { get; set; }
     public virtual Reinforce Reinforce { get; set; }

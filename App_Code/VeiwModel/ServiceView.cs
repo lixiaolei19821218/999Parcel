@@ -75,7 +75,7 @@ public class ServiceView
             {
                 foreach (Package p in r.Packages)
                 {
-                    p.ReinforceCost = order.Reinforce.Price.HasValue ? order.Reinforce.Price.Value : 0.0m;
+                    //p.ReinforceCost = order.Reinforce.Price.HasValue ? order.Reinforce.Price.Value : 0.0m;
                     price += order.Reinforce.Price.HasValue ? order.Reinforce.Price.Value : 0.0m;
                 }
             }
@@ -189,8 +189,9 @@ public class ServiceView
         {
             foreach (Package p in r.Packages)
             {
-                p.DeliverCost = GetPackageDeliverPrice(p);
-                price += p.DeliverCost;
+                //p.DeliverCost = GetPackageDeliverPrice(p);
+                //price += p.DeliverCost;
+                price += GetPackageDeliverPrice(p);
             }
         }        
         

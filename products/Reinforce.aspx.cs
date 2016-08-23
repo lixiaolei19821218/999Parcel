@@ -91,14 +91,31 @@ public partial class products_Reinforce : System.Web.UI.Page
         if (Request.Form["reinforce"] == null)
         {
             old.ReinforceID = null;
+            
         }
         else
         {
             old.ReinforceID = int.Parse(Request.Form["reinforce"]);
             old.Reinforce = repo.Context.Reinforces.Find(old.ReinforceID);
-            old.Cost = sv.GetPrice(old);
+            foreach (Recipient r in old.Recipients)
+            {
+                foreach (Package p in r.Packages)
+                {
+                    p.ReinforceCost = old.Reinforce.Price.Value;
+                }
+            }
+            old.ReinforcePrice = sv.GetReinforcePrice(old);
+            old.Cost = old.PickupPrice + old.DeliverPrice + old.ReinforcePrice - old.Discount;
         }
-        
+
+        foreach (Recipient r in old.Recipients)
+        {
+            foreach (Package p in r.Packages)
+            {
+                p.FinalCost = p.DeliverCost + p.ReinforceCost - p.Discount;
+            }
+        }
+
         repo.Context.SaveChanges();
         Response.Redirect("/cart/cart.aspx");
     }

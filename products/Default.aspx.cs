@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
+using System.Web.Security;
 
 public partial class product_Default : System.Web.UI.Page
 {
@@ -28,7 +29,32 @@ public partial class product_Default : System.Web.UI.Page
             if (int.TryParse(Request.Form["order"], out serviceID))
             {
                 order.ServiceID = serviceID;
-                
+                ServiceView sv = new ServiceView(order.Service);
+                order.PickupPrice = sv.GetPickupPrice(order);
+                foreach (Recipient r in order.Recipients)
+                {
+                    foreach (Package p in r.Packages)
+                    {
+                        p.DeliverCost = sv.GetPackageDeliverPrice(p);
+                    }
+                }
+                order.DeliverPrice = sv.GetDeliverPrice(order);
+
+                //计算折扣
+                MembershipUser user = Membership.GetUser();
+                var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
+                if (discount != null)
+                {
+                    foreach (Recipient r in order.Recipients)
+                    {
+                        foreach (Package p in r.Packages)
+                        {
+                            p.Discount = discount.Value;
+                        }
+                    }
+                }
+                order.Discount = order.Recipients.Sum(r => r.Packages.Sum(p => p.Discount));
+               
                 Response.Redirect("product.aspx");
             }
         }
