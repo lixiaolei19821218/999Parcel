@@ -35,6 +35,8 @@
         <EntityTypeShape EntityType="UK_ExpressModel.TraceNumber" Width="1.5" PointX="12.375" PointY="1.125" />
         <AssociationConnector Association="UK_ExpressModel.FK_TraceNumberId" />
         <EntityTypeShape EntityType="UK_ExpressModel.Rank3Types" Width="1.5" PointX="18" PointY="5.375" />
+        <EntityTypeShape EntityType="UK_ExpressModel.Discount" Width="1.5" PointX="3" PointY="9.25" />
+        <AssociationConnector Association="UK_ExpressModel.FK_ServiceId_Discounts" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

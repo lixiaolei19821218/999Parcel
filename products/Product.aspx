@@ -596,7 +596,7 @@
                             <p><strong><%:ServiceView.Name %></strong></p>
                             <p>
                                 <p>
-                                    <img src=<%:ServiceView.DiscribePictureLink %> width="130" height="78" />
+                                    <img src="<%:ServiceView.DiscribePictureLink %>" width="130" height="78" />
                                 </p>
                                 <p><span style="font-size: small;">国际快递时间（不包括清关和旺季延误）: 6-10 天 /&nbsp;自带丢件赔偿: &pound;50磅 /&nbsp;包裹上可贴中文地址</span></p>
                             </p>
@@ -611,7 +611,13 @@
                                 <asp:Repeater runat="server" ItemType="Package" SelectMethod="GetAllPackages">
                                     <ItemTemplate>
                                         <br />
-                                        包裹 <%#Container.ItemIndex + 1 %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%#GetPackagePrice(Item).ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %><br />-----------------
+                                        包裹 <%#Container.ItemIndex + 1 %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%#Item.DeliverCost.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %>
+                                        <br />
+                                        <div <%#Item.Discount == 0.0m ? "hidden=\"hidden\"" : "" %>>
+                                            <span style="color: forestgreen; font-size: small;">折扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-<%#Item.Discount.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span>
+                                            <br />
+                                        </div>
+                                        -----------------
                                     </ItemTemplate>
                                 </asp:Repeater>                                
                                

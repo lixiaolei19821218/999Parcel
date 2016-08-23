@@ -11,11 +11,9 @@
     </ul>
     <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
         <div class="mg1">
-            <div class="bg1 rds1 clrw1 sz16" style="height: 38px; background-position: 0 0; background-repeat: repeat-x; padding: 10px 20px">
-                订单查询
-            </div>
-            <div class="rds2" style="background-color: #fff; padding-left: 20px; padding-right: 20px">
-                <input type="text" style="margin: 10px 0; width: 30%; height: 30px" placeholder="订单号/用户名" id="content" name="content">
+            
+            <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px">
+                <input type="text" style="margin: 10px 0; width: 30%; height: 30px" placeholder="订单号/用户名" id="content" name="content"/>
                 <asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="查询 &gt;" ID="FindOrder" OnClick="FindOrder_Click" />
             </div>
         </div>
@@ -23,7 +21,7 @@
        
         <div style="margin-top: 15px; background-color: #fff; padding: 0px">
             <fieldset runat="server" id="normalField">
-                
+                <legend>已付款订单</legend>
                 <table class="table table-orders">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetPageApplys">
                         <HeaderTemplate>

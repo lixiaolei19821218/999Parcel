@@ -46,7 +46,21 @@ public partial class products_Product : System.Web.UI.Page
         {
             pfuk.Visible = false;
             _999parcel.Visible = true;            
-        }     
+        }
+
+        //计算折扣
+        MembershipUser user = Membership.GetUser();
+        var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
+        if (discount != null)
+        {
+            foreach (Recipient r in order.Recipients)
+            {
+                foreach (Package p in r.Packages)
+                {
+                    p.Discount = discount.Value;                    
+                }
+            }
+        } 
     }   
 
     public IEnumerable<Recipient> GetRecipients()
@@ -147,7 +161,7 @@ public partial class products_Product : System.Web.UI.Page
     public decimal GetPackagePrice(Package package)
     {
         return sv.GetPackageDeliverPrice(package);
-    }
+    }    
 
     public ServiceView ServiceView
     {

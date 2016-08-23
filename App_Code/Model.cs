@@ -25,6 +25,18 @@ public partial class aspnet_User
     public string CellPhone { get; set; }
 }
 
+public partial class Discount
+{
+    public int Id { get; set; }
+    public string User { get; set; }
+    public int ServiceId { get; set; }
+    public decimal Value { get; set; }
+    public string Approver { get; set; }
+    public Nullable<System.DateTime> ApproveTime { get; set; }
+
+    public virtual Service Service { get; set; }
+}
+
 public partial class News
 {
     public int Id { get; set; }
@@ -93,8 +105,9 @@ public partial class Package
     public string Status { get; set; }
     public string Pdf { get; set; }
     public decimal DeliverCost { get; set; }
-    public decimal PickupCost { get; set; }
     public decimal ReinforceCost { get; set; }
+    public decimal Discount { get; set; }
+    public decimal FinalCost { get; set; }
 
     public virtual Recipient Recipient { get; set; }
     public virtual ICollection<PackageItem> PackageItems { get; set; }
@@ -229,6 +242,7 @@ public partial class Service
     public Service()
     {
         this.Orders = new HashSet<Order>();
+        this.Discounts = new HashSet<Discount>();
     }
 
     public int Id { get; set; }
@@ -239,9 +253,11 @@ public partial class Service
     public bool PickUpService { get; set; }
     public Nullable<int> PriceListID { get; set; }
     public string PickUpCompany { get; set; }
+    public bool Valid { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; }
     public virtual PriceList PriceList { get; set; }
+    public virtual ICollection<Discount> Discounts { get; set; }
 }
 
 public partial class SheffieldOrder

@@ -4,95 +4,39 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="UK_ExpressModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="UK_ExpressModelStoreContainer">
-          <EntitySet Name="aspnet_Users" EntityType="UK_ExpressModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="News" EntityType="UK_ExpressModel.Store.News" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Orders" EntityType="UK_ExpressModel.Store.Orders" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PackageItems" EntityType="UK_ExpressModel.Store.PackageItems" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Packages" EntityType="UK_ExpressModel.Store.Packages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PriceItems" EntityType="UK_ExpressModel.Store.PriceItems" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PriceLists" EntityType="UK_ExpressModel.Store.PriceLists" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Rank3Types" EntityType="UK_ExpressModel.Store.Rank3Types" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RechargeApplys" EntityType="UK_ExpressModel.Store.RechargeApplys" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RechargeChannels" EntityType="UK_ExpressModel.Store.RechargeChannels" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Recipients" EntityType="UK_ExpressModel.Store.Recipients" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reinforces" EntityType="UK_ExpressModel.Store.Reinforces" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Services" EntityType="UK_ExpressModel.Store.Services" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SheffieldOrders" EntityType="UK_ExpressModel.Store.SheffieldOrders" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SheffieldServices" EntityType="UK_ExpressModel.Store.SheffieldServices" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TraceMessage" EntityType="UK_ExpressModel.Store.TraceMessage" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TraceNumbers" EntityType="UK_ExpressModel.Store.TraceNumbers" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_ChannelID" Association="UK_ExpressModel.Store.FK_ChannelID">
-            <End Role="RechargeChannels" EntitySet="RechargeChannels" />
-            <End Role="RechargeApplys" EntitySet="RechargeApplys" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderID" Association="UK_ExpressModel.Store.FK_OrderID">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="Recipients" EntitySet="Recipients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PackageID" Association="UK_ExpressModel.Store.FK_PackageID">
-            <End Role="Packages" EntitySet="Packages" />
-            <End Role="PackageItems" EntitySet="PackageItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PriceListID" Association="UK_ExpressModel.Store.FK_PriceListID">
-            <End Role="PriceLists" EntitySet="PriceLists" />
-            <End Role="PriceItems" EntitySet="PriceItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PriceListID_Orders" Association="UK_ExpressModel.Store.FK_PriceListID_Orders">
-            <End Role="PriceLists" EntitySet="PriceLists" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PriceListID_Service" Association="UK_ExpressModel.Store.FK_PriceListID_Service">
-            <End Role="PriceLists" EntitySet="PriceLists" />
-            <End Role="Services" EntitySet="Services" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RecipientID" Association="UK_ExpressModel.Store.FK_RecipientID">
-            <End Role="Recipients" EntitySet="Recipients" />
-            <End Role="Packages" EntitySet="Packages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReinforceID" Association="UK_ExpressModel.Store.FK_ReinforceID">
-            <End Role="Reinforces" EntitySet="Reinforces" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ServiceID" Association="UK_ExpressModel.Store.FK_ServiceID">
-            <End Role="Services" EntitySet="Services" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SheffieldOrderID" Association="UK_ExpressModel.Store.FK_SheffieldOrderID">
-            <End Role="SheffieldOrders" EntitySet="SheffieldOrders" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SheffieldServiceID" Association="UK_ExpressModel.Store.FK_SheffieldServiceID">
-            <End Role="SheffieldServices" EntitySet="SheffieldServices" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TraceNumberId" Association="UK_ExpressModel.Store.FK_TraceNumberId">
-            <End Role="TraceNumbers" EntitySet="TraceNumbers" />
-            <End Role="TraceMessage" EntitySet="TraceMessage" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="UK_ExpressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="aspnet_Users">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
           <Property Name="IsAnonymous" Type="bit" Nullable="false" />
           <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-          <Property Name="Balance" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="256" />
           <Property Name="LastName" Type="nvarchar" MaxLength="256" />
           <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Approver" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
         <EntityType Name="News">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="PulishTime" Type="datetime" Nullable="false" />
@@ -101,7 +45,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User" Type="nvarchar" MaxLength="256" />
           <Property Name="OrderTime" Type="datetime" />
           <Property Name="ServiceID" Type="int" />
@@ -120,7 +64,7 @@
           <Property Name="SheffieldOrderID" Type="int" />
           <Property Name="SheffieldServiceID" Type="int" />
           <Property Name="PriceListID" Type="int" />
-          <Property Name="Cost" Type="decimal" Scale="2" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SenderEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="SuccessPaid" Type="bit" />
           <Property Name="UKMConsignmentNumber" Type="nvarchar" MaxLength="50" />
@@ -130,50 +74,51 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Value" Type="decimal" Scale="2" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="NettoWeight" Type="decimal" Scale="2" />
+          <Property Name="NettoWeight" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TariffCode" Type="nvarchar" MaxLength="50" />
           <Property Name="PackageID" Type="int" />
           <Property Name="Count" Type="int" />
-          <Property Name="UnitPrice" Type="decimal" Scale="2" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Brand" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Packages">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Length" Type="decimal" Nullable="false" Scale="1" />
-          <Property Name="Width" Type="decimal" Nullable="false" Scale="1" />
-          <Property Name="Height" Type="decimal" Nullable="false" Scale="1" />
-          <Property Name="Weight" Type="decimal" Nullable="false" Scale="1" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Length" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="Width" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="Height" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="TrackNumber" Type="nvarchar(max)" />
           <Property Name="RecipientID" Type="int" Nullable="false" />
           <Property Name="Detail" Type="nvarchar(max)" />
-          <Property Name="Value" Type="decimal" Scale="2" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Response" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Pdf" Type="nvarchar(max)" />
-          <Property Name="DeliverCost" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="PickupCost" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="ReinforceCost" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="DeliverCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ReinforceCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FinalCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="PriceItems">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Weight" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="Price" Type="decimal" Nullable="false" Scale="4" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="PriceListID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PriceLists">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -181,36 +126,36 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="RechargeApplys">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChannelID" Type="int" Nullable="false" />
-          <Property Name="ApplyAmount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="ApplyAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Evidence" Type="nvarchar(max)" />
-          <Property Name="ApprovedAmount" Type="decimal" Scale="2" />
+          <Property Name="ApprovedAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IsApproved" Type="bit" />
-          <Property Name="User" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="User" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Wangwang" Type="nvarchar(max)" />
-          <Property Name="Time" Type="datetime2" />
+          <Property Name="Time" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="RechargeChannels">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Recipients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="City" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar(max)" />
@@ -233,9 +178,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="Price" Type="decimal" Scale="2" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Describe" Type="nvarchar(max)" />
           <Property Name="PictureLink" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -243,20 +188,21 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="PictureLink" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Discribe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DiscribePictureLink" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DiscribePictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PickUpService" Type="bit" Nullable="false" />
           <Property Name="PriceListID" Type="int" />
-          <Property Name="PickUpCompany" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickUpCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valid" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SheffieldOrders">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User" Type="nvarchar" MaxLength="50" />
           <Property Name="HasPaid" Type="bit" Nullable="false" />
         </EntityType>
@@ -264,23 +210,23 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="PictureLink" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Discribe1" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Discribe2" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DiscribePictureLink" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ReinforcePrice" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="PackageWeight" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="PackageLength" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="PackageWidth" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="PackageHeight" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="DiscribePictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReinforcePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PackageWeight" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PackageLength" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PackageWidth" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PackageHeight" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="TraceMessage">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
           <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TraceNumberId" Type="int" Nullable="false" />
@@ -289,12 +235,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Number" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_ChannelID">
-          <End Role="RechargeChannels" Type="UK_ExpressModel.Store.RechargeChannels" Multiplicity="1" />
-          <End Role="RechargeApplys" Type="UK_ExpressModel.Store.RechargeApplys" Multiplicity="*" />
+          <End Role="RechargeChannels" Type="Self.RechargeChannels" Multiplicity="1" />
+          <End Role="RechargeApplys" Type="Self.RechargeApplys" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RechargeChannels">
               <PropertyRef Name="Id" />
@@ -305,8 +251,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderID">
-          <End Role="Orders" Type="UK_ExpressModel.Store.Orders" Multiplicity="0..1" />
-          <End Role="Recipients" Type="UK_ExpressModel.Store.Recipients" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Recipients" Type="Self.Recipients" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="Id" />
@@ -317,8 +263,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PackageID">
-          <End Role="Packages" Type="UK_ExpressModel.Store.Packages" Multiplicity="0..1" />
-          <End Role="PackageItems" Type="UK_ExpressModel.Store.PackageItems" Multiplicity="*" />
+          <End Role="Packages" Type="Self.Packages" Multiplicity="0..1" />
+          <End Role="PackageItems" Type="Self.PackageItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Packages">
               <PropertyRef Name="Id" />
@@ -329,8 +275,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PriceListID">
-          <End Role="PriceLists" Type="UK_ExpressModel.Store.PriceLists" Multiplicity="1" />
-          <End Role="PriceItems" Type="UK_ExpressModel.Store.PriceItems" Multiplicity="*" />
+          <End Role="PriceLists" Type="Self.PriceLists" Multiplicity="1" />
+          <End Role="PriceItems" Type="Self.PriceItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PriceLists">
               <PropertyRef Name="Id" />
@@ -341,8 +287,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PriceListID_Orders">
-          <End Role="PriceLists" Type="UK_ExpressModel.Store.PriceLists" Multiplicity="0..1" />
-          <End Role="Orders" Type="UK_ExpressModel.Store.Orders" Multiplicity="*" />
+          <End Role="PriceLists" Type="Self.PriceLists" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PriceLists">
               <PropertyRef Name="Id" />
@@ -353,8 +299,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PriceListID_Service">
-          <End Role="PriceLists" Type="UK_ExpressModel.Store.PriceLists" Multiplicity="0..1" />
-          <End Role="Services" Type="UK_ExpressModel.Store.Services" Multiplicity="*" />
+          <End Role="PriceLists" Type="Self.PriceLists" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PriceLists">
               <PropertyRef Name="Id" />
@@ -365,8 +311,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RecipientID">
-          <End Role="Recipients" Type="UK_ExpressModel.Store.Recipients" Multiplicity="1" />
-          <End Role="Packages" Type="UK_ExpressModel.Store.Packages" Multiplicity="*" />
+          <End Role="Recipients" Type="Self.Recipients" Multiplicity="1" />
+          <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipients">
               <PropertyRef Name="Id" />
@@ -377,8 +323,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReinforceID">
-          <End Role="Reinforces" Type="UK_ExpressModel.Store.Reinforces" Multiplicity="0..1" />
-          <End Role="Orders" Type="UK_ExpressModel.Store.Orders" Multiplicity="*" />
+          <End Role="Reinforces" Type="Self.Reinforces" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Reinforces">
               <PropertyRef Name="Id" />
@@ -389,8 +335,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceID">
-          <End Role="Services" Type="UK_ExpressModel.Store.Services" Multiplicity="0..1" />
-          <End Role="Orders" Type="UK_ExpressModel.Store.Orders" Multiplicity="*" />
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="Id" />
@@ -400,9 +346,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceId_Discounts">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Discounts">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SheffieldOrderID">
-          <End Role="SheffieldOrders" Type="UK_ExpressModel.Store.SheffieldOrders" Multiplicity="0..1" />
-          <End Role="Orders" Type="UK_ExpressModel.Store.Orders" Multiplicity="*" />
+          <End Role="SheffieldOrders" Type="Self.SheffieldOrders" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SheffieldOrders">
               <PropertyRef Name="Id" />
@@ -413,8 +371,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SheffieldServiceID">
-          <End Role="SheffieldServices" Type="UK_ExpressModel.Store.SheffieldServices" Multiplicity="0..1" />
-          <End Role="Orders" Type="UK_ExpressModel.Store.Orders" Multiplicity="*" />
+          <End Role="SheffieldServices" Type="Self.SheffieldServices" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SheffieldServices">
               <PropertyRef Name="Id" />
@@ -425,8 +383,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TraceNumberId">
-          <End Role="TraceNumbers" Type="UK_ExpressModel.Store.TraceNumbers" Multiplicity="1" />
-          <End Role="TraceMessage" Type="UK_ExpressModel.Store.TraceMessage" Multiplicity="*" />
+          <End Role="TraceNumbers" Type="Self.TraceNumbers" Multiplicity="1" />
+          <End Role="TraceMessage" Type="Self.TraceMessage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TraceNumbers">
               <PropertyRef Name="Id" />
@@ -767,6 +725,78 @@
           <Parameter Name="ExceptionType" Type="nvarchar" Mode="In" />
           <Parameter Name="Details" Type="ntext" Mode="In" />
         </Function>
+        <EntityContainer Name="UK_ExpressModelStoreContainer">
+          <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageItems" EntityType="Self.PackageItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceItems" EntityType="Self.PriceItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceLists" EntityType="Self.PriceLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rank3Types" EntityType="Self.Rank3Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RechargeApplys" EntityType="Self.RechargeApplys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RechargeChannels" EntityType="Self.RechargeChannels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipients" EntityType="Self.Recipients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reinforces" EntityType="Self.Reinforces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SheffieldOrders" EntityType="Self.SheffieldOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SheffieldServices" EntityType="Self.SheffieldServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraceMessage" EntityType="Self.TraceMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraceNumbers" EntityType="Self.TraceNumbers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChannelID" Association="Self.FK_ChannelID">
+            <End Role="RechargeChannels" EntitySet="RechargeChannels" />
+            <End Role="RechargeApplys" EntitySet="RechargeApplys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderID" Association="Self.FK_OrderID">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Recipients" EntitySet="Recipients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageID" Association="Self.FK_PackageID">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="PackageItems" EntitySet="PackageItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceListID" Association="Self.FK_PriceListID">
+            <End Role="PriceLists" EntitySet="PriceLists" />
+            <End Role="PriceItems" EntitySet="PriceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceListID_Orders" Association="Self.FK_PriceListID_Orders">
+            <End Role="PriceLists" EntitySet="PriceLists" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceListID_Service" Association="Self.FK_PriceListID_Service">
+            <End Role="PriceLists" EntitySet="PriceLists" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipientID" Association="Self.FK_RecipientID">
+            <End Role="Recipients" EntitySet="Recipients" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReinforceID" Association="Self.FK_ReinforceID">
+            <End Role="Reinforces" EntitySet="Reinforces" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceID" Association="Self.FK_ServiceID">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceId_Discounts" Association="Self.FK_ServiceId_Discounts">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Discounts" EntitySet="Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SheffieldOrderID" Association="Self.FK_SheffieldOrderID">
+            <End Role="SheffieldOrders" EntitySet="SheffieldOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SheffieldServiceID" Association="Self.FK_SheffieldServiceID">
+            <End Role="SheffieldServices" EntitySet="SheffieldServices" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TraceNumberId" Association="Self.FK_TraceNumberId">
+            <End Role="TraceNumbers" EntitySet="TraceNumbers" />
+            <End Role="TraceMessage" EntitySet="TraceMessage" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1168,6 +1198,11 @@
             <End Role="TraceMessage" EntitySet="TraceMessages" />
           </AssociationSet>
           <EntitySet Name="Rank3Types" EntityType="UK_ExpressModel.Rank3Types" />
+          <EntitySet Name="Discounts" EntityType="UK_ExpressModel.Discount" />
+          <AssociationSet Name="FK_ServiceId_Discounts" Association="UK_ExpressModel.FK_ServiceId_Discounts">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Discount" EntitySet="Discounts" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1272,8 +1307,9 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Pdf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DeliverCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="PickupCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="ReinforceCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="FinalCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PriceItem">
           <Key>
@@ -1343,9 +1379,11 @@
           <Property Name="DiscribePictureLink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PickUpService" Type="Boolean" Nullable="false" />
           <Property Name="PriceListID" Type="Int32" />
-          <Property Name="PickUpCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="UK_ExpressModel.FK_ServiceID" FromRole="Service" ToRole="Order" />
           <NavigationProperty Name="PriceList" Relationship="UK_ExpressModel.FK_PriceListID_Service" FromRole="Service" ToRole="PriceList" />
+          <NavigationProperty Name="Discounts" Relationship="UK_ExpressModel.FK_ServiceId_Discounts" FromRole="Service" ToRole="Discount" />
+          <Property Name="Valid" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_OrderID">
           <End Type="UK_ExpressModel.Order" Role="Order" Multiplicity="0..1" />
@@ -1606,6 +1644,30 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Approver" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Service" Relationship="UK_ExpressModel.FK_ServiceId_Discounts" FromRole="Discount" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_ServiceId_Discounts">
+          <End Type="UK_ExpressModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="UK_ExpressModel.Discount" Role="Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Discount">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1767,8 +1829,9 @@
           <EntitySetMapping Name="Packages">
             <EntityTypeMapping TypeName="UK_ExpressModel.Package">
               <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="FinalCost" ColumnName="FinalCost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="ReinforceCost" ColumnName="ReinforceCost" />
-                <ScalarProperty Name="PickupCost" ColumnName="PickupCost" />
                 <ScalarProperty Name="DeliverCost" ColumnName="DeliverCost" />
                 <ScalarProperty Name="Pdf" ColumnName="Pdf" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -1842,6 +1905,7 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="UK_ExpressModel.Service">
               <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
                 <ScalarProperty Name="PickUpCompany" ColumnName="PickUpCompany" />
                 <ScalarProperty Name="PriceListID" ColumnName="PriceListID" />
                 <ScalarProperty Name="PickUpService" ColumnName="PickUpService" />
@@ -1967,6 +2031,18 @@
               <MappingFragment StoreEntitySet="Rank3Types">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="UK_ExpressModel.Discount">
+              <MappingFragment StoreEntitySet="Discounts">
+                <ScalarProperty Name="ApproveTime" ColumnName="ApproveTime" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="User" ColumnName="User" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
