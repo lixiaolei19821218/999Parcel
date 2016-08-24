@@ -29,6 +29,8 @@ public partial class product_Default : System.Web.UI.Page
             if (int.TryParse(Request.Form["order"], out serviceID))
             {
                 order.ServiceID = serviceID;
+                Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
+                order.Service = service;
                 ServiceView sv = new ServiceView(order.Service);
                 order.PickupPrice = sv.GetPickupPrice(order);
                 foreach (Recipient r in order.Recipients)
@@ -50,11 +52,12 @@ public partial class product_Default : System.Web.UI.Page
                         foreach (Package p in r.Packages)
                         {
                             p.Discount = discount.Value;
+                            p.FinalCost = p.DeliverCost - p.Discount;
                         }
                     }
                 }
                 order.Discount = order.Recipients.Sum(r => r.Packages.Sum(p => p.Discount));
-               
+                order.Cost = order.PickupPrice + order.DeliverPrice - order.Discount;
                 Response.Redirect("product.aspx");
             }
         }

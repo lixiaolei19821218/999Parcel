@@ -62,7 +62,7 @@ public partial class products_Reinforce : System.Web.UI.Page
         {
             return order.Recipients;
         }
-    }
+    }   
 
     public decimal GetPackagePrice(Package package)
     {
@@ -71,7 +71,7 @@ public partial class products_Reinforce : System.Web.UI.Page
 
     public decimal GetSendPrice()
     {
-        return sv.GetSendPrice(order);
+        return order.PickupPrice + order.DeliverPrice - order.Discount;
     }
 
     public IEnumerable<Package> GetAllPackages()
@@ -90,8 +90,7 @@ public partial class products_Reinforce : System.Web.UI.Page
         
         if (Request.Form["reinforce"] == null)
         {
-            old.ReinforceID = null;
-            
+            old.ReinforceID = null;            
         }
         else
         {
@@ -104,10 +103,9 @@ public partial class products_Reinforce : System.Web.UI.Page
                     p.ReinforceCost = old.Reinforce.Price.Value;
                 }
             }
-            old.ReinforcePrice = sv.GetReinforcePrice(old);
-            old.Cost = old.PickupPrice + old.DeliverPrice + old.ReinforcePrice - old.Discount;
+            old.ReinforcePrice = sv.GetReinforcePrice(old);           
         }
-
+        
         foreach (Recipient r in old.Recipients)
         {
             foreach (Package p in r.Packages)
@@ -115,6 +113,7 @@ public partial class products_Reinforce : System.Web.UI.Page
                 p.FinalCost = p.DeliverCost + p.ReinforceCost - p.Discount;
             }
         }
+        old.Cost = old.PickupPrice + old.DeliverPrice + old.ReinforcePrice - old.Discount;
 
         repo.Context.SaveChanges();
         Response.Redirect("/cart/cart.aspx");

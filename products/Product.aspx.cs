@@ -26,8 +26,8 @@ public partial class products_Product : System.Web.UI.Page
             Response.Redirect("/");
         }
 
-        Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
-        sv = new ServiceView(service);
+        //Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
+        sv = new ServiceView(order.Service);
         //order.Service = service;
 
         //ParcelForce

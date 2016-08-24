@@ -39,9 +39,9 @@
                                 <td class="tac"><%#Item.Service.Name %></td>
                                 <td class="tac"><%#Item.Approver %></td>
                                 <td class="tac"><%#Item.ApproveTime %></td>
-                                <td class="tac"><input type="number" value="<%#Item.Value %>" style="width:50px;" /></td>                                
+                                <td class="tac"><%#Item.Value %></td>                                
                                 <td colspan="2">
-                                    <input type="button" id="ButtonEdit" class="btn btn-info btn-small edit" runat="server" value="修改" data-id="<%#Item.Id %>" style="padding:0px 10px;" onclick="edit(this)" />
+                                    <input type="button" id="ButtonEdit" class="btn btn-info btn-small edit" runat="server" value="修改" data-id="<%#Item.Id %>" style="padding:0px 10px;" />
                                     <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click" style="padding:0px 10px;"/>
                                 </td>
                             </tr>
@@ -53,11 +53,35 @@
         </div>
     </form>
     <script type="text/javascript">
-        $(".edit").click(function () {
-            alert('dd');
-        });
-        function edit(e) {
-            e.parentElement.parentElement.children[3].innerHtml = "80";
-        }
+        $(document).ready(function () {
+            $(".edit").click(function () {
+                if (this.value == '修改') {
+                    this.value = '确定';
+                    var discount = this.parentNode.previousElementSibling.innerHTML;
+                    this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" />';
+                }
+                else if (this.value == '确定') {                
+                    this.value = '修改';
+                    $.ajax({
+                        //要用post方式       
+                        type: "Post",
+                        //方法所在页面和方法名       
+                        url: "Product.aspx/GetItems",
+                        data: "{ 'id': '1' }",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            //返回的数据用data.d获取内容       
+                            $(data.d).each(function () {
+                                $(".item_detail").append("<option>" + this + "</option>");
+                            });
+                        },
+                        error: function (err) {
+                            alert(err);
+                        }
+                    });
+                }
+            });
+        });    
     </script>
 </asp:Content>

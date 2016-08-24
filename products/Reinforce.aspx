@@ -34,6 +34,7 @@
             <input hidden="hidden" value="<%:GetSendPrice() %>" id="sendPrice" />
             <input hidden="hidden" value="<%:Reinforce1.Price * Order.Recipients.Sum(r => r.Packages.Count) %>" id="reforce1" />
             <input hidden="hidden" value="<%:Reinforce2.Price * Order.Recipients.Sum(r => r.Packages.Count) %>" id="reforce2" />
+            
             <div class="col-sm-2 col-xs-12" style="border: 1px solid #69ADDB">
                 <div class="panel" style="box-shadow: none">
                     <div style="margin-top: 10px">
@@ -86,7 +87,7 @@
         var sendPrice = parseFloat($('#sendPrice')[0].value);
         var reinforcePrice1 = parseFloat($('#reforce1')[0].value);
         var reinforcePrice2 = parseFloat($('#reforce2')[0].value);
-
+       
         $(document).ready(function () {
             $(window).load(function () {           
                 $('#reiforcePrice')[0].innerText = 0;

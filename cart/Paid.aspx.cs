@@ -151,7 +151,7 @@ public partial class cart_Paid : System.Web.UI.Page
     {
         ServiceView sv = new ServiceView(order.Service);
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-gb");
-        return string.Format("取件费：{0:c2}，加固费：{1:c2}，快递费：{2:c2}", sv.GetPickupPrice(order), sv.GetReinforcePrice(order), sv.GetDeliverPrice(order));
+        return string.Format("取件费：{0:c2}，加固费：{1:c2}，快递费：{2:c2}， 折扣：-{3:c2}", order.PickupPrice, order.ReinforcePrice, order.DeliverPrice, order.Discount);
     }
     protected void NormalDetail_Click(object sender, EventArgs e)
     {
