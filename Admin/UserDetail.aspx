@@ -8,12 +8,16 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
+    <form runat="server" method="post" id="placeOrder" style="padding-top: 30px">       
         <div class="mg1">
-            
+            <label style="font-family:'Microsoft YaHei UI';">运费补交</label><input type="number" id="sub" runat="server" style="width:50px; margin-left:5px; margin-right:5px;" /><asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="确定" ID="ButtonSub" OnClick="ButtonSub_Click" />
+            <label style="margin-left:20px; font-family:'Microsoft YaHei UI';">运费赔付</label><input id="add" runat="server" type="number" style="width:50px; margin-left:5px; margin-right:5px;" /><asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="确定" ID="ButtonAdd" OnClick="ButtonAdd_Click" />
+        </div>
+        <hr />
+        <div class="mg1">            
             <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px; padding-top:20px;">
                 <asp:DropDownList runat="server" id="serviceList" />
-                <asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="添加 &gt;" ID="AddDiscount" OnClick="AddDiscount_Click" />
+                <asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="添加折扣 &gt;" ID="AddDiscount" OnClick="AddDiscount_Click" />
             <label runat="server" id="message" />
             </div>
             
@@ -54,30 +58,45 @@
     </form>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".edit").click(function () {
+            $(".edit").click(function (e) {
                 if (this.value == '修改') {
                     this.value = '确定';
                     var discount = this.parentNode.previousElementSibling.innerHTML;
-                    this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" />';
+                    var isSuperAdmin =  '<%:IsSuperAdmin%>';
+                    if (isSuperAdmin == "True"){
+                        this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" min="0.01" required="required" />';
+                    }
+                    else{
+                        this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" max="1" min="0.01" required="required" />';
+                    }
                 }
                 else if (this.value == '确定') {                
+                    
+                    
+                    var id = e.target.attributes["data-id"].value;
+                    var discount = this.parentNode.previousElementSibling.firstChild.value;
+                    
+                    var isSuperAdmin = '<%:IsSuperAdmin%>';
+                    if (isSuperAdmin == "False" && discount > 1) {
+                        alert("折扣不能大于1镑。");
+                        return;
+                    }
+                    this.parentNode.previousElementSibling.innerHTML = discount;
                     this.value = '修改';
                     $.ajax({
                         //要用post方式       
                         type: "Post",
                         //方法所在页面和方法名       
-                        url: "Product.aspx/GetItems",
-                        data: "{ 'id': '1' }",
+                        url: "UserDetail.aspx/Save",
+                        data: "{'id' : '" + id + "', 'discount': '" + discount + "' }",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
                             //返回的数据用data.d获取内容       
-                            $(data.d).each(function () {
-                                $(".item_detail").append("<option>" + this + "</option>");
-                            });
+                            
                         },
                         error: function (err) {
-                            alert(err);
+                            //alert(err);
                         }
                     });
                 }

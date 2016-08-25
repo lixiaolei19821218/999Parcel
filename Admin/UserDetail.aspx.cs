@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,6 +18,22 @@ public partial class Admin_UserDetail : System.Web.UI.Page
 
     private IEnumerable<Discount> discounts;
     private string username;
+    public string Username
+    {
+        get
+        {
+            return username;
+        }
+    }
+
+    public bool IsSuperAdmin
+    {
+        get
+        {            
+            string[] roles = Roles.GetRolesForUser();
+            return roles.Contains("superAdmins") ? true : false;
+        }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -69,6 +86,45 @@ public partial class Admin_UserDetail : System.Web.UI.Page
                 repo.Context.SaveChanges();
                 Response.Redirect(Request.RawUrl);
             }
+        }
+    }
+
+    [WebMethod]
+    public static bool Save(int id, decimal discount)
+    {
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+        Discount d = repo.Discounts.Find(id);
+        if (d != null)
+        {
+            d.Value = discount;
+            d.Approver = Membership.GetUser().UserName;
+            d.ApproveTime = DateTime.Now;
+            repo.SaveChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    protected void ButtonSub_Click(object sender, EventArgs e)
+    {
+        aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == username).FirstOrDefault();
+        if (apUser != null)
+        {
+            apUser.Balance -= decimal.Parse(sub.Value);
+            repo.Context.SaveChanges();
+        }
+    }
+
+    protected void ButtonAdd_Click(object sender, EventArgs e)
+    {
+        aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == username).FirstOrDefault();
+        if (apUser != null)
+        {
+            apUser.Balance += decimal.Parse(add.Value);
+            repo.Context.SaveChanges();
         }
     }
 }
