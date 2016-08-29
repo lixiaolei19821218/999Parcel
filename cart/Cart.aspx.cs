@@ -398,6 +398,101 @@ public partial class cart_Cart : System.Web.UI.Page
         }
     }
 
+    private void SendToBpost(Order order)
+    {
+        foreach (Recipient recipient in order.Recipients)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<?xml version=\"1.0\" encoding=\"utf - 8\" ?>");
+            sb.Append("<ImportRequest>");
+            sb.Append("<Login>");
+            sb.Append("<Username>999API</Username>");
+            sb.Append("<Password>999API1234</Password>");
+            sb.Append("</Login>");
+            sb.Append("<Test>false</Test>");
+            sb.Append("<ClientID>883</ClientID>");
+            sb.AppendFormat("<Reference>{0}</Reference>", order.Id);
+            sb.Append("<ShipTo>");
+            sb.Append("<Name>Test Company</Name>");
+            sb.Append("<Attention>Ole Olsen</Attention>");
+            sb.Append("<Address1>5130 Halford Drive</Address1>");
+            sb.Append("<Address2>Building #C</Address2>");
+            sb.Append("<Address3>Unit 1</Address3>");
+            sb.Append("<City>Windsor</City>");
+            sb.Append("<State>ON</State>");
+            sb.Append("<PostalCode>N9A6J3</PostalCode>");
+            sb.Append("<Country>CA</Country>");
+            sb.Append("<Phone>1-519-737-9101</Phone>");
+            sb.Append("<Email>735534185@qq.com</Email>");
+            sb.Append("<ConsigneeTaxID>510107198212180514</ConsigneeTaxID>");
+            sb.Append("<Region>Landmark UK</Region>");
+            sb.Append("<Residential>true</Residential>");
+            sb.Append("</ShipTo>");
+            sb.Append("<ShippingLane>");
+            sb.Append("<OriginFacilityCode>130</OriginFacilityCode>");
+            sb.Append("</ShippingLane>");
+            sb.Append("<ShipMethod>LGINTSTD</ShipMethod>");
+            sb.Append("<ShipmentInsuranceFreight>20.65</ShipmentInsuranceFreight>");
+            sb.Append("<ItemsCurrency>USD</ItemsCurrency>");
+            sb.Append("<ProduceLabel>true</ProduceLabel>");
+            sb.Append("<LabelEncoding>LINKS</LabelEncoding>");
+            sb.Append("<ShipOptions>");
+            sb.Append("<Option>");
+            sb.Append("<Name>dummy_option</Name>");
+            sb.Append("<Value>true</Value>");
+            sb.Append("</Option>");
+            sb.Append("</ShipOptions>");
+            sb.Append("<VendorInformation>");
+            sb.Append("<VendorName>Test Company Legal Name</VendorName>");
+            sb.Append("<VendorAddress1>Sample Company Street</VendorAddress1>");
+            sb.Append("<VendorAddress2>Suite 135</VendorAddress2>");
+            sb.Append("<VendorCity>Santa Barbara</VendorCity>");
+            sb.Append("<VendorState>CA</VendorState>");
+            sb.Append("<VendorPostalCode>93101</VendorPostalCode>");
+            sb.Append("<VendorCountry>US</VendorCountry>");
+            sb.Append("</VendorInformation>");
+            sb.Append("<AdditionalFields>");
+            sb.Append("<Field1>Any type of data</Field1>");
+            sb.Append("<Field2>Purchased with Credit Card</Field2>");
+            sb.Append("<Field3>99000029327172321</Field3>");
+            sb.Append("<Field4>123198012</Field4>");
+            sb.Append("<Field5>Stored information</Field5>");
+            sb.Append("</AdditionalFields>");
+            sb.Append("<PickSlipAdditions>");
+            sb.Append("<Charges>");
+            sb.Append("<Charge>");
+            sb.Append("<Description>Gift Card Code: DISCOUNTHOUND</Description>");
+            sb.Append("<Value>-7.25</Value>");
+            sb.Append("</Charge>");
+            sb.Append("<Charge>");
+            sb.Append("<Description>Sales Tax</Description>");
+            sb.Append("<Value>1.59</Value>");
+            sb.Append("</Charge>");
+            sb.Append("</Charges>");
+            sb.Append("<Memos>");
+            sb.Append("<Memo>You will receive 15% off your next order with coupon code SAVE15</Memo>");
+            sb.Append("</Memos>");
+            sb.Append("</PickSlipAdditions>");
+            sb.Append("<Packages>");
+            foreach (Package package in recipient.Packages)
+            {
+                sb.Append("<Package>");
+                sb.Append("<WeightUnit>KG</WeightUnit>");
+                sb.AppendFormat("<Weight>{0}</Weight>", package.Weight);
+                sb.Append("<DimensionsUnit>CM</DimensionsUnit>");
+                sb.AppendFormat("<Length>{0}</Length>", package.Length);
+                sb.AppendFormat("<Width>{0}</Width>", package.Width);
+                sb.AppendFormat("<Height>{0}</Height>", package.Height);
+                sb.AppendFormat("<PackageReference>98233312</PackageReference>");
+                sb.Append("</Package>");
+            }
+            sb.Append("</Packages>");
+            sb.Append("<Items>");
+            sb.Append("</Items>");
+            sb.Append("</ImportRequest>");
+        }
+    }
+
     private void SendTo4PX(Order order)
     {
         foreach (Recipient r in order.Recipients)

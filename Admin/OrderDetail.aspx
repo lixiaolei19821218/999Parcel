@@ -27,6 +27,7 @@
                 <ItemTemplate>
                     <fieldset>
                         <legend>收件人：<%#Item.Name %><%#(Item.SuccessPaid ?? false) ? "<div style=\"float:right;font-size:medium;color:green;\">发送成功</div>" : "<div style=\"float:right;font-size:medium;color:red;\">发送失败</div>"%></legend>
+                        
                         <ul>
                             <li>城市：<%#Item.City %></li>
                             <li>地址：<%#Item.Address %></li>
@@ -67,6 +68,9 @@
                         </ul>
                     </fieldset>
                     <br />
+                    <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" style="padding:0px 10px;" />
+                                    
+                    <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>"  style="padding:0px 10px;"/>
                 </ItemTemplate>
             </asp:Repeater>
         </form>
