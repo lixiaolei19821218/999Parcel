@@ -238,7 +238,9 @@ public partial class cart_Cart : System.Web.UI.Page
                     SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
                     break;
                 case "Bpost - 诚信物流取件":
-                    SendBpostLciFile(o);
+                    //SendBpostLciFile(o);
+                    SendToBpost(o);
+                    return;
                     break;
                 case "Bpost - UKMail 取件":
                     if (UKMailCollection(o))
@@ -403,7 +405,7 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient recipient in order.Recipients)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<?xml version=\"1.0\" encoding=\"utf - 8\" ?>");
+            sb.Append("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             sb.Append("<ImportRequest>");
             sb.Append("<Login>");
             sb.Append("<Username>999API</Username>");
@@ -416,7 +418,7 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.AppendFormat("<Name>{0}</Name>", recipient.PyName);
             sb.Append("<Attention></Attention>");
             sb.AppendFormat("<Address1>{0}</Address1>", recipient.PyAddress);
-            sb.Append("<Address2>/Address2>");
+            sb.Append("<Address2></Address2>");
             sb.Append("<Address3></Address3>");
             sb.AppendFormat("<City>{0}</City>", recipient.PyCity);
             sb.Append("<State>ON</State>");
@@ -443,7 +445,7 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.Append("</Option>");
             sb.Append("</ShipOptions>");
             sb.Append("<VendorInformation>");
-            sb.Append("<VendorName>Test Company Legal Name</VendorName>");
+            sb.Append("<VendorName>999 Parcel</VendorName>");
             sb.Append("<VendorAddress1>Sample Company Street</VendorAddress1>");
             sb.Append("<VendorAddress2>Suite 135</VendorAddress2>");
             sb.Append("<VendorCity>Santa Barbara</VendorCity>");
@@ -488,8 +490,19 @@ public partial class cart_Cart : System.Web.UI.Page
             }
             sb.Append("</Packages>");
             sb.Append("<Items>");
+            sb.Append("<Item>");
+            sb.Append("<Sku>7224059</Sku>");
+            sb.Append("<Quantity>2</Quantity>");
+            sb.Append("<UnitPrice>93.99</UnitPrice>");
+            sb.Append("<Description>Women's Shoes</Description>");
+            sb.Append("<HSCode>640399.30.00</HSCode>");
+            sb.Append("<CountryOfOrigin>UK</CountryOfOrigin>");
+            sb.Append("</Item>");
             sb.Append("</Items>");
             sb.Append("</ImportRequest>");
+
+            string data = sb.ToString();
+            string response = HttpHelper.HttpPost("https://mercury.landmarkglobal.com/api/api.php", data);
         }
     }
 

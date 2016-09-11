@@ -27,7 +27,7 @@
                 <ItemTemplate>
                     <fieldset>
                         <legend>收件人：<%#Item.Name %><%#(Item.SuccessPaid ?? false) ? "<div style=\"float:right;font-size:medium;color:green;\">发送成功</div>" : "<div style=\"float:right;font-size:medium;color:red;\">发送失败</div>"%></legend>
-                        
+
                         <ul>
                             <li>城市：<%#Item.City %></li>
                             <li>地址：<%#Item.Address %></li>
@@ -45,7 +45,9 @@
                                             <th class="tac">状态</th>
                                             <th class="tac">跟踪号</th>
                                             <th class="tac">运费</th>
-                                            <th colspan="2">详情</th>                                            
+                                            <th colspan="2">详情</th>
+                                            <th class="tac"></th>
+                                            <th class="tac"></th>
                                         </tr>
                                     </HeaderTemplate>
                                     <ItemTemplate>
@@ -60,17 +62,20 @@
                                             <td class="tac">130</td>
                                             <td colspan="2">
                                                 <%#GetPacakgeDetail(Item)%>
-                                            </td>                                            
+                                            </td>
+                                            <td class="tac">
+                                                <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" Style="padding: 0px 10px;" />
+                                            </td>
+                                            <td class="tac">
+                                                <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" Style="padding: 0px 10px;" />
+                                            </td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </table>
                         </ul>
                     </fieldset>
-                    <br />
-                    <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" style="padding:0px 10px;" />
-                                    
-                    <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>"  style="padding:0px 10px;"/>
+
                 </ItemTemplate>
             </asp:Repeater>
         </form>
