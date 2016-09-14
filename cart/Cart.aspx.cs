@@ -421,7 +421,7 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.Append("<Address2></Address2>");
             sb.Append("<Address3></Address3>");
             sb.AppendFormat("<City>{0}</City>", recipient.PyCity);
-            sb.Append("<State>ON</State>");
+            sb.Append("<State></State>");
             sb.AppendFormat("<PostalCode>{0}</PostalCode>", recipient.ZipCode);
             sb.Append("<Country>CN</Country>");
             sb.AppendFormat("<Phone>{0}</Phone>", recipient.PhoneNumber);
@@ -431,28 +431,28 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.Append("<Residential>true</Residential>");
             sb.Append("</ShipTo>");
             sb.Append("<ShippingLane>");
-            sb.Append("<OriginFacilityCode>130</OriginFacilityCode>");
+            sb.Append("<OriginFacilityCode></OriginFacilityCode>");
             sb.Append("</ShippingLane>");
             sb.Append("<ShipMethod>LGINTSTD</ShipMethod>");
-            sb.Append("<ShipmentInsuranceFreight>0</ShipmentInsuranceFreight>");
+            sb.Append("<ShipmentInsuranceFreight></ShipmentInsuranceFreight>");
             sb.Append("<ItemsCurrency>GBP</ItemsCurrency>");
             sb.Append("<ProduceLabel>true</ProduceLabel>");
-            sb.Append("<LabelEncoding>LINKS</LabelEncoding>");
+            sb.Append("<LabelEncoding>LINKS</LabelEncoding>");/*
             sb.Append("<ShipOptions>");
             sb.Append("<Option>");
             sb.Append("<Name>dummy_option</Name>");
             sb.Append("<Value>true</Value>");
             sb.Append("</Option>");
-            sb.Append("</ShipOptions>");
+            sb.Append("</ShipOptions>");*/
             sb.Append("<VendorInformation>");
             sb.Append("<VendorName>999 Parcel</VendorName>");
-            sb.Append("<VendorAddress1>Sample Company Street</VendorAddress1>");
-            sb.Append("<VendorAddress2>Suite 135</VendorAddress2>");
-            sb.Append("<VendorCity>Santa Barbara</VendorCity>");
-            sb.Append("<VendorState>CA</VendorState>");
-            sb.Append("<VendorPostalCode>93101</VendorPostalCode>");
-            sb.Append("<VendorCountry>US</VendorCountry>");
-            sb.Append("</VendorInformation>");
+            sb.Append("<VendorAddress1>83 Fitzwilliam street</VendorAddress1>");
+            sb.Append("<VendorAddress2></VendorAddress2>");
+            sb.Append("<VendorCity>Sheffield</VendorCity>");
+            sb.Append("<VendorState></VendorState>");
+            sb.Append("<VendorPostalCode>S1 4JP</VendorPostalCode>");
+            sb.Append("<VendorCountry>UK</VendorCountry>");
+            sb.Append("</VendorInformation>");/*
             sb.Append("<AdditionalFields>");
             sb.Append("<Field1>Any type of data</Field1>");
             sb.Append("<Field2>Purchased with Credit Card</Field2>");
@@ -474,7 +474,7 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.Append("<Memos>");
             sb.Append("<Memo>You will receive 15% off your next order with coupon code SAVE15</Memo>");
             sb.Append("</Memos>");
-            sb.Append("</PickSlipAdditions>");
+            sb.Append("</PickSlipAdditions>");*/
             sb.Append("<Packages>");
             foreach (Package package in recipient.Packages)
             {
@@ -485,25 +485,31 @@ public partial class cart_Cart : System.Web.UI.Page
                 sb.AppendFormat("<Length>{0}</Length>", package.Length);
                 sb.AppendFormat("<Width>{0}</Width>", package.Width);
                 sb.AppendFormat("<Height>{0}</Height>", package.Height);
-                sb.AppendFormat("<PackageReference>98233312</PackageReference>");
+                sb.AppendFormat("<PackageReference></PackageReference>");
                 sb.Append("</Package>");
             }
             sb.Append("</Packages>");
             sb.Append("<Items>");
-            sb.Append("<Item>");
-            sb.Append("<Sku>7224059</Sku>");
-            sb.Append("<Quantity>2</Quantity>");
-            sb.Append("<UnitPrice>93.99</UnitPrice>");
-            sb.Append("<Description>Women's Shoes</Description>");
-            sb.Append("<HSCode>640399.30.00</HSCode>");
-            sb.Append("<CountryOfOrigin>UK</CountryOfOrigin>");
-            sb.Append("</Item>");
+            foreach (Package p in recipient.Packages)
+            {
+                foreach (PackageItem i in p.PackageItems)
+                {
+                    sb.Append("<Item>");
+                    sb.Append("<Sku>7224059</Sku>");
+                    sb.AppendFormat("<Quantity>{0}</Quantity>", i.Count);
+                    sb.AppendFormat("<UnitPrice>{0}</UnitPrice>", i.UnitPrice);
+                    sb.AppendFormat("<Description>{0}</Description>", i.Description);
+                    sb.Append("<HSCode></HSCode>");
+                    sb.Append("<CountryOfOrigin>GB</CountryOfOrigin>");
+                    sb.Append("</Item>");
+                }
+            }           
             sb.Append("</Items>");
             sb.Append("</ImportRequest>");
 
             string data = sb.ToString();
             string response = HttpHelper.HttpPost("https://mercury.landmarkglobal.com/api/api.php", data);
-        }
+        }        
     }
 
     private void SendTo4PX(Order order)

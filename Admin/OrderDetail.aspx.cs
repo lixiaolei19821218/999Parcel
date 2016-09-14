@@ -17,14 +17,14 @@ public partial class cart_OrderDetail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["id"] == null)        
+        if (Session["id"] == null)
         {
             Response.Redirect("/");
         }
     }
 
     public IEnumerable<Recipient> GetRecipients()
-    {        
+    {
         int id;
         if (int.TryParse(Session["id"].ToString(), out id))
         {
@@ -33,7 +33,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             {
                 return order.Recipients;
             }
-        }       
+        }
         return new Recipient[0];
     }
 
@@ -76,42 +76,152 @@ public partial class cart_OrderDetail : System.Web.UI.Page
 
     public string GetPacakgeDetail(Package p)
     {
-        if (p.Recipient.Order.Service.Name.Contains("Parcelforce"))
+        if (p.Recipient.Order.HasPaid ?? false)
         {
-            return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
-        }
-        else if (p.Recipient.Order.Service.Name.Contains("Bpost"))
-        {
-            if (!string.IsNullOrEmpty(p.Status))
+            if (p.Recipient.Order.Service.Name.Contains("Parcelforce"))
             {
-                if (p.Status == "SUCCESS")
+                return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+            }
+            else if (p.Recipient.Order.Service.Name.Contains("Bpost"))
+            {
+                if (!string.IsNullOrEmpty(p.Status))
                 {
-                    return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                    if (p.Status == "SUCCESS")
+                    {
+                        return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                    }
+                    else
+                    {
+                        return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                    }
                 }
                 else
                 {
-                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                    if (string.IsNullOrWhiteSpace(p.Recipient.Order.UKMErrors))
+                    {
+                        return "<a title=\"已发送Bpost\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + "等待Bpost返回结果" + "\">已发送Bpost</a>";
+                    }
+                    else
+                    {
+                        return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Recipient.Order.UKMErrors + "\">错误详情</a>";
+                    }
+                }
+            }
+            else if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+            {
+                return (p.Status == "SUCCESS") ? "发送成功" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+        else
+        {
+            return "未付款";
+        }
+    }
+
+    public string Get4PXVisible(Package p)
+    {
+        if (p == null)
+        {
+            return string.Empty;
+        }
+        else
+        {
+            if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+            {
+                return "<th class=\"tac\"></th>";
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+    }
+
+    public string Get4PXOperation(Package p)
+    {
+        if (p == null)
+        {
+            return string.Empty;
+        }
+        else
+        {
+            if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+            {
+                if (p.Recipient.Order.HasPaid ?? false)
+                {
+                    return string.Format("<td class=\"tac\"><input type=\"submit\" class=\"btn btn-info btn-small edit\" data-id=\"{0}\" name=\"edit\" value=\"修改\" style=\"padding: 0px 10px;\" /></td>", p.Id);
+                }
+                else
+                {
+                    return string.Format("<td class=\"tac\"><input type=\"submit\" class=\"btn btn-danger btn-small del\" data-id=\"{0}\" name=\"delete\" value=\"删除\" style=\"padding: 0px 10px;\" /></td>", p.Id);
                 }
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(p.Recipient.Order.UKMErrors))
-                {
-                    return "<a title=\"已发送Bpost\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + "等待Bpost返回结果" + "\">已发送Bpost</a>";
-                }
-                else
-                {
-                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Recipient.Order.UKMErrors + "\">错误详情</a>";
-                }
+                return string.Empty;
             }
         }
-        else if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+    }
+
+    public bool Get4PXEdit(Package p)
+    {
+        if (p == null)
         {
-            return (p.Status == "SUCCESS") ? "发送成功" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+            return false;
+        }
+        if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+        {
+            if (p.Recipient.Order.HasPaid ?? false)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            return string.Empty;
+            return false;
         }
     }
+
+    public bool Get4PXDelete(Package p)
+    {
+        if (p == null)
+        {
+            return false;
+        }
+        if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
+        {
+            if (p.Recipient.Order.HasPaid ?? false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string GetStatus(Recipient p)
+    {
+        if (p.Order.HasPaid ?? false)
+        {
+            return (p.SuccessPaid ?? false) ? "<div style=\"float:right;font-size:medium;color:green;\">发送成功</div>" : "<div style=\"float:right;font-size:medium;color:red;\">发送失败</div>";
+        }
+        else
+        {
+            return "<div style=\"float:right;font-size:medium;color:green;\">未付款</div>";
+        }
+    }   
 }

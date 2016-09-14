@@ -102,4 +102,16 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
         string content = Request.Form.Get("content");
         Response.Redirect(string.Format("/admin/CheckOrder.aspx?content={0}", content));
     }
+
+    public string GetStatus(Order o)
+    {
+        if (o.HasPaid ?? false)
+        {
+            return (o.SuccessPaid.HasValue && o.SuccessPaid.Value) ? "<img src=\"../static/images/icon/onCorrect.gif\" title=\"发送成功\">" : "<img src=\"../static/images/icon/onFocus.gif\" title=\"有发送失败的包裹\">";
+        }
+        else
+        {
+            return "<img src=\"../static/images/icon/onFocus.gif\" title=\"未付款\">";
+        }
+    }
 }

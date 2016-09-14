@@ -44,7 +44,7 @@
                                 <td class="tac"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
                                 <td class="tac"><%#Item.SenderName %></td>
                                 <td class="right"><%#Item.Service.Name %></td>
-                                <td><%#(Item.SuccessPaid.HasValue && Item.SuccessPaid.Value) ? "<img src=\"../static/images/icon/onCorrect.gif\" title=\"发送成功\">" : "<img src=\"../static/images/icon/onFocus.gif\" title=\"有发送失败的包裹\">" %></td>
+                                <td><%#GetStatus(Item) %></td>
                                 <td colspan="2">
                                     <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />
                                 </td>
