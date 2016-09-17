@@ -147,7 +147,8 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             {
                 if (p.Status == "SUCCESS")
                 {
-                    return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                    //return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                    return "<a href=\"" + p.Pdf + "\">点击下载</a>";
                 }
                 else
                 {

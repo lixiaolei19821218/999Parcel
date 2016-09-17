@@ -240,12 +240,11 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "Bpost - 诚信物流取件":
                     //SendBpostLciFile(o);
                     SendToBpost(o);
-                    return;
                     break;
                 case "Bpost - UKMail 取件":
                     if (UKMailCollection(o))
                     {
-                        SendBpostLciFile(o);
+                        SendToBpost(o);
                     }
                     break;
                 case "杂物包税专线（100镑以内） - 自送仓库":
@@ -433,7 +432,7 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.Append("<ShippingLane>");
             sb.Append("<OriginFacilityCode></OriginFacilityCode>");
             sb.Append("</ShippingLane>");
-            sb.Append("<ShipMethod>LGINTSTD</ShipMethod>");
+            sb.Append("<ShipMethod>LGINTBPMU</ShipMethod>");
             sb.Append("<ShipmentInsuranceFreight></ShipmentInsuranceFreight>");
             sb.Append("<ItemsCurrency>GBP</ItemsCurrency>");
             sb.Append("<ProduceLabel>true</ProduceLabel>");
@@ -495,7 +494,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 foreach (PackageItem i in p.PackageItems)
                 {
                     sb.Append("<Item>");
-                    sb.Append("<Sku>7224059</Sku>");
+                    sb.AppendFormat("<Sku>{0}</Sku>", i.Description);
                     sb.AppendFormat("<Quantity>{0}</Quantity>", i.Count);
                     sb.AppendFormat("<UnitPrice>{0}</UnitPrice>", i.UnitPrice);
                     sb.AppendFormat("<Description>{0}</Description>", i.Description);
@@ -509,7 +508,28 @@ public partial class cart_Cart : System.Web.UI.Page
 
             string data = sb.ToString();
             string response = HttpHelper.HttpPost("https://mercury.landmarkglobal.com/api/api.php", data);
-        }        
+
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(response);
+            recipient.SuccessPaid = bool.Parse(xml.SelectNodes("ImportResponse/Result/Success")[0].InnerText);            
+
+            var xmlPackages = xml.SelectNodes("ImportResponse/Result/Packages");
+            for (int i = 0; i < recipient.Packages.Count; i++)
+            {
+                Package p = recipient.Packages.ElementAt(i);
+                p.Status = recipient.SuccessPaid ?? false ? "SUCCESS" : "FAIL";
+                if (p.Status == "SUCCESS")
+                {
+                    p.TrackNumber = xmlPackages[i].SelectNodes("Package/TrackingNumber")[0].InnerText;
+                    p.Pdf = xmlPackages[i].SelectNodes("Package/LabelLink")[0].InnerText;
+                }
+                else
+                {
+                    p.Response = response;
+                }
+            }
+        }
+        order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
     }
 
     private void SendTo4PX(Order order)
