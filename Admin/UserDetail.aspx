@@ -8,7 +8,9 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <form runat="server" method="post" id="placeOrder" style="padding-top: 30px">       
+    <form runat="server" method="post" id="placeOrder" style="padding-top: 30px">     
+        <label style="font-family:'Microsoft YaHei UI';">当前用户:&nbsp;&nbsp;&nbsp;</label><%:Username %>
+        <hr />
         <div class="mg1">
             <label style="font-family:'Microsoft YaHei UI';">运费补交</label><input type="number" id="sub" runat="server" style="width:50px; margin-left:5px; margin-right:5px;" /><asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="确定" ID="ButtonSub" OnClick="ButtonSub_Click" />
             <label style="margin-left:20px; font-family:'Microsoft YaHei UI';">运费赔付</label><input id="add" runat="server" type="number" style="width:50px; margin-left:5px; margin-right:5px;" /><asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="确定" ID="ButtonAdd" OnClick="ButtonAdd_Click" />
