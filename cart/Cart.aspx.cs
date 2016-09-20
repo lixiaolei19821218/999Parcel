@@ -520,8 +520,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 p.Status = recipient.SuccessPaid ?? false ? "SUCCESS" : "FAIL";
                 if (p.Status == "SUCCESS")
                 {
-                    p.TrackNumber = xmlPackages[i].SelectNodes("Package/TrackingNumber")[0].InnerText;
-                    p.Pdf = xmlPackages[i].SelectNodes("Package/LabelLink")[0].InnerText;
+                    p.TrackNumber = xml.GetElementsByTagName("TrackingNumber")[i].InnerText;
+                    p.Pdf = xml.GetElementsByTagName("LabelLink")[i].InnerText;
                 }
                 else
                 {
