@@ -108,23 +108,5 @@ public partial class Admin_UserDetail : System.Web.UI.Page
         }
     }
 
-    protected void ButtonSub_Click(object sender, EventArgs e)
-    {
-        aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == username).FirstOrDefault();
-        if (apUser != null)
-        {
-            apUser.Balance -= decimal.Parse(sub.Value);
-            repo.Context.SaveChanges();
-        }
-    }
-
-    protected void ButtonAdd_Click(object sender, EventArgs e)
-    {
-        aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == username).FirstOrDefault();
-        if (apUser != null)
-        {
-            apUser.Balance += decimal.Parse(add.Value);
-            repo.Context.SaveChanges();
-        }
-    }
+    
 }

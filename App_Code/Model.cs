@@ -80,6 +80,8 @@ public partial class Order
     public decimal DeliverPrice { get; set; }
     public decimal ReinforcePrice { get; set; }
     public decimal Discount { get; set; }
+    public decimal AfterPayment { get; set; }
+    public decimal Compensate { get; set; }
 
     public virtual ICollection<Recipient> Recipients { get; set; }
     public virtual Reinforce Reinforce { get; set; }

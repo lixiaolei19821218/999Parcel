@@ -223,5 +223,30 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             return "<div style=\"float:right;font-size:medium;color:green;\">未付款</div>";
         }
-    }   
+    }
+    protected void ButtonSub_Click(object sender, EventArgs e)
+    {
+        aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == Order.User).FirstOrDefault();
+        if (apUser != null)
+        {
+            decimal temp = decimal.Parse(sub.Value);
+            Order.AfterPayment = temp;
+            apUser.Balance -= temp;
+            repo.Context.SaveChanges();
+            message.Text = string.Format("已成功补交{0}英镑。", temp);
+        }
+    }
+
+    protected void ButtonAdd_Click(object sender, EventArgs e)
+    {
+        aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == Order.User).FirstOrDefault();
+        if (apUser != null)
+        {
+            decimal temp = decimal.Parse(add.Value);
+            Order.Compensate = temp;
+            apUser.Balance += temp;
+            repo.Context.SaveChanges();
+            message.Text = string.Format("已成功赔付{0}英镑。", temp);
+        }
+    }
 }
