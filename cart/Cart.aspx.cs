@@ -26,6 +26,10 @@ using WMOrderService;
 using System.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ZXing;
+using System.Drawing;
+using ZXing.Common;
+using System.Dynamic;
 
 public partial class cart_Cart : System.Web.UI.Page
 {
@@ -399,7 +403,7 @@ public partial class cart_Cart : System.Web.UI.Page
         }
     }
 
-    private void SendToBpost(Order order)
+    private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")
     {
         foreach (Recipient recipient in order.Recipients)
         {
@@ -540,7 +544,7 @@ public partial class cart_Cart : System.Web.UI.Page
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("{");
-                sb.Append("\"Token\": \"104FC78C-7923-404C-82CF-CD88153912AH\",");
+                sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");
                 sb.Append("\"Data\": {");
                 sb.Append("\"TaxMode\": \"DDP\",");
                 sb.Append("\"DestinationCountry\": \"China\",");
@@ -578,7 +582,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 sb.Append("],");
                 sb.Append("\"ItemDeclareCurrency\": \"CNY\",");
                 sb.Append("\"ServiceTypeCode\": \"IPS\",");
-                sb.Append("\"UserCode\": \"RMXKRA\",");
+                sb.Append("\"UserCode\": \"KWTZQC\",");
                 sb.Append("\"WarehouseOperateMode\": \"NON\",");
                 sb.Append("\"CarrierCompanyCode\": \"OTHER\",");
                 sb.AppendFormat("\"CarrierDeliveryNo\": \"{0}\",", p.Id);
@@ -596,7 +600,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 {
                     p.Status = "SUCCESS";
                     p.TrackNumber = response.Data;
-
+                    Generate4PXPdfNew(p);
                 }
                 else
                 {
@@ -607,6 +611,331 @@ public partial class cart_Cart : System.Web.UI.Page
             r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");
         }
         order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid.HasValue && r.SuccessPaid.Value);
+    }
+
+    private void Generate4PXPdf(Package p)
+    {
+        //获取大头笔
+        StringBuilder sb = new StringBuilder();
+        sb.Append("{");
+        sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");
+        sb.Append("\"Data\": [");
+        sb.Append("{");
+        sb.Append(string.Format("\"key\": \"{0}\",", p.Id));
+        sb.Append(string.Format("\"prov\": \"{0}\",", p.Recipient.Province));
+        sb.Append(string.Format("\"city\": \"{0}\",", p.Recipient.City));
+        sb.Append(string.Format("\"area\": \"{0}\"", p.Recipient.District));
+        sb.Append("}");
+        sb.Append("]");
+        sb.Append("}");
+
+        string response = HttpHelper.HttpPost("http://sandbox.tr.4px.com/TRSAPI/Delivery/GetPODInfo", sb.ToString());
+        var d = JsonConvert.DeserializeAnonymousType(response, new { Data = new JArray(), Message = string.Empty, ResponseCode = string.Empty });
+        
+        Document document = new Document();        
+        BaseFont baseFont = BaseFont.CreateFont(HttpRuntime.AppDomainAppPath + "cart/simsun.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 9, 0);
+        iTextSharp.text.Font fontBlod = new iTextSharp.text.Font(baseFont, 9, 1);
+
+        string orderName = string.Format("CX999{0:d9}UK", p.Id);
+        string filePath = HttpRuntime.AppDomainAppPath + string.Format("4px_files/{0}.pdf", orderName);
+        PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
+        document.Open();
+
+        PdfPCell cell;
+
+        PdfPTable to = new PdfPTable(3);
+        to.SetTotalWidth(new float[] { 10, 70, 20 });
+        cell = new PdfPCell(new Phrase("收件：", fontBlod));
+        cell.Rowspan = 3;
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(p.Recipient.Name, font));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PhoneNumber));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.RIGHT_BORDER;
+        to.AddCell(cell);
+
+
+        cell = new PdfPCell(new Phrase(p.Recipient.District, font));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.Province, font));
+        cell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER;
+        cell.HorizontalAlignment = iTextSharp.text.Rectangle.ALIGN_CENTER;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(p.Recipient.Address, font));
+        cell.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase("", font));
+        cell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
+        to.AddCell(cell);
+
+        document.Add(to);
+
+        PdfPTable from0 = new PdfPTable(3);
+        cell = new PdfPCell(new Phrase("寄件：", font));
+        cell.Rowspan = 2;
+        from0.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(string.Format("英国诚信物流"), font));
+        from0.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("011-4327388")));
+        from0.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("深圳宝安机场国内航空货站201-221"), font));
+        cell.Colspan = 2;
+        from0.AddCell(cell);
+
+        document.Add(from0);
+
+        PdfPTable detail = new PdfPTable(2);
+        cell = new PdfPCell(new Phrase(string.Format("芜湖分拨包"), font));
+        detail.AddCell(cell);
+
+        BarcodeWriter barcodeWriter = new BarcodeWriter//312010605000100000000000000447
+        {
+            Format = BarcodeFormat.CODE_128,
+            Options = new EncodingOptions
+            {
+                Height = 100,
+                Width = 600
+            }
+        };
+        string barcode = p.TrackNumber;
+        Bitmap bitmap = barcodeWriter.Write(barcode);
+        string pngFile = HttpRuntime.AppDomainAppPath + string.Format("4px_files/{0}.png", orderName);
+        bitmap.Save(pngFile, System.Drawing.Imaging.ImageFormat.Png);
+
+        iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(pngFile);
+        cell = new PdfPCell(image);
+        cell.Rowspan = 3;
+        detail.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(string.Format("皖 马鞍山"), font));
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("订单号：{0}", orderName), font));
+        detail.AddCell(cell);
+
+        document.Add(detail);
+
+        PdfPTable sign = new PdfPTable(2);
+        cell = new PdfPCell(new Phrase("签收人：", font));
+        sign.AddCell(cell);
+        cell = new PdfPCell(new Phrase("    年   月   日", font));
+        sign.AddCell(cell);
+        cell = new PdfPCell(new Phrase("签收人：    东莞长安二站", font));
+        sign.AddCell(cell);
+        cell = new PdfPCell(new Phrase("    年   月   日", font));
+        sign.AddCell(cell);
+        document.Add(sign);
+
+        PdfPTable from1 = new PdfPTable(2);
+        cell = new PdfPCell(new Phrase("英国诚信物流", font));
+        from1.AddCell(cell);
+        cell = new PdfPCell(image);
+        cell.Rowspan = 2;
+        from1.AddCell(cell);
+        cell = new PdfPCell(new Phrase("深圳宝安机场国内航空货站201-221", font));
+        from1.AddCell(cell);
+        document.Add(from1);
+
+        document.Close();
+        writer.Close();
+
+        p.Pdf = string.Format("4px_files/{0}.pdf", orderName);
+    }
+
+    private void Generate4PXPdfNew(Package p)
+    {
+        //获取大头笔
+        StringBuilder sb = new StringBuilder();
+        sb.Append("{");
+        sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");
+        sb.Append("\"Data\": [");
+        sb.Append("{");
+        sb.Append(string.Format("\"key\": \"{0}\",", p.Id));
+        sb.Append(string.Format("\"prov\": \"{0}\",", p.Recipient.Province));
+        sb.Append(string.Format("\"city\": \"{0}\",", p.Recipient.City));
+        sb.Append(string.Format("\"area\": \"{0}\"", p.Recipient.District));
+        sb.Append("}");
+        sb.Append("]");
+        sb.Append("}");
+
+        string response = HttpHelper.HttpPost("http://sandbox.tr.4px.com/TRSAPI/Delivery/GetPODInfo", sb.ToString());
+        var d = JsonConvert.DeserializeAnonymousType(response, new { Data = string.Empty, Message = string.Empty, ResponseCode = string.Empty });
+        
+        Document document = new Document();
+
+        BaseFont baseFont = BaseFont.CreateFont(HttpRuntime.AppDomainAppPath + "cart/simsun.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 12, 0);
+        iTextSharp.text.Font fontBold = new iTextSharp.text.Font(baseFont, 12, 1);
+        iTextSharp.text.Font fontBig = new iTextSharp.text.Font(baseFont, 18, 1);
+        iTextSharp.text.Font fontMiddle = new iTextSharp.text.Font(baseFont, 15, 0);
+
+        string orderName = string.Format("CX999{0:d9}UK", p.Id);
+        string fileName = HttpRuntime.AppDomainAppPath + string.Format("4px_files/{0}.pdf", orderName);
+        PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));
+        document.Open();
+
+        PdfPCell cell;
+
+        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(HttpRuntime.AppDomainAppPath + "cart/TKLogo.jpg");
+        cell = new PdfPCell(logo);
+        cell.Border = 0;
+        PdfPTable head = new PdfPTable(1);
+        head.AddCell(cell);
+        document.Add(head);
+
+        PdfPTable to = new PdfPTable(3);
+        to.SetTotalWidth(new float[] { 10, 70, 20 });
+        cell = new PdfPCell(new Phrase("收件：", fontBold));
+        cell.Rowspan = 3;
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(p.Recipient.Name, font));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.PhoneNumber));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.RIGHT_BORDER;
+        to.AddCell(cell);
+
+
+        cell = new PdfPCell(new Phrase(p.Recipient.District, font));
+        cell.Border = 0;
+        to.AddCell(cell);
+        cell = new PdfPCell(new Phrase(p.Recipient.Province, font));
+        cell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER;
+        cell.HorizontalAlignment = iTextSharp.text.Rectangle.ALIGN_CENTER;
+        to.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(p.Recipient.Address, font));
+        cell.PaddingBottom = 20;
+        cell.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER | iTextSharp.text.Rectangle.RIGHT_BORDER;
+        //cell.Padding = 10;
+        cell.Colspan = 2;
+        to.AddCell(cell);
+
+
+        document.Add(to);
+
+        PdfPTable from0 = new PdfPTable(3);
+        from0.SetTotalWidth(new float[] { 10, 70, 20 });
+        cell = new PdfPCell(new Phrase("寄件：", fontBold));
+        cell.Rowspan = 2;
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER;
+        from0.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(string.Format("英国诚信物流"), font));
+        cell.Border = 0;
+        from0.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("011-4327388")));
+        cell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER;
+        from0.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("深圳宝安机场国内航空货站201-221"), font));
+        cell.PaddingBottom = 20;
+        cell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
+        cell.Colspan = 2;
+        from0.AddCell(cell);
+
+        document.Add(from0);
+
+        PdfPTable detail = new PdfPTable(2);
+        detail.SetWidths(new float[] { 50, 50 });
+        cell = new PdfPCell(new Phrase(JArray.Parse(d.Data).First["package"].ToString(), fontBig));
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.TOP_BORDER;
+        detail.AddCell(cell);
+
+        BarcodeWriter barcodeWriter = new BarcodeWriter
+        {
+
+            Format = BarcodeFormat.CODE_128,
+            Options = new EncodingOptions
+            {
+                Height = 50,
+                Width = 200,
+
+            }
+        };
+        //barcodeWriter.Options.
+
+        string barcode = p.TrackNumber;
+        Bitmap bitmap = barcodeWriter.Write(barcode);
+        string pngFile = HttpRuntime.AppDomainAppPath + string.Format("4px_files/{0}.png", orderName);
+        bitmap.Save(pngFile, System.Drawing.Imaging.ImageFormat.Png);
+
+        iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(pngFile);
+        //image.SetAbsolutePosition(0, 350);
+        cell = new PdfPCell(image);
+        cell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER;
+        cell.Rowspan = 3;
+        cell.Padding = 10;
+        detail.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase(JArray.Parse(d.Data).First["result"].ToString(), fontMiddle));
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER;
+        cell.Padding = 10;
+        detail.AddCell(cell);
+        cell = new PdfPCell(new Phrase(string.Format("订单号：{0}", orderName), font));
+        cell.Padding = 10;
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER;
+        detail.AddCell(cell);
+
+        document.Add(detail);
+
+        PdfPTable sign = new PdfPTable(2);
+        cell = new PdfPCell(new Phrase("签收人：", font));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        cell.Padding = 10;
+        sign.AddCell(cell);
+        cell = new PdfPCell(new Phrase("    年   月   日", font));
+        cell.Padding = 10;
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        sign.AddCell(cell);
+        cell = new PdfPCell(new Phrase("始发网点：    东莞长安二站", font));
+        cell.Padding = 10;
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        sign.AddCell(cell);
+        cell = new PdfPCell(new Phrase("    年   月   日", font));
+        cell.Padding = 10;
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        sign.AddCell(cell);
+        document.Add(sign);
+
+        PdfPTable from1 = new PdfPTable(3);
+        from1.SetWidths(new float[] { 10, 40, 50 });
+        cell = new PdfPCell(new Phrase("寄件：", fontBold));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.LEFT_BORDER;
+        from1.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("英国诚信物流", font));
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+        from1.AddCell(cell);
+
+        //iTextSharp.text.Image image1 = iTextSharp.text.Image.GetInstance(pngFile);
+        cell = new PdfPCell(image);
+        //cell.HorizontalAlignment =  iTextSharp.text.Rectangle.SECTION\\
+        cell.Border = iTextSharp.text.Rectangle.TOP_BORDER | iTextSharp.text.Rectangle.RIGHT_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
+
+        cell.Padding = 10;
+        cell.Rowspan = 2;
+        from1.AddCell(cell);
+
+        cell = new PdfPCell(new Phrase("深圳宝安机场国内航空货站201-221", font));
+        cell.PaddingTop = 10;
+        cell.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.BOTTOM_BORDER;
+        cell.Colspan = 2;
+        from1.AddCell(cell);
+
+        document.Add(from1);
+
+        document.Close();
+        writer.Close();
+
+        p.Pdf = string.Format("4px_files/{0}.pdf", orderName);
     }
     
     protected void pay_Click(object sender, EventArgs e)

@@ -14,7 +14,7 @@
         // 在应用程序启动时运行的代码
         BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
         ASP.App_Start.NinjectWebCommon.Start();
-
+        /*
         sr1 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/999BpostMail.html");
         sr2 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/UKMailBpostMail.html");
         _999parcelBpost = sr1.ReadToEnd();
@@ -28,7 +28,7 @@
 
         myTimer.Enabled = true;
 
-        myTimer.AutoReset = true;  
+        myTimer.AutoReset = true;  */
     }
 
     void myTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
@@ -139,7 +139,7 @@
         ASP.App_Start.NinjectWebCommon.Stop();
         
         //下面的代码是关键，可解决IIS应用程序池自动回收的问题  
-
+        /*
         System.Threading.Thread.Sleep(1000);
 
         //这里设置你的web地址，可以随便指向你的任意一个aspx页面甚至不存在的页面，目的是要激发Application_Start  
@@ -150,7 +150,7 @@
 
         System.Net.HttpWebResponse myHttpWebResponse = (System.Net.HttpWebResponse)myHttpWebRequest.GetResponse();
 
-        System.IO.Stream receiveStream = myHttpWebResponse.GetResponseStream();//得到回写的字节流  
+        System.IO.Stream receiveStream = myHttpWebResponse.GetResponseStream();//得到回写的字节流  */
     }
         
     void Application_Error(object sender, EventArgs e) 

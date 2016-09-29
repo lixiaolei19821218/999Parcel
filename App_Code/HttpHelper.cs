@@ -32,6 +32,7 @@ public static class HttpHelper
             request.CookieContainer = cookieContainer;
             request.AllowAutoRedirect = true;
             request.Method = "POST";
+            request.Timeout = 1000 * 60 * 5;
             request.ContentType = "text/json";
             request.ContentLength = data.Length;
             outstream = request.GetRequestStream();
