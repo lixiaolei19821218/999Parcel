@@ -381,7 +381,7 @@
                                             <input id="id_addr-0-phone" maxlength="11" name="addr-0-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
                                         </div>
                                     </div>      
-                                     <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                     <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
                                             <input id="id_addr-0-idnumber" maxlength="18" name="addr-0-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%>/>
