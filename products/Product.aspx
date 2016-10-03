@@ -103,12 +103,38 @@
                 }
             });
         }
+
+        function loadSkuItems() {
+            $.ajax({
+                //要用post方式       
+                type: "Post",
+                //方法所在页面和方法名       
+                url: "Product.aspx/GetMilkPowderItems",
+                data: "{ 'id': '1' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    //返回的数据用data.d获取内容       
+                    $(data.d).each(function () {
+                        $(".item_detail").append("<option>" + this + "</option>");
+                    });
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        }
         
         $(function () {
             var service = '<%:ServiceView.Name%>';
             if (service.indexOf("杂物包税") != -1) {
                 $('.item_detail').empty();
                 $('.item_detail').load(loadItems());
+            }
+            
+            if (service.indexOf("奶粉包税") != -1) {
+                $('.item_detail').empty();
+                $('.item_detail').load(loadSkuItems());
             }
         });
         

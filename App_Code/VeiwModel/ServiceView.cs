@@ -161,6 +161,14 @@ public class ServiceView
             case 36://Bpost - 自送仓库
                 price = 0m;
                 break;
+                //bpost 奶粉专线
+            case 43:
+                price = 3m;
+                break;
+            case 44:
+                price = 0m;
+                break;
+                //杂物包税
             case 46:
                 price = 0m;
                 break;

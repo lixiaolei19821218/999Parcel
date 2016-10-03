@@ -350,7 +350,15 @@ public partial class products_Product : System.Web.UI.Page
     public static IEnumerable<string> GetItems()
     {
         UK_ExpressEntities repo = new UK_ExpressEntities();
-        var t = repo.Rank3Types.Select(r => r.Name).ToList();
+        //var t = repo.Rank3Types.Select(r => r.Name).ToList();
         return repo.Rank3Types.Select(r => r.Name);
+    }
+
+    [WebMethod]
+    public static IEnumerable<string> GetMilkPowderItems()
+    {
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+
+        return repo.MilkPowderSKUs.Select(m => m.Description);
     }
 }

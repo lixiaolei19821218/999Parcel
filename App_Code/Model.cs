@@ -37,6 +37,13 @@ public partial class Discount
     public virtual Service Service { get; set; }
 }
 
+public partial class MilkPowderSKU
+{
+    public int Id { get; set; }
+    public string SKU { get; set; }
+    public string Description { get; set; }
+}
+
 public partial class News
 {
     public int Id { get; set; }

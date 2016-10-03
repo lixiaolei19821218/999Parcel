@@ -257,6 +257,10 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "杂物包税专线（200镑以内） - 诚信物流取件":
                     SendTo4PX(o);
                     break;
+                case "奶粉包税专线 - 诚信物流取件":
+                case "奶粉包税专线 - 自送仓库":
+                    SendToBpost(o, "LGINTSTD");
+                    break;
                 default:
                     break;
             }
@@ -436,7 +440,7 @@ public partial class cart_Cart : System.Web.UI.Page
             sb.Append("<ShippingLane>");
             sb.Append("<OriginFacilityCode></OriginFacilityCode>");
             sb.Append("</ShippingLane>");
-            sb.Append("<ShipMethod>LGINTBPMU</ShipMethod>");
+            sb.Append(string.Format("<ShipMethod>{0}</ShipMethod>", shipMethod));
             sb.Append("<ShipmentInsuranceFreight></ShipmentInsuranceFreight>");
             sb.Append("<ItemsCurrency>GBP</ItemsCurrency>");
             sb.Append("<ProduceLabel>true</ProduceLabel>");
@@ -498,7 +502,15 @@ public partial class cart_Cart : System.Web.UI.Page
                 foreach (PackageItem i in p.PackageItems)
                 {
                     sb.Append("<Item>");
-                    sb.AppendFormat("<Sku>{0}</Sku>", i.Description);
+                    if (shipMethod == "LGINTBPMU")
+                    {
+                        sb.AppendFormat("<Sku>{0}</Sku>", i.Description);
+                    }
+                    else//奶粉包税
+                    {
+                        string sku = repo.Context.MilkPowderSKUs.First(m => m.Description == i.Description).SKU;
+                        sb.AppendFormat("<Sku>{0}</Sku>", sku);
+                    }
                     sb.AppendFormat("<Quantity>{0}</Quantity>", i.Count);
                     sb.AppendFormat("<UnitPrice>{0}</UnitPrice>", i.UnitPrice);
                     sb.AppendFormat("<Description>{0}</Description>", i.Description);

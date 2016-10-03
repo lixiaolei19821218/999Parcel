@@ -62,7 +62,7 @@ public partial class product_Default : System.Web.UI.Page
             }
         }
     }
-
+    /*
     public IEnumerable<ServiceView> GetServices()
     {
         List<ServiceView> svs = new List<ServiceView>();
@@ -75,16 +75,24 @@ public partial class product_Default : System.Web.UI.Page
         
         return svs.OrderBy(s => s.PriceListID);
     }
-
+    */
     public IEnumerable<ServiceView> GetBpostAnd4PXServices()
     {
         List<ServiceView> svs = new List<ServiceView>();
-
-        foreach (Service s in repo.Services.Where(s => (s.Name.Contains("Bpost") && !s.Name.Contains("DPD") || s.Name.Contains("杂物包税专线"))))
+        if (Order.Recipients.All(r => r.Packages.All(p => p.Weight < 8m && (p.Length * p.Width * p.Height) / 5000m < 8)))//奶粉包税
         {
-            svs.Add(new ServiceView(s));
+            foreach (Service s in repo.Services.Where(s => (s.Name.Contains("Bpost") && !s.Name.Contains("DPD") || s.Name.Contains("杂物包税专线") || s.Name.Contains("奶粉包税专线"))))
+            {
+                svs.Add(new ServiceView(s));
+            }
         }
-
+        else
+        {
+            foreach (Service s in repo.Services.Where(s => (s.Name.Contains("Bpost") && !s.Name.Contains("DPD") || s.Name.Contains("杂物包税专线"))))
+            {
+                svs.Add(new ServiceView(s));
+            }
+        }
         return svs.OrderBy(s => s.PriceListID);
     }
 

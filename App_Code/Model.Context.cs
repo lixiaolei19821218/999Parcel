@@ -43,6 +43,7 @@ public partial class UK_ExpressEntities : DbContext
     public virtual DbSet<TraceNumber> TraceNumbers { get; set; }
     public virtual DbSet<Rank3Types> Rank3Types { get; set; }
     public virtual DbSet<Discount> Discounts { get; set; }
+    public virtual DbSet<MilkPowderSKU> MilkPowderSKUs { get; set; }
 
     public virtual ObjectResult<string> aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
     {

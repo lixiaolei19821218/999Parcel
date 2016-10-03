@@ -32,6 +32,14 @@
           <Property Name="Approver" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="MilkPowderSKUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKU" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="News">
           <Key>
             <PropertyRef Name="Id" />
@@ -734,6 +742,7 @@
         <EntityContainer Name="UK_ExpressModelStoreContainer">
           <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MilkPowderSKUs" EntityType="Self.MilkPowderSKUs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackageItems" EntityType="Self.PackageItems" Schema="dbo" store:Type="Tables" />
@@ -1209,6 +1218,7 @@
             <End Role="Service" EntitySet="Services" />
             <End Role="Discount" EntitySet="Discounts" />
           </AssociationSet>
+          <EntitySet Name="MilkPowderSKUs" EntityType="UK_ExpressModel.MilkPowderSKU" />
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1680,6 +1690,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MilkPowderSKU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKU" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2061,6 +2079,15 @@
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MilkPowderSKUs">
+            <EntityTypeMapping TypeName="UK_ExpressModel.MilkPowderSKU">
+              <MappingFragment StoreEntitySet="MilkPowderSKUs">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

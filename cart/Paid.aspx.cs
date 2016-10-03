@@ -205,7 +205,7 @@ public partial class cart_Paid : System.Web.UI.Page
                 return "<img src=\"../static/images/icon/onFocus.gif\" title=\"有发送失败的包裹\">";
             }
         }
-        else if (o.Service.Name.Contains("Bpost"))
+        else if (o.Service.Name.Contains("Bpost") || o.Service.Name.Contains("奶粉包税"))
         {
             if (o.SuccessPaid.HasValue)
             {
