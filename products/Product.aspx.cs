@@ -9,6 +9,8 @@ using System.Web.Security;
 using System.Web.Services;
 using System.Configuration;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public partial class products_Product : System.Web.UI.Page
 {
@@ -205,6 +207,15 @@ public partial class products_Product : System.Web.UI.Page
             recipient.IDNumber = Request.Form.Get(string.Format("addr-0-idnumber", i)).Trim();
             recipient.Province = Request.Form.Get(string.Format("addr-0-cn_province", i)).Trim();
             recipient.District = Request.Form.Get(string.Format("addr-0-cn_district", i)).Trim();
+
+            if (order.Service.Name.Contains("奶粉包税") || order.Service.Name.Contains("杂物包税"))
+            {
+                if (CheckIDNumber(recipient.Name, recipient.IDNumber) == "验证失败")
+                {
+                    return string.Format("收件人{0}的名字和身份证号不匹配", recipient.Name);
+                }
+            }
+
             if (recipient.PyAddress.Length > 72)
             {
                 return string.Format("收件人{0}的拼音地址超出72个字符", recipient.Name);
@@ -342,7 +353,10 @@ public partial class products_Product : System.Web.UI.Page
                 }
             }
         }
-        sb.Remove(sb.Length - 1, 1);
+        if (sb.Length > 0)
+        {
+            sb.Remove(sb.Length - 1, 1);
+        }
         return sb.ToString();
     }
 
@@ -360,5 +374,40 @@ public partial class products_Product : System.Web.UI.Page
         UK_ExpressEntities repo = new UK_ExpressEntities();
 
         return repo.MilkPowderSKUs.Select(m => m.Description);
+    }
+
+    public string CheckIDNumber(string name, string number)
+    {
+        IDNumber idNumber = repo.Context.IDNumbers.FirstOrDefault(i => i.Number == number);
+        if (idNumber == null)
+        {
+            string url = string.Format("http://op.juhe.cn/idcard/query?key=0f2dc8c56cbce8c6e0c9364191bb6f32&idcard={0}&realname={1}", number, name);
+            string response = HttpHelper.HttpGet(url);
+            //string response = "{\"reason\":\"成功\",\"result\":{\"realname\":\"兰琳婕\",\"idcard\":\"510108198412072127\",\"res\":1},\"error_code\":0}";
+            var r= JsonConvert.DeserializeAnonymousType(response, new { Reason = string.Empty, Result = new { RealName = string.Empty, IDCard = string.Empty, Res = string.Empty }, ErrorCode = string.Empty });
+            
+            if (r.Result != null && r.Result.Res == "1")
+            {
+                IDNumber idNumberNew = new IDNumber() { Name = name, Number = number };
+                repo.Context.IDNumbers.Add(idNumberNew);
+                repo.Context.SaveChanges();
+                return "验证成功";
+            }
+            else
+            {
+                return "验证失败";
+            }
+        }
+        else
+        {
+            if (name == idNumber.Name)
+            {
+                return "验证成功";
+            }
+            else
+            {
+                return "验证失败";
+            }
+        }
     }
 }

@@ -38,6 +38,7 @@
         <EntityTypeShape EntityType="UK_ExpressModel.Discount" Width="1.5" PointX="3" PointY="9.25" />
         <AssociationConnector Association="UK_ExpressModel.FK_ServiceId_Discounts" />
         <EntityTypeShape EntityType="UK_ExpressModel.MilkPowderSKU" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.IDNumber" Width="1.5" PointX="5.375" PointY="12.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

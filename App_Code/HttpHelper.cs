@@ -57,10 +57,10 @@ public static class HttpHelper
 
 
 
-    public static string HttpGet(string Url, string postDataStr)
+    public static string HttpGet(string Url)
     {
 
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
 
         request.Method = "GET";
 
