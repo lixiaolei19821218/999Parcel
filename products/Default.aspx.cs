@@ -108,6 +108,39 @@ public partial class product_Default : System.Web.UI.Page
         return svs.OrderBy(s => s.PriceListID);
     }
 
+    public IEnumerable<ServiceView> GetServices()
+    {
+        int providerId;
+        if (int.TryParse(Request["providerId"], out providerId))
+        {
+            Provider provider = repo.Context.Providers.Find(providerId);
+            if (provider == null)
+            {
+                return new List<ServiceView>();
+            }
+            else
+            {
+                return provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+            }
+        }
+        else
+        {
+            return new List<ServiceView>();
+        }
+    }
+
+    public string GetHtml(ServiceView sv)
+    {
+        if (sv.Name.Contains("Parcelforce"))
+        {
+            return "<span style=\"font - family:YouYuan\">请联系客服</span>";
+        }
+        else
+        {
+            return string.Format("<button class=\"btn btn-warning\" name=\"order\" value=\"{0}\" type=\"submit\">购买</button>", sv.Id);
+        }
+    }
+    /*
     public IEnumerable<ServiceView> Get4PXServices()
     {
         List<ServiceView> svs = new List<ServiceView>();
@@ -119,7 +152,7 @@ public partial class product_Default : System.Web.UI.Page
 
         return svs.OrderBy(s => s.PriceListID);
     }
-
+    */
     public Order Order
     {
         get

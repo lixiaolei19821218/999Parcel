@@ -12,7 +12,7 @@
 
     
 
-    <div class="sz16 bold colorb2" style="margin-top: 20px">请选择一个服务：</div>
+    <div class="sz16 bold colorb2" style="margin-top: 20px; font-family:YouYuan;">请选择一个服务：</div>
 
     <div style="margin-top: 15px; background-color: #fff">
         <form runat="server">
@@ -25,7 +25,7 @@
 
                 <tbody>
                     <asp:Repeater ItemType="ServiceView" EnableViewState="false"
-                        SelectMethod="GetBpostAnd4PXServices" runat="server">
+                        SelectMethod="GetServices" runat="server">
                         <ItemTemplate>
                             <tr>
                                 <td style="vertical-align: middle">
@@ -42,11 +42,12 @@
                                     <%# Item.GetSendPrice(Order).ToString("C", CultureInfo.CreateSpecificCulture("en-GB")) %>
                                     <br />
                                     <br />
-                                    <button class="btn btn-warning" name="order" value="<%#Item.Id %>" type="submit">购买</button>                                    
+                                    <%# GetHtml(Item) %>                                    
                                 </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
+                    <!--
                     <asp:Repeater ItemType="ServiceView" EnableViewState="false"
                         SelectMethod="GetPFServices" runat="server">
                         <ItemTemplate>
@@ -70,7 +71,7 @@
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
-                    
+                    -->
                 </tbody>
             </table>
         </form>

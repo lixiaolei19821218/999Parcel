@@ -176,6 +176,22 @@ public partial class PriceList
     public virtual ICollection<Order> Orders { get; set; }
 }
 
+public partial class Provider
+{
+    public Provider()
+    {
+        this.Services = new HashSet<Service>();
+    }
+
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string PictureLink { get; set; }
+    public string Discrible { get; set; }
+    public string DiscriblePictureLink { get; set; }
+
+    public virtual ICollection<Service> Services { get; set; }
+}
+
 public partial class Rank3Types
 {
     public int Id { get; set; }
@@ -274,10 +290,12 @@ public partial class Service
     public Nullable<int> PriceListID { get; set; }
     public string PickUpCompany { get; set; }
     public bool Valid { get; set; }
+    public Nullable<int> ProviderId { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; }
     public virtual PriceList PriceList { get; set; }
     public virtual ICollection<Discount> Discounts { get; set; }
+    public virtual Provider Provider { get; set; }
 }
 
 public partial class SheffieldOrder

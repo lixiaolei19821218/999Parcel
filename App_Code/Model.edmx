@@ -144,6 +144,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Providers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PictureLink" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Discrible" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DiscriblePictureLink" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rank3Types">
           <Key>
             <PropertyRef Name="Id" />
@@ -219,6 +229,7 @@
           <Property Name="PriceListID" Type="int" />
           <Property Name="PickUpCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Valid" Type="bit" Nullable="false" />
+          <Property Name="ProviderId" Type="int" />
         </EntityType>
         <EntityType Name="SheffieldOrders">
           <Key>
@@ -329,6 +340,18 @@
             </Principal>
             <Dependent Role="Services">
               <PropertyRef Name="PriceListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProviderID">
+          <End Role="Providers" Type="Self.Providers" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="ProviderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -758,6 +781,7 @@
           <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PriceItems" EntityType="Self.PriceItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PriceLists" EntityType="Self.PriceLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Providers" EntityType="Self.Providers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rank3Types" EntityType="Self.Rank3Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RechargeApplys" EntityType="Self.RechargeApplys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RechargeChannels" EntityType="Self.RechargeChannels" Schema="dbo" store:Type="Tables" />
@@ -790,6 +814,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PriceListID_Service" Association="Self.FK_PriceListID_Service">
             <End Role="PriceLists" EntitySet="PriceLists" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProviderID" Association="Self.FK_ProviderID">
+            <End Role="Providers" EntitySet="Providers" />
             <End Role="Services" EntitySet="Services" />
           </AssociationSet>
           <AssociationSet Name="FK_RecipientID" Association="Self.FK_RecipientID">
@@ -1229,6 +1257,11 @@
           </AssociationSet>
           <EntitySet Name="MilkPowderSKUs" EntityType="UK_ExpressModel.MilkPowderSKU" />
           <EntitySet Name="IDNumbers" EntityType="UK_ExpressModel.IDNumber" />
+          <EntitySet Name="Providers" EntityType="UK_ExpressModel.Provider" />
+          <AssociationSet Name="FK_ProviderID" Association="UK_ExpressModel.FK_ProviderID">
+            <End Role="Provider" EntitySet="Providers" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1416,6 +1449,8 @@
           <NavigationProperty Name="PriceList" Relationship="UK_ExpressModel.FK_PriceListID_Service" FromRole="Service" ToRole="PriceList" />
           <NavigationProperty Name="Discounts" Relationship="UK_ExpressModel.FK_ServiceId_Discounts" FromRole="Service" ToRole="Discount" />
           <Property Name="Valid" Type="Boolean" Nullable="false" />
+          <Property Name="ProviderId" Type="Int32" />
+          <NavigationProperty Name="Provider" Relationship="UK_ExpressModel.FK_ProviderID" FromRole="Service" ToRole="Provider" />
         </EntityType>
         <Association Name="FK_OrderID">
           <End Type="UK_ExpressModel.Order" Role="Order" Multiplicity="0..1" />
@@ -1716,6 +1751,29 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PictureLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discrible" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiscriblePictureLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Services" Relationship="UK_ExpressModel.FK_ProviderID" FromRole="Provider" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_ProviderID">
+          <End Type="UK_ExpressModel.Provider" Role="Provider" Multiplicity="0..1" />
+          <End Type="UK_ExpressModel.Service" Role="Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="ProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1959,6 +2017,7 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="UK_ExpressModel.Service">
               <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
                 <ScalarProperty Name="Valid" ColumnName="Valid" />
                 <ScalarProperty Name="PickUpCompany" ColumnName="PickUpCompany" />
                 <ScalarProperty Name="PriceListID" ColumnName="PriceListID" />
@@ -2114,6 +2173,17 @@
             <EntityTypeMapping TypeName="UK_ExpressModel.IDNumber">
               <MappingFragment StoreEntitySet="IDNumbers">
                 <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="UK_ExpressModel.Provider">
+              <MappingFragment StoreEntitySet="Providers">
+                <ScalarProperty Name="DiscriblePictureLink" ColumnName="DiscriblePictureLink" />
+                <ScalarProperty Name="Discrible" ColumnName="Discrible" />
+                <ScalarProperty Name="PictureLink" ColumnName="PictureLink" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

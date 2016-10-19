@@ -116,7 +116,7 @@ public partial class Default : System.Web.UI.Page
         }
 
         Session.Add("Order", order);
-        Response.Redirect("/products/");
+        Response.Redirect("/products/providers.aspx");
     }
 
     protected string GetGreeting()
