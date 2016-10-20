@@ -549,12 +549,25 @@
                                                                             <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
                                                                             <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
                                                                         </select>
+                                                                        
+                                                                            <div class=" mx_quantity mx_cal">
+                                                                                品牌:
+                                                               <input name="parcel-0-content-<%#Container.ItemIndex %>-brand" style="width: 100px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" required="required" />
+
+                                                                            </div>
+                                                                            <div class="ib mx_quantity mx_cal">
+                                                                                规格:
+                                                               <input name="parcel-0-content-<%#Container.ItemIndex %>-spec" style="width: 100px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" required="required" />
+
+                                                                            </div>
+
+                                                                        
                                                                     </div>
 
 
                                                                     <div class="ib mx_quantity mx_cal">
                                                                         数量:
-                                                               <input id="id_parcel-0--content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
+                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
 
                                                                     </div>
 
