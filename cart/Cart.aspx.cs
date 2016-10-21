@@ -581,8 +581,8 @@ public partial class cart_Cart : System.Web.UI.Page
                     sb.AppendFormat("\"ItemNameLocalLang\": \"{0}\",", i.Description);
                     sb.AppendFormat("\"ItemNumber\": \"{0}\",", i.Count);
                     sb.AppendFormat("\"ItemUnitPrice\": \"{0}\",", i.UnitPrice);
-                    sb.AppendFormat("\"ItemTotalAmount\": \"{0}\"", i.Value);
-                    sb.AppendFormat("\"Brand\": \"{0}\"", i.Brand);
+                    sb.AppendFormat("\"ItemTotalAmount\": \"{0}\",", i.Value);
+                    sb.AppendFormat("\"Brand\": \"{0}\",", i.Brand);
                     sb.AppendFormat("\"Spec\": \"{0}\"", i.Spec);
                     if (i == p.PackageItems.Last())
                     {
