@@ -45,9 +45,9 @@
         <div style="background-color: #FEF4ED; margin-top: 10px">
             <img src="/static/img/static/hwdg.png" style="float: left; padding: 20px 40px" />
             <a style="padding: 20px; display: block; color: #333" href="/our-services/dg/">
-                <h2>速递商城</h2>
+                <h2>诚信商城</h2>
 
-                <p>快速专业采购；各类打折信息汇总；人民币结算；物品全程跟踪；一站式服务。您只要相中产品，剩下的工作我们为您完成。</p>
+                <p>英国精选 空运直邮 价格实惠 一站式购买 简单方便</p>
 
             </a>
             <div style="clear: both"></div>

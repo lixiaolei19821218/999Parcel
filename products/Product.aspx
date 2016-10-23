@@ -494,7 +494,7 @@
                                                                 总额(£):
                                         <span class="mx_total"></span>
                                                             </div>
-
+                                                            <span style="font-style:italic;font:small;"><%=ServiceView.Name.Contains("杂物包税") ? "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*如:品牌 boost 规格 小黄瓜面膜 数量 5  单价 1" : ""%></span>
                                                         </div>
 
                                                         <!-- parcel content details -->
@@ -549,19 +549,17 @@
                                                                             <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
                                                                             <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
                                                                         </select>
-                                                                        
-                                                                            <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
-                                                                                品牌:
-                                                               <input name="parcel-0-content-<%#Container.ItemIndex %>-brand" style="width: 100px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
 
-                                                                            </div>
-                                                                            <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
-                                                                                规格:
-                                                               <input name="parcel-0-content-<%#Container.ItemIndex %>-spec" style="width: 100px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
+                                                                        <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                                                            品牌:
+                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-brand" style="width: 100px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
+                                                                        </div>
+                                                                        <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                                                            规格:
+                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-spec" style="width: 100px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
+                                                                        </div>
+                                                                       
 
-                                                                            </div>
-
-                                                                        
                                                                     </div>
 
 
