@@ -2,7 +2,7 @@
 
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-    <title>订单管理</title>
+    <title>订单管理(诚信物流取件)</title>
     <link href="../static/css/pager.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 

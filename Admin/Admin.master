@@ -40,7 +40,8 @@
                     <li><a href="" runat="server">用户管理</a></li>
                     <li><a href="CheckApply.aspx" runat="server" id="checkApply">充值审核</a></li>
                     <li><a href="ProcessedApplys.aspx" runat="server" id="processedApplys">已处理申请</a></li>
-                    <li><a href="CheckOrder.aspx" runat="server" >订单审核</a></li>     
+                    <li><a href="999pickuponly.aspx" runat="server" >诚信取件订单</a></li>    
+                    <li><a href="CheckOrder.aspx" runat="server" >所有订单</a></li>  
                     <li><a href="News.aspx" runat="server" id="news">新闻资讯</a></li>     
                 </ul>
             </div>
