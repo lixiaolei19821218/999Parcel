@@ -20,12 +20,12 @@
         <p>诚信物流 (999Parcel)是一家英国独资综合性质的国际物流公司。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
 
 
-        <div style="background-color: #EBF4FA">
+        <div style="background-color: #EFEBFA">
             <img src="/static/img/static/gjkd.png" style="float: left; padding: 20px 40px" />
             <a style="padding: 20px; display: block; color: #333" href="/our-services/zy/">
-                <h2>国际快递</h2>
+                <h2>海淘转运</h2>
 
-                <p>可容纳大批量货物仓储。我们的业务覆盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
+                <p>一站式海淘服务 为您提供收货，仓储，合箱及发货一整套转运服务，全程跟踪，安全放心</p>
 
             </a>
             <div style="clear: both"></div>
@@ -42,7 +42,7 @@
             <div style="clear: both"></div>
         </div>
 
-        <div style="background-color: #FEF4ED; margin-top: 10px">
+        <div style="background-color: #FBEBEB; margin-top: 10px">
             <img src="/static/img/static/hwdg.png" style="float: left; padding: 20px 40px" />
             <a style="padding: 20px; display: block; color: #333" href="/our-services/dg/">
                 <h2>诚信商城</h2>

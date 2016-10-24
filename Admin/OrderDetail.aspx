@@ -23,6 +23,16 @@
 
     <div style="margin-top: 15px; background-color: #fff; padding: 15px; min-height: 600px;">
         <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
+            <fieldset>
+                        <legend>发件人：<%:Order.SenderName%></legend>
+                        <ul>
+                            <li>城市：<%:Order.SenderCity %></li>
+                            <li>邮编：<%:Order.SenderZipCode %></li>                            
+                            <li>地址：<%:Order.SenderAddress1 %> <%:Order.SenderAddress2 %> <%:Order.SenderAddress3 %></li>
+                            <li>电话：<%:Order.SenderPhone %></li>
+                            <li>邮箱：<%:Order.SenderEmail %></li>
+                        </ul>
+                    </fieldset>
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
                 <ItemTemplate>
                     <fieldset>
@@ -68,7 +78,6 @@
                             </table>
                         </ul>
                     </fieldset>
-
                 </ItemTemplate>
             </asp:Repeater>
              <hr />
