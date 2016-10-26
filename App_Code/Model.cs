@@ -145,6 +145,7 @@ public partial class PackageItem
     public Nullable<decimal> UnitPrice { get; set; }
     public string Brand { get; set; }
     public string Spec { get; set; }
+    public string SpecUnit { get; set; }
 
     public virtual Package Package { get; set; }
 }

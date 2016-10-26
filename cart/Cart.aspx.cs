@@ -556,7 +556,8 @@ public partial class cart_Cart : System.Web.UI.Page
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("{");
-                sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");
+                //sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");//测试
+                sb.Append("\"Token\": \"53B4EDC6-F87C-4391-99B0-93596DE965F6\",");
                 sb.Append("\"Data\": {");
                 sb.Append("\"TaxMode\": \"DDP\",");
                 sb.Append("\"DestinationCountry\": \"China\",");
@@ -583,7 +584,8 @@ public partial class cart_Cart : System.Web.UI.Page
                     sb.AppendFormat("\"ItemUnitPrice\": \"{0}\",", i.UnitPrice);
                     sb.AppendFormat("\"ItemTotalAmount\": \"{0}\",", i.Value);
                     sb.AppendFormat("\"Brand\": \"{0}\",", i.Brand);
-                    sb.AppendFormat("\"Spec\": \"{0}\"", i.Spec);
+                    sb.AppendFormat("\"SpecValue\": \"{0}\",", i.Spec);
+                    sb.AppendFormat("\"SpecUnit\": \"{0}\"", i.SpecUnit);
                     if (i == p.PackageItems.Last())
                     {
                         sb.Append("}");
@@ -596,7 +598,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 sb.Append("],");
                 sb.Append("\"ItemDeclareCurrency\": \"CNY\",");
                 sb.Append("\"ServiceTypeCode\": \"IPS\",");
-                sb.Append("\"UserCode\": \"KWTZQC\",");
+                //sb.Append("\"UserCode\": \"KWTZQC\",");//测试
+                sb.Append("\"UserCode\": \"KKMLAD\",");
                 sb.Append("\"WarehouseOperateMode\": \"NON\",");
                 sb.Append("\"CarrierCompanyCode\": \"OTHER\",");
                 sb.AppendFormat("\"CarrierDeliveryNo\": \"{0}\",", p.Id);
@@ -608,7 +611,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 sb.Append("}");
 
                 string data = sb.ToString();
-                string result = HttpHelper.HttpPost("http://sandbox.tr.4px.com/TRSAPI/Agent/CreateAgent", data);
+                string result = HttpHelper.HttpPost("http://open.tr.4px.com/TRSAPI/Agent/CreateAgent", data);
                 var response = JsonConvert.DeserializeAnonymousType(result, new { Data = string.Empty, Message = string.Empty, ResponseCode = string.Empty});
                 if (response.ResponseCode == "10000")
                 {
@@ -632,7 +635,8 @@ public partial class cart_Cart : System.Web.UI.Page
         //获取大头笔
         StringBuilder sb = new StringBuilder();
         sb.Append("{");
-        sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");
+        //sb.Append("\"Token\": \"3EBACFA6-8137-42F7-A9F6-D67AC92C228D\",");//测试
+        sb.Append("\"Token\": \"53B4EDC6-F87C-4391-99B0-93596DE965F6\",");//测试
         sb.Append("\"Data\": [");
         sb.Append("{");
         sb.Append(string.Format("\"key\": \"{0}\",", p.Id));
@@ -643,7 +647,7 @@ public partial class cart_Cart : System.Web.UI.Page
         sb.Append("]");
         sb.Append("}");
 
-        string response = HttpHelper.HttpPost("http://sandbox.tr.4px.com/TRSAPI/Delivery/GetPODInfo", sb.ToString());
+        string response = HttpHelper.HttpPost("http://open.tr.4px.com/TRSAPI/Delivery/GetPODInfo", sb.ToString());
         var d = JsonConvert.DeserializeAnonymousType(response, new { Data = string.Empty, Message = string.Empty, ResponseCode = string.Empty });
         
         Document document = new Document();

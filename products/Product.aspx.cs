@@ -237,6 +237,7 @@ public partial class products_Product : System.Web.UI.Page
                 item.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", i, j)).Trim();
                 item.Brand = Request.Form.Get(string.Format("parcel-{0}-content-{1}-brand", i, j)).Trim();
                 item.Spec = Request.Form.Get(string.Format("parcel-{0}-content-{1}-spec", i, j)).Trim();
+                item.SpecUnit = Request.Form.Get(string.Format("parcel-{0}-content-{1}-specUnit", i, j)).Trim();
                 item.TariffCode = "999999";
                 item.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", i, j)));                
                 decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", i, j)));
