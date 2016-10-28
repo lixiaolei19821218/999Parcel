@@ -248,27 +248,30 @@ public partial class products_Product : System.Web.UI.Page
             }
             packages[i].Value = packages[i].PackageItems.Sum(pi => pi.Value);
         }
-
-        DateTime date;
-        if (DateTime.TryParse(Request["pickup_time_0"], out date))
+        
+        if (!order.Service.Name.Contains("自送"))
         {
-            order.PickupTime = date;
-            if (_999parcel.Visible)
+            DateTime date;
+            if (DateTime.TryParse(Request["pickup_time_0"], out date))
             {
-                if (_999parcel.Value == "am")
+                order.PickupTime = date;
+                if (_999parcel.Visible)
                 {
-                    order.PickupTime = order.PickupTime.Value.AddHours(9);
-                }
-                else
-                {
-                    order.PickupTime = order.PickupTime.Value.AddHours(13);
+                    if (_999parcel.Value == "am")
+                    {
+                        order.PickupTime = order.PickupTime.Value.AddHours(9);
+                    }
+                    else
+                    {
+                        order.PickupTime = order.PickupTime.Value.AddHours(13);
+                    }
                 }
             }
-        }
-        else
-        {
-            return "请输入取件时间";
-        }
+            else
+            {
+                return "请输入取件时间";
+            }
+        }       
 
         if (string.IsNullOrEmpty(order.SenderName))
         {
