@@ -552,15 +552,15 @@
 
                                                                         <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                                                             品牌:
-                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-brand" style="width: 80px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
+                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-brand" style="width: 80px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" required="required" />
                                                                         </div>
                                                                         <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                                                             规格:
-                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-spec" style="width: 80px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
+                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-spec" style="width: 80px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" required="required" />
                                                                         </div>
                                                                        <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                                                             单位:
-                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-specUnit" style="width: 40px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" />
+                                                                            <input name="parcel-0-content-<%#Container.ItemIndex %>-specUnit" style="width: 40px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" required="required" />
                                                                         </div>
                                                                             
                                                                     </div>
