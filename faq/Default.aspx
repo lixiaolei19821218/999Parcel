@@ -4,13 +4,7 @@
     <title>常见问题 | 诚信物流-可靠,快捷,实惠</title>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <ul class="breadcrumb" style="background: none; margin-top: 15px">
-    </ul>
-
-
-
-
-
+   
     <div style="background-color: #fff; padding: 30px; margin-top: 15px; margin-bottom: 30px">
         <p>
             <script language="javascript" type="text/javascript">// <![CDATA[
@@ -19,68 +13,7 @@
                 });
                 // ]]></script>
         </p>
-        <div style="margin: 10px 0; border: 1px solid #ccc;">
-            <h1 style="padding: 0 15px; margin: 0; line-height: 40px; background-color: #990000; border-bottom: 5px solid #E8E8E8; font-size: 20px; color: #fff;">新手专区</h1>
-            <div style="padding: 5px 20px;">
-                <div class="collapsibleContainer" collapsiblecontainer="true" title="如何快速下单"><a href="/static/media/uploads/%E6%96%B0%E6%89%8B%E4%B8%93%E5%8C%BA.docx">请点击下载下单说明</a></div>
-            </div>
-        </div>
-        <div style="margin: 10px 0; border: 1px solid #ccc;">
-            <h1 style="padding: 0 15px; margin: 0; line-height: 40px; background-color: #0082c9; border-bottom: 5px solid #E8E8E8; font-size: 20px; color: #fff;"><span style="color: #ffffff;"><span style="color: #ffffff;">诚信物流</span></span></h1>
-            <div style="padding: 5px 20px;">
-                <div class="collapsibleContainer" collapsiblecontainer="true" title="关于诚信物流">
-                    <p>诚信物流 (999Parcel)是一家英国独资综合性质的国际物流公司。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
-                    <p>
-                        <img src="/static/media/uploads/service.png" height="209" width="789" /></p>
-                    <p><span style="font-size: medium;"><strong>
-                        <br />
-                    </strong></span></p>
-                    <p><strong style="font-size: medium; text-decoration: underline;">我们的核心价值</strong></p>
-                    <ul>
-                        <ul>
-                            <li><b>诚信为本</b><b> </b><b>&ndash;</b>我们企业的原则和宗旨</li>
-                            <li><b>价格最优</b><b> </b><b>&ndash;</b>我们致力于提供最有市场竞争力的价格来满足我们的客户需求</li>
-                            <li><b>客户至上</b> &ndash;所有的售前和售后客户服务都是客户利益导向的</li>
-                            <li><b>快速便捷</b> -自动化的在线订单系统，为客户尽可能低减少下单时间</li>
-                        </ul>
-                    </ul>
-                    <p>
-                        <img src="/static/media/uploads/banner2.png" height="234" width="815" /></p>
-                </div>
-                <div class="collapsibleContainer" collapsiblecontainer="true" title="诚信物流的运营商是谁">
-                    <p>&nbsp;诚信物流的承运商是英国皇家邮政Royal Mail旗下的ParcelForce (PF)和比利时邮政BPost，都是英国到中国的邮政系统绿色通道。</p>
-                    <p></p>
-                    <div style="padding: 5px 20px;"><a href="/courier/bpost/">
-                        <img src="/static/media/uploads/bpost.png" height="122" width="171" /></a>　 <a href="/courier/parcelforce_priority/">
-                            <img src="/static/media/uploads/pf_priority.png" height="122" width="171" />&nbsp; &nbsp;&nbsp;<img src="/static/media/uploads/pf_economy_02.png" height="122" width="171" /></a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="/static/media/uploads/anpost.png" width="126" height="76" /></div>
-                </div>
-                <div class="collapsibleContainer" collapsiblecontainer="true" title="诚信物流的竞争优势是什么">
-                    <p><strong>价格最优</strong>：</p>
-                    <ul>
-                        <li>全英国最低的零售价格，切身让每一个旅居英国的个人受惠。对于广大学生和从事教育的工作者，我们还会提供一定的折扣。</li>
-                        <li>最低的大客户价格，我们的价格根据客户定制，能根据您的月单量，月重量和包裹数给您一个最满意的价格。另外我们还提供价格匹配，让大客户完全没有后顾之忧。</li>
-                        <li>我们和运营商保持着紧密的商业关系，最大程度上降低快递服务所需要的成本，最大化降低产品的价格。</li>
-                    </ul>
-                    <p><strong>下单最便捷：</strong></p>
-                    <ul>
-                        <li>24/7 自动下单，所有订单在运营商那里自动化生成，所有快递文档在下单后１０秒钟后自动生成并且发到客户信箱，客户可以一键打印。</li>
-                        <li>最迅速的下单方式，与其他公司不同，我们支持一单完成多个地址发货的询价和填单，最大程度的节省客户下单时间是我们系统不断追求的目标。</li>
-                        <li>24/7 技术支持和故障维护。</li>
-                    </ul>
-                    <p><strong>客服最诚心</strong>：</p>
-                    <ul>
-                        <li>全天候客服在线解答，处理订单，售后支持。</li>
-                        <li>客户的任何问题对我们都是同等重要，我们尽最大努力满足客户不同的需求。</li>
-                        <li>我们倾听您对我们提出的宝贵建议，会不断地优化和改进我们的服务。</li>
-                    </ul>
-                    <p><strong>售后最可靠：</strong></p>
-                    <ul>
-                        <li>我们的服务并没有在下单完成而终止，　我们会跟进任何快递服务可能在售后遇到的问题。</li>
-                        <li>我们的系统一旦检测到快递包裹的不正常状态，会第一时间通知客户，另外会联系运营商进行问题的排查和解决。</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
         <div style="margin: 10px 0; border: 1px solid #ccc;">
             <h1 style="padding: 0 15px; margin: 0; line-height: 40px; background-color: #0082c9; border-bottom: 5px solid #E8E8E8; font-size: 20px; color: #fff;">快递须知</h1>
             <div style="padding: 5px 20px;">
