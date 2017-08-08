@@ -11,10 +11,7 @@ using System.Web;
 /// </summary>
 public static class HttpHelper
 {
-
-
-
-    public static string HttpPost(string postUrl, string postData)
+    public static string HttpPost(string postUrl, string postData, string authorization = "")
     {
         Stream outstream = null;
         Stream instream = null;
@@ -29,6 +26,10 @@ public static class HttpHelper
             // 设置参数  
             request = WebRequest.Create(postUrl) as HttpWebRequest;
             CookieContainer cookieContainer = new CookieContainer();
+            if (authorization != "")
+            {
+                request.Headers.Add("Authorization", authorization);
+            }
             request.CookieContainer = cookieContainer;
             request.AllowAutoRedirect = true;
             request.Method = "POST";

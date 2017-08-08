@@ -407,6 +407,25 @@ public partial class cart_Cart : System.Web.UI.Page
         }
     }
 
+    private void SendToTTKD(Order order)
+    {
+        foreach (Recipient r in order.Recipients)
+        {
+            StringBuilder data = new StringBuilder();
+            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK82525808\",\"packageList\": [{ ");
+            data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
+            data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
+            data.Append("\"sendCompany\": \"\",");
+            data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
+            data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
+            data.Append(string.Format("\"sendAddressLine3\": \"{0}\",", order.SenderAddress3));
+            data.Append(string.Format("\"sendCity\": \"{0}\",", order.SenderCity));
+            data.Append("\"sendCountry\": \"UK\",");
+            data.Append("\"remarks\": \"\", ");
+            data.Append(string.Format("\"receiverID\": \"{0}\",", r.IDNumber));
+        }
+    }
+
     private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")
     {
         foreach (Recipient recipient in order.Recipients)
