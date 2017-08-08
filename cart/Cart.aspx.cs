@@ -412,17 +412,41 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
-            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK82525808\",\"packageList\": [{ ");
-            data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
-            data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
-            data.Append("\"sendCompany\": \"\",");
-            data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
-            data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
-            data.Append(string.Format("\"sendAddressLine3\": \"{0}\",", order.SenderAddress3));
-            data.Append(string.Format("\"sendCity\": \"{0}\",", order.SenderCity));
-            data.Append("\"sendCountry\": \"UK\",");
-            data.Append("\"remarks\": \"\", ");
-            data.Append(string.Format("\"receiverID\": \"{0}\",", r.IDNumber));
+            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK82525808\",\"packageList\": [ ");
+            foreach (Package p in r.Packages)
+            {
+                data.Append("{");
+                data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
+                data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
+                data.Append("\"sendCompany\": \"\",");
+                data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
+                data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
+                data.Append(string.Format("\"sendAddressLine3\": \"{0}\",", order.SenderAddress3));
+                data.Append(string.Format("\"sendCity\": \"{0}\",", order.SenderCity));
+                data.Append("\"sendCountry\": \"UK\",");
+                data.Append("\"remarks\": \"\", ");
+                data.Append(string.Format("\"receiverID\": \"{0}\",", r.IDNumber));
+                data.Append(string.Format("\"receiverName\": \"{0}\",", r.Name));
+                data.Append(string.Format("\"receiverPhone\": \"{0}\",", r.PhoneNumber));
+                data.Append(string.Format("\"receiverZipCode\": \"{0}\",", r.ZipCode));
+                data.Append(string.Format("\"receiverProvinces\": \"{0}\",", r.Province));
+                data.Append(string.Format("\"receiverCity\": \"{0}\",", r.City));
+                data.Append(string.Format("\"receiverArea\": \"{0}\"", r.District));
+                data.Append(string.Format("\"receiverAddr\": \"{0}\",", r.Address));
+                data.Append(string.Format("\"totalWeight\": {0},", p.Weight));
+                data.Append("\"productInfo\": [");
+                foreach (PackageItem i in p.PackageItems)
+                {
+                    data.Append("{");
+                    data.Append(string.Format("\"productName\": \"{0}\",", i.Description));
+                    data.Append(string.Format("\"total\": {0}", i.Count));
+                    data.Append("},");                    
+                }
+                data.Remove(data.Length - 1, 1);
+                data.Append("]},");
+            }
+            data.Remove(data.Length - 1, 1);
+            data.Append("]}");
         }
     }
 
