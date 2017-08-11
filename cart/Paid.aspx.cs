@@ -194,7 +194,7 @@ public partial class cart_Paid : System.Web.UI.Page
 
     protected string GetIcon(Order o)
     {
-        if (o.Service.Name.Contains("Parcelforce Economy") || o.Service.Name.Contains("杂物包税"))
+        if (o.Service.Name.Contains("Parcelforce Economy") || o.Service.Name.Contains("杂物包税") || o.Service.Name.Contains("自营奶粉包税"))
         {
             if (o.SuccessPaid ?? false)
             {
@@ -205,7 +205,7 @@ public partial class cart_Paid : System.Web.UI.Page
                 return "<img src=\"../static/images/icon/onFocus.gif\" title=\"有发送失败的包裹\">";
             }
         }
-        else if (o.Service.Name.Contains("Bpost") || o.Service.Name.Contains("奶粉包税"))
+        else if (o.Service.Name.Contains("Bpost"))
         {
             if (o.SuccessPaid.HasValue)
             {

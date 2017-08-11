@@ -35,7 +35,9 @@ public static class HttpHelper
             request.Method = "POST";
             request.Timeout = 1000 * 60 * 5;
             request.ContentType = "text/json";
+            request.Headers.Add("charset", "utf-8");
             request.ContentLength = data.Length;
+            
             outstream = request.GetRequestStream();
             outstream.Write(data, 0, data.Length);
             outstream.Close();

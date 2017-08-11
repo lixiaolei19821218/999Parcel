@@ -343,9 +343,9 @@
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;"/>
                                     </div>
-                                    <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                    <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <label for="id_addr-0-cn_province">中文省份</label>
-                                        <input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%> />
+                                        <input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_city">中文城市</label>
@@ -354,9 +354,9 @@
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"/>
                                     </div>
-                                    <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
+                                    <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <label for="id_addr-0-cn_district">中文区/县</label>
-                                        <input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%> />
+                                        <input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_street">中文地址</label>

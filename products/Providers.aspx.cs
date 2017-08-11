@@ -38,7 +38,7 @@ public partial class products_Providers : System.Web.UI.Page
 
     public IEnumerable<Provider> GetProviders()
     {
-        return repo.Context.Providers;
+        return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税");
     }
 
     public decimal GetLowestPrice(Provider provider)

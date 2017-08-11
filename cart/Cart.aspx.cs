@@ -53,7 +53,7 @@ public partial class cart_Cart : System.Web.UI.Page
         username = Membership.GetUser().UserName;
         apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
 
-        normalOrders = from o in repo.Orders where o.User == username && !(o.HasPaid ?? false) select o;
+        normalOrders = from o in repo.Orders where o.User == username && !(o.HasPaid ?? false) && o.Recipients.Count != 0 select o;
         //sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
 
         balance = apUser.Balance;
@@ -112,7 +112,7 @@ public partial class cart_Cart : System.Web.UI.Page
             orderCopy.SenderPhone = order.SenderPhone;
             orderCopy.SenderZipCode = order.SenderZipCode;
             orderCopy.ServiceID = order.ServiceID;
-            //orderCopy.Service = order.Service;
+            orderCopy.Service = order.Service;
             orderCopy.User = order.User;
             orderCopy.Id = order.Id;
             orderCopy.ReinforceID = order.ReinforceID;
@@ -260,6 +260,9 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "奶粉包税专线 - 诚信物流取件":
                 case "奶粉包税专线 - 自送仓库":
                     SendToBpost(o, "LGINTSTD");
+                    break;
+                case "自营奶粉包税6罐":
+                    SendToTTKD(o);
                     break;
                 default:
                     break;
@@ -412,17 +415,18 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
-            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK82525808\",\"packageList\": [ ");
+            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK64261343\",\"packageList\": [ ");
             foreach (Package p in r.Packages)
             {
                 data.Append("{");
                 data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
-                data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
-                data.Append("\"sendCompany\": \"\",");
+                data.Append(string.Format("\"sendPhone\": \"{0}\",", "01214399210"));
+                data.Append("\"sendCompany\": \"999 Parcel\",");
                 data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
                 data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
                 data.Append(string.Format("\"sendAddressLine3\": \"{0}\",", order.SenderAddress3));
                 data.Append(string.Format("\"sendCity\": \"{0}\",", order.SenderCity));
+                data.Append(string.Format("\"sendZipCode\": \"{0}\",", order.SenderZipCode));
                 data.Append("\"sendCountry\": \"UK\",");
                 data.Append("\"remarks\": \"\", ");
                 data.Append(string.Format("\"receiverID\": \"{0}\",", r.IDNumber));
@@ -431,9 +435,9 @@ public partial class cart_Cart : System.Web.UI.Page
                 data.Append(string.Format("\"receiverZipCode\": \"{0}\",", r.ZipCode));
                 data.Append(string.Format("\"receiverProvinces\": \"{0}\",", r.Province));
                 data.Append(string.Format("\"receiverCity\": \"{0}\",", r.City));
-                data.Append(string.Format("\"receiverArea\": \"{0}\"", r.District));
+                data.Append(string.Format("\"receiverArea\": \"{0}\",", r.District));
                 data.Append(string.Format("\"receiverAddr\": \"{0}\",", r.Address));
-                data.Append(string.Format("\"totalWeight\": {0},", p.Weight));
+                data.Append(string.Format("\"totalWeight\": {0},", 7));
                 data.Append("\"productInfo\": [");
                 foreach (PackageItem i in p.PackageItems)
                 {
@@ -447,7 +451,31 @@ public partial class cart_Cart : System.Web.UI.Page
             }
             data.Remove(data.Length - 1, 1);
             data.Append("]}");
+            string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/make-order", data.ToString(), "qy1o4g3zexp72bafdwnv");
+            var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
+            if (res.Msg == "success")
+            {
+                r.SuccessPaid = true;
+                r.WMLeaderNumber = res.Data.OrderNum;
+                for (int i = 0; i < r.Packages.Count; i++)
+                {
+                    Package p = r.Packages.ElementAt(i);
+                    p.Status = "SUCCESS";
+                    p.TrackNumber = res.Data.Mail_Nums[i];
+                }
+            }
+            else
+            {
+                r.SuccessPaid = false;
+                r.Errors = res.Msg;
+                foreach (Package p in r.Packages)
+                {
+                    p.Status = "FAIL";
+                    p.Response = res.Msg;
+                }
+            }
         }
+        order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
     }
 
     private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")
