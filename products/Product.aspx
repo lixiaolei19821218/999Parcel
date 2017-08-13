@@ -131,7 +131,7 @@
                 type: "Post",
                 //方法所在页面和方法名       
                 url: "Product.aspx/GetTTKDMilkPowders",
-                data: "{ 'id': '1' }",
+                data: "{ 'name': '<%:Order.Service.Name%>' }",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -594,7 +594,7 @@
 
                                                                     <div class="ib mx_quantity mx_cal">
                                                                         数量:
-                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="1" max="999999" value="<%#Item.Count %>" required="required"/>
+                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-quantity" name="parcel-0-content-<%#Container.ItemIndex %>-quantity" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="1" max="<%:GetMaxItemCount() %>" value="<%#Item.Count %>" required="required"/>
 
                                                                     </div>
 
@@ -602,13 +602,14 @@
                                                                         单价(£):
                                                                <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
                                                                     </div>
-
+                                                                    <!--
                                                                     <div class="ib">
                                                                         <button style="border: 1px solid #ddd; background: none" class="btn add_mx btn_mx" type="button" title="添加包裹明细"><i class="icon-plus icon-white"></i></button>
                                                                     </div>
                                                                     <div class="ib">
                                                                         <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
                                                                     </div>
+                                                                    -->
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>

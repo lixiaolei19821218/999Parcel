@@ -382,10 +382,37 @@ public partial class products_Product : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static IEnumerable<string> GetTTKDMilkPowders()
+    public static IEnumerable<string> GetTTKDMilkPowders(string name)
     {
         UK_ExpressEntities repo = new UK_ExpressEntities();
-        return repo.TTKDMilkPowders.Select(t => t.Name);
+        if (name.Contains("自营奶粉包税6罐"))
+        {
+            return repo.TTKDMilkPowders.Where(t =>
+                t.Name != "英国雀巢Nestle全脂Nido奶粉400g" &&
+                t.Name != "英国Marvel脱脂奶粉340g" &&
+                t.Name != "英国雅培小安素400g"
+                ).Select(t => t.Name);
+        }
+        else
+        {
+            return repo.TTKDMilkPowders.Select(t => t.Name);
+        }
+    }
+
+    public int GetMaxItemCount()
+    {
+        if (Order.Service.Name.Contains("自营奶粉包税4罐"))
+        {
+            return 4;
+        }
+        else if (Order.Service.Name.Contains("自营奶粉包税6罐"))
+        {
+            return 6;
+        }
+        else
+        {
+            return 999999;
+        }
     }
 
     public string CheckIDNumber(string name, string number)

@@ -173,7 +173,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         }
         else if (p.Recipient.Order.Service.Name.Contains("自营奶粉包税"))
         {
-            return string.Empty;
+            return p.Recipient.Errors;
         }
         else
         {

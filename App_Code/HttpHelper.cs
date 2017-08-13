@@ -54,7 +54,7 @@ public static class HttpHelper
         catch (Exception ex)
         {
             string err = ex.Message;
-            return string.Empty;
+            return err;
         }
     }
 

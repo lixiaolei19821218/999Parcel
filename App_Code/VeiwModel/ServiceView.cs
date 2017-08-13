@@ -88,10 +88,10 @@ public class ServiceView
     {
         decimal price = 0m;
         
-        switch (Id)
+        switch (Name)
         {
-            case 1://Bpost 999Parcel取件
-            case 11://post nl 999Parcel免费取件
+            case "Bpost - 诚信物流取件"://Bpost 999Parcel取件
+            case "荷兰邮政 - 免费取件"://post nl 999Parcel免费取件
                 if (string.IsNullOrEmpty(order.SenderZipCode))
                 {
                     price = 0m;
@@ -124,15 +124,15 @@ public class ServiceView
                     }
                 }
                 break;
-            case 15://Parcelforce
-            case 17://Parcelforce
-            case 23://Parcelforce
-            case 25://Parcelforce
-            case 27://Parcelforce
+            case "Parcelforce Economy - 上门取件"://Parcelforce
+            case "Parcelforce Priority - 上门取件"://Parcelforce
+            case "Parcelforce Economy - 自送Depot"://Parcelforce
+            case "Parcelforce Economy - 自送邮局"://Parcelforce
+            case "Parcelforce Priority - 自送邮局"://Parcelforce
                 price = 0m;
                 break;
-            case 6://Bpost UKMail取件
-            case 12://post nl UKMail取件
+            case "Bpost - UKMail 取件"://Bpost UKMail取件
+            case "荷兰邮政 - UKMail 取件"://post nl UKMail取件
                 //ukmail取件费用，单箱5镑，2-3箱7镑，4箱以上每箱2镑的
                 //2015-6-16改为单箱5镑，两箱7镑，三箱或以上免费
                 //2016-03-08改为ukmail取件单箱加10镑 2-3箱加8镑 4-6箱加6镑 7-9箱加4镑 10箱以上加3镑
@@ -154,35 +154,39 @@ public class ServiceView
                     price = 3m;
                 }                
                 break;
-            case 32://Bpost - DPD 取件      
+            case "Bpost - DPD 取件"://Bpost - DPD 取件      
                 packageCount = order.Recipients.Sum(r => r.Packages.Count);
                 price = 5m * packageCount;
                 break;
-            case 36://Bpost - 自送仓库
+            case "Bpost - 自送仓库"://Bpost - 自送仓库
                 price = 0m;
                 break;
                 //bpost 奶粉专线
-            case 43:
+            case "奶粉包税专线 - 诚信物流取件":
                 price = 3m;
                 break;
-            case 44:
+            case "奶粉包税专线 - 自送仓库":
                 price = 0m;
                 break;
                 //杂物包税
-            case 46:
+            case "杂物包税专线（100镑以内） - 自送仓库":
                 price = 0m;
                 break;
-            case 48:
+            case "杂物包税专线（100镑以内） - 诚信物流取件":
                 price = decimal.Parse(ConfigurationManager.AppSettings["_999ParcelChargePrice"]);
                 break;
-            case 49:
+            case "杂物包税专线（200镑以内） - 自送仓库":
                 price = 0m;
                 break;
-            case 50:
+            case "杂物包税专线（200镑以内） - 诚信物流取件":
                 price = decimal.Parse(ConfigurationManager.AppSettings["_999ParcelChargePrice"]);
                 break;
-            case 55://自营4罐奶粉
-            case 56://自营6罐奶粉
+            case "自营奶粉包税4罐 - 自送仓库":
+            case "自营奶粉包税6罐 - 自送仓库":
+                price = 0m;
+                break;
+            case "自营奶粉包税4罐 - 诚信物流取件"://自营4罐奶粉
+            case "自营奶粉包税6罐 - 诚信物流取件"://自营6罐奶粉
                 packageCount = order.Recipients.Sum(r => r.Packages.Count);
                 if (packageCount < 3)
                 {

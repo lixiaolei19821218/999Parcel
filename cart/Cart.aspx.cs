@@ -261,7 +261,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "奶粉包税专线 - 自送仓库":
                     SendToBpost(o, "LGINTSTD");
                     break;
-                case "自营奶粉包税6罐":
+                case "自营奶粉包税6罐 - 自送仓库":
+                case "自营奶粉包税6罐 - 诚信物流取件":
                     SendToTTKD(o);
                     break;
                 default:
@@ -415,12 +416,12 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
-            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK64261343\",\"packageList\": [ ");
+            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK82525808\",\"packageList\": [ ");
             foreach (Package p in r.Packages)
             {
                 data.Append("{");
                 data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
-                data.Append(string.Format("\"sendPhone\": \"{0}\",", "01214399210"));
+                data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
                 data.Append("\"sendCompany\": \"999 Parcel\",");
                 data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
                 data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
@@ -451,8 +452,11 @@ public partial class cart_Cart : System.Web.UI.Page
             }
             data.Remove(data.Length - 1, 1);
             data.Append("]}");
-            string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/make-order", data.ToString(), "qy1o4g3zexp72bafdwnv");
+            string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/make-order", data.ToString(), "zqyxtd8g72epia4sn3bm");
+            order.UKMErrors = data.ToString() + " | " + response;
+            return;
             var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
+            
             if (res.Msg == "success")
             {
                 r.SuccessPaid = true;

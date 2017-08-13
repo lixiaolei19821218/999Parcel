@@ -57,7 +57,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
 
     public string GetPickupTime(Order o)
     {
-        if (o.Service.PickUpCompany.Trim() == "999Parcel")
+        if (o.Service.PickUpCompany.Trim() == "999Parcel" || o.Service.PickUpCompany.Trim() == "999 Parcel")
         {
             if (o.PickupTime.Value.Hour < 12)
             {
@@ -70,7 +70,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         }
         else
         {
-            return o.PickupTime.Value.ToShortDateString();
+            return o.PickupTime.HasValue ? o.PickupTime.Value.ToShortDateString() : "";
         }
     }
 
