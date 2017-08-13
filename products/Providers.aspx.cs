@@ -38,7 +38,16 @@ public partial class products_Providers : System.Web.UI.Page
 
     public IEnumerable<Provider> GetProviders()
     {
-        return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税");
+        if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 4 && p.Weight <= 5)) ||
+            order.Recipients.All(r => r.Packages.All(p => p.Weight >= 7 && p.Weight <= 8)))
+        {
+            return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税");
+        }
+        else
+        {
+            //for now, we only have this serivce.
+            return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税");
+        }
     }
 
     public decimal GetLowestPrice(Provider provider)

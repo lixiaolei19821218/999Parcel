@@ -120,7 +120,19 @@ public partial class product_Default : System.Web.UI.Page
             }
             else
             {
-                var sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                IEnumerable<ServiceView> sv;
+                if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 7 && p.Weight <= 8)))
+                {
+                    sv = provider.Services.Where(s => s.Valid && s.Name == "自营奶粉包税6罐").Select(s => new ServiceView(s));
+                }
+                else if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 4 && p.Weight <= 5)))
+                {
+                    sv = provider.Services.Where(s => s.Valid && s.Name == "自营奶粉包税4罐").Select(s => new ServiceView(s));
+                }
+                else
+                {
+                    sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                }
                 //var sv = repo.Context.Services.Where(s => s.ProviderId == providerId).Select(s => new ServiceView(s));
                 return sv;
             }

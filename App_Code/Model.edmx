@@ -273,6 +273,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="TTKDMilkPowders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_ChannelID">
           <End Role="RechargeChannels" Type="Self.RechargeChannels" Multiplicity="1" />
           <End Role="RechargeApplys" Type="Self.RechargeApplys" Multiplicity="*" />
@@ -794,6 +801,7 @@
           <EntitySet Name="SheffieldServices" EntityType="Self.SheffieldServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraceMessage" EntityType="Self.TraceMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraceNumbers" EntityType="Self.TraceNumbers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTKDMilkPowders" EntityType="Self.TTKDMilkPowders" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ChannelID" Association="Self.FK_ChannelID">
             <End Role="RechargeChannels" EntitySet="RechargeChannels" />
             <End Role="RechargeApplys" EntitySet="RechargeApplys" />
@@ -1264,6 +1272,7 @@
             <End Role="Provider" EntitySet="Providers" />
             <End Role="Service" EntitySet="Services" />
           </AssociationSet>
+          <EntitySet Name="TTKDMilkPowders" EntityType="UK_ExpressModel.TTKDMilkPowder" />
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1778,6 +1787,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TTKDMilkPowder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2190,6 +2206,14 @@
                 <ScalarProperty Name="DiscriblePictureLink" ColumnName="DiscriblePictureLink" />
                 <ScalarProperty Name="Discrible" ColumnName="Discrible" />
                 <ScalarProperty Name="PictureLink" ColumnName="PictureLink" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTKDMilkPowders">
+            <EntityTypeMapping TypeName="UK_ExpressModel.TTKDMilkPowder">
+              <MappingFragment StoreEntitySet="TTKDMilkPowders">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

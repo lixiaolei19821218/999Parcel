@@ -378,8 +378,14 @@ public partial class products_Product : System.Web.UI.Page
     public static IEnumerable<string> GetMilkPowderItems()
     {
         UK_ExpressEntities repo = new UK_ExpressEntities();
-
         return repo.MilkPowderSKUs.Select(m => m.Description);
+    }
+
+    [WebMethod]
+    public static IEnumerable<string> GetTTKDMilkPowders()
+    {
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+        return repo.TTKDMilkPowders.Select(t => t.Name);
     }
 
     public string CheckIDNumber(string name, string number)

@@ -46,6 +46,7 @@ public partial class UK_ExpressEntities : DbContext
     public virtual DbSet<MilkPowderSKU> MilkPowderSKUs { get; set; }
     public virtual DbSet<IDNumber> IDNumbers { get; set; }
     public virtual DbSet<Provider> Providers { get; set; }
+    public virtual DbSet<TTKDMilkPowder> TTKDMilkPowders { get; set; }
 
     public virtual ObjectResult<string> aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
     {

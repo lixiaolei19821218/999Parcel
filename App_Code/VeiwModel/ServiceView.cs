@@ -181,6 +181,18 @@ public class ServiceView
             case 50:
                 price = decimal.Parse(ConfigurationManager.AppSettings["_999ParcelChargePrice"]);
                 break;
+            case 55://自营4罐奶粉
+            case 56://自营6罐奶粉
+                packageCount = order.Recipients.Sum(r => r.Packages.Count);
+                if (packageCount < 3)
+                {
+                    price = 2m * packageCount;
+                }
+                else
+                {
+                    price = 0m;
+                }
+                break;
             default:
                 price = 0m;
                 break;

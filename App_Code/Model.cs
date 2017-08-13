@@ -359,6 +359,12 @@ public partial class TraceNumber
     public virtual ICollection<TraceMessage> TraceMessages { get; set; }
 }
 
+public partial class TTKDMilkPowder
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
 public partial class aspnet_Membership_GetPassword_Result
 {
     public string Column1 { get; set; }
