@@ -44,10 +44,13 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         }
         if  (Order.Service.PickUpCompany.Contains("999") && !(Order.HasPickedUp ?? false))
         {
+            LabelPickupTime.InnerText = "预约取件时间： " + Order.PickupTime;
+            LabelPickupTime.Visible = true;
             ButtonPickedUp.Visible = true;
         }
         else
         {
+            LabelPickupTime.Visible = false;
             ButtonPickedUp.Visible = false;
         }
     }

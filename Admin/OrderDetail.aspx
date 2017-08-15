@@ -89,7 +89,7 @@
             <hr />
             <div class="mg1">
                 <asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="确认已人工发送成功" ID="ButtonSuccessPaid" OnClick="ButtonSuccessPaid_Click" />
-                <asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="确认已取件" ID="ButtonPickedUp" OnClick="ButtonPickedUp_Click" />
+                <label runat="server" id ="LabelPickupTime" style="font-family: 'Microsoft YaHei UI';margin-right: 20px"/><asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="确认已取件" ID="ButtonPickedUp" OnClick="ButtonPickedUp_Click" />
                 <asp:Label runat="server" ID="message2" ForeColor="Green" />
             </div>
             <hr />

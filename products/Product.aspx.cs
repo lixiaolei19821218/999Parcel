@@ -119,7 +119,7 @@ public partial class products_Product : System.Web.UI.Page
             repo.Context.SaveChanges();
 
             //ParcelForce
-            if (sv.Name.Contains("Parcelforce"))
+            if (sv.Name.Contains("Parcelforce") || sv.Name.Contains("自营奶粉包税"))
             {
 
                 Response.Redirect("/cart/cart.aspx");
