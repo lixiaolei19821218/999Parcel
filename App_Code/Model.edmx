@@ -91,6 +91,7 @@
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="AfterPayment" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Compensate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HasPickedUp" Type="bit" />
         </EntityType>
         <EntityType Name="PackageItems">
           <Key>
@@ -1363,6 +1364,7 @@
           <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="AfterPayment" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Compensate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HasPickedUp" Type="Boolean" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -1925,6 +1927,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="UK_ExpressModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="HasPickedUp" ColumnName="HasPickedUp" />
                 <ScalarProperty Name="Compensate" ColumnName="Compensate" />
                 <ScalarProperty Name="AfterPayment" ColumnName="AfterPayment" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />

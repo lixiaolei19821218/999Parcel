@@ -26,7 +26,7 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
         string content = Request.QueryString["content"];
         if (content == null)
         {
-           normalOrders = from o in repo.Orders where ((o.HasPaid ?? false) && (!(o.SuccessPaid ?? false) || o.Service.PickUpCompany.Contains("999"))) select o;            
+           normalOrders = from o in repo.Orders where ((o.HasPaid ?? false) && (!(o.SuccessPaid ?? false) || (o.Service.PickUpCompany.Contains("999") && !(o.HasPickedUp ?? false)))) select o;            
         }
         else
         {           

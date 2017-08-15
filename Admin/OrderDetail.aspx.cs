@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class cart_OrderDetail : System.Web.UI.Page
 {
+    private Order order;
+
     [Ninject.Inject]
     public IRepository repo
     {
@@ -20,6 +22,33 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         if (Session["id"] == null)
         {
             Response.Redirect("/");
+        }
+
+        int id;        
+        if (int.TryParse(Session["id"].ToString(), out id))
+        {
+            order = repo.Context.Orders.Find(id);
+        }
+        else
+        {
+            order = new Order();
+        }
+
+        if (Order.SuccessPaid ?? false)
+        {
+            ButtonSuccessPaid.Visible = false;
+        }
+        else
+        {
+            ButtonSuccessPaid.Visible = true;
+        }
+        if  (Order.Service.PickUpCompany.Contains("999") && !(Order.HasPickedUp ?? false))
+        {
+            ButtonPickedUp.Visible = true;
+        }
+        else
+        {
+            ButtonPickedUp.Visible = false;
         }
     }
 
@@ -40,17 +69,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
     public Order Order
     {
         get
-        {
-            int id;
-            Order order;
-            if (int.TryParse(Session["id"].ToString(), out id))
-            {
-                order = repo.Context.Orders.Find(id);
-            }
-            else
-            {
-                order = new Order();
-            }
+        {            
             return order;
         }
     }
@@ -248,5 +267,19 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             repo.Context.SaveChanges();
             message.Text = string.Format("已成功赔付{0}英镑。", temp);
         }
+    }
+
+    protected void ButtonSuccessPaid_Click(object sender, EventArgs e)
+    {
+        Order.SuccessPaid = true;
+        repo.Context.SaveChanges();
+        message2.Text = "已确认该订单已经成功发送。";
+    }
+
+    protected void ButtonPickedUp_Click(object sender, EventArgs e)
+    {
+        Order.HasPickedUp = true;
+        repo.Context.SaveChanges();
+        message2.Text = "已确认该订单已由999 Parcel取件。";
     }
 }

@@ -96,6 +96,7 @@ public partial class Order
     public decimal Discount { get; set; }
     public Nullable<decimal> AfterPayment { get; set; }
     public Nullable<decimal> Compensate { get; set; }
+    public Nullable<bool> HasPickedUp { get; set; }
 
     public virtual ICollection<Recipient> Recipients { get; set; }
     public virtual Reinforce Reinforce { get; set; }
