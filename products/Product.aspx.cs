@@ -186,6 +186,10 @@ public partial class products_Product : System.Web.UI.Page
         order.SenderName = Request.Form.Get("billing_detail_name").Trim();
         order.SenderCity = Request.Form.Get("billing_detail_city").Trim();
         order.SenderPhone = Request.Form.Get("billing_detail_phone").Trim();
+        if (order.SenderPhone.Length != 11)
+        {
+            return "请输入11位电话号码";
+        }
         order.SenderAddress1 = Request.Form.Get("billing_detail_street").Trim();
         order.SenderAddress2 = Request.Form.Get("billing_detail_street2").Trim();
         order.SenderAddress3 = Request.Form.Get("billing_detail_street3").Trim();

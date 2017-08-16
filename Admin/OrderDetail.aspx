@@ -17,7 +17,7 @@
     <div class="sz16 bold colorb2" style="margin-top: 20px">
         订单详情
         <div style="float: right; font-size: smaller">
-            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;取件时间：<%:GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
+            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预约取件时间：<%:GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
                             <li>邮编：<%:Order.SenderZipCode %></li>                            
                             <li>地址：<%:Order.SenderAddress1 %> <%:Order.SenderAddress2 %> <%:Order.SenderAddress3 %></li>
                             <li>电话：<%:Order.SenderPhone %></li>
-                            <li>邮箱：<%:Order.SenderEmail %></li>
+                            <li>邮箱：<%:Order.SenderEmail %></li>                                         
                         </ul>
                     </fieldset>
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
@@ -89,7 +89,7 @@
             <hr />
             <div class="mg1">
                 <asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="确认已人工发送成功" ID="ButtonSuccessPaid" OnClick="ButtonSuccessPaid_Click" />
-                <label runat="server" id ="LabelPickupTime" style="font-family: 'Microsoft YaHei UI';margin-right: 20px"/><asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="确认已取件" ID="ButtonPickedUp" OnClick="ButtonPickedUp_Click" />
+                <label runat="server" id ="LabelPickupTime" style="font-family: 'Microsoft YaHei UI';margin-right: 20px; margin-left:200px;"/><asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="确认已取件" ID="ButtonPickedUp" OnClick="ButtonPickedUp_Click" />
                 <asp:Label runat="server" ID="message2" ForeColor="Green" />
             </div>
             <hr />

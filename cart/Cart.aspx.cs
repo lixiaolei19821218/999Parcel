@@ -453,19 +453,23 @@ public partial class cart_Cart : System.Web.UI.Page
             data.Remove(data.Length - 1, 1);
             data.Append("]}");
             string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/make-order", data.ToString(), "zqyxtd8g72epia4sn3bm");
-            order.UKMErrors = data.ToString() + " | " + response;
-            return;
+            //order.UKMErrors = data.ToString() + " | " + response;
+            //return;
             var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
             
             if (res.Msg == "success")
             {
                 r.SuccessPaid = true;
                 r.WMLeaderNumber = res.Data.OrderNum;
+               
+                string path = GetTTKDLabel(res.Data.OrderNum);
+
                 for (int i = 0; i < r.Packages.Count; i++)
                 {
                     Package p = r.Packages.ElementAt(i);
                     p.Status = "SUCCESS";
                     p.TrackNumber = res.Data.Mail_Nums[i];
+                    p.Pdf = path;
                 }
             }
             else
@@ -480,6 +484,33 @@ public partial class cart_Cart : System.Web.UI.Page
             }
         }
         order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
+    }
+
+    public string GetTTKDLabel(string orderNum)
+    {
+        string path = string.Empty;
+        StringBuilder json = new StringBuilder("{");
+        json.Append("\"serviceCode\": \"001\",");
+        json.Append("\"userKey\": \"TK82525808\",");
+        json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
+        string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/order-label", json.ToString(), "zqyxtd8g72epia4sn3bm");
+        var res = JsonConvert.DeserializeAnonymousType(response, new { ErrNo = string.Empty, Msg = string.Empty, Data = new { Label = string.Empty } });
+
+        if (res.Msg == "success")
+        {            
+            string folder = string.Format("{0}files\\TTKD\\{1}", HttpRuntime.AppDomainAppPath, Membership.GetUser().UserName);
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            string label = string.Format("{0}\\{1}.pdf", folder, orderNum);
+            byte[] stream = Convert.FromBase64String(res.Data.Label);
+            FileStream file = new FileStream(label, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.Write(stream, 0, stream.Length);
+            file.Close();
+            path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, orderNum);
+        }
+        return path;
     }
 
     private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")

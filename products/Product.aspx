@@ -280,17 +280,11 @@
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_phone">电话</label>
-                                <input class="input-medium" id="id_billing_detail_phone" maxlength="15" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d+"/>
-
-
-
-
+                                <input class="input-medium" id="id_billing_detail_phone" maxlength="11" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d+"/>
                             </div>
                            <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_email">E-Mail</label>
-                                <input class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" value="<%:Order.SenderEmail %>" title="电子邮箱"/>
-
-                                   
+                                <input class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" value="<%:Order.SenderEmail %>" title="电子邮箱"/>                              
 
 
                             </div>

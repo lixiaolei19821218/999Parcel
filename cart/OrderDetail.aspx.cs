@@ -173,9 +173,22 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         }
         else if (p.Recipient.Order.Service.Name.Contains("自营奶粉包税"))
         {
-            return p.Recipient.Errors;
+            if (!string.IsNullOrEmpty(p.Status))
+            {
+                if (p.Status == "SUCCESS")
+                {
+                    return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                }
+                else
+                {
+                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                }
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
-        else
         {
             return string.Empty;
         }

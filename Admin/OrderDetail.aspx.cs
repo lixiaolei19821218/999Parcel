@@ -37,20 +37,19 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         if (Order.SuccessPaid ?? false)
         {
             ButtonSuccessPaid.Visible = false;
+            ButtonSuccessPaid.Width = 0;
         }
         else
         {
             ButtonSuccessPaid.Visible = true;
         }
         if  (Order.Service.PickUpCompany.Contains("999") && !(Order.HasPickedUp ?? false))
-        {
-            LabelPickupTime.InnerText = "预约取件时间： " + Order.PickupTime;
-            LabelPickupTime.Visible = true;
+        {            
             ButtonPickedUp.Visible = true;
         }
         else
         {
-            LabelPickupTime.Visible = false;
+                  
             ButtonPickedUp.Visible = false;
         }
     }
@@ -83,16 +82,16 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             if (o.PickupTime.Value.Hour < 12)
             {
-                return o.PickupTime.Value.ToShortDateString() + " AM";
+                return o.PickupTime.Value.ToString() + " AM " + ((o.HasPickedUp ?? false) ? "已取件" : "未取件");
             }
             else
             {
-                return o.PickupTime.Value.ToShortDateString() + " PM";
+                return o.PickupTime.Value.ToString() + " PM " + ((o.HasPickedUp ?? false) ? "已取件" : "未取件");
             }
         }
         else
         {
-            return o.PickupTime.HasValue ? o.PickupTime.Value.ToShortDateString() : "";
+            return o.PickupTime.HasValue ? o.PickupTime.Value.ToString() : "";
         }
     }
 
@@ -132,6 +131,24 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             else if (p.Recipient.Order.Service.Name.Contains("杂物包税"))
             {
                 return (p.Status == "SUCCESS") ? "发送成功" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+            }
+            else if (p.Recipient.Order.Service.Name.Contains("自营奶粉包税"))
+            {
+                if (!string.IsNullOrEmpty(p.Status))
+                {
+                    if (p.Status == "SUCCESS")
+                    {
+                        return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                    }
+                    else
+                    {
+                        return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                    }
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
             else
             {
@@ -275,6 +292,10 @@ public partial class cart_OrderDetail : System.Web.UI.Page
     protected void ButtonSuccessPaid_Click(object sender, EventArgs e)
     {
         Order.SuccessPaid = true;
+        foreach (Recipient r in Order.Recipients)
+        {
+            r.SuccessPaid = true;
+        }
         repo.Context.SaveChanges();
         message2.Text = "已确认该订单已经成功发送。";
     }
