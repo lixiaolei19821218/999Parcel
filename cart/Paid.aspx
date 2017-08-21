@@ -42,6 +42,7 @@
                                 <td class="tac"><%#Item.SenderName %></td>
                                 <td class="right"><%#Item.Service.Name %></td>
                                 <td><%#GetIcon(Item) %></td>
+                                <td class="right"><a href="/<%#Item.Recipients.ElementAt(0).WMLeaderPdf %>"/>运单下载</a></td>
                                 <td colspan="2">
                                     <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />                                    
                                 </td>
