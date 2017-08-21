@@ -211,7 +211,7 @@ public partial class products_Product : System.Web.UI.Page
             recipient.IDNumber = Request.Form.Get(string.Format("addr-0-idnumber", i)).Trim();
             recipient.Province = Request.Form.Get(string.Format("addr-0-cn_province", i)).Trim();
             recipient.District = Request.Form.Get(string.Format("addr-0-cn_district", i)).Trim();
-
+            /*
             if (order.Service.Name.Contains("奶粉包税") || order.Service.Name.Contains("杂物包税"))
             {
                 if (CheckIDNumber(recipient.Name, recipient.IDNumber) == "验证失败")
@@ -219,7 +219,7 @@ public partial class products_Product : System.Web.UI.Page
                     return string.Format("收件人{0}的名字和身份证号不匹配", recipient.Name);
                 }
             }
-
+            */
             if (recipient.PyAddress.Length > 72)
             {
                 return string.Format("收件人{0}的拼音地址超出72个字符", recipient.Name);

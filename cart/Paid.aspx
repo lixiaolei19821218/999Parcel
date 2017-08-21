@@ -43,8 +43,7 @@
                                 <td class="right"><%#Item.Service.Name %></td>
                                 <td><%#GetIcon(Item) %></td>
                                 <td colspan="2">
-                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />  
-                                    
+                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />                                    
                                 </td>
                             </tr>
                         </ItemTemplate>

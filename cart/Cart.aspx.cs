@@ -463,7 +463,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 r.WMLeaderNumber = res.Data.OrderNum;
                
                 string path = GetTTKDLabel(res.Data.OrderNum);
-
+                r.WMLeaderPdf = path;
                 for (int i = 0; i < r.Packages.Count; i++)
                 {
                     Package p = r.Packages.ElementAt(i);

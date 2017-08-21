@@ -110,9 +110,10 @@
                                     </div>
                                     <div class="formset formset_1">
                                         <div class="bg4 addr clrb3 bold tal" style="width: 100%; padding: 10px; float: left; color: white; background-color: #C34C21">
-                                            收件人<span class="addr_num">1</span>
+                                            <!--收件人<span class="addr_num">1</span>
                                             <button type="button" class="del_addr btn1 fr" title="删除收件人" style="float: right; border: 0px; color: white; background-color: transparent; height: 20px; width: 20px; outline: none">-</button>
                                             <button type="button" class="add_addr btn1 fr" title="添加收件人" style="float: right; border: 0px; color: white; background-color: transparent; height: 20px; width: 20px; font-size: large; outline: none;">+</button>
+                                        -->
                                         </div>
                                         <div class="pkt-err"></div>
                                         <div class="packet">
