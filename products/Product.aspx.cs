@@ -201,29 +201,27 @@ public partial class products_Product : System.Web.UI.Page
         {
             Recipient recipient = recipientList[i];
             recipient.Name = Request.Form.Get(string.Format("addr-{0}-cn_name", i)).Trim();
-            recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_city", i)).Trim();
-            if (recipient.City.Last().ToString() != "市")
+
+            recipient.Province = Request.Form.Get(string.Format("addr-{0}-cn_province", i)).Trim();
+            if (recipient.Province == "北京市" || recipient.Province == "天津市" || recipient.Province == "上海市" || recipient.Province == "重庆市")
             {
-                recipient.City = recipient.City + "市";
-            }            
+                recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+                recipient.District = " ";
+            }
+            else
+            {
+                recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_city", i)).Trim();
+                recipient.District = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+            }
+
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
             recipient.PhoneNumber = Request.Form.Get(string.Format("addr-{0}-phone", i)).Trim();
             recipient.ZipCode = Request.Form.Get(string.Format("addr-{0}-postcode", i)).Trim();
             recipient.PyName = Request.Form.Get(string.Format("hd_name{0}", i)).Trim();
             recipient.PyCity = Request.Form.Get(string.Format("hd_city{0}", i)).Trim();
             recipient.PyAddress = Request.Form.Get(string.Format("hd_street{0}", i)).Trim();
-            recipient.IDNumber = Request.Form.Get(string.Format("addr-0-idnumber", i)).Trim();
-            recipient.Province = Request.Form.Get(string.Format("addr-0-cn_province", i)).Trim();
-            if (recipient.Province.Last().ToString() != "省")
-            {
-                recipient.Province += "省";
-            }
-            recipient.District = Request.Form.Get(string.Format("addr-0-cn_district", i)).Trim();
-            if (recipient.District.Last().ToString() != "区")
-            {
-                recipient.District += "区";
-            }
-
+            recipient.IDNumber = Request.Form.Get(string.Format("addr-{0}-idnumber", i)).Trim();    
+          
             if (order.Service.Name.Contains("奶粉包税") || order.Service.Name.Contains("杂物包税"))
             {
                 if (CheckIDNumber(recipient.Name, recipient.IDNumber) == "验证失败")

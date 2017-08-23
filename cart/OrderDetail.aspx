@@ -52,7 +52,7 @@
                     <fieldset>
                         <legend>收件人：<%#Item.Name %><%# GetStatus(Item)%></legend>
                         <ul>
-                            <li>城市：<%#Item.City %></li>
+                            <li>城市：<%#Item.Province + " " + Item.City %></li>
                             <li>地址：<%#Item.Address %></li>
                             <li>手机：<%#Item.PhoneNumber %></li>
                             <li>邮编：<%#Item.ZipCode %></li>
