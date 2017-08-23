@@ -416,6 +416,7 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
+            data.Append(string.Format("{{\"serviceCode\":\"001\",\"userKey\":\"{0}\",\"packageList\": [ ", ConfigurationManager.AppSettings["TTKDUserKey"]));
             foreach (Package p in r.Packages)
             {
                 data.Append("{");
@@ -451,6 +452,7 @@ public partial class cart_Cart : System.Web.UI.Page
             }
             data.Remove(data.Length - 1, 1);
             data.Append("]}");
+            string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), data.ToString(), ConfigurationManager.AppSettings["Authorization"]);
             //order.UKMErrors = data.ToString() + " | " + response;
             //return;
             var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
@@ -489,7 +491,9 @@ public partial class cart_Cart : System.Web.UI.Page
         string path = string.Empty;
         StringBuilder json = new StringBuilder("{");
         json.Append("\"serviceCode\": \"001\",");
+        json.Append(string.Format("\"userKey\": \"{0}\",", ConfigurationManager.AppSettings["TTKDUserKey"]));
         json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
+        string response = HttpHelper.HttpPost(string.Format("{0}/interface/order-label", ConfigurationManager.AppSettings["TTKDDomainName"]), json.ToString(), ConfigurationManager.AppSettings["Authorization"]);
         var res = JsonConvert.DeserializeAnonymousType(response, new { ErrNo = string.Empty, Msg = string.Empty, Data = new { Label = string.Empty } });
 
         if (res.Msg == "success")
