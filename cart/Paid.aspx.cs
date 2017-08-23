@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -227,5 +228,57 @@ public partial class cart_Paid : System.Web.UI.Page
         {
             return string.Empty;
         }
+    }
+
+    protected void DownloadLabel_Click(object sender, EventArgs e)
+    {
+        int id;
+        if (int.TryParse((sender as LinkButton).Attributes["data-id"], out id))
+        {
+            Order order = repo.Context.Orders.Find(id);
+
+            MemoryStream ms = new MemoryStream();
+            byte[] buffer = null;
+
+            using (ZipFile file = ZipFile.Create(ms))
+            {
+                file.BeginUpdate();
+                file.NameTransform = new MyNameTransfom();//通过这个名称格式化器，可以将里面的文件名进行一些处理。默认情况下，会自动根据文件的路径在zip中创建有关的文件夹。
+
+                foreach (Recipient r in order.Recipients)
+                {
+                    file.Add(Server.MapPath("~/" + r.WMLeaderPdf));                    
+                }
+
+                file.CommitUpdate();
+
+                buffer = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(buffer, 0, buffer.Length);
+            }
+
+            Response.AddHeader("content-disposition", string.Format("attachment;filename={0}.zip", order.Id));
+            Response.BinaryWrite(buffer);
+            Response.Flush();
+            Response.End();
+        }
+    }
+
+    public class MyNameTransfom : ICSharpCode.SharpZipLib.Core.INameTransform
+    {
+
+        #region INameTransform 成员
+
+        public string TransformDirectory(string name)
+        {
+            return null;
+        }
+
+        public string TransformFile(string name)
+        {
+            return Path.GetFileName(name);
+        }
+
+        #endregion
     }
 }

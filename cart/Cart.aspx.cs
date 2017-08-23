@@ -416,7 +416,6 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
-            data.Append("{\"serviceCode\":\"001\",\"userKey\":\"TK82525808\",\"packageList\": [ ");
             foreach (Package p in r.Packages)
             {
                 data.Append("{");
@@ -452,7 +451,6 @@ public partial class cart_Cart : System.Web.UI.Page
             }
             data.Remove(data.Length - 1, 1);
             data.Append("]}");
-            string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/make-order", data.ToString(), "zqyxtd8g72epia4sn3bm");
             //order.UKMErrors = data.ToString() + " | " + response;
             //return;
             var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
@@ -491,9 +489,7 @@ public partial class cart_Cart : System.Web.UI.Page
         string path = string.Empty;
         StringBuilder json = new StringBuilder("{");
         json.Append("\"serviceCode\": \"001\",");
-        json.Append("\"userKey\": \"TK82525808\",");
         json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
-        string response = HttpHelper.HttpPost("http://54.222.195.106:8028/interface/order-label", json.ToString(), "zqyxtd8g72epia4sn3bm");
         var res = JsonConvert.DeserializeAnonymousType(response, new { ErrNo = string.Empty, Msg = string.Empty, Data = new { Label = string.Empty } });
 
         if (res.Msg == "success")

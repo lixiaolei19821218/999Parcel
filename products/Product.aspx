@@ -366,6 +366,7 @@
                                     <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <label for="id_addr-0-cn_province">中文省份</label>
                                         <input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
+                                        省
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_city">中文城市</label>
@@ -373,10 +374,12 @@
                                             onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"/>
+                                        市
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
-                                        <label for="id_addr-0-cn_district">中文区/县</label>
+                                        <label for="id_addr-0-cn_district">中文区</label>
                                         <input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
+                                        区
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-0-cn_street">中文地址</label>

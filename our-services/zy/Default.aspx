@@ -16,9 +16,12 @@
     
 
     <div style="background-color:#EBF4FA;padding:20px 50px">
+        <!--
         <a href="/our-services/zy/bp/" style="margin-right:20px"><img src="/static/img/static/bp1.png" /></a>
         <a href="/our-services/zy/pfg/" style="margin-right:20px"><img src="/static/img/static/pfg1.png" /></a>
         <a href="/our-services/zy/pfe/"><img src="/static/img/static/pfe1.png" /></a>
+        -->
+        <img src="/static/img/static/service.jpg" />
         <div style="clear:both"></div>
     </div>
     
