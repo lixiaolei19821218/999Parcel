@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -16,8 +18,16 @@ public partial class Trace_Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        
     }
+
+    public class TraceInfo
+    {
+        public string Number { get; set; }
+        public string Code { get; set; }
+        public List<Dictionary<string, string>> Info { get; set; }
+    }
+
 
     public IEnumerable<TraceMessage> GetTraceMessages()
     {
@@ -25,7 +35,26 @@ public partial class Trace_Default : System.Web.UI.Page
         {
             return new List<TraceMessage>();
         }
-        string traceNumber = Request["txtTraceNumber"];
+        string traceNumber = Request["txtTraceNumber"].Trim();        
+        return GetTTKDTraceMessages(traceNumber);
+    }
+
+    public IEnumerable<TraceMessage> GetTTKDTraceMessages(string traceNumber)
+    {
+        string data = string.Format("{{\"numbers\": \"{0}\"}}", traceNumber.Trim());
+        string response = HttpHelper.HttpPost("http://www.ttkeu.com/track/api", data);
+        var result = JsonConvert.DeserializeAnonymousType(response, new { Numbers = new List<TraceInfo>() });
+        List<TraceMessage> traceMessages = new List<TraceMessage>();
+        foreach (var info in result.Numbers[0].Info)
+        {
+            TraceMessage m = new TraceMessage { DateTime = DateTime.Parse(info.First().Key), Message = info.First().Value };
+            traceMessages.Add(m);
+        }
+        return traceMessages;
+    }
+
+    public IEnumerable<TraceMessage> GetSFTraceMessages(string traceNumber)
+    {
         List<TraceMessage> traceMessages = new List<TraceMessage>(repo.Context.TraceMessages.Where(t => t.TraceNumber.Number == traceNumber));
         SFService.ExpressServiceClient sf = new SFService.ExpressServiceClient();//V3.2接口
         string xml = GetRouteXml(traceNumber);
