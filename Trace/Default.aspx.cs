@@ -44,12 +44,31 @@ public partial class Trace_Default : System.Web.UI.Page
         string data = string.Format("{{\"numbers\": \"{0}\"}}", traceNumber.Trim());
         string response = HttpHelper.HttpPost("http://www.ttkeu.com/track/api", data);
         var result = JsonConvert.DeserializeAnonymousType(response, new { Numbers = new List<TraceInfo>() });
+        var trace = result.Numbers[0];
         List<TraceMessage> traceMessages = new List<TraceMessage>();
-        foreach (var info in result.Numbers[0].Info)
+        if (trace.Info.Count == 0)
         {
-            TraceMessage m = new TraceMessage { DateTime = DateTime.Parse(info.First().Key), Message = info.First().Value };
+            TraceMessage m = new TraceMessage { Message = "暂时没有该运单消息，请稍后再试。" };
             traceMessages.Add(m);
         }
+        {
+            foreach (var info in trace.Info)
+            {
+                string timeString = info.First().Key;
+                DateTime time;
+                TraceMessage m;
+                if (DateTime.TryParse(timeString, out time))
+                {
+                    m = new TraceMessage { DateTime = time, Message = info.First().Value };
+                }
+                else
+                {
+                    m = new TraceMessage { Message = info.First().Value };
+                }
+                traceMessages.Add(m);
+            }
+        }
+       
         return traceMessages;
     }
 
