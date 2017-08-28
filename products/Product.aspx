@@ -137,7 +137,13 @@
                 success: function (data) {
                     //返回的数据用data.d获取内容       
                     $(data.d).each(function () {
-                        $(".item_detail").append("<option>" + this + "</option>");
+                        if ($(".item_detail")[0].dataset.selected == this) {
+                            $(".item_detail").append("<option selected = \"selected\">" + this + "</option>");
+                        }
+                        else {
+                            $(".item_detail").append("<option>" + this + "</option>");
+                        }
+                        //$(".item_detail")
                     });
                 },
                 error: function (err) {
@@ -352,7 +358,7 @@
                                 <input id="id_addr-0-id" name="addr-0-id" type="hidden" />
                                 <!-- recipient address -->
                                 <div style="padding-top: 10px"> 
-                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px" <%:ServiceView.Name.Contains("杂物包税") ? "hidden=\"hidden\"" : "" %>>
+                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px" <%:ServiceView.Name.Contains("包税") ? "hidden=\"hidden\"" : "" %>>
                                         <div style="float: left; width: 162px; padding-left: 60px" id="py_name<%#Container.ItemIndex %>"><%#Item.PyName %></div><input type="hidden" value="<%#Item.PyName %>" name="hd_name<%#Container.ItemIndex %>" id="hd_name<%#Container.ItemIndex %>"></input>
                                         <div style="float: left; width: 162px; padding-left: 28px" id="py_city<%#Container.ItemIndex %>"><%#Item.PyCity %></div><input type="hidden" value="<%#Item.PyCity %>" name="hd_city<%#Container.ItemIndex %>" id="hd_city<%#Container.ItemIndex %>"></input>
                                         <div style="margin-left: 324px; margin-right: 38px" id="py_street<%#Container.ItemIndex %>"><%#Item.PyAddress %></div><input type="hidden" value="<%#Item.PyAddress %>" name="hd_street<%#Container.ItemIndex %>" id="hd_street<%#Container.ItemIndex %>"></input>
@@ -369,7 +375,7 @@
                                         <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                             <label for="id_addr-0-cn_province">中文省份</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />-->
-                                            <select data-province="---- 选择省 ----" class="cn_fields cn_city" id="id_addr-0-cn_province" name="addr-<%#Container.ItemIndex %>-cn_province" style="width: 140px; height: 24px; max-width: 140px;"></select>
+                                            <select data-province="<%#Item.Province %>" class="cn_fields cn_city" id="id_addr-0-cn_province" name="addr-<%#Container.ItemIndex %>-cn_province" style="width: 140px; height: 24px; max-width: 140px;"></select>
                                         </div>
                                         <div style="float: left; margin: 5px" class="control-group ">
                                             <label for="id_addr-0-cn_city">中文城市</label>
@@ -378,13 +384,13 @@
                                                 onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
                                                 onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" />
                                             -->
-                                            <select data-city="---- 选择市 ----"  class="cn_fields cn_city" id="id_addr-0-cn_city" name="addr-<%#Container.ItemIndex %>-cn_city" style="width: 140px; height: 24px; max-width: 140px;" ></select>
+                                            <select data-city="<%#Item.City %>"  class="cn_fields cn_city" id="id_addr-0-cn_city" name="addr-<%#Container.ItemIndex %>-cn_city" style="width: 140px; height: 24px; max-width: 140px;" ></select>
                                         </div>
                                         <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                             <label for="id_addr-0-cn_district">中文区/县</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
                                             -->
-                                            <select data-district="---- 选择区 ----" class="cn_fields cn_city" id="id_addr-0-cn_district" name="addr-<%#Container.ItemIndex %>-cn_district" style="width: 140px; height: 24px; max-width: 140px;"></select>
+                                            <select data-district="<%#Item.District %>" class="cn_fields cn_city" id="id_addr-0-cn_district" name="addr-<%#Container.ItemIndex %>-cn_district" style="width: 140px; height: 24px; max-width: 140px;"></select>
                                         </div>
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
@@ -413,7 +419,7 @@
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" :  ""%>/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%>/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
@@ -533,8 +539,8 @@
                                                                     <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
                                                                     <div class="ib mx_type">
                                                                         
-                                                                    <select class="item_detail" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:260px;height:23px;">
-                                                                            <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
+                                                                    <select class="item_detail" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:260px;height:23px;" data-selected="<%#Item.Description %>">
+                                                                            <!--<option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
                                                                             <option value="Baby Food">婴儿食品</option>
                                                                             <option value="Adult Milk Powder">成人奶粉</option>
                                                                             <option value="Strollers">婴儿推车</option>
@@ -576,7 +582,7 @@
                                                                             <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
                                                                             <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
                                                                             <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
-                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
+                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>-->
                                                                         </select>
 
                                                                         <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
@@ -603,7 +609,7 @@
 
                                                                     <div class="ib mx_cost mx_cal">
                                                                         单价(£):
-                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" value="<%#Item.Value %>" required="required"/>
+                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" value="<%#Item.UnitPrice %>" required="required"/>
                                                                     </div>
                                                                     <!--
                                                                     <div class="ib">

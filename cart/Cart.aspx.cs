@@ -98,6 +98,9 @@ public partial class cart_Cart : System.Web.UI.Page
         if (int.TryParse((sender as Button).Attributes["data-id"], out id))
         {
             Order order = repo.Context.Orders.Find(id);
+            Session["Order"] = order;
+            Response.Redirect("/products/product.aspx");
+            return;
 
             Order orderCopy = new Order();
             orderCopy.IsValid = order.IsValid;
@@ -475,11 +478,11 @@ public partial class cart_Cart : System.Web.UI.Page
             else
             {
                 r.SuccessPaid = false;
-                r.Errors = res.Msg;
+                r.Errors = "TTKD: " + res.Msg;
                 foreach (Package p in r.Packages)
                 {
                     p.Status = "FAIL";
-                    p.Response = res.Msg;
+                    p.Response = "TTKD: " + res.Msg;
                 }
             }
         }

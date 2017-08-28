@@ -82,7 +82,7 @@ public partial class products_Product : System.Web.UI.Page
                 order.OrderTime = DateTime.Now;
                 order.Cost = sv.GetSendPrice(order);
                 repo.Context.Orders.Add(order);        
-            }
+            }/*
             else
             {
                 Order old = repo.Context.Orders.Find(order.Id);
@@ -114,7 +114,7 @@ public partial class products_Product : System.Web.UI.Page
                     old.Recipients.Add(r);
                 }
                 old.Cost = sv.GetSendPrice(old);
-            }
+            }*/
 
             repo.Context.SaveChanges();
 
@@ -183,12 +183,13 @@ public partial class products_Product : System.Web.UI.Page
 
     public string FillOrder()
     {
+        StringBuilder msg = new StringBuilder();
         order.SenderName = Request.Form.Get("billing_detail_name").Trim();
         order.SenderCity = Request.Form.Get("billing_detail_city").Trim();
         order.SenderPhone = Request.Form.Get("billing_detail_phone").Trim();
         if (order.SenderPhone.Length != 11)
         {
-            return "请输入11位电话号码";
+            msg.Append("请输入11位电话号码。");
         }
         order.SenderAddress1 = Request.Form.Get("billing_detail_street").Trim();
         order.SenderAddress2 = Request.Form.Get("billing_detail_street2").Trim();
@@ -212,6 +213,10 @@ public partial class products_Product : System.Web.UI.Page
             {
                 recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_city", i)).Trim();
                 recipient.District = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+                if (string.IsNullOrEmpty(recipient.District))
+                {
+                    recipient.District = " ";
+                }
             }
 
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
@@ -226,14 +231,14 @@ public partial class products_Product : System.Web.UI.Page
             {
                 if (CheckIDNumber(recipient.Name, recipient.IDNumber) == "验证失败")
                 {
-                    return string.Format("收件人{0}的名字和身份证号不匹配", recipient.Name);
+                    msg.Append(string.Format("收件人{0}的名字和身份证号不匹配。", recipient.Name));
                 }
             }
-            
+            /*
             if (recipient.PyAddress.Length > 72)
             {
                 return string.Format("收件人{0}的拼音地址超出72个字符", recipient.Name);
-            }
+            }*/
         }
         List<Package> packages = new List<Package>();
         foreach (Recipient r in order.Recipients)
@@ -263,7 +268,7 @@ public partial class products_Product : System.Web.UI.Page
             packages[i].Value = packages[i].PackageItems.Sum(pi => pi.Value);
         }
         
-        if (!order.Service.Name.Contains("自送"))
+        //if (!order.Service.Name.Contains("自送"))
         {
             DateTime date;
             if (DateTime.TryParse(Request["pickup_time_0"], out date))
@@ -283,29 +288,29 @@ public partial class products_Product : System.Web.UI.Page
             }
             else
             {
-                return "请输入取件时间";
+                msg.Append("请输入取件时间。");
             }
         }       
 
         if (string.IsNullOrEmpty(order.SenderName))
         {
-            return "请输入发件人的姓名";
+            msg.Append("请输入发件人的姓名。");
         }
         else if (string.IsNullOrEmpty(order.SenderCity))
         {
-            return "请输入发件人的城市";
+            msg.Append("请输入发件人的城市。");
         }
         else if (string.IsNullOrEmpty(order.SenderAddress1))
         {
-            return "请输入发件人的地址";
+            msg.Append("请输入发件人的地址。");
         }
         else if (string.IsNullOrEmpty(order.SenderZipCode))
         {
-            return "请输入发件人的邮编";
+            msg.Append("请输入发件人的邮编。");
         }
         else if (string.IsNullOrEmpty(order.SenderPhone))
         {
-            return "请输入发件人的电话";
+            msg.Append("请输入发件人的电话。");
         }
 
         for (int i = 0; i < recipientList.Count; i++)
@@ -313,27 +318,33 @@ public partial class products_Product : System.Web.UI.Page
             Recipient r = recipientList[i];
             if (string.IsNullOrEmpty(r.Name))
             {
-                return string.Format("请输入收件人{0}的姓名", i + 1);
+                msg.Append(string.Format("请输入收件人{0}的姓名。", i + 1));
             }
             else if (string.IsNullOrEmpty(r.City))
             {
-                return string.Format("请输入收件人{0}的城市", i + 1);
+                msg.Append(string.Format("请输入收件人{0}的城市。", i + 1));
             }
             else if (string.IsNullOrEmpty(r.Address))
             {
-                return string.Format("请输入收件人{0}的地址", i + 1);
+                msg.Append(string.Format("请输入收件人{0}的地址。", i + 1));
             }
             else if (string.IsNullOrEmpty(r.ZipCode))
             {
-                return string.Format("请输入收件人{0}的邮编", i + 1);
+                msg.Append(string.Format("请输入收件人{0}的邮编。", i + 1));
             }
             else if (string.IsNullOrEmpty(r.PhoneNumber))
             {
-                return string.Format("请输入收件人{0}的电话", i + 1);
+                msg.Append(string.Format("请输入收件人{0}的电话。", i + 1));
             }
         }
-
-        return "pass";
+        if (msg.Length == 0)
+        {
+            return "pass";
+        }
+        else
+        {
+            return msg.ToString();
+        }
     }    
     
     public string FreeAreas
