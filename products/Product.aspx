@@ -20,10 +20,21 @@
                     inputElem.setCustomValidity("");
                 }
             });
-
+            
         });
 
-
+        function InvalidIDNumber(textbox) {
+            if (textbox.value == '') {
+                textbox.setCustomValidity('不能为空。');
+            }
+            else if (textbox.validity.typeMismatch) {
+                textbox.setCustomValidity('请输入正确的身份证号码。');
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+            return true;
+        }
     </script>
 
     <link rel="stylesheet" href="/static/jquery-ui-1.11/jquery-ui.min.css">
@@ -291,7 +302,7 @@
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_phone">电话</label>
-                                <input class="input-medium" id="id_billing_detail_phone" maxlength="11" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d+"/>
+                                <input class="input-medium" id="id_billing_detail_phone" maxlength="11" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d{11}" required oninvalid="setCustomValidity('请输入11位电话号码。')" oninput="setCustomValidity('')"/>
                             </div>
                            <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_email">E-Mail</label>
@@ -407,19 +418,19 @@
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 9px" class="control-group ">
                                             <label for="id_addr-0-postcode">邮编</label>
-                                            <input id="id_addr-0-postcode" maxlength="6" name="addr-<%#Container.ItemIndex %>-postcode" style="width: 60px" type="text" value="<%#Item.ZipCode %>"  required="required"/>
+                                            <input id="id_addr-0-postcode" maxlength="6" name="addr-<%#Container.ItemIndex %>-postcode" style="width: 60px" type="text" pattern="\d{6}" value="<%#Item.ZipCode %>" required oninvalid="setCustomValidity('请输入6位邮编。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
-                                            <label for="id_addr-0-phone">电话</label>
-                                            <input id="id_addr-0-phone" maxlength="11" name="addr-<%#Container.ItemIndex %>-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required="required"/>
+                                            <label for="id_addr-0-phone">手机</label>
+                                            <input id="id_addr-0-phone" maxlength="11" pattern="\d{11}" name="addr-<%#Container.ItemIndex %>-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required oninvalid="setCustomValidity('请输入11位手机号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>      
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%>/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" pattern="\d{18}" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%> required oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
