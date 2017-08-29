@@ -35,7 +35,7 @@
         <form runat="server" method="post" id="placeOrder" style="padding-top:0px;">           
             <fieldset runat="server" id="normalField" style="min-height:300px;">
                 <legend>直邮订单</legend>
-                <table class="table table-orders">
+                <table class="table table-orders">                      
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetNoneSheffieldOrders">
                         <HeaderTemplate>
                             <tr>
@@ -45,11 +45,11 @@
                                 <th class="tac">包裹数</th>
                                 <th class="tac">发件人</th>
                                 <th>服务</th>
-                                <th colspan="2"></th>
+                                <th colspan="3"></th>
                             </tr>
-                        </HeaderTemplate>
+                        </HeaderTemplate>                        
                         <ItemTemplate>
-                            <input type='hidden' name='orders' />
+                            <input type='hidden' name='orders' />                                            
                             <tr id="<%#Item.Id %>" title="<%#GetOrderTip(Item) %>">
                                 <td class="tac" style="vertical-align:middle;"><%#string.Format("{0:d9}", Item.Id) %></td>
                                 <td class="left" style="vertical-align:middle;"><%#Item.OrderTime.Value.ToShortDateString() %></td>
@@ -60,6 +60,7 @@
                                 <td colspan="2">
                                     <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" OnClick="ButtonEdit_Click" style="padding:0px 10px;" />
                                     <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click"  style="padding:0px 10px;"/>
+                                    <asp:Button ID="ButtonPayOne" CssClass="btn btn-danger btn-small del" runat="server" Text="支付" data-id="<%#Item.Id %>" OnClick="ButtonPayOne_Click"  style="padding:0px 10px;"/>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -112,9 +113,9 @@
                 <legend></legend>
                 <div style="padding: 0px; margin: 0px">
 
-                   <a href="/" class="btn btn-info" style="line-height: 1">继续下单</a>
+                   <a href="/" class="btn btn-info" style="line-height: 1;width:120px;">继续下单</a>
 
-                    <asp:Button ID="pay" runat="server" CssClass="btn btn-info" Text="支付定单" style="line-height: 1" OnClick="pay_Click" />
+                    <asp:Button ID="pay" runat="server" CssClass="btn btn-info" Text="支付所有定单" style="line-height: 1;width:120px;" OnClick="pay_Click" />
                     
 
                     <div style="clear: both"></div>

@@ -1484,6 +1484,22 @@ public partial class cart_Cart : System.Web.UI.Page
             }
         }
     }
+
+    protected void ButtonPayOne_Click(object sender, EventArgs e)
+    {
+        int id;
+        if (int.TryParse((sender as Button).Attributes["data-id"], out id))
+        {
+            Order order = repo.Context.Orders.Find(id);
+            if (order != null)
+            {
+                List<Order> l = new List<Order>();
+                l.Add(order);
+                PayOrders(l);
+                Response.Redirect("/cart/Paid.aspx");
+            }
+        }
+    }
 }
 
 public class PostHelp
