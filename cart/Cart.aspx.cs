@@ -264,9 +264,13 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "奶粉包税专线 - 自送仓库":
                     SendToBpost(o, "LGINTSTD");
                     break;
+                case "自营奶粉包税4罐 - 自送仓库":
+                case "自营奶粉包税4罐 - 诚信物流取件":
+                    SendToTTKD(o, TTKDType.FourTin);
+                    break;
                 case "自营奶粉包税6罐 - 自送仓库":
                 case "自营奶粉包税6罐 - 诚信物流取件":
-                    SendToTTKD(o);
+                    SendToTTKD(o, TTKDType.SixTin);
                     break;
                 default:
                     break;
@@ -414,12 +418,15 @@ public partial class cart_Cart : System.Web.UI.Page
         }
     }
 
-    private void SendToTTKD(Order order)
+    public enum TTKDType { FourTin, SixTin}
+
+    private void SendToTTKD(Order order, TTKDType type)
     {
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
-            data.Append(string.Format("{{\"serviceCode\":\"001\",\"userKey\":\"{0}\",\"packageList\": [ ", ConfigurationManager.AppSettings["TTKDUserKey"]));
+            string code = type == TTKDType.SixTin ? "001" : "002";
+            data.Append(string.Format("{{\"serviceCode\":\"{0}\",\"userKey\":\"{1}\",\"packageList\": [ ", code, ConfigurationManager.AppSettings["TTKDUserKey"]));
             foreach (Package p in r.Packages)
             {
                 data.Append("{");
@@ -441,7 +448,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 data.Append(string.Format("\"receiverCity\": \"{0}\",", r.City));
                 data.Append(string.Format("\"receiverArea\": \"{0}\",", r.District));
                 data.Append(string.Format("\"receiverAddr\": \"{0}\",", r.Address));
-                data.Append(string.Format("\"totalWeight\": {0},", 7));
+                int weight = type == TTKDType.SixTin ? 7 : 5;
+                data.Append(string.Format("\"totalWeight\": {0},", weight));
                 data.Append("\"productInfo\": [");
                 foreach (PackageItem i in p.PackageItems)
                 {
@@ -465,7 +473,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 r.SuccessPaid = true;
                 r.WMLeaderNumber = res.Data.OrderNum;
                
-                string path = GetTTKDLabel(res.Data.OrderNum);
+                string path = GetTTKDLabel(res.Data.OrderNum, type);
                 r.WMLeaderPdf = path;
                 for (int i = 0; i < r.Packages.Count; i++)
                 {
@@ -489,11 +497,12 @@ public partial class cart_Cart : System.Web.UI.Page
         order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
     }
 
-    public string GetTTKDLabel(string orderNum)
+    public string GetTTKDLabel(string orderNum, TTKDType type)
     {
         string path = string.Empty;
         StringBuilder json = new StringBuilder("{");
-        json.Append("\"serviceCode\": \"001\",");
+        string code = type == TTKDType.SixTin ? "001" : "002";
+        json.Append(string.Format("\"serviceCode\": \"{0}\",", code);
         json.Append(string.Format("\"userKey\": \"{0}\",", ConfigurationManager.AppSettings["TTKDUserKey"]));
         json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
         string response = HttpHelper.HttpPost(string.Format("{0}/interface/order-label", ConfigurationManager.AppSettings["TTKDDomainName"]), json.ToString(), ConfigurationManager.AppSettings["Authorization"]);
