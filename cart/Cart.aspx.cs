@@ -48,6 +48,15 @@ public partial class cart_Cart : System.Web.UI.Page
         set;
     }
 
+    private int total999PickupCount;
+    public int Total999PickupCount
+    {
+        get
+        {
+            return total999PickupCount;
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         username = Membership.GetUser().UserName;
@@ -57,11 +66,22 @@ public partial class cart_Cart : System.Web.UI.Page
         //sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
 
         balance = apUser.Balance;
-        totalPrice = normalOrders.Sum(o => o.Cost.Value);
+        totalPrice = normalOrders.Sum(o => o.Cost.Value);       
         //totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
 
         //normalField.Visible = normalOrders == null || normalOrders.Count() != 0 ? true : false;
         //sheffieldField.Visible = sheffieldOrders == null || sheffieldOrders.Count() != 0 ? true : false;
+        foreach (Order o in normalOrders)
+        {
+            if (o.Service.PickUpCompany.Contains("999 Parcel") || o.Service.PickUpCompany.Contains("999Parcel"))
+            {
+                total999PickupCount += o.Recipients.Sum(r => r.Packages.Count);
+            }
+        }
+        if (total999PickupCount >= 3)
+        {
+            totalPrice -= 2m * total999PickupCount;
+        }
     }
 
     public IEnumerable<Order> GetNoneSheffieldOrders()
@@ -83,14 +103,25 @@ public partial class cart_Cart : System.Web.UI.Page
     }
 
     public decimal GetAmount()
-    {
-        
+    {        
         return balance;
     }
 
     public decimal GetTotalPrice()
-    {       
+    {        
         return totalPrice;
+    }
+
+    public string GetTips()
+    {
+        if (total999PickupCount >= 3)
+        {
+            return string.Format("购物车中诚信物流取件包裹为{0}件，一起支付将减免取件费，但将按所有订单中最晚时间取件。", total999PickupCount);
+        }
+        else
+        {
+            return string.Empty;
+        }
     }
     protected void ButtonEdit_Click(object sender, EventArgs e)
     {
@@ -223,6 +254,10 @@ public partial class cart_Cart : System.Web.UI.Page
         List<string> attachmentPaths = new List<string>();
         foreach (Order o in orders)
         {
+            if (total999PickupCount >= 3)
+            {
+                o.PickupPrice = 0m;
+            }
             switch (o.Service.Name.Trim())
             {
                 case "荷兰邮政 - 免费取件":
@@ -502,7 +537,7 @@ public partial class cart_Cart : System.Web.UI.Page
         string path = string.Empty;
         StringBuilder json = new StringBuilder("{");
         string code = type == TTKDType.SixTin ? "001" : "002";
-        json.Append(string.Format("\"serviceCode\": \"{0}\",", code);
+        json.Append(string.Format("\"serviceCode\": \"{0}\",", code));
         json.Append(string.Format("\"userKey\": \"{0}\",", ConfigurationManager.AppSettings["TTKDUserKey"]));
         json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
         string response = HttpHelper.HttpPost(string.Format("{0}/interface/order-label", ConfigurationManager.AppSettings["TTKDDomainName"]), json.ToString(), ConfigurationManager.AppSettings["Authorization"]);
@@ -1502,10 +1537,28 @@ public partial class cart_Cart : System.Web.UI.Page
             Order order = repo.Context.Orders.Find(id);
             if (order != null)
             {
-                List<Order> l = new List<Order>();
-                l.Add(order);
-                PayOrders(l);
-                Response.Redirect("/cart/Paid.aspx");
+                
+                if (order.Service.PickUpCompany.Contains("999 Parcel") || order.Service.PickUpCompany.Contains("999Parcel"))
+                {
+                    int count = order.Recipients.Sum(r => r.Packages.Count);
+                    if (count >= 3)
+                    {
+                        order.Cost -= 2m * count;
+                    }
+                }
+                if (apUser.Balance >= order.Cost.Value)
+                {
+                    List<Order> l = new List<Order>();
+                    l.Add(order);
+                    PayOrders(l);
+                    apUser.Balance -= order.Cost.Value;
+                    repo.Context.SaveChanges();
+                    Response.Redirect("/cart/Paid.aspx");
+                }
+                else
+                {
+                    Response.Redirect("RedirectToRecharge.aspx");
+                }
             }
         }
     }

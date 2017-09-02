@@ -131,7 +131,8 @@ public partial class product_Default : System.Web.UI.Page
                 }
                 else
                 {
-                    sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                    //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                    sv = new List<ServiceView>();
                 }
                 //var sv = repo.Context.Services.Where(s => s.ProviderId == providerId).Select(s => new ServiceView(s));
                 return sv;

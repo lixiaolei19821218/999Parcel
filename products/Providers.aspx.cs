@@ -46,7 +46,7 @@ public partial class products_Providers : System.Web.UI.Page
         else
         {
             //for now, we only have this serivce.
-            return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税");
+            return new List<Provider>();
         }
     }
 

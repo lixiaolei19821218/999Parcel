@@ -110,7 +110,7 @@
 
             <div style="margin-top: 50px;">
                 
-                <legend></legend>
+                <legend style="font-size: small;"><%:GetTips() %></legend>
                 <div style="padding: 0px; margin: 0px">
 
                    <a href="/" class="btn btn-info" style="line-height: 1;width:120px;">继续下单</a>
