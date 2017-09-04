@@ -188,7 +188,7 @@ public class ServiceView
             case "自营奶粉包税4罐 - 诚信物流取件"://自营4罐奶粉
             case "自营奶粉包税6罐 - 诚信物流取件"://自营6罐奶粉                
                 packageCount = order.Recipients.Sum(r => r.Packages.Count);
-                /*
+                
                 if (packageCount < 3)
                 {
                     price = 2m * packageCount;
@@ -197,8 +197,8 @@ public class ServiceView
                 {
                     price = 0m;
                 }
-                */
-                price = 2m * packageCount;//到cart统一算折扣
+                
+                //price = 2m * packageCount;//到cart统一算折扣
                 break;
             default:
                 price = 0m;

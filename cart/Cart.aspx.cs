@@ -249,9 +249,13 @@ public partial class cart_Cart : System.Web.UI.Page
         Response.Redirect(Request.Path);
     }
 
-    private void PayOrders(IEnumerable<Order> orders)
+    private void PayOrders(IEnumerable<Order> orders, bool freePickupCost)
     {
         List<string> attachmentPaths = new List<string>();
+
+        TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        string timeStamp = Convert.ToInt64(ts.TotalSeconds).ToString();
+
         foreach (Order o in orders)
         {
             if (total999PickupCount >= 3)
@@ -448,9 +452,16 @@ public partial class cart_Cart : System.Web.UI.Page
                 }
         */
             #endregion
-
+            if (freePickupCost)
+            {
+                if (o.Service.PickUpCompany.Contains("999 Parcel") || o.Service.PickUpCompany.Contains("999Parcel"))
+                {
+                    o.PickupPrice = 0m;
+                    o.UKMConsignmentNumber = timeStamp;
+                }
+            }
             o.HasPaid = true;
-        }
+        }        
     }
 
     public enum TTKDType { FourTin, SixTin}
@@ -977,15 +988,15 @@ public partial class cart_Cart : System.Web.UI.Page
     protected void pay_Click(object sender, EventArgs e)
     { 
         if (balance >= totalPrice)
-        {
-            PayOrders(normalOrders);
+        {           
+            PayOrders(normalOrders, total999PickupCount >= 3);
             /*
             foreach (SheffieldOrder sOrder in sheffieldOrders)
             {
                 PayOrders(sOrder.Orders);
                 sOrder.HasPaid = true;
             }
-            */
+            */            
             
             apUser.Balance -= totalPrice;            
             repo.Context.SaveChanges();      
@@ -1536,21 +1547,12 @@ public partial class cart_Cart : System.Web.UI.Page
         {
             Order order = repo.Context.Orders.Find(id);
             if (order != null)
-            {
-                
-                if (order.Service.PickUpCompany.Contains("999 Parcel") || order.Service.PickUpCompany.Contains("999Parcel"))
-                {
-                    int count = order.Recipients.Sum(r => r.Packages.Count);
-                    if (count >= 3)
-                    {
-                        order.Cost -= 2m * count;
-                    }
-                }
+            {                
                 if (apUser.Balance >= order.Cost.Value)
                 {
                     List<Order> l = new List<Order>();
                     l.Add(order);
-                    PayOrders(l);
+                    PayOrders(l, false);
                     apUser.Balance -= order.Cost.Value;
                     repo.Context.SaveChanges();
                     Response.Redirect("/cart/Paid.aspx");

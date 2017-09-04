@@ -15,9 +15,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="sz16 bold colorb2" style="margin-top: 20px">
-        订单详情
+        <span style="font-size:large;font-family:SimHei;">订单详情</span>
         <div style="float: right; font-size: smaller">
-            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预约取件时间：<%:GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
+            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%:GetPickupNumber(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预约取件时间：<%:GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
         </div>
     </div>
 
@@ -29,8 +29,7 @@
                             <li>城市：<%:Order.SenderCity %></li>
                             <li>邮编：<%:Order.SenderZipCode %></li>                            
                             <li>地址：<%:Order.SenderAddress1 %> <%:Order.SenderAddress2 %> <%:Order.SenderAddress3 %></li>
-                            <li>电话：<%:Order.SenderPhone %></li>
-                            <li>邮箱：<%:Order.SenderEmail %></li>                                         
+                            <li>电话：<%:Order.SenderPhone %></li>                                                          
                         </ul>
                     </fieldset>
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">

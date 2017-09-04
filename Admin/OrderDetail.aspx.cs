@@ -306,4 +306,16 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         repo.Context.SaveChanges();
         message2.Text = "已确认该订单已由999 Parcel取件。";
     }
+
+    public string GetPickupNumber(Order o)
+    {
+        if (string.IsNullOrEmpty(o.UKMConsignmentNumber))
+        {
+            return string.Empty;
+        }
+        else
+        {
+            return "取件号：" + o.UKMConsignmentNumber;
+        }
+    }
 }

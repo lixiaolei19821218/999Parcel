@@ -114,4 +114,23 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
             return "<img src=\"../static/images/icon/onFocus.gif\" title=\"未付款\">";
         }
     }
+
+    public string GetPickupTime(Order o)
+    {
+        if (o.PickupTime.HasValue)
+        {
+            if (o.PickupTime.Value.Hour <= 12)
+            {
+                return o.PickupTime.Value.ToShortDateString() + "AM";
+            }
+            else
+            {
+                return o.PickupTime.Value.ToShortDateString() + "PM";
+            }
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }    
 }

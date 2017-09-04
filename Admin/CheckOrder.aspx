@@ -9,7 +9,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <ul class="breadcrumb" style="background: none; margin-top: 15px">
     </ul>
-    <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
+    <form runat="server" method="post" id="placeOrder" style="padding-top: 0px;">
         <div class="mg1">
             
             <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px">
@@ -19,34 +19,38 @@
         </div>
 
        
-        <div style="margin-top: 15px; background-color: #fff; padding: 0px">
+        <div style="margin-top: 15px; background-color: #fff; padding: 0px;">
             <fieldset runat="server" id="normalField">
                 <legend>已付款订单</legend>
-                <table class="table table-orders">
+                <table class="table table-orders" style="font-size:small;">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetPageApplys">
                         <HeaderTemplate>
                             <tr>
                                 <th class="tac">订单号</th>
-                                <th class="left">下单日期</th>
-                                <th class="tac">价格</th>
-                                <th class="tac">包裹数</th>
+                                <th class="tac">邮编</th>
+                                <th class="tac">地址</th>
                                 <th class="tac">发件人</th>
-                                <th>服务</th>
+                                <th class="tac">电话</th>
+                                <th class="tac">取件时间</th>
+                                <th class="tac">包裹数</th>                                
                                 <th>状态</th>
+                                <th class="tac">取件号</th> 
                                 <th colspan="2"></th>
                             </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr id="<%#Item.Id %>" title="<%#GetOrderTip(Item) %>">
                                 <td class="tac"><%#string.Format("{0:d9}", Item.Id) %></td>
-                                <td class="left"><%#Item.OrderTime.HasValue ? Item.OrderTime.Value.ToShortDateString() : string.Empty %></td>
-                                <td class="tac"><%#Item.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></td>
-                                <td class="tac"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
+                                <td class="tac"><%#Item.SenderZipCode %></td>
+                                <td class="tac"><%#Item.SenderAddress1 + " " + Item.SenderAddress2 + " " + Item.SenderAddress3 + " " + Item.SenderCity %></td>                                
                                 <td class="tac"><%#Item.SenderName %></td>
-                                <td class="right"><%#Item.Service.Name %></td>
+                                <td class="tac"><%#Item.SenderPhone%></td>
+                                <td class="tac"><%#GetPickupTime(Item)%></td>
+                                <td class="tac"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
                                 <td><%#GetStatus(Item) %></td>
+                                <td class="tac"><%#Item.UKMConsignmentNumber%></td>
                                 <td colspan="2">
-                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />
+                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Small" />
                                 </td>
                             </tr>
                         </ItemTemplate>
