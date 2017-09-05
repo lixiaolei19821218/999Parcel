@@ -85,7 +85,7 @@
                             <div style="width: 100px; height: 44px; background-color: #C34C21; color: white; text-align: center; line-height: 44px;">
                                 快速询价
                             </div>
-                            <div class="rds2" style="text-align: center; border: 1px solid #C34C21; height: 500px;overflow:auto;">
+                            <div class="rds2" style="text-align: center; border: 1px solid #C34C21; height: 300px;overflow:auto;">
                                 <form id="Form1" method="post" style="margin: 0">
                                     <input type='hidden' name='csrfmiddlewaretoken' value='8aqZpoXHNqSZ280pPAWg7NUC4SD31C5B' />
                                     <div class="row" style="margin: 0px;">

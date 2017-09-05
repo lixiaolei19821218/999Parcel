@@ -20,7 +20,7 @@
                 <tr>
                     <th style="min-width: 240px">运营商</th>
                     <th>描述</th>
-                    <th style="min-width: 160px">价格(<span style="font-size: 12px">包含取件费</span>)</th>
+                    <th style="min-width: 160px">最低价格</th>
                 </tr>
 
                 <tbody>
