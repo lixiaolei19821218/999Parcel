@@ -132,5 +132,32 @@ public partial class Admin_CheckOrder : System.Web.UI.Page
         {
             return string.Empty;
         }
-    }    
+    }
+
+    protected void ButtonConfirm_Click(object sender, EventArgs e)
+    {
+        foreach (RepeaterItem item in rptOrder.Items)
+        {
+            CheckBox chk = item.FindControl("chxPickup") as CheckBox;
+            if (chk.Checked)
+            {
+                int id = int.Parse(chk.Attributes["data-id"]);
+                Order o = repo.Context.Orders.Find(id);
+                if (o.HasPickedUp.HasValue == false || o.HasPickedUp.Value == false)
+                {
+                    o.HasPickedUp = true;
+                }
+                if (o.SuccessPaid.HasValue == false || o.SuccessPaid.Value == false)
+                {
+                    o.SuccessPaid = true;
+                    foreach (Recipient r in o.Recipients)
+                    {
+                        r.SuccessPaid = true;
+                    }
+                }
+            }            
+        }
+        repo.Context.SaveChanges();
+        Response.Redirect(Request.Path);
+    }
 }

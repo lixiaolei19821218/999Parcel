@@ -42,15 +42,18 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         else
         {
             ButtonSuccessPaid.Visible = true;
+            hrConfirm.Visible = true;
         }
+
         if  (Order.Service.PickUpCompany.Contains("999") && !(Order.HasPickedUp ?? false))
         {            
             ButtonPickedUp.Visible = true;
+            hrConfirm.Visible = true;
         }
         else
-        {
-                  
+        {                  
             ButtonPickedUp.Visible = false;
+            ButtonPickedUp.Width = 0;
         }
     }
 
@@ -80,13 +83,13 @@ public partial class cart_OrderDetail : System.Web.UI.Page
     {
         if (o.Service.PickUpCompany.Trim() == "999Parcel" || o.Service.PickUpCompany.Trim() == "999 Parcel")
         {
-            if (o.PickupTime.Value.Hour < 12)
+            if (o.PickupTime.Value.Hour <= 12)
             {
-                return o.PickupTime.Value.ToString() + " AM " + ((o.HasPickedUp ?? false) ? "已取件" : "未取件");
+                return o.PickupTime.Value.ToString() + " AM " + ((o.HasPickedUp ?? false) ? "<span style=\"color: green; \">已取件</span>" : "<span style=\"color: red; \">未取件</span>");
             }
             else
             {
-                return o.PickupTime.Value.ToString() + " PM " + ((o.HasPickedUp ?? false) ? "已取件" : "未取件");
+                return o.PickupTime.Value.ToString() + " PM " + ((o.HasPickedUp ?? false) ? "<span style=\"color: green; \">已取件</span>" : "<span style=\"color: red; \">未取件</span>");
             }
         }
         else
