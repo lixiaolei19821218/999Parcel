@@ -37,7 +37,8 @@
                     
                 </div>
 
-
+                <br />
+                <br />
                 <div class="form-actions">
                     <asp:Button runat="server" ID="Reset" cssclass="btn btn-primary btn-large" type="submit" text="重置密码" OnClick="Reset_Click"/>
                 </div>

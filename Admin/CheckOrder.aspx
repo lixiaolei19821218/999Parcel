@@ -12,8 +12,9 @@
     <form runat="server" method="post" id="placeOrder" style="padding-top: 0px;">
         <div class="mg1">            
             <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px">
-                <input type="text" style="margin: 10px 0; width: 30%; height: 30px" placeholder="订单号/用户名" id="content" name="content"/>
-                <asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="查询 &gt;" ID="FindOrder" OnClick="FindOrder_Click" />           
+                <input type="text" style="margin: 10px 0; width: 30%; height: 30px" placeholder="订单号/用户名" id="content" name="content" />
+                <asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="查询 &gt;" ID="FindOrder" OnClick="FindOrder_Click" />
+                <a href="/admin/CheckApply.aspx" style="float: right;margin: 15px 0;">返回管理页</a>
             </div>           
         </div>
        
@@ -64,11 +65,11 @@
                             Response.Write(
                             string.Format("<a style=\"float:left;\" href='/admin/CheckOrder.aspx?page={0}' {1}>{2}</a>", i, i == CurrentPage ? "class='selected'" : "", i));
                         }%>
+                    
                     <asp:Button ID="ButtonConfirm" runat="server" CssClass="btn btn-danger" Style="margin-bottom: 3px; line-height: 1; float: right;" Text="确认取件" OnClick="ButtonConfirm_Click" />
-                </div>
+                </div>                
             </fieldset>
-            <br />
-           
+            <br />           
         </div>
     </form>
 </asp:Content>

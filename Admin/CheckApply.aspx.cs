@@ -29,7 +29,9 @@ public partial class Admin_CheckApply : System.Web.UI.Page
             aspnet_User apUser = repo.Context.aspnet_User.First(u => u.UserName == apply.User);
 
             apply.IsApproved = true;
-            
+            apply.ApproveTime = DateTime.Now;
+            apply.Approver = Membership.GetUser().UserName;
+
             apUser.Balance += apply.ApplyAmount;
             repo.Context.SaveChanges();
             Response.Redirect(Request.Path);
@@ -42,6 +44,8 @@ public partial class Admin_CheckApply : System.Web.UI.Page
         {
             RechargeApply apply = repo.Context.RechargeApplys.FirstOrDefault(r => r.Id == id);
             apply.IsApproved = false;
+            apply.ApproveTime = DateTime.Now;
+            apply.Approver = Membership.GetUser().UserName;
             repo.Context.SaveChanges();
             Response.Redirect(Request.Path);
         }
@@ -49,7 +53,7 @@ public partial class Admin_CheckApply : System.Web.UI.Page
 
     public IEnumerable<RechargeApply> GetPageApplys()
     {
-        return repo.Context.RechargeApplys.Where(r => !r.IsApproved.HasValue).OrderBy(p => p.Id).Skip((CurrentPage - 1) * pageSize).Take(pageSize);
+        return repo.Context.RechargeApplys.Where(r => !r.IsApproved.HasValue).OrderByDescending(p => p.Id).Skip((CurrentPage - 1) * pageSize).Take(pageSize);
     }
     protected int CurrentPage
     {

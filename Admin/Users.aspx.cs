@@ -23,6 +23,7 @@ public partial class Admin_Users : System.Web.UI.Page
         if (content == null)
         {            
             users = Membership.GetAllUsers();
+            userCount.InnerText = "用户总数：" + users.Count;
         }
         else
         {
@@ -45,6 +46,19 @@ public partial class Admin_Users : System.Web.UI.Page
                     users = Membership.GetAllUsers();
                 }
             }
+        }
+    }
+
+    public decimal GetUserBalance(string username)
+    {
+        aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);
+        if (user == null)
+        {
+            return 0m;
+        }
+        else
+        {
+            return user.Balance;
         }
     }
 

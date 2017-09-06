@@ -63,7 +63,7 @@
         <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
             <h2>充值明细</h2>
             <div class="sub-nav">
-                <span class="rt">充值<em>£<%:GetTotalApplyMoney() %></em></span>
+                <span class="rt">账户余额<em>£<%:GetTotalApplyMoney() %></em></span>
                 <a href="Recharge.aspx" class="back">充值</a>
             </div>
             <div class="uitopb uitopb-border mt10" style="border-top: 1px solid #CCC;">
@@ -71,7 +71,8 @@
                     <table class="table-list">
                         <tr>
                             <th>方式</th>
-                            <th>金额(£)</th>
+                            <th>申请金额(£)</th>
+                           
                             <th>凭证</th>
                             <th>时间</th>
                             <th>处理</th>
@@ -80,9 +81,10 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%#Item.RechargeChannel.Name %></td>
-                                    <td><%#Item.ApprovedAmount.HasValue? Item.ApprovedAmount.Value.ToString() : "－" %></td>
+                                    <td><%#Item.ApplyAmount.ToString() %></td>
+                                    
                                     <td>
-                                        <a href="<%#Item.Evidence %>" target="_blank" title="付款凭证"><%#string.IsNullOrEmpty(Item.Evidence) ? string.Empty: "付款凭证" %></a><br />
+                                        <a href="<%#Item.Evidence %>" target="_blank" style="font-size:small;" title="付款凭证"><%#string.IsNullOrEmpty(Item.Evidence) ? string.Empty: "付款凭证" %></a><br />
                                     </td>
                                     <td><%#Item.Time %></td>
                                     <td><%#Item.IsApproved.HasValue ? (Item.IsApproved.Value ? "<span style=\"color:green\">审核通过</span>" : "<span style=\"color:red\">审核失败</span>") : "审核中" %></td>

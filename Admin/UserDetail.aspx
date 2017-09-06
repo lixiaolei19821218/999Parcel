@@ -15,7 +15,7 @@
         <div class="mg1">            
             <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px; padding-top:20px;">
                 <asp:DropDownList runat="server" id="serviceList" />
-                <asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1" text="添加折扣 &gt;" ID="AddDiscount" OnClick="AddDiscount_Click" />
+                <asp:Button runat="server" cssclass="btn btn-info" style="margin-bottom: 3px; line-height: 1;" text="添加折扣 &gt;" ID="AddDiscount" OnClick="AddDiscount_Click" />
             <label runat="server" id="message" />
             </div>
             
@@ -25,7 +25,7 @@
         <div style="margin-top: 15px; background-color: #fff; padding: 0px">
             <fieldset runat="server" id="normalField">
                 <legend>折扣列表</legend>
-                <table class="table table-orders">
+                <table class="table table-orders" style="font-size:small;">
                     <asp:Repeater ID="Repeater1" runat="server" ItemType="Discount" SelectMethod="GetDiscounts">
                         <HeaderTemplate>
                             <tr>
@@ -53,6 +53,10 @@
             </fieldset>
             <br />           
         </div>
+        <hr />
+        <div class="mg1">
+            <a href="/admin/users.aspx">返回用户列表</a>
+        </div>
     </form>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -75,8 +79,8 @@
                     var discount = this.parentNode.previousElementSibling.firstChild.value;
                     
                     var isSuperAdmin = '<%:IsSuperAdmin%>';
-                    if (isSuperAdmin == "False" && discount > 1) {
-                        alert("折扣不能大于1镑。");
+                    if (isSuperAdmin == "False" && discount > 2) {
+                        alert("折扣不能大于2镑。");
                         return;
                     }
                     this.parentNode.previousElementSibling.innerHTML = discount;

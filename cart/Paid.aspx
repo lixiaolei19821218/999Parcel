@@ -19,14 +19,14 @@
         <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
             <fieldset runat="server" id="normalField">
                 
-                <table class="table table-orders">
+                <table class="table table-orders" style="font-size:small;">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetPageApplys">
                         <HeaderTemplate>
                             <tr>
                                 <th class="tac">订单号</th>
-                                <th class="left">下单日期</th>
+                                <th class="tac">下单日期</th>
                                 <th class="tac">价格</th>
-                                <th class="tac">包裹数</th>
+                                <th class="tac" style="text-align:center;">包裹数</th>
                                 <th class="tac">发件人</th>
                                 <th>服务</th>
                                 <th>状态</th>
@@ -36,15 +36,15 @@
                         <ItemTemplate>
                             <tr id="<%#Item.Id %>" title="<%#GetOrderTip(Item) %>">
                                 <td class="tac"><%#string.Format("{0:d9}", Item.Id) %></td>
-                                <td class="left"><%#Item.OrderTime.Value.ToShortDateString() %></td>
+                                <td class="tac"><%#Item.OrderTime.Value.ToShortDateString() %></td>
                                 <td class="tac"><%#Item.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></td>
-                                <td class="tac"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
+                                <td class="tac" style="text-align:center;"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
                                 <td class="tac"><%#Item.SenderName %></td>
                                 <td class="right"><%#Item.Service.Name %></td>
                                 <td><%#GetIcon(Item) %></td>
-                                <td class="right"><asp:LinkButton ID="DownloadLabel" OnClick="DownloadLabel_Click" runat="server" Text="下载面单" data-id="<%#Item.Id %>" Font-Size="Medium" Visible ="<%#Item.SuccessPaid ?? false %>" /></td>
+                                <td class="right"><asp:LinkButton ID="DownloadLabel" OnClick="DownloadLabel_Click" runat="server" Text="下载面单" data-id="<%#Item.Id %>" Font-Size="small" Visible ="<%#Item.SuccessPaid ?? false %>" /></td>
                                 <td colspan="2">
-                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Medium" />                                    
+                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="small" />                                    
                                 </td>
                             </tr>
                         </ItemTemplate>

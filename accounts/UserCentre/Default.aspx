@@ -90,8 +90,12 @@
                             <td><%:APUser.CellPhone %><!--<a href="/index.php?c=member&a=user_profile&op=edit&field=phone">编辑</a>-->
                             </td>
                         </tr>
-
+                        
                     </table>
+                    <br />
+                    <br />
+                    <hr />
+                    <a href="/accounts/signup/Edit.aspx" style="float:right;">更新个人资料</a>
                 </div>
             </div>
         </div>

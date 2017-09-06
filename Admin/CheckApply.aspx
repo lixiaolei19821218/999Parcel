@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="body" runat="Server">
     <form runat="server">
-        <div class="uitopb uitopb-border mt10">
+        <div class="uitopb uitopb-border mt10" style="border-top:solid;">
             <div class="table-div">
                 <table class="table-list">
                     <tr>

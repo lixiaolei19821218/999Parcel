@@ -213,6 +213,8 @@ public partial class RechargeApply
     public string User { get; set; }
     public string Wangwang { get; set; }
     public Nullable<System.DateTime> Time { get; set; }
+    public string Approver { get; set; }
+    public Nullable<System.DateTime> ApproveTime { get; set; }
 
     public virtual RechargeChannel RechargeChannel { get; set; }
 }

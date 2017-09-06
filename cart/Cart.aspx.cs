@@ -536,7 +536,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 foreach (Package p in r.Packages)
                 {
                     p.Status = "FAIL";
-                    p.Response = "TTKD: " + res.Msg;
+                    //p.Response = "TTKD: " + res.Msg;
+                    p.Response = "信息错误，请联系客服";
                 }
             }
         }

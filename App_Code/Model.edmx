@@ -178,6 +178,8 @@
           <Property Name="User" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Wangwang" Type="nvarchar(max)" />
           <Property Name="Time" Type="datetime2" Precision="7" />
+          <Property Name="Approver" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
         <EntityType Name="RechargeChannels">
           <Key>
@@ -1613,6 +1615,8 @@
           <Property Name="User" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Wangwang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="DateTime" Precision="7" />
+          <Property Name="Approver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RechargeChannel">
           <Key>
@@ -2082,6 +2086,8 @@
           <EntitySetMapping Name="RechargeApplys">
             <EntityTypeMapping TypeName="UK_ExpressModel.RechargeApply">
               <MappingFragment StoreEntitySet="RechargeApplys">
+                <ScalarProperty Name="ApproveTime" ColumnName="ApproveTime" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Wangwang" ColumnName="Wangwang" />
                 <ScalarProperty Name="User" ColumnName="User" />

@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="body" runat="Server">
     <form runat="server">
-        <div class="uitopb uitopb-border mt10">
+        <div class="uitopb uitopb-border mt10" style="border-top:solid;">
             <div class="table-div">
                 <table class="table-list">
                     <tr>
@@ -14,8 +14,10 @@
                         <th>方式</th>
                         <th>申请金额(£)</th>
                         <th>凭证</th>
-                        <th>时间</th>
-                        <th>处理</th>
+                        <th>申请时间</th>
+                        <th>审批结果</th>
+                        <th>管理员</th>
+                        <th>审批时间</th>
                     </tr>
                     <asp:Repeater runat="server" SelectMethod="GetPageApplys" ItemType="RechargeApply">
                         <ItemTemplate>
@@ -30,6 +32,8 @@
                                 <td>
                                     <%#Item.IsApproved.Value ? "<span style=\"color:green\">审核通过</span>" : "<span style=\"color:red\">已拒绝</span>" %>
                                 </td>
+                                <td><%#Item.Approver %></td>
+                                <td><%#Item.ApproveTime %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

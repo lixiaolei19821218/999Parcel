@@ -22,12 +22,12 @@
         <div style="margin-top: 15px; background-color: #fff; padding: 0px">
             <fieldset runat="server" id="normalField">
                 <legend>已付款订单</legend>
-                <table class="table table-orders">
+                <table class="table table-orders" style="font-size:small;">
                     <asp:Repeater runat="server" ItemType="Order" SelectMethod="GetPageApplys">
                         <HeaderTemplate>
                             <tr>
                                 <th class="tac">订单号</th>
-                                <th class="left">下单日期</th>
+                                <th class="tac">下单日期</th>
                                 <th class="tac">价格</th>
                                 <th class="tac">包裹数</th>
                                 <th class="tac">发件人</th>
