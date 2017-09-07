@@ -10,6 +10,7 @@
             <div class="table-div">
                 <table class="table-list">
                     <tr>
+                        <th>申请单号</th>
                         <th>账号</th>
                         <th>方式</th>
                         <th>申请金额(£)</th>
@@ -20,15 +21,16 @@
                     <asp:Repeater runat="server" SelectMethod="GetPageApplys" ItemType="RechargeApply">
                         <ItemTemplate>
                             <tr>
+                                <td><%#string.Format("{0:d9}", Item.Id) %></td>
                                 <td><%#Item.User %></td>
-                                <td><%#Item.RechargeChannel.Name %></td>
+                                <td><%#Item.RechargeChannel == null ? "" : Item.RechargeChannel.Name %></td>
                                 <td><%#Item.ApplyAmount %></td>
                                 <td>
                                     <a href="<%#Item.Evidence %>" target="_blank" title="付款凭证"><%#string.IsNullOrEmpty(Item.Evidence) ? string.Empty: "付款凭证" %></a><br />
                                 </td>
                                 <td><%#Item.Time %></td>
                                 <td>
-                                    <asp:Button ID="ButtonPass" runat="server" Text="通过" CssClass="btn btn-1" OnClick="ButtonPass_Click" data-id="<%#Item.Id %>" />
+                                    <asp:Button ID="ButtonPass" runat="server" Text="通过" CssClass="btn btn-1" BackColor="Green" OnClick="ButtonPass_Click" data-id="<%#Item.Id %>" />
                                     <asp:Button ID="ButtonRefuse" runat="server" Text="拒绝" CssClass="btn btn-1" OnClick="ButtonRefuse_Click" data-id="<%#Item.Id %>" />
                                 </td>
                             </tr>

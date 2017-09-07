@@ -86,11 +86,15 @@
                 'queueSizeLimit': 300,      //同时上传数量   
                 'uploadLimit': 10000,        //一次浏览器课上成总数量   
                 'fileSizeLimit': '10MB',   //单个文件大小设置   
-                'buttonText': '选择文件',
+                'buttonText': '上传图片',
                 'formData': { 'ASPSESSID': ASPSESSID, 'AUTHID': auth, 'Username': username },
                 'onSelect': function (file) {
                     $('#fileupload').uploadifySettings('formData', { 'ASPSESSID': ASPSESSID, 'AUTHID': auth, 'Username':username });
                     alert(formDate);
+                },
+                'onUploadStart': function (file) {
+                    //$('#fileupload').uploadifySettings('formData', { 'ASPSESSID': ASPSESSID, 'AUTHID': auth, 'Username': username });
+                    $(".uploadify-button-text")[0].innerText = '上传中..';
                 },
                 'width': 100,//文件选择按钮大小   
                 'height': 32,
@@ -106,9 +110,11 @@
                     html += "    </div>";
                     html += "    </li>";
                     $("#pics").append(html)
+                    $(".uploadify-button-text")[0].innerText = '上传图片';
                 },
                 'onQueueComplete': function (file) {         //所有文件上传完成时触发此事件   
                     $("#pics").fadeIn();
+                   
                 }
             });
             /*

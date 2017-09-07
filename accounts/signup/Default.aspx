@@ -95,7 +95,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <ul class="breadcrumb" style="background: none; margin-top: 15px" />
-    <div style="background-color: #fff; padding: 30px">
+    <div class="control-group">
+        <label class="control-label" id="message" runat="server" style="font-family: YouYuan;">
+        </label>
+    </div>
+    <div style="background-color: #fff; padding: 30px;" >
         <fieldset>
             <form id="form1" runat="server">
                 <div class="control-group input_id_first_name ">
@@ -187,12 +191,7 @@
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <label class="control-label" id="message" runat="server" style="font-family:YouYuan;">
-                        
-                    </label>
-                    
-                </div>
+                
 
                 <div class="form-actions">
                     <asp:Button CssClass="btn btn-primary btn-large" Text="注册" runat="server" />

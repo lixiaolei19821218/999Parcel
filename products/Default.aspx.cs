@@ -44,7 +44,9 @@ public partial class product_Default : System.Web.UI.Page
 
                 //计算折扣
                 MembershipUser user = Membership.GetUser();
-                var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
+                var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();                
+                repo.Context.Entry<Discount>(discount).Reload();
+               
                 if (discount != null)
                 {
                     foreach (Recipient r in order.Recipients)

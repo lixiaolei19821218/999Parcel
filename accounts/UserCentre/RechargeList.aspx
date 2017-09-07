@@ -70,9 +70,9 @@
                 <div class="table-div">
                     <table class="table-list">
                         <tr>
+                            <th>申请单号</th>
                             <th>方式</th>
-                            <th>申请金额(£)</th>
-                           
+                            <th>申请金额(£)</th>                           
                             <th>凭证</th>
                             <th>时间</th>
                             <th>处理</th>
@@ -80,9 +80,9 @@
                         <asp:Repeater runat="server" SelectMethod="GetPageApplys" ItemType="RechargeApply">
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#Item.RechargeChannel.Name %></td>
-                                    <td><%#Item.ApplyAmount.ToString() %></td>
-                                    
+                                    <td><%#string.Format("{0:d9}", Item.Id) %></td>
+                                    <td><%#Item.RechargeChannel == null ? "" : Item.RechargeChannel.Name %></td>
+                                    <td><%#Item.ApplyAmount.ToString() %></td>                                    
                                     <td>
                                         <a href="<%#Item.Evidence %>" target="_blank" style="font-size:small;" title="付款凭证"><%#string.IsNullOrEmpty(Item.Evidence) ? string.Empty: "付款凭证" %></a><br />
                                     </td>

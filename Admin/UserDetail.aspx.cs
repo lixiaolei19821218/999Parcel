@@ -14,7 +14,7 @@ public partial class Admin_UserDetail : System.Web.UI.Page
     {
         get;
         set;
-    }
+    }    
 
     private IEnumerable<Discount> discounts;
     private string username;
@@ -43,8 +43,12 @@ public partial class Admin_UserDetail : System.Web.UI.Page
             Response.Redirect("/");
         }
         else
-        {
+        {           
             discounts = repo.Context.Discounts.Where(d => d.User == username);
+            foreach (Discount d in discounts)
+            {
+                repo.Context.Entry<Discount>(d).Reload();
+            }
             var existServices = discounts.Select(d => d.ServiceId);
             foreach (Service service in repo.Services.Where(s => s.Valid && !existServices.Contains(s.Id)))
             {
@@ -92,14 +96,14 @@ public partial class Admin_UserDetail : System.Web.UI.Page
     [WebMethod]
     public static bool Save(int id, decimal discount)
     {
-        UK_ExpressEntities repo = new UK_ExpressEntities();
-        Discount d = repo.Discounts.Find(id);
+        IRepository repo = new Repository();
+        Discount d = repo.Context.Discounts.Find(id);
         if (d != null)
         {
             d.Value = discount;
             d.Approver = Membership.GetUser().UserName;
             d.ApproveTime = DateTime.Now;
-            repo.SaveChanges();
+            repo.Context.SaveChanges();
             return true;
         }
         else

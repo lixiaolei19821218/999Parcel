@@ -56,6 +56,7 @@ public partial class Default2 : System.Web.UI.Page
 
                     //FormsAuthentication.SetAuthCookie(username, false);
                     //Response.Redirect("/");
+                    
                     message.InnerHtml = string.Format("一封激活账号的邮件已发送到您的注册邮箱{0}，请在邮件中激活您的账号。如果您长时间没有收到邮件，请<a href='/accounts/signup/Activate.aspx?username={1}'>重新激活</a>", user.Email, user.UserName);
                     string link = string.Format("http://{0}:{1}/accounts/signup/ActivateHandler.ashx?username={2}", Request.ServerVariables["SERVER_NAME"], Request.ServerVariables["SERVER_PORT"], user.UserName);
                     string content = string.Format("请点击<a href='{0}'>激活</a>您的账号。\r\n或复制链接以下链接到浏览器：{1}\r\n", link, link);

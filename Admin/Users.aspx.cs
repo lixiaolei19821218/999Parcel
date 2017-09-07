@@ -62,6 +62,19 @@ public partial class Admin_Users : System.Web.UI.Page
         }
     }
 
+    public int GetUserOrderCount(string username)
+    {
+        aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);
+        if (user == null)
+        {
+            return 0;
+        }
+        else
+        {
+            return repo.Context.Orders.Count(o => o.User == username);
+        }
+    }
+
     public IEnumerable<MembershipUser> GetPageApplys()
     {
         List<MembershipUser> userList = new List<MembershipUser>();

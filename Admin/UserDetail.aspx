@@ -69,7 +69,7 @@
                         this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" min="0.01" required="required" />';
                     }
                     else{
-                        this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" max="1" min="0.01" required="required" />';
+                        this.parentNode.previousElementSibling.innerHTML = '<input type="number" value="' + discount + '" style="width:50px;" max="2" min="0.01" required="required" />';
                     }
                 }
                 else if (this.value == '确定') {                
@@ -94,8 +94,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                            //返回的数据用data.d获取内容       
-                            
+                            //返回的数据用data.d获取内容                            
                         },
                         error: function (err) {
                             //alert(err);
