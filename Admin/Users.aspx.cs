@@ -71,7 +71,7 @@ public partial class Admin_Users : System.Web.UI.Page
         }
         else
         {
-            return repo.Context.Orders.Count(o => o.User == username);
+            return repo.Context.Orders.Count(o => o.User == username && (o.HasPaid ?? false));
         }
     }
 

@@ -30,7 +30,7 @@
                                 <th class="tac">注册时间</th>
                                 <th class="tac">邮箱</th>
                                 <th class="tac">订单数量</th>
-                                <th class="tac">账户余额</th>
+                                <th class="tac">账户余额（£）</th>
                                 <th class="tac">状态</th>                                
                                 <th colspan="2"></th>
                             </tr>

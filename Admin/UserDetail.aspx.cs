@@ -35,6 +35,31 @@ public partial class Admin_UserDetail : System.Web.UI.Page
         }
     }
 
+    public decimal UserBalance
+    {
+        get
+        {
+            aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == Username);
+            return user == null ? 0m : user.Balance;
+        }
+    }
+
+    public int UserOrderCount
+    {
+        get
+        {
+            aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == Username);
+            if (user == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return repo.Context.Orders.Count(o => o.User == username && (o.HasPaid ?? false));
+            }
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         username = Request["user"];
@@ -110,7 +135,5 @@ public partial class Admin_UserDetail : System.Web.UI.Page
         {
             return false;
         }
-    }
-
-    
+    }    
 }

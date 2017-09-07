@@ -3,14 +3,16 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-    <title>用户折扣</title>
-    
+    <title>用户信息</title>    
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <form runat="server" method="post" id="placeOrder" style="padding-top: 30px">     
-        <label style="font-family:'Microsoft YaHei UI';">当前用户:&nbsp;&nbsp;&nbsp;</label><%:Username %>
-        
+    <form runat="server" method="post" id="placeOrder" style="padding-top: 30px">
+        <div>
+            <label style="font-family: 'Microsoft YaHei UI';">当前用户:&nbsp;&nbsp;<%:Username %></label>
+            <label style="font-family: 'Microsoft YaHei UI';float:right;">账户余额（£）:&nbsp;<%:UserBalance %></label>
+            <label style="font-family: 'Microsoft YaHei UI';float:right;">订单数:&nbsp;<%:UserOrderCount %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>            
+        </div>
         <hr />
         <div class="mg1">            
             <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px; padding-top:20px;">
