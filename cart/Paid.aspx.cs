@@ -17,6 +17,13 @@ public partial class cart_Paid : System.Web.UI.Page
     string ukmailBpost;
 
     private int pageSize = 20;
+    public int PageSpan
+    {
+        get
+        {
+            return 10;
+        }
+    }
 
     private IEnumerable<Order> normalOrders;
     
@@ -34,13 +41,15 @@ public partial class cart_Paid : System.Web.UI.Page
    
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        //if (!IsPostBack)
         {
             username = Membership.GetUser().UserName;
             apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
             normalOrders = GetNormalOrders();
             balance = apUser.Balance;
-            //totalPrice = normalOrders.Sum(o => o.Cost.Value);             
+            //totalPrice = normalOrders.Sum(o => o.Cost.Value); 
+
+            btnNext.Visible = MaxPage > PageSpan;            
         }
     }
 
@@ -54,6 +63,7 @@ public partial class cart_Paid : System.Web.UI.Page
         sr2.Close();
       
         var orders = from o in repo.Orders where o.User == username && (o.HasPaid ?? false) select o;
+        return orders;
         //var o0 = orders.Last();
         //return orders;
         if (!orders.All(o => o.SuccessPaid.HasValue))
@@ -178,6 +188,17 @@ public partial class cart_Paid : System.Web.UI.Page
             return page > MaxPage ? MaxPage : page;
         }
     }
+
+    protected int StartPage
+    {
+        get
+        {
+            int page;
+            page = int.TryParse(Request.QueryString["startpage"], out page) ? page : 1;
+            return page > MaxPage ? MaxPage : page;
+        }
+    }
+
     protected int MaxPage
     {
         get
@@ -280,5 +301,27 @@ public partial class cart_Paid : System.Web.UI.Page
         }
 
         #endregion
+    }
+   
+    protected void btnNext_Click1(object sender, ImageClickEventArgs e)
+    {
+        if (StartPage + PageSpan <= MaxPage)
+        {
+            Response.Redirect(string.Format("/cart/Paid.aspx?page={0}&startpage={0}", StartPage + PageSpan));
+        }
+    }
+
+    protected int GetPageCount()
+    {
+        if (StartPage + PageSpan < MaxPage + 1)
+        {
+            btnNext.Visible = true;
+            return StartPage + PageSpan;
+        }
+        else
+        {
+            btnNext.Visible = false;
+            return MaxPage + 1;
+        }
     }
 }

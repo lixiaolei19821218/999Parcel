@@ -10,6 +10,24 @@ public partial class Admin_ProcessedApplys : System.Web.UI.Page
 {
     private int pageSize = 20;
 
+    public int PageSpan
+    {
+        get
+        {
+            return 10;
+        }
+    }
+
+    protected int StartPage
+    {
+        get
+        {
+            int page;
+            page = int.TryParse(Request.QueryString["startpage"], out page) ? page : 1;
+            return page > MaxPage ? MaxPage : page;
+        }
+    }
+
     [Ninject.Inject]
     public IRepository repo { get; set; }
 
@@ -44,6 +62,28 @@ public partial class Admin_ProcessedApplys : System.Web.UI.Page
             {
                 return (int)Math.Ceiling((decimal)applys.Count() / pageSize);
             }
+        }
+    }
+
+    protected void btnNext_Click(object sender, ImageClickEventArgs e)
+    {
+        if (StartPage + PageSpan <= MaxPage)
+        {
+            Response.Redirect(string.Format("/Admin/ProcessedApplys.aspx?page={0}&startpage={0}", StartPage + PageSpan));
+        }
+    }
+
+    protected int GetPageCount()
+    {
+        if (StartPage + PageSpan < MaxPage + 1)
+        {
+            btnNext.Visible = true;
+            return StartPage + PageSpan;
+        }
+        else
+        {
+            btnNext.Visible = false;
+            return MaxPage + 1;
         }
     }
 }

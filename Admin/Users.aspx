@@ -52,14 +52,16 @@
                 </table>
                 <div class="pager">
                     <label runat="server" id="userCount" style="float:right;"></label>
-                    <% for (int i = 1; i <= MaxPage; i++)
+                    <% for (int i = StartPage; i < GetPageCount(); i++)
                        {
                            Response.Write(
-                           string.Format("<a style=\"float:left;\" href='/admin/users.aspx?page={0}' {1}>{2}</a>", i, i == CurrentPage ? "class='selected'" : "", i));
+                           string.Format("<a href='/admin/users.aspx?page={0}&startpage={3}' {1} style=\"float:left; vertical-align: middle;\">{2}</a>", i, i == CurrentPage ? "class='selected'" : "", i, StartPage));
                        }%>
+                    <asp:ImageButton ID="btnNext" ImageUrl="/static/images/icon/next.jpg" Width="20" Height="20" runat="server" Style="vertical-align: middle; float:left;" OnClick="btnNext_Click" />
                 </div>
             </fieldset>
             <br />           
         </div>
     </form>
+</label>
 </asp:Content>

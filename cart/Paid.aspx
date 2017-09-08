@@ -1,6 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Paid.aspx.cs" Inherits="cart_Paid" MasterPageFile="~/MasterPage.master" %>
 
 <%@ Import Namespace="System.Globalization" %>
+<script runat="server">
+
+    protected void btnNext_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+</script>
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <title>已付款订单 | 诚信物流-可靠,快捷,实惠</title>
@@ -51,12 +59,14 @@
                     </asp:Repeater>
                 </table>
                 <div class="pager">
-            <% for (int i = 1; i <= MaxPage; i++)
-               {
-                   Response.Write(
-                   string.Format("<a href='/cart/Paid.aspx?page={0}' {1}>{2}</a>", i, i == CurrentPage ? "class='selected'" : "", i));
-               }%>
-        </div>
+                    <% for (int i = StartPage; i < GetPageCount(); i++)
+                        {
+                            Response.Write(
+                            string.Format("<a href='/cart/Paid.aspx?page={0}&startpage={3}' {1} Style=\"vertical-align: middle;\">{2}</a>", i, i == CurrentPage ? "class='selected'" : "", i, StartPage));
+                        }%>                    
+                   
+                    <asp:ImageButton ID="btnNext" ImageUrl="~/static/images/icon/next.jpg" Width="20" Height="20" runat="server" Style="vertical-align: middle;" OnClick="btnNext_Click1" />
+                </div>
             </fieldset>
             <br />
            
