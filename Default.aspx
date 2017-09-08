@@ -155,7 +155,7 @@
 					</div>
 					<div class="blog-left-grid">										
 						<a href="single.html"><img src="static/img/mall_668_426.png" alt=" " class="img-responsive" /></a>
-						<p class="para"> 诚信商场提供UK到China的海淘服务。保证正品，物美价廉。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆 盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，我们对于婴幼儿食品的直邮空运，代购，转运都可以提供免费的咨询服务。</p>
+						<p class="para">诚信商场提供英国到中国的海淘服务。保证正品，物美价廉。总部设在英国的谢菲尔德，配有大面积的仓贮仓库，可容纳大批量货物仓储。我们的业务覆盖全英国，主营英国直邮中国的货物运输和海淘的代购及转运业务。 此外，对于婴幼儿食品的直邮、代购、转运，我们都可以提供免费的咨询服务。</p>
 						<div class="rd-mre">
 							<a class="hvr-bounce-to-bottom quod">开始购物</a>
 						</div>
@@ -288,14 +288,14 @@
 					<li>
 						<div class="banner-bottom-grid">
 							<img src="static/img/partners_400_300.png" alt=" " class="img-responsive" />
-							<p>我们的合作伙伴包括Parcel Force, Bpost, UK Mail, DPD, EMS等国际知名物流公司。同时提供PayPal, 支付宝等多种支付方式，满足您的需求。我们的合作伙伴包括Parcel Force, Bpost, UK Mail, DPD, EMS等国际知名物流公司。同时提供PayPal, 支付宝等多种支付方式，满足您的需求。</p>
+							<p>我们的合作伙伴包括Parcel Force, Bpost, UK Mail, DPD, EMS等国际知名物流公司。同时提供英镑转账，微信支付，支付宝等多种支付方式，满足您的需求。</p>
 							
 						</div>
 					</li>
 					<li>
 						<div class="banner-bottom-grid">
 							<img src="static/img/SheffieldPickup_400_300.png" alt=" " class="img-responsive" />
-							<p>诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。</p>
+							<p>诚信物流提供优质的谢菲尔德取件，打包，加固服务。只要一个电话，轻松搞定。</p>
 							
 						</div>
 					</li>

@@ -30,7 +30,7 @@ Parcelforce China Economy是英国皇家邮政专为英中线路新开辟的专�
         </div>
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">服务特点</div>
-            <div style="padding:20px;min-height:100px">包裹发出后到中国的时效为6-10天（此时间不包括包裹被海关扣留的时间）。</div>
+            <div style="padding:20px;min-height:100px">包裹发出后到中国的时效为7-10天（此时间不包括包裹被海关扣留的时间）。</div>
         </div>
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">服务特点</div>

@@ -127,7 +127,7 @@
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
 <p><span style="font-size: small;" size="3">　　账户退款余额需要使用您注册时候的邮件，</span></p>
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
-<p><span style="font-size: small;" size="3">　　发送邮件到enquiries@999Parcel.co.uk</span></p>
+<p><span style="font-size: small;" size="3">　　发送邮件到support@999Parcel.com</span></p>
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
 <p><span style="font-size: small;" size="3">　　邮件标题为： 客户识别码+退款+金额</span></p>
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
@@ -231,7 +231,7 @@
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
 <p><span style="font-size: small;" size="3">　　四、索赔</span></p>
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
-<p><span style="font-size: small;" size="3">　　任何情况的索赔，需在货物签收后15日内提出索赔申请，收集理赔相关证据信息，直接邮件到<a href="mailto:enquiries@999Parcel.co.uk">enquiries@999Parcel.co.uk</a>，其他形式，比如论坛发言等，不作为索赔依据和申请。如签收后15日内不提出索赔申请，视为放弃。超过索赔日期后提出索赔申请将不被受理，整个理赔的流程需要30天时间。</span></p>
+<p><span style="font-size: small;" size="3">　　任何情况的索赔，需在货物签收后15日内提出索赔申请，收集理赔相关证据信息，直接邮件到<a href="mailto:support@999Parcel.com">support@999Parcel.com</a>，其他形式，比如论坛发言等，不作为索赔依据和申请。如签收后15日内不提出索赔申请，视为放弃。超过索赔日期后提出索赔申请将不被受理，整个理赔的流程需要30天时间。</span></p>
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>
 <p></p>
 <span style="font-family: Times New Roman; font-size: small;" size="3" face="Times New Roman"> </span>

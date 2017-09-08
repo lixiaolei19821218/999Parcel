@@ -40,19 +40,13 @@
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">服务特点</div>
             <div style="padding:20px;min-height:100px">Priority服务支持上门取件（8AM-6PM之间），自送Post Office邮局，和自送ParcelForce Depot仓库三种方式，其中上门取件可分为司机自带条形码邮票和自己打印条形码邮票两种形式。</div>
         </div>
-        <div style="float:left;width:45%;margin:10px;background-color:#fff;">
-            <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">服务特点</div>
-            <div style="padding:20px;min-height:100px">绿色邮政清关，抽查关税，客户自理。</div>
-        </div>
-        <div style="float:left;width:45%;margin:10px;background-color:#fff;">
-            <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">服务特点</div>
-            <div style="padding:20px;min-height:100px">客户可以购买额外保险。</div>
-        </div>
+        
+        
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">请特别注意</div>
             <div style="padding:20px;min-height:100px">1.邮政线路不再受理任何理由包裹延误(即超过8工作日)的赔偿申请。<br />
 2.客户需要特别注意包裹的包装，邮政线路不再受理代理客户包裹损坏的赔偿申请。<br />
-3.同一订单多箱(2箱或3箱)必须同一天寄出，且必须寄往一个中文地址。</div>
+</div>
         </div>
         
         <div style="clear:both"></div>

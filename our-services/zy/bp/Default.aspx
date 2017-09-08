@@ -31,7 +31,7 @@
         </div>
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">Bpost的服务</div>
-            <div style="padding:20px;min-height:100px">和parcelforce一样，比利时邮政也是直接从西斯罗机场发货而不需要从比利时转运。</div>
+            <div style="padding:20px;min-height:100px">和Parcelforce一样，比利时邮政也是直接从希斯罗机场发货而不需要从比利时转运。</div>
         </div>
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">Bpost的清关</div>
@@ -40,8 +40,8 @@
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">Bpost的价格</div>
             <div style="padding:20px;min-height:100px">Bpost的价格优势体现在两点<br/>
-1）除安全座椅，婴儿推车等大体积物品外，大部分物品只按照实际重量收费，这意味着如果您邮寄的是轻货品如婴儿尿不湿，鞋子，皮包等都将具有和 Parcelforce 相比很大的价格优势！<br/>
-2）可以提供一箱一个地址。您每箱奶粉都可以提供一个地址，大大降低了海关风险。
+1. 邮寄液体无限制。<br/>
+2. 可以提供一箱一个地址。您每箱包裹都可以提供一个地址，大大降低了海关风险。
             </div>
         </div>
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
@@ -53,9 +53,14 @@
         </div>
         <div style="float:left;width:45%;margin:10px;background-color:#fff;">
             <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">Bpost的包裹速度</div>
-            <div style="padding:20px;min-height:100px">Bpost物流时效一般为10个工作日（这个时间不包括海关可能抽检所产生的延误）</div>
+            <div style="padding:20px;min-height:100px">Bpost物流时效一般为7-12个工作日（不包括周末和海关清关导致的时间延误）</div>
         </div>
-        
+        <div style="float:left;width:45%;margin:10px;background-color:#fff;">
+            <div style="padding:10px 20px;background-color:#E6EBF2;color:#0075C2;font-size:16px;font-weight:bold">请特别注意</div>
+            <div style="padding:20px;min-height:100px">1. 邮政线路不再受理任何理由包裹延误（即超过8工作日）的赔偿申请。<br/>
+2. 客户需要特别注意包裹的包装，邮政线路不再受理代理客户包裹损坏的赔偿申请。
+</div>
+        </div>
         <div style="clear:both"></div>
     </div>
 </div>
