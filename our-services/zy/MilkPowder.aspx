@@ -30,8 +30,7 @@
             </div>
             <div style="float: left; width: 45%; margin: 10px; background-color: #fff;">
                 <div style="padding: 10px 20px; background-color: #E6EBF2; color: #0075C2; font-size: 16px; font-weight: bold">清关渠道</div>
-                <div style="padding: 20px; min-height: 100px">任何合法自营EMS渠道都需要按照中华人民共和国海关条例进行清关，都需要报备收件人身份信息，
-            此线路也不例外，所谓包税，其实是诚信物流支付清关过程产生的税金。</div>
+                <div style="padding: 20px; min-height: 100px">任何合法自营奶粉包税渠道都需要按照中华人民共和国海关条例进行清关，都需要报备收件人身份信息， 此线路也不例外，所谓包税，其实是诚信物流支付清关过程产生的税金。</div>
             </div>
             <div style="float: left; width: 45%; margin: 10px; background-color: #fff;">
                 <div style="padding: 10px 20px; background-color: #E6EBF2; color: #0075C2; font-size: 16px; font-weight: bold">使用额度</div>
