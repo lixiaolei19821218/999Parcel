@@ -420,7 +420,9 @@ public partial class products_Product : System.Web.UI.Page
         }
         else
         {
-            return repo.TTKDMilkPowders.Select(t => t.Name);
+            return repo.TTKDMilkPowders.Where(t =>
+                !t.Name.Contains("羊奶粉")
+                ).Select(t => t.Name);
         }
     }
 

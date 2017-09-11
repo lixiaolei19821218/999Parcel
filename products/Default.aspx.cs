@@ -44,11 +44,10 @@ public partial class product_Default : System.Web.UI.Page
 
                 //计算折扣
                 MembershipUser user = Membership.GetUser();
-                var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();                
-                repo.Context.Entry<Discount>(discount).Reload();
-               
+                var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
                 if (discount != null)
                 {
+                    repo.Context.Entry<Discount>(discount).Reload();
                     foreach (Recipient r in order.Recipients)
                     {
                         foreach (Package p in r.Packages)
