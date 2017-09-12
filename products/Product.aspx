@@ -430,7 +430,7 @@
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" pattern="\d{18}" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%> required oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" pattern="\d{17}(\d|x|X)" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%> required oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
@@ -620,7 +620,7 @@
 
                                                                     <div class="ib mx_cost mx_cal">
                                                                         单价(£):
-                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" value="<%#Item.UnitPrice %>" required="required"/>
+                                                               <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" step="0.01" value="<%#Item.UnitPrice %>" required="required"/>
                                                                     </div>
                                                                     <!--
                                                                     <div class="ib">

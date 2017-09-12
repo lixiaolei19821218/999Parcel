@@ -162,7 +162,7 @@
     void Session_Start(object sender, EventArgs e) 
     {
         // 在新会话启动时运行的代码
-
+        Session.Timeout = 600; 
     }
 
     void Session_End(object sender, EventArgs e) 
