@@ -147,13 +147,26 @@
                 dataType: "json",
                 success: function (data) {
                     //返回的数据用data.d获取内容       
-                    $(data.d).each(function () {
-                        if ($(".item_detail")[0].dataset.selected == this) {
+                    $(data.d).each(function (j, s) {
+                        $(".item_detail").each(function (i, e) {
+                            if (e.dataset.selected == s)
+                            {
+                                $(e).append("<option selected = \"selected\">" + s + "</option>");
+                            }
+                            else
+                            {
+                                $(e).append("<option>" + s + "</option>");
+                            }
+                            
+                        }
+                        )
+                        /*
+                        if ($(".item_detail").attr("data-selected") == this) {
                             $(".item_detail").append("<option selected = \"selected\">" + this + "</option>");
                         }
                         else {
-                            $(".item_detail").append("<option>" + this + "</option>");
-                        }
+                            $(".item_detail").appendC
+                        }*/
                         //$(".item_detail")
                     });
                 },
@@ -504,7 +517,7 @@
                                                 </div>
                                                 <input id="id_parcel-0-address_id" name="parcel-0-address_id" type="hidden" value="0" />
                                                 <input id="id_parcel-0-id" name="parcel-0-id" type="hidden" />
-                                                <div class="rds2" style="padding-top: 10px; background-color: #E0EDF4; border: 1px solid #ddd; padding-bottom:20px;">
+                                                <div class="rds2" style="padding-top: 10px; background-color: #E0EDF4; border: 1px solid #ddd; padding-bottom:20px; font-size:smaller;">
                                                     <div class="ib">
                                                         <div class="pd7 bold" >重量/尺寸</div>
                                                         <div class="ib pd7">
@@ -550,7 +563,7 @@
                                                                     <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
                                                                     <div class="ib mx_type">
                                                                         
-                                                                    <select class="item_detail" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:260px;height:23px;" data-selected="<%#Item.Description %>">
+                                                                    <select class="item_detail" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:230px;height:23px;" data-selected="<%#Item.Description %>">
                                                                             <!--<option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
                                                                             <option value="Baby Food">婴儿食品</option>
                                                                             <option value="Adult Milk Powder">成人奶粉</option>
@@ -595,7 +608,7 @@
                                                                             <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
                                                                             <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>-->
                                                                         </select>
-
+                                                                        <!--
                                                                         <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
                                                                             品牌:
                                                                             <input name="parcel-0-content-<%#Container.ItemIndex %>-brand" style="width: 80px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" : "" %> />
@@ -608,7 +621,7 @@
                                                                             单位:
                                                                             <input name="parcel-0-content-<%#Container.ItemIndex %>-specUnit" style="width: 40px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" <%:ServiceView.Name.Contains("杂物包税") ? "required=\"required\"" : "" %> />
                                                                         </div>
-                                                                            
+                                                                        -->    
                                                                     </div>
 
 
@@ -622,14 +635,14 @@
                                                                         单价(£):
                                                                <input id="id_parcel-0-content-<%#Container.ItemIndex %>-cost" name="parcel-0-content-<%#Container.ItemIndex %>-cost" style="width: 50px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="number" min="0" max="999999" step="0.01" value="<%#Item.UnitPrice %>" required="required"/>
                                                                     </div>
-                                                                    <!--
+                                                                    
                                                                     <div class="ib">
                                                                         <button style="border: 1px solid #ddd; background: none" class="btn add_mx btn_mx" type="button" title="添加包裹明细"><i class="icon-plus icon-white"></i></button>
                                                                     </div>
                                                                     <div class="ib">
                                                                         <button style="border: 1px solid #ddd; background: none" class="btn del_mx btn_mx" type="button" title="删除包裹明细"><i class="icon-minus"></i></button>
                                                                     </div>
-                                                                    -->
+                                                                   
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
@@ -900,7 +913,7 @@
             $('#tree').on('click', '.add_mx', function () {
                 var mx = $(this).closest('.mx'),
                     mx_parent = mx.parent();
-                if (mx_parent.find('.mx').length >= 10)
+                if (mx_parent.find('.mx').length >= 7)
                     return;
                 mx_parent.append(mx.clone());
                 // update names

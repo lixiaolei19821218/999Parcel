@@ -97,6 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><a>谢菲包裹专线</a></li>
                                         <li class="divider"></li>
                                         <li><a href="/cart/Paid.aspx">已完成订单</a></li>
+                                        <li><a href="/cart/Parcel.aspx">已完成包裹</a></li>
                                     </ul>
                                 </li>                               
                                 <li class="hvr-bounce-to-bottom" onmouseover="onhover(this)" onmouseout="onleave(this)">

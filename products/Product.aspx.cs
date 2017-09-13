@@ -245,27 +245,86 @@ public partial class products_Product : System.Web.UI.Page
         {
             packages.AddRange(r.Packages);
         }
+        
         for (int i = 0; i < packages.Count; i++)
         {            
             int itemsCount = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-TOTAL_FORMS", i)));
+            if (packages[i].PackageItems.Count <= itemsCount)
+            {
+                for (int j = 0; j < packages[i].PackageItems.Count; j++)
+                {
+                    PackageItem pi = packages[i].PackageItems.ElementAt(j);
+                    pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", i, j)).Trim();
+                    pi.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", i, j)));
+                    decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", i, j)));
+                    pi.UnitPrice = unitPrice;
+                    pi.Value = Math.Round(unitPrice * (decimal)pi.Count, 2);                   
+                }
+                for (int j = packages[i].PackageItems.Count; j < itemsCount; j++)
+                {
+                    PackageItem item = new PackageItem();
+                    item.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", i, j)).Trim();                  
+                    item.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", i, j)));
+                    decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", i, j)));
+                    item.UnitPrice = unitPrice;
+                    item.Value = Math.Round(unitPrice * (decimal)item.Count, 2);                    
+                    packages[i].PackageItems.Add(item);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < itemsCount; j++)
+                {
+                    PackageItem pi = packages[i].PackageItems.ElementAt(j);
+                    pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", i, j)).Trim();
+                    pi.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", i, j)));
+                    decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", i, j)));
+                    pi.UnitPrice = unitPrice;
+                    pi.Value = Math.Round(unitPrice * (decimal)pi.Count, 2);
+                }
+                List<PackageItem> toRemove = new List<PackageItem>();
+                for (int j = itemsCount; j < packages[i].PackageItems.Count; j++)
+                {
+                    PackageItem pi = packages[i].PackageItems.ElementAt(j);
+                    toRemove.Add(pi);
+                }
+                repo.Context.PackageItems.RemoveRange(toRemove);
+            }
+            /*
             decimal weight = packages[i].Weight / itemsCount;
             packages[i].PackageItems.Clear();
             for (int j = 0; j < itemsCount; j++)
             {
                 PackageItem item = new PackageItem();
                 item.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", i, j)).Trim();
-                item.Brand = Request.Form.Get(string.Format("parcel-{0}-content-{1}-brand", i, j)).Trim();
-                item.Spec = Request.Form.Get(string.Format("parcel-{0}-content-{1}-spec", i, j)).Trim();
-                item.SpecUnit = Request.Form.Get(string.Format("parcel-{0}-content-{1}-specUnit", i, j)).Trim();
-                item.TariffCode = "999999";
+                //item.Brand = Request.Form.Get(string.Format("parcel-{0}-content-{1}-brand", i, j)).Trim();
+                //item.Spec = Request.Form.Get(string.Format("parcel-{0}-content-{1}-spec", i, j)).Trim();
+                //item.SpecUnit = Request.Form.Get(string.Format("parcel-{0}-content-{1}-specUnit", i, j)).Trim();
+                //item.TariffCode = "999999";
                 item.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", i, j)));                
                 decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", i, j)));
                 item.UnitPrice = unitPrice;
                 item.Value = Math.Round(unitPrice * (decimal)item.Count, 2);
                 item.NettoWeight = Math.Round(weight, 3);                
                 packages[i].PackageItems.Add(item);
-            }
+            }*/
             packages[i].Value = packages[i].PackageItems.Sum(pi => pi.Value);
+            if (order.Service.Name.Contains("自营奶粉包税6罐"))
+            {
+                int count = packages[i].PackageItems.Sum(item => item.Count).Value;
+                if (count > 6)
+                {
+                    msg.Append(string.Format("包裹{0}的奶粉数量超过6罐。", i + 1));
+                }
+            }
+            if (order.Service.Name.Contains("自营奶粉包税4罐"))
+            {
+                int count = packages[i].PackageItems.Sum(item => item.Count).Value;
+                if (count > 4)
+                {
+                    msg.Append(string.Format("包裹{0}的奶粉数量超过4罐。", i + 1));
+                }
+            }
         }
         
         //if (!order.Service.Name.Contains("自送"))

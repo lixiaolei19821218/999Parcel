@@ -38,9 +38,10 @@ public partial class product_Default : System.Web.UI.Page
                     foreach (Package p in r.Packages)
                     {
                         p.DeliverCost = sv.GetPackageDeliverPrice(p);
+                        p.FinalCost = p.DeliverCost;
                     }
                 }
-                order.DeliverPrice = sv.GetDeliverPrice(order);
+                order.DeliverPrice = sv.GetDeliverPrice(order);                
 
                 //计算折扣
                 MembershipUser user = Membership.GetUser();
