@@ -41,6 +41,7 @@
                     <li><a href="CheckApply.aspx" runat="server" id="checkApply">充值审核</a></li>
                     <li><a href="ProcessedApplys.aspx" runat="server" id="processedApplys">已处理申请</a></li>                   
                     <li><a href="CheckOrder.aspx" runat="server" >订单管理</a></li>  
+                    <li><a href="parcel.aspx" runat="server" >所有包裹</a></li> 
                     <li><a href="News.aspx" runat="server" id="news">新闻资讯</a></li>                  
                 </ul>
             </div>
