@@ -1,3 +1,6 @@
+document.write('<script src="/js/distpicker.data.js"></script>')
+document.write('<script src="/js/distpicker.js"></script>')
+
 var sortable_option = {
     connectWith: ".con",
     handle: '.ordering',
@@ -18,7 +21,8 @@ function updateForms(formClass, prefix) {
         childElementSelector = 'input,select,textarea,label,div';
     totalForms.val(formCount);
     for (var i = 0; i < formCount; i++) {
-        forms.eq(i).find('.ordering_number').html(i+1);
+        forms.eq(i).find('.ordering_number').html(i + 1);
+        forms.eq(i).find('.addr_item_num').html(i + 1);
         forms.eq(i).find('.save_addr').val(i+1);
         forms.eq(i).find('.addr_insurance').attr('name', 'addr_'+i+'_insurance');
         forms.eq(i).find('.addr_insurance').attr('id', 'addr_'+i+'_insurance');
@@ -74,6 +78,7 @@ function addAddr() {
     addrLi.parent().append(node);
 //    node.find('.con').sortable(sortable_option);
     updateAddrs();
+    $('.dist').distpicker();
 }
 
 function addParcel() {
@@ -83,6 +88,7 @@ function addParcel() {
         parcelLi = addrLi.find('li:last')
     parcelLi.after(node);
     updateParcels();
+   
 }
 
 function delAddr() {
@@ -261,6 +267,14 @@ function clone() {
     parcelLi.parent().append(newLi);
     updateParcels();
     recalcAll();
+
+    var pd = $('#details').find('.parcelDetail:last').clone();
+    var count = $('#details').find('.parcelDetail').length;
+    pd.find('span:first').html(count + 1);
+    $('#details').append(pd);
+    var cost = pd.find('span.cost').val;
+
+    $('#total')
 }
 
 $(function(){

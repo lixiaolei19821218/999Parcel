@@ -37,8 +37,8 @@
         }
     </script>
 
-    <link rel="stylesheet" href="/static/jquery-ui-1.11/jquery-ui.min.css">
-    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/jquery-ui-1.11/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css"/>
 
     <!--[if IE 7]>
       <link rel="stylesheet" href="/static/font-awesome/font-awesome-ie7.min.css">
@@ -219,8 +219,8 @@
 
     <form class="form-inline" id="tree" method="post" runat="server" autocomplete="on">
         <input type='hidden' name='csrfmiddlewaretoken' value='T6iXH4VfX4yjoqPS3DTyrvWjpPcrC7Za' />
-        <input id="id_addr-TOTAL_FORMS" name="addr-TOTAL_FORMS" type="hidden" value="2" /><input id="id_addr-INITIAL_FORMS" name="addr-INITIAL_FORMS" type="hidden" value="0" /><input id="id_addr-MAX_NUM_FORMS" name="addr-MAX_NUM_FORMS" type="hidden" value="1000" />
-        <input id="id_parcel-TOTAL_FORMS" name="parcel-TOTAL_FORMS" type="hidden" value="3" /><input id="id_parcel-INITIAL_FORMS" name="parcel-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-MAX_NUM_FORMS" name="parcel-MAX_NUM_FORMS" type="hidden" value="1000" />
+        <input id="id_addr-TOTAL_FORMS" name="addr-TOTAL_FORMS" type="hidden" value="0" /><input id="id_addr-INITIAL_FORMS" name="addr-INITIAL_FORMS" type="hidden" value="0" /><input id="id_addr-MAX_NUM_FORMS" name="addr-MAX_NUM_FORMS" type="hidden" value="1000" />
+        <input id="id_parcel-TOTAL_FORMS" name="parcel-TOTAL_FORMS" type="hidden" value="0" /><input id="id_parcel-INITIAL_FORMS" name="parcel-INITIAL_FORMS" type="hidden" value="0" /><input id="id_parcel-MAX_NUM_FORMS" name="parcel-MAX_NUM_FORMS" type="hidden" value="1000" />
       
         <div class="row" style="background-color: #fff; padding: 20px 15px; margin: 20px 0 30px">
             <div class="col-sm-10 col-xs-12" style="padding-left: 0">
@@ -377,6 +377,9 @@
                                 <div class="clrw1" style="background-color: #FD7F23; padding: 5px 20px">
                                     <div class="pull-left" style="padding-top: 4px">收件人地址 <span class="addr_item_num"><%#Container.ItemIndex + 1 %></span></div>
                                     <!--<div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>-->                               
+                                    <div class="del-addr pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除收件人</span></div>
+                                    <div class="add-addr pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加收件人</span></div>
+                                    <div style="clear: both"></div>
                                     <div style="clear: both"></div>
                                 </div>
                                 <input id="id_addr-0-id" name="addr-0-id" type="hidden" />
@@ -389,37 +392,37 @@
                                         <button class="display_hidden btn btn-small" type="button" style="position: absolute; right: 0; top: 0; background-color: #BFBFBF" title="修改转换">编辑</button>                                       
                                     </div>                                    
                                     <div style="float: left; margin: 5px" class="control-group ">
-                                        <label for="id_addr-0-cn_name">中文姓名</label>                                 
+                                        <label for="id_addr-<%#Container.ItemIndex %>-cn_name">中文姓名</label>                                 
                                         <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="24" name="addr-<%#Container.ItemIndex %>-cn_name" style="width: 90px" type="text" value="<%#Item.Name %>"  required="required" 
                                             onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;"/>
                                     </div>
-                                    <div data-toggle="distpicker">
+                                    <div data-toggle="distpicker" class="dist">
                                         <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
-                                            <label for="id_addr-0-cn_province">中文省份</label>
+                                            <label for="id_addr-<%#Container.ItemIndex %>-cn_province">中文省份</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />-->
-                                            <select data-province="<%#Item.Province %>" class="cn_fields cn_city" id="id_addr-0-cn_province" name="addr-<%#Container.ItemIndex %>-cn_province" style="width: 140px; height: 24px; max-width: 140px;"></select>
+                                            <select data-province="<%#Item.Province %>" class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_province" name="addr-<%#Container.ItemIndex %>-cn_province" style="width: 140px; height: 24px; max-width: 140px;"></select>
                                         </div>
                                         <div style="float: left; margin: 5px" class="control-group ">
-                                            <label for="id_addr-0-cn_city">中文城市</label>
+                                            <label for="id_addr-<%#Container.ItemIndex %>-cn_city">中文城市</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_city" maxlength="24" name="addr-0-cn_city" style="width: 60px" type="text" value="<%#Item.City %>" required="required"
                                                 onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
                                                 onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
                                                 onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" />
                                             -->
-                                            <select data-city="<%#Item.City %>"  class="cn_fields cn_city" id="id_addr-0-cn_city" name="addr-<%#Container.ItemIndex %>-cn_city" style="width: 140px; height: 24px; max-width: 140px;" ></select>
+                                            <select data-city="<%#Item.City %>"  class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_city" name="addr-<%#Container.ItemIndex %>-cn_city" style="width: 140px; height: 24px; max-width: 140px;" ></select>
                                         </div>
                                         <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
-                                            <label for="id_addr-0-cn_district">中文区/县</label>
+                                            <label for="id_addr-<%#Container.ItemIndex %>-cn_district">中文区/县</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
                                             -->
-                                            <select data-district="<%#Item.District %>" class="cn_fields cn_city" id="id_addr-0-cn_district" name="addr-<%#Container.ItemIndex %>-cn_district" style="width: 140px; height: 24px; max-width: 140px;"></select>
+                                            <select data-district="<%#Item.District %>" class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_district" name="addr-<%#Container.ItemIndex %>-cn_district" style="width: 140px; height: 24px; max-width: 140px;"></select>
                                         </div>
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
-                                        <label for="id_addr-0-cn_street">中文地址</label>
-                                        <input class="cn_fields cn_street" id="id_addr-0-cn_street" maxlength="30" name="addr-<%#Container.ItemIndex %>-cn_street" style="width: 515px" type="text" value="<%#Item.Address %>" required="required" 
+                                        <label for="id_addr-<%#Container.ItemIndex %>-cn_street">中文地址</label>
+                                        <input class="cn_fields cn_street" id="id_addr-<%#Container.ItemIndex %>-cn_street" maxlength="30" name="addr-<%#Container.ItemIndex %>-cn_street" style="width: 515px" type="text" value="<%#Item.Address %>" required="required" 
                                             onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_street').toPinyin());py_street<%#Container.ItemIndex %>.innerText=py;hd_street<%#Container.ItemIndex %>.value=py;" 
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_street').toPinyin());py_street<%#Container.ItemIndex %>.innerText=py;hd_street<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_street').toPinyin());py_street<%#Container.ItemIndex %>.innerText=py;hd_street<%#Container.ItemIndex %>.value=py;"/>
@@ -513,7 +516,9 @@
                                         <ItemTemplate>
                                             <li class="parcelItem" style="list-style: none; margin-top: 15px">
                                                 <div class="rds1 clrw1" style="background-color: #0075C2; padding: 5px 20px">
-                                                    包裹 <span class="ordering_number">1</span>                                                    
+                                                    包裹 <span class="ordering_number">1</span>
+                                                    <span class="del-parcel pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除包裹</span></span>
+                                                    <span class="clone pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加包裹</span></span>                                                    
                                                 </div>
                                                 <input id="id_parcel-0-address_id" name="parcel-0-address_id" type="hidden" value="0" />
                                                 <input id="id_parcel-0-id" name="parcel-0-id" type="hidden" />
@@ -710,14 +715,12 @@
                                
                                 <asp:Repeater runat="server" ItemType="Package" SelectMethod="GetAllPackages">
                                     <ItemTemplate>
+                                        <div class="parcelDetail">
                                         <br />
-                                        包裹 <%#Container.ItemIndex + 1 %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%#Item.DeliverCost.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %>
-                                        <br />
-                                        <div <%#Item.Discount == 0.0m ? "hidden=\"hidden\"" : "" %>>
-                                            <span style="color: forestgreen; font-size: small;">折扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-<%#Item.Discount.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span>
-                                            <br />
-                                        </div>
+                                        包裹 <span><%#Container.ItemIndex + 1 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cost"><%#Item.DeliverCost.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span><br /><div <%#Item.Discount == 0.0m ? "hidden=\"hidden\"" : "" %>>
+                                            <span style="color: forestgreen; font-size: small;">折扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-<%#Item.Discount.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span><br /></div>
                                         -----------------
+                                            </div>
                                     </ItemTemplate>
                                 </asp:Repeater>                                
                                
@@ -881,7 +884,7 @@
     <script type="text/javascript" src="/static/bootstrap-datetimepicker/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 
-    <script src="/static/js/tree2.js?v=140902v2"></script>
+    <script src="/static/js/tree2.js"></script>
     <script type="text/javascript">
         function smart_split(str, len) {
             var arr = str.split(' ');
@@ -1064,7 +1067,7 @@
                     else
                         $this.data('timer',
                             setTimeout(function () {
-                                $.get('999Parcel.co.uk/pinyin/', { 's': val }, func);
+                                $.get('999Parcel.com/pinyin/', { 's': val }, func);
                             }, 500)
                         );
                 }
