@@ -79,6 +79,28 @@ function addAddr() {
 //    node.find('.con').sortable(sortable_option);
     updateAddrs();
     $('.dist').distpicker();
+
+    var pd = $('#details').find('.parcelDetail:last').clone();
+    $('#details').append(pd);
+    var count = $('#details').find('.parcelDetail').length;
+    pd.find('span:first').html(count);
+    var pickup;
+    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
+        if (count >= 3) {
+            $('#pickup_price').text('£0.00');
+            pickup = 0.0;
+        }
+        else {
+            $('#pickup_price').text('£2.00');
+            pickup = 2.0;
+        }
+    }
+    else {
+        pickup = 0.0;
+    }
+    var cost = parseFloat(pd.find('span.cost').text().substring(1));
+    var discount = parseFloat(pd.find('span.discount').text().substring(1));
+    $('#total').html('£' + ((cost - discount) * count + pickup));
 }
 
 function addParcel() {
@@ -104,6 +126,30 @@ function delAddr() {
     updateAddrs();
     recalcAll();
 
+    var length = addrLi.find('.parcelItem').length;
+    for (var i = 0; i < length; i++) {
+        var pd = $('#details').find('.parcelDetail:last');
+        pd.remove();
+    }
+    var count = $('#details').find('.parcelDetail').length;
+    pd.find('span:first').html(count);
+    var pickup;
+    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
+        if (count >= 3) {
+            $('#pickup_price').text('£0.00');
+            pickup = 0.0;
+        }
+        else {
+            $('#pickup_price').text('£2.00');
+            pickup = 2.0;
+        }
+    }
+    else {
+        pickup = 0.0;
+    }
+    var cost = parseFloat(pd.find('span.cost').text().substring(1));
+    var discount = parseFloat(pd.find('span.discount').text().substring(1));
+    $('#total').html('£' + ((cost - discount) * count + pickup));
     //~ $( "#dialog-confirm" ).dialog({
         //~ resizable: false,
         //~ height:120,
@@ -223,6 +269,28 @@ function delParcel() {
     parcelLi.remove();
     updateParcels();
     recalcAll();
+
+    var pd = $('#details').find('.parcelDetail:last');
+    pd.remove();
+    var count = $('#details').find('.parcelDetail').length;
+    pd.find('span:first').html(count);
+    var pickup;
+    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
+        if (count >= 3) {
+            $('#pickup_price').text('£0.00');
+            pickup = 0.0;
+        }
+        else {
+            $('#pickup_price').text('£2.00');
+            pickup = 2.0;
+        }
+    }
+    else {
+        pickup = 0.0;
+    }
+    var cost = parseFloat(pd.find('span.cost').text().substring(1));
+    var discount = parseFloat(pd.find('span.discount').text().substring(1));
+    $('#total').html('£' + ((cost - discount) * count + pickup));
 }
 
 function recalcAll() {
@@ -268,13 +336,28 @@ function clone() {
     updateParcels();
     recalcAll();
 
-    var pd = $('#details').find('.parcelDetail:last').clone();
-    var count = $('#details').find('.parcelDetail').length;
-    pd.find('span:first').html(count + 1);
+    var pd = $('#details').find('.parcelDetail:last').clone(); 
     $('#details').append(pd);
-    var cost = pd.find('span.cost').val;
-
-    $('#total')
+    var count = $('#details').find('.parcelDetail').length;
+    pd.find('span:first').html(count);
+    var pickup;
+    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
+        if (count >= 3) {
+            $('#pickup_price').text('£0.00');
+            pickup = 0.0;
+        }
+        else {
+            $('#pickup_price').text('£2.00');
+            pickup = 2.0;
+        }
+    }
+    else {
+        pickup = 0.0;
+    }
+   
+    var cost = parseFloat(pd.find('span.cost').text().substring(1));
+    var discount = parseFloat(pd.find('span.discount').text().substring(1));
+    $('#total').html('£' + ((cost - discount) * count + pickup));
 }
 
 $(function(){

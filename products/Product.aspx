@@ -698,7 +698,7 @@
                                 <img src="<%:ServiceView.PictureLink %>" style="width: 130px" />
                             </div>
 
-                            <p><strong><%:ServiceView.Name %></strong></p>
+                            <p><strong id="service"><%:ServiceView.Name %></strong></p>
                             <p>
                                 <p>
                                     <img src="<%:ServiceView.DiscribePictureLink %>" width="130" height="78" />
@@ -718,7 +718,7 @@
                                         <div class="parcelDetail">
                                         <br />
                                         包裹 <span><%#Container.ItemIndex + 1 %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cost"><%#Item.DeliverCost.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span><br /><div <%#Item.Discount == 0.0m ? "hidden=\"hidden\"" : "" %>>
-                                            <span style="color: forestgreen; font-size: small;">折扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-<%#Item.Discount.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span><br /></div>
+                                            <span style="color: forestgreen; font-size: small;">折扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-<span class="discount"><%#Item.Discount.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></span></span><br /></div>
                                         -----------------
                                             </div>
                                     </ItemTemplate>

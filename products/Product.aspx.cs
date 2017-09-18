@@ -267,10 +267,7 @@ public partial class products_Product : System.Web.UI.Page
 
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
             recipient.PhoneNumber = Request.Form.Get(string.Format("addr-{0}-phone", i)).Trim();
-            recipient.ZipCode = Request.Form.Get(string.Format("addr-{0}-postcode", i)).Trim();
-            //recipient.PyName = Request.Form.Get(string.Format("hd_name{0}", i)).Trim();
-            //recipient.PyCity = Request.Form.Get(string.Format("hd_city{0}", i)).Trim();
-            //recipient.PyAddress = Request.Form.Get(string.Format("hd_street{0}", i)).Trim();
+            recipient.ZipCode = Request.Form.Get(string.Format("addr-{0}-postcode", i)).Trim();           
             recipient.IDNumber = Request.Form.Get(string.Format("addr-{0}-idnumber", i)).Trim();
 
             if (order.Service.Name.Contains("奶粉包税") || order.Service.Name.Contains("杂物包税"))
@@ -279,9 +276,7 @@ public partial class products_Product : System.Web.UI.Page
                 {
                     msg.Append(string.Format("收件人{0}的名字和身份证号不匹配。", recipient.Name));
                 }
-            }
-
-           
+            }           
         }
 
         int parcelCount = int.Parse(Request.Form.Get("parcel-TOTAL_FORMS"));
