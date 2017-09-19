@@ -22,6 +22,8 @@ public partial class products_Product : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Session.Timeout = 6000;
+
         order = (Order)Session["Order"];
         if (order == null)
         {
