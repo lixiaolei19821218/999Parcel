@@ -434,7 +434,7 @@
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 9px" class="control-group ">
                                             <label for="id_addr-0-postcode">邮编</label>
-                                            <input id="id_addr-0-postcode" maxlength="6" name="addr-<%#Container.ItemIndex %>-postcode" style="width: 60px" type="text" pattern="^[1-9][0-9]{5}$" value="<%#Item.ZipCode %>" required oninvalid="setCustomValidity('请输入正确的6位邮编。')" oninput="setCustomValidity('')"/>
+                                            <input id="id_addr-0-postcode" maxlength="6" name="addr-<%#Container.ItemIndex %>-postcode" style="width: 60px" type="text" pattern="^[0-9][0-9]{5}$" value="<%#Item.ZipCode %>" required oninvalid="setCustomValidity('请输入正确的6位邮编。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>
                                     <div style="margin-left: 26px; float: left">
