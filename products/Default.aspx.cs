@@ -65,20 +65,19 @@ public partial class product_Default : System.Web.UI.Page
                 order.Discount = order.Recipients.Sum(r => r.Packages.Sum(p => p.Discount));
                 order.Cost = order.PickupPrice + order.DeliverPrice - order.Discount;
                 order.User = Membership.GetUser().UserName;
-
+                /*
                 JsonSerializerSettings settings = new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Serialize, PreserveReferencesHandling = PreserveReferencesHandling.Objects };
                 string orderString = JsonConvert.SerializeObject(order, Formatting.Indented, settings);
-
                 HttpCookie cookie = new HttpCookie("Order");
                 cookie.Value = orderString;
                 cookie.Expires = DateTime.Now.AddDays(1);
                 Response.AppendCookie(cookie);
-
                 Server.Transfer("product.aspx");
+                */
                 //order.OrderTime = DateTime.Now;
                 //repo.Context.Orders.Add(order);
                 //repo.Context.SaveChanges();
-                //Response.Redirect(string.Format("product.aspx"));
+                Response.Redirect(string.Format("product.aspx?serviceId={0}", order.ServiceID));
             }
         }
     }

@@ -25,7 +25,7 @@ public partial class products_Product : System.Web.UI.Page
         Session.Timeout = 6000;
 
         order = (Order)Session["Order"];
-        //order = null;
+       
         if (order == null)
         {
             int orderId;
@@ -39,6 +39,7 @@ public partial class products_Product : System.Web.UI.Page
             }
             else
             {
+                /*
                 if (Request.Cookies["Order"] == null)
                 {
                     Response.Redirect("/");
@@ -47,6 +48,23 @@ public partial class products_Product : System.Web.UI.Page
                 {
                     string orderString = Request.Cookies["Order"].Value;
                     order = JsonConvert.DeserializeObject<Order>(orderString);
+                }
+                */
+                int serviceId;
+                if (int.TryParse(Request["serviceId"], out serviceId))
+                {
+                    Service service = repo.Context.Services.Find(serviceId);                    
+                    if (service == null)
+                    {
+                        Response.Redirect("/");
+                    }
+                    order = new Order();
+                    order.ServiceID = serviceId;
+                    order.Service = service;
+                }
+                else
+                {
+                    Response.Redirect("/");
                 }
             }
         }

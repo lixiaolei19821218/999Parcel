@@ -1322,12 +1322,12 @@
 
                 var head = zip_code.split(' ')[0];
                 if ($.inArray(head, areas_free) != -1) {
-                    $('#pickup_price')[0].innerText = '£' + free.toFixed(2);
-                    $('#total')[0].innerText = '£' + (free + sendPrice).toFixed(2);
+                   // $('#pickup_price')[0].innerText = '£' + free.toFixed(2);
+                   // $('#total')[0].innerText = '£' + (free + sendPrice).toFixed(2);
                 }
                 else if ($.inArray(head, areas_3pounds) != -1) {
-                    $('#pickup_price')[0].innerText = '£' + price.toFixed(2);
-                    $('#total')[0].innerText = '£' + (price + sendPrice).toFixed(2);
+                   // $('#pickup_price')[0].innerText = '£' + price.toFixed(2);
+                   // $('#total')[0].innerText = '£' + (price + sendPrice).toFixed(2);
                 }
                 else {
                     alert(zip_code + "不属于诚信物流取件的地区。");
