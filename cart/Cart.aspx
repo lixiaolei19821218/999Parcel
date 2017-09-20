@@ -52,7 +52,7 @@
                             <input type='hidden' name='orders' />                                            
                             <tr id="<%#Item.Id %>" title="<%#GetOrderTip(Item) %>">
                                 <td class="tac" style="vertical-align:middle;"><%#string.Format("{0:d9}", Item.Id) %></td>
-                                <td class="left" style="vertical-align:middle;"><%#Item.OrderTime.Value.ToShortDateString() %></td>
+                                <td class="left" style="vertical-align:middle;"><%#Item.OrderTime.HasValue ? Item.OrderTime.Value.ToShortDateString() : "" %></td>
                                 <td class="tac" style="vertical-align:middle;"><%#Item.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></td>
                                 <td class="tac" style="vertical-align:middle;"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
                                 <td class="tac" style="vertical-align:middle;"><%#Item.SenderName %></td>

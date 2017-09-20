@@ -62,7 +62,7 @@ public partial class cart_Cart : System.Web.UI.Page
         username = Membership.GetUser().UserName;
         apUser = repo.Context.aspnet_User.First(u => u.UserName == username);
 
-        normalOrders = from o in repo.Orders where o.User == username && !(o.HasPaid ?? false) && o.Recipients.Count != 0 select o;
+        normalOrders = from o in repo.Orders where o.User == username && !(o.HasPaid ?? false) && o.Recipients.Count != 0 && !string.IsNullOrEmpty(o.SenderName)  select o;
         //sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
 
         balance = apUser.Balance;
@@ -130,7 +130,7 @@ public partial class cart_Cart : System.Web.UI.Page
         {
             Order order = repo.Context.Orders.Find(id);
             Session["Order"] = order;
-            Response.Redirect("/products/product.aspx");
+            Response.Redirect(string.Format("/products/product.aspx?orderId={0}", order.Id));
             return;
 
             Order orderCopy = new Order();

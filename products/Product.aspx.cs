@@ -25,15 +25,33 @@ public partial class products_Product : System.Web.UI.Page
         Session.Timeout = 6000;
 
         order = (Order)Session["Order"];
+        //order = null;
         if (order == null)
         {
-            Response.Redirect("/");
+            int orderId;
+            if (int.TryParse(Request["orderId"], out orderId))
+            {
+                order = repo.Context.Orders.Find(orderId);
+                if (order == null)
+                {
+                    Response.Redirect("/");
+                }
+            }
+            else
+            {
+                if (Request.Cookies["Order"] == null)
+                {
+                    Response.Redirect("/");
+                }
+                else
+                {
+                    string orderString = Request.Cookies["Order"].Value;
+                    order = JsonConvert.DeserializeObject<Order>(orderString);
+                }
+            }
         }
 
-        //Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
         sv = new ServiceView(order.Service);
-        //order.Service = service;
-
         //ParcelForce
         if (sv.Name.Contains("Parcelforce"))
         {
