@@ -13,8 +13,8 @@
     <ul class="breadcrumb" style="background: none; margin-top: 15px">
     </ul>
 
-   
-
+    <asp:Label ID="lbmessage" runat="server" Text="" Forecolor="Red"></asp:Label>
+    
     <div class="sz16 bold colorb2" style="margin-top: 0px;font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;color:#C34C21;padding-top:30px;"">
         请确认订单
         <div style="float: right; margin-left: 10px"><a href="../accounts/UserCentre/Recharge.aspx" class="btn btn-danger" style="line-height: 1; padding: 5px 15px">立即充值</a></div>

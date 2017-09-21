@@ -64,6 +64,11 @@ public partial class cart_Cart : System.Web.UI.Page
 
         normalOrders = from o in repo.Orders where o.User == username && !(o.HasPaid ?? false) && o.Recipients.Count != 0 && !string.IsNullOrEmpty(o.SenderName)  select o;
         //sheffieldOrders = from o in repo.Context.SheffieldOrders where o.User == username && !o.HasPaid select o;
+        if (normalOrders.Count() == 0)
+        {
+            lbmessage.Text = "您的购物车空空如也..";
+            lbmessage.ForeColor = Color.Green;
+        }
 
         balance = apUser.Balance;
         totalPrice = normalOrders.Sum(o => o.Cost.Value);       
@@ -509,11 +514,14 @@ public partial class cart_Cart : System.Web.UI.Page
             }
             data.Remove(data.Length - 1, 1);
             data.Append("]}");
+
             string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), data.ToString(), ConfigurationManager.AppSettings["Authorization"]);
             //order.UKMErrors = data.ToString() + " | " + response;
-            //return;
+            //return;           
+            //throw new Exception();                  
+             
             var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
-            
+
             if (res.Msg == "success")
             {
                 r.SuccessPaid = true;
@@ -989,8 +997,17 @@ public partial class cart_Cart : System.Web.UI.Page
     protected void pay_Click(object sender, EventArgs e)
     { 
         if (balance >= totalPrice)
-        {           
-            PayOrders(normalOrders, total999PickupCount >= 3);
+        {
+            try
+            {
+                PayOrders(normalOrders, total999PickupCount >= 3);
+            }
+            catch
+            {
+                lbmessage.Text = "付款失败，请稍后再试。";
+                lbmessage.ForeColor = Color.Red;
+                return;
+            }
             /*
             foreach (SheffieldOrder sOrder in sheffieldOrders)
             {
@@ -1553,7 +1570,16 @@ public partial class cart_Cart : System.Web.UI.Page
                 {
                     List<Order> l = new List<Order>();
                     l.Add(order);
-                    PayOrders(l, false);
+                    try
+                    {
+                        PayOrders(l, false);
+                    }
+                    catch
+                    {
+                        lbmessage.Text = "付款失败，请稍后再试。";
+                        lbmessage.ForeColor = Color.Red;
+                        return;
+                    }
                     apUser.Balance -= order.Cost.Value;
                     repo.Context.SaveChanges();
                     Response.Redirect("/cart/Paid.aspx");
