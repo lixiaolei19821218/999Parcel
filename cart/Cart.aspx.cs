@@ -1014,8 +1014,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 PayOrders(sOrder.Orders);
                 sOrder.HasPaid = true;
             }
-            */            
-            
+            */
+            lbmessage.Text = "";            
             apUser.Balance -= totalPrice;            
             repo.Context.SaveChanges();      
             
@@ -1580,6 +1580,7 @@ public partial class cart_Cart : System.Web.UI.Page
                         lbmessage.ForeColor = Color.Red;
                         return;
                     }
+                    lbmessage.Text = "";                    
                     apUser.Balance -= order.Cost.Value;
                     repo.Context.SaveChanges();
                     Response.Redirect("/cart/Paid.aspx");
