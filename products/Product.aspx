@@ -440,7 +440,7 @@
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_addr-0-phone">手机</label>
-                                            <input id="id_addr-0-phone" maxlength="11" pattern="^1[3|4|5|8][0-9]\d{4,8}$" name="addr-<%#Container.ItemIndex %>-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required oninvalid="setCustomValidity('请输入正确的11位手机号码。')" oninput="setCustomValidity('')"/>
+                                            <input id="id_addr-0-phone" maxlength="11" pattern="^1[3|4|5|7|8][0-9]\d{4,8}$" name="addr-<%#Container.ItemIndex %>-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required oninvalid="setCustomValidity('请输入正确的11位手机号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>      
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
