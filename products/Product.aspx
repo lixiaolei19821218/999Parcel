@@ -376,7 +376,7 @@
                             <li class="addrItem" style="list-style: none; margin-top: 20px; background-color: #ffffcd; border: 1px solid #ddd">
                                 <div class="clrw1" style="background-color: #FD7F23; padding: 5px 20px">
                                     <div class="pull-left" style="padding-top: 4px">收件人地址 <span class="addr_item_num"><%#Container.ItemIndex + 1 %></span></div>
-                                    <!--<div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>-->                               
+                                    <div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>                              
                                     <div class="del-addr pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除收件人</span></div>
                                     <div class="add-addr pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加收件人</span></div>
                                     <div style="clear: both"></div>
@@ -794,7 +794,6 @@
     </div>
 
     <div id="dialog-addrs" title="地址簿" style="background-color: #fff; display: none; font-size: 13px">
-
         <style style="text/css">
             bac groun margin: 1px 0;
             }
@@ -807,19 +806,20 @@
         <script>var recv_addr_dict = {};</script>
 
         <div style="margin: 10px 0"><span>输入姓名过滤：</span><input type="text" id="lookup_name" /></div>
-
         <div>
             <div style="display: inline-block; width: 100px">姓名</div>
+            <div style="display: inline-block; width: 100px">省</div>
             <div style="display: inline-block; width: 100px">城市</div>
-            <div style="display: inline-block; width: 56px">邮编</div>
+            <div style="display: inline-block; width: 100px">区</div>
             <div style="display: inline-block; width: 477px">地址</div>
+            <div style="display: inline-block; width: 56px">邮编</div>
+            <div style="display: inline-block; width: 100px">手机</div>
+            <div style="display: inline-block; width: 100px">身份证</div>
         </div>
-
-
         <div class="addr_row">
             <button type="button" style="float: right; margin-top: 5px" class="btn btn-danger btn-small del_addr_row" title="删除"><i class="icon-trash icon-white"></i></button>
             <label style="display: block; margin-right: 40px">
-                <input type="radio" name="recv_addr" class="recv_addr" value="45816" style="display: none" />
+                <input type="radio" name="recv_addr" class="recv_addr" value="45816" />
                 <div style="display: inline-block; width: 100px" class="addr-name">
                     1<br />
                     1
@@ -835,16 +835,6 @@
                 </div>
             </label>
         </div>
-
-      
-        
-        
-        
-
-       
-
-      
-
     </div>
 
 
@@ -1155,6 +1145,7 @@
 
             $('#dialog-addrs').find('.recv_addr').click(function () {
                 $('#dialog-addrs').dialog("close");
+                $(this).siblings('div.addr_name')
                 var addr = recv_addr_dict[$(this).val()];
                 if ($current_addr_item) {
                     $current_addr_item.find('[id$=cn_name]').val(addr[0]);
