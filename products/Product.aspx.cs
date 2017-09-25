@@ -754,8 +754,25 @@ public partial class products_Product : System.Web.UI.Page
     {
         return ServiceView.Name.Contains("杂物包税") ? "style=visibility:hidden;" : "style=visibility:hidden;";
     }
-    protected void Button1_Click(object sender, EventArgs e)
+
+    public IEnumerable<Recipient> GetRecipentBook()
     {
-        //UpdatePanel1.r
+        string user = Membership.GetUser().UserName;
+        var book = repo.Context.Recipients.Where(r => r.Order.User == user).ToList().Distinct<Recipient>(new RecipientCompare());
+        return book;
     }
+
+    public class RecipientCompare : IEqualityComparer<Recipient>
+    {
+        public bool Equals(Recipient x, Recipient y)
+        {
+            return (x.Name == y.Name && x.Province == y.Province && x.City == y.City && x.District == y.District && x.Address == y.Address && x.ZipCode == y.ZipCode);
+        }
+
+        public int GetHashCode(Recipient obj)
+        {
+            // return obj.GetHashCode();  
+            return obj.ToString().ToLower().GetHashCode();
+        }
+    }    
 }
