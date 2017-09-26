@@ -350,8 +350,8 @@
                         <span style="font-size: 12px; font-weight: normal">
                             <span runat="server" id="pfuk">9:00-18:30</span>
                             <select runat="server" id="_999parcel" ClientIDMode="Static">
-                                <option value="am" id="am" >9:00-11:00</option>
-                                <option value="pm" id="pm" >13:00-15:00</option>
+                                <option value="am" id="am" >9:00-12:00</option>
+                                <option value="pm" id="pm" >13:00-16:00</option>
                             </select>
                         </span>
 
@@ -398,11 +398,11 @@
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;"/>
                                     </div>
-                                    <div data-toggle="distpicker" class="dist">
+                                    <div data-toggle="distpicker" class="dist" data-province="<%#Item.Province %>" data-city="<%#Item.City %>" data-district="<%#Item.District %>" >
                                         <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                             <label for="id_addr-<%#Container.ItemIndex %>-cn_province">中文省份</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_province" maxlength="24" name="addr-0-cn_province" style="width: 60px" type="text" value="<%#Item.Province %>" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />-->
-                                            <select data-province="<%#Item.Province %>" class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_province" name="addr-<%#Container.ItemIndex %>-cn_province" style="width: 140px; height: 24px; max-width: 140px;"></select>
+                                            <select  class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_province" name="addr-<%#Container.ItemIndex %>-cn_province" style="width: 140px; height: 24px; max-width: 140px;"></select>
                                         </div>
                                         <div style="float: left; margin: 5px" class="control-group ">
                                             <label for="id_addr-<%#Container.ItemIndex %>-cn_city">中文城市</label>
@@ -411,13 +411,13 @@
                                                 onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;"
                                                 onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_city').toPinyin());py_city<%#Container.ItemIndex %>.innerText=py;hd_city<%#Container.ItemIndex %>.value=py;" />
                                             -->
-                                            <select data-city="<%#Item.City %>"  class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_city" name="addr-<%#Container.ItemIndex %>-cn_city" style="width: 140px; height: 24px; max-width: 140px;" ></select>
+                                            <select  class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_city" name="addr-<%#Container.ItemIndex %>-cn_city" style="width: 140px; height: 24px; max-width: 140px;" ></select>
                                         </div>
                                         <div style="float: left; margin: 5px" class="control-group " <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                             <label for="id_addr-<%#Container.ItemIndex %>-cn_district">中文区/县</label>
                                             <!--<input class="cn_fields cn_city" id="id_addr-0-cn_district" maxlength="24" name="addr-0-cn_district" style="width: 60px" type="text" value="<%#Item.District %>" <%:ServiceView.Name.Contains("杂物包税") || ServiceView.Name.Contains("自营奶粉包税") ? "required=\"required\"" :  ""%> />
                                             -->
-                                            <select data-district="<%#Item.District %>" class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_district" name="addr-<%#Container.ItemIndex %>-cn_district" style="width: 140px; height: 24px; max-width: 140px;"></select>
+                                            <select  class="cn_fields cn_city" id="id_addr-<%#Container.ItemIndex %>-cn_district" name="addr-<%#Container.ItemIndex %>-cn_district" style="width: 140px; height: 24px; max-width: 140px;"></select>
                                         </div>
                                     </div>
                                     <div style="float: left; margin: 5px" class="control-group ">
@@ -807,28 +807,29 @@
 
         <div style="margin: 10px 0"><span>输入姓名过滤：</span><input type="text" id="lookup_name" /></div>
         <div>
-            <div style="display: inline-block; width: 100px">姓名</div>          
-            <div style="display: inline-block; width: 570px">地址</div>            
-            <div style="display: inline-block; width: 56px">邮编</div>      
-           
+            <div style="display: inline-block; width: 100px">姓名</div>
+            <div style="display: inline-block; width: 570px">地址</div>
+            <div style="display: inline-block; width: 56px">邮编</div>
         </div>
-        
-            <asp:Repeater runat="server" SelectMethod="GetRecipentBook" ItemType="Recipient">
-                
-                <ItemTemplate>
-                    <div class="addr_row">
+        <asp:Repeater runat="server" SelectMethod="GetRecipentBook" ItemType="Recipient">
+            <ItemTemplate>
+                <div class="addr_row" onmouseover="this.style.backgroundColor='aliceblue';" onmouseout="this.style.backgroundColor='';" >
                     <label style="display: block; margin-right: 40px">
                         <input type="radio" name="recv_addr" class="recv_addr" hidden="hidden" />
                         <div style="display: inline-block; width: 100px" class="addr-name"><%#Item.Name %></div>
-                        <div style="display: inline-block; width: 570px" class="addr-address"><%#Item.Province + Item.City + Item.District + Item.Address %></div>
+                        <div style="display: inline-block; width: 570px" class="addr-addressdetail"><%#Item.Province + Item.City + Item.District + Item.Address %></div>
                         <div style="display: inline-block; width: 56px" class="addr-zipcode"><%#Item.ZipCode %></div>
+                        <div style="display:none; width: 56px" class="addr-province"><%#Item.Province %></div>
+                        <div style="display:none; width: 56px" class="addr-city"><%#Item.City %></div>
+                        <div style="display:none; width: 56px" class="addr-district"><%#Item.District %></div>
+                        <div style="display:none; width: 56px" class="addr-address"><%#Item.Address %></div>
+                        <div style="display:none; width: 56px" class="addr-phone"><%#Item.PhoneNumber %></div>
+                        <div style="display:none; width: 56px" class="addr-id"><%#Item.Id %></div>
                         <!--<div style="display: inline-block; width: 40px"><button type="button" style="float: right; margin-top: 0px" class="btn btn-danger btn-small del_addr_row" title="删除"><i class="icon-trash icon-white"></i></button>  </div>     -->
                     </label>
-                        </div>
-                </ItemTemplate>
-                    
-            </asp:Repeater>
-        
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 
 
@@ -1146,12 +1147,38 @@
                     //$current_addr_item.find('[id$=cn_city]').val(addr[1]);
                     //$current_addr_item.find('[id$=cn_street]').val(addr[2]);
                     $current_addr_item.find('[id$=cn_name]').val($(this).siblings('div.addr-name').text());
+                    $current_addr_item.find('[id$=cn_street]').val($(this).siblings('div.addr-address').text());
+                    //$current_addr_item.find('[id$=cn_province').val($(this).siblings('div.addr-province').text());
+                    //$current_addr_item.find('[id$=cn_city').val($(this).siblings('div.addr-city').text());
+                    //$current_addr_item.find('[id$=cn_district').val($(this).siblings('div.addr-district').text());
+                    //$current_addr_item.find('[id$=cn_province').change();
+                    //$current_addr_item.find('.dist').distpicker('reset', true);
+                    //$current_addr_item.find('[id$=cn_province').val('浙江省');
+                    //$current_addr_item.find('[id$=cn_province').trigger("change");
+                    //$current_addr_item.find('[id$=cn_city').val('宁波市');
+                    //$current_addr_item.find('[id$=cn_city').trigger("change");
+                    //$current_addr_item.find('[id$=cn_district').val('江北区');
+                   
+                    //$current_addr_item.find('[id$=cn_province').val($(this).siblings('div.addr-province').text());
+                    //$current_addr_item.find('[id$=cn_city').val($(this).siblings('div.addr-city').text());
+                    //$current_addr_item.find('[id$=cn_district').val($(this).siblings('div.addr-district').text());
+                    $current_addr_item.find('.dist').distpicker('destroy');
+                    $current_addr_item.find('.dist').distpicker({
+                        province: $(this).siblings('div.addr-province').text(),
+                        city: $(this).siblings('div.addr-city').text(),
+                        district: $(this).siblings('div.addr-district').text()
+                    });
+                    //$current_addr_item.find('.dist').distpicker('reset');
+                    //$current_addr_item.find('.dist')[0].reset();
+                    //$current_addr_item.find('[id$=cn_city').val($(this).siblings('div.addr-city').text());
+                   // $current_addr_item.find('[id$=cn_district').val($(this).siblings('div.addr-district').text());
                     //$current_addr_item.find('[id$=-city]').val(addr[4]);
                     //$current_addr_item.find('[id$=-street]').val(addr[5]);
                     //$current_addr_item.find('[id$=street2]').val(addr[6]);
                     //$current_addr_item.find('[id$=street3]').val(addr[7]);
                     $current_addr_item.find('[id$=postcode]').val($(this).siblings('div.addr-zipcode').text());
-                    //$current_addr_item.find('[id$=phone]').val(addr[9]);
+                    $current_addr_item.find('[id$=phone]').val($(this).siblings('div.addr-phone').text());
+                    $current_addr_item.find('[id$=idnumber]').val($(this).siblings('div.addr-id').text());
                 }
                 $current_addr_item.find('.en_fields').each(function () {
                     if ($(this).hasClass('en_name'))
@@ -1320,7 +1347,7 @@
             }
         }
 
-
+       
     </script>
 
 

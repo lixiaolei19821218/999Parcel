@@ -33,7 +33,7 @@ public partial class product_Default : System.Web.UI.Page
             if (int.TryParse(Request.Form["order"], out serviceID))
             {
                 order.ServiceID = serviceID;
-                Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
+                Service service = repo.Context.Services.Find(order.ServiceID);
                 order.Service = service;
                 ServiceView sv = new ServiceView(order.Service);
                 order.PickupPrice = sv.GetPickupPrice(order);
