@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="accounts_UserCentre_Default" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Compensate.aspx.cs" Inherits="accounts_UserCentre_Compensate" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-    <title>个人中心</title>
+    <title>充值记录</title>
     <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/global_v2.0.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/tpl/t4/style.css" rel="stylesheet" type="text/css" />
@@ -30,14 +30,12 @@
             padding: 5px;
             background: url('image/side-line.png') no-repeat 50% 100%;
         }
-        .table-form tr {
-            font-size:medium;
+
+        .table-list th, .table-list td {
+            padding: 8px 10px;
+            text-align: center;
         }
-         .table-form tr th {
-            font-size:medium;
-            font-family:YouYuan;
-        }
-          a{
+        a{
             font-size:medium;
         }
         #welcomeDiv{
@@ -50,12 +48,12 @@
     <div id="container" style="margin-left: -20px;">
         <div id="sidebar">
             <div class="uitopb uitopb-border" style="border-top: 1px solid #CCC; margin-top: 20px; width: 120px;">
-                <h3 style="font-family: 'Microsoft YaHei';font-size:large;">我的账户</h3>
+                <h3 style="font-family: 'Microsoft YaHei';">我的账户</h3>
                 <ul class="link-list">
                     <li><a href="RechargeList.aspx" runat="server" id="total">充值明细</a></li>
                     <li><a href="Recharge.aspx" runat="server" id="rechange">我要充值</a></li>
                     <li><a href="~/cart/Paid.aspx" runat="server" id="parcel">我的订单</a></li>
-                    <li><a href="Compensate.aspx" runat="server" id="addmoney">补退款记录</a></li>
+                    <li><a href="Compensate.aspx" runat="server" id="addmoney" class="on">补退款记录</a></li>
                     <!--<li><a href="" runat="server" id="claim">索赔中心</a></li>-->
                     <li><a href="Default.aspx" class="" runat="server" id="personal">个人资料</a></li>
                     <!--<li><a href="" runat="server" id="reset">重置密码</a></li>-->
@@ -63,43 +61,39 @@
             </div>
         </div>
         <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
-            <div class="uitopg" style="height: 450px;">
-                <h3 class="uitopg-title mt10" style="font-family: 'Microsoft YaHei';font-size:large">个人资料
-                </h3>
-                <div class="form">
-                    <table class="table-form">
+            <h2>赔付记录</h2>
+           
+            <div class="uitopb uitopb-border mt10" style="border-top: 1px solid #CCC;">
+                <div class="table-div">
+                    <table class="table-list">
                         <tr>
-                            <th>账号</th>
-                            <td><%:User.UserName %></td>
+                            <th>订单号</th>
+                            <th>补偿金额</th>
+                           
                         </tr>
-                        <tr>
-                            <th>邮箱</th>
-                            <td><%:User.Email %><!--<a href="/index.php?c=member&a=user_profile&op=edit&field=sendmail">编辑</a>-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>名</th>
-                            <td><%:APUser.FirstName %></td>
-                        </tr>
-                        <tr>
-                            <th>姓</th>
-                            <td><%:APUser.LastName %></td>
-                        </tr>
-                        <tr>
-                            <th>联系电话</th>
-                            <td><%:APUser.CellPhone %><!--<a href="/index.php?c=member&a=user_profile&op=edit&field=phone">编辑</a>-->
-                            </td>
-                        </tr>
-                        
+                        <asp:Repeater runat="server" SelectMethod="GetCompensate" ItemType="Order">
+                            <ItemTemplate>
+                                <tr>
+                                    <td><%#string.Format("{0:d9}", Item.Id) %></td>
+                                    <td><%#Item.Compensate %></td>
+                                    
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </table>
-                    <br />
-                    <br />
-                    <hr />
-                    <a href="/accounts/signup/Edit.aspx" style="float:right;">更新个人资料</a>
                 </div>
+            </div>
+            <div class="pager">
+                <form runat="server">
+                <% for (int i = StartPage; i < GetPageCount(); i++)
+                    {
+                        Response.Write(
+                        string.Format("<a href='/accounts/UserCentre/Compensate.aspx?page={0}&startpage={3}' {1} Style=\"vertical-align: middle;\">{2}</a>", i, i == CurrentPage ? "class='selected'" : "", i, StartPage));
+                    }%>
+                
+                    <asp:ImageButton ID="btnNext" ImageUrl="/static/images/icon/next.jpg" Width="20" Height="20" runat="server" Style="vertical-align: middle;" OnClick="btnNext_Click" />
+                </form>
             </div>
         </div>
     </div>
-
-
 </asp:Content>

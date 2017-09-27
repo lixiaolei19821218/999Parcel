@@ -824,7 +824,7 @@
                         <div style="display:none; width: 56px" class="addr-district"><%#Item.District %></div>
                         <div style="display:none; width: 56px" class="addr-address"><%#Item.Address %></div>
                         <div style="display:none; width: 56px" class="addr-phone"><%#Item.PhoneNumber %></div>
-                        <div style="display:none; width: 56px" class="addr-id"><%#Item.Id %></div>
+                        <div style="display:none; width: 56px" class="addr-id"><%#Item.IDNumber %></div>
                         <!--<div style="display: inline-block; width: 40px"><button type="button" style="float: right; margin-top: 0px" class="btn btn-danger btn-small del_addr_row" title="删除"><i class="icon-trash icon-white"></i></button>  </div>     -->
                     </label>
                 </div>

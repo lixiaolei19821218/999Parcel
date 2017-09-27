@@ -48,7 +48,7 @@
                     <li><a href="RechargeList.aspx" runat="server" id="total">充值明细</a></li>
                     <li><a href="Recharge.aspx" runat="server" id="rechange">我要充值</a></li>
                     <li><a href="~/cart/Paid.aspx" runat="server" id="parcel">我的订单</a></li>
-                    <!--<li><a href="" runat="server" id="addmoney">补款记录</a></li>
+                    <li><a href="Compensate.aspx" runat="server" id="addmoney">补退款记录</a></li>
                     <li><a href="" runat="server" id="claim">索赔中心</a></li>-->
                     <li><a href="Default.aspx" class="" runat="server" id="personal">个人资料</a></li>
                     <!--<li><a href="" runat="server" id="reset">重置密码</a></li>-->
