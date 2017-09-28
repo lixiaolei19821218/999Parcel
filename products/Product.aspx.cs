@@ -717,7 +717,8 @@ public partial class products_Product : System.Web.UI.Page
 
     public string CheckIDNumber(string name, string number)
     {
-        IDNumber idNumber = repo.Context.IDNumbers.FirstOrDefault(i => i.Number == number);
+        UK_ExpressEntities ef = new UK_ExpressEntities();
+        IDNumber idNumber = ef.IDNumbers.FirstOrDefault(i => i.Number == number);
         if (idNumber == null)
         {
             string url = string.Format("http://op.juhe.cn/idcard/query?key=0f2dc8c56cbce8c6e0c9364191bb6f32&idcard={0}&realname={1}", number, name);
