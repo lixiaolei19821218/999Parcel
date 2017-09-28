@@ -524,10 +524,14 @@ public partial class cart_Cart : System.Web.UI.Page
 
             if (res.Msg == "success")
             {
+                Thread labelThread = new Thread(GetTTKDLabelThread) { IsBackground = true };
+                labelThread.Start(new object[] { res.Data.OrderNum, type });
                 r.SuccessPaid = true;
                 r.WMLeaderNumber = res.Data.OrderNum;
-               
-                string path = GetTTKDLabel(res.Data.OrderNum, type);
+                string path = path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, res.Data.OrderNum);
+                //string path = GetTTKDLabel(res.Data.OrderNum, type);
+
+
                 r.WMLeaderPdf = path;
                 for (int i = 0; i < r.Packages.Count; i++)
                 {
@@ -578,6 +582,14 @@ public partial class cart_Cart : System.Web.UI.Page
             path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, orderNum);
         }
         return path;
+    }
+
+    public void GetTTKDLabelThread(object parameter)
+    {
+        object[] parameters = parameter as object[];
+        string orderNum = parameters[0] as string;
+        TTKDType type = (TTKDType)parameters[1];
+        GetTTKDLabel(orderNum, type);
     }
 
     private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")
