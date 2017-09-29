@@ -82,6 +82,7 @@ public static class EmailService
 
     public static void SendEmailAync(string mailTo, string mailSubject, string mailContent, params string[] attachmentPaths)
     {
+        Thread.Sleep(10000);//wait pdf to generate.
         List<string> mails = new List<string>();
         mails.Add(mailTo);
         Thread sendThread = new Thread(SendThreadMethod);

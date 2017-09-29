@@ -531,7 +531,6 @@ public partial class cart_Cart : System.Web.UI.Page
                 string path = path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, res.Data.OrderNum);
                 //string path = GetTTKDLabel(res.Data.OrderNum, type);
 
-
                 r.WMLeaderPdf = path;
                 for (int i = 0; i < r.Packages.Count; i++)
                 {
@@ -540,6 +539,8 @@ public partial class cart_Cart : System.Web.UI.Page
                     p.TrackNumber = res.Data.Mail_Nums[i];
                     p.Pdf = path;
                 }
+
+                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), "请查收您在999Parcel的订单。", new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
             }
             else
             {
@@ -579,7 +580,7 @@ public partial class cart_Cart : System.Web.UI.Page
             FileStream file = new FileStream(label, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             file.Write(stream, 0, stream.Length);
             file.Close();
-            path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, orderNum);
+            path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, orderNum);            
         }
         return path;
     }
