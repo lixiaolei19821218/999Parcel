@@ -91,8 +91,8 @@ function addAddr() {
             pickup = 0.0;
         }
         else {
-            $('#pickup_price').text('£2.00');
-            pickup = 2.0;
+            $('#pickup_price').text('£' + 2.0 * count);
+            pickup = 2.0 * count;
         }
     }
     else {
@@ -140,8 +140,8 @@ function delAddr() {
             pickup = 0.0;
         }
         else {
-            $('#pickup_price').text('£2.00');
-            pickup = 2.0;
+            $('#pickup_price').text('£' + 2.0 * count);
+            pickup = 2.0 * count;
         }
     }
     else {
@@ -281,8 +281,8 @@ function delParcel() {
             pickup = 0.0;
         }
         else {
-            $('#pickup_price').text('£2.00');
-            pickup = 2.0;
+            $('#pickup_price').text('£' + 2.0 * count);
+            pickup = 2.0 * count;
         }
     }
     else {
@@ -347,8 +347,8 @@ function clone() {
             pickup = 0.0;
         }
         else {
-            $('#pickup_price').text('£2.00');
-            pickup = 2.0;
+            $('#pickup_price').text('£' + (2.0 * count));
+            pickup = 2.0 * count;
         }
     }
     else {
