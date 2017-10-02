@@ -199,6 +199,33 @@ public partial class products_Product : System.Web.UI.Page
         }
         else
         {
+            foreach (Recipient r in order.Recipients)
+            {
+                foreach (Package p in r.Packages)
+                {
+                    p.DeliverCost = sv.GetPackageDeliverPrice(p);
+                    p.FinalCost = p.DeliverCost;
+                }
+            }
+            order.DeliverPrice = sv.GetDeliverPrice(order);
+
+            //计算折扣
+            MembershipUser user = Membership.GetUser();
+            var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
+            if (discount != null)
+            {
+                repo.Context.Entry<Discount>(discount).Reload();
+                foreach (Recipient r in order.Recipients)
+                {
+                    foreach (Package p in r.Packages)
+                    {
+                        p.Discount = discount.Value;
+                        p.FinalCost = p.DeliverCost - p.Discount;
+                    }
+                }
+            }
+            order.Discount = order.Recipients.Sum(r => r.Packages.Sum(p => p.Discount));
+            order.Cost = order.PickupPrice + order.DeliverPrice - order.Discount;
             LabelError.Visible = true;
             LabelError.Text = msg;
         }
