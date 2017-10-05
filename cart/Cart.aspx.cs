@@ -523,13 +523,16 @@ public partial class cart_Cart : System.Web.UI.Page
             var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
 
             if (res.Msg == "success")
-            {
+            {/*
                 Thread labelThread = new Thread(GetTTKDLabelThread) { IsBackground = true };
                 labelThread.Start(new object[] { res.Data.OrderNum, type });
-                r.SuccessPaid = true;
+                
                 r.WMLeaderNumber = res.Data.OrderNum;
                 string path = path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, res.Data.OrderNum);
-                //string path = GetTTKDLabel(res.Data.OrderNum, type);
+                
+              * */
+                r.SuccessPaid = true;
+                string path = GetTTKDLabel(res.Data.OrderNum, type);
 
                 r.WMLeaderPdf = path;
                 for (int i = 0; i < r.Packages.Count; i++)
