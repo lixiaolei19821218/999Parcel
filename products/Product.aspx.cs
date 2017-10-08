@@ -53,7 +53,7 @@ public partial class products_Product : System.Web.UI.Page
                 int serviceId;
                 if (int.TryParse(Request["serviceId"], out serviceId))
                 {
-                    Service service = repo.Context.Services.Find(serviceId);                    
+                    Service service = repo.Context.Services.FirstOrDefault(s => s.Id == serviceId);                    
                     if (service == null)
                     {
                         Response.Redirect("/");
