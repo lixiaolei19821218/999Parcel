@@ -71,21 +71,26 @@ public partial class cart_Cart : System.Web.UI.Page
         }
 
         balance = apUser.Balance;
-        totalPrice = normalOrders.Sum(o => o.Cost.Value);       
+        totalPrice = normalOrders.Sum(o => o.Cost.Value);
         //totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
 
         //normalField.Visible = normalOrders == null || normalOrders.Count() != 0 ? true : false;
         //sheffieldField.Visible = sheffieldOrders == null || sheffieldOrders.Count() != 0 ? true : false;
+        int totalNonePickupFree = 0;
         foreach (Order o in normalOrders)
         {
             if (o.Service.PickUpCompany.Contains("999 Parcel") || o.Service.PickUpCompany.Contains("999Parcel"))
             {
                 total999PickupCount += o.Recipients.Sum(r => r.Packages.Count);
+                if (o.PickupPrice >= 0m)
+                {
+                    totalNonePickupFree += o.Recipients.Sum(r => r.Packages.Count);
+                }
             }
         }
         if (total999PickupCount >= 3)
         {
-            totalPrice -= 2m * total999PickupCount;
+            totalPrice -= 2m * totalNonePickupFree;
         }
     }
 
@@ -543,7 +548,8 @@ public partial class cart_Cart : System.Web.UI.Page
                     p.Pdf = path;
                 }
 
-                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), "请查收您在999Parcel的订单。", new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
+                string mailBody = Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", r.Order.Id));
+                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
             }
             else
             {
@@ -1590,7 +1596,7 @@ public partial class cart_Cart : System.Web.UI.Page
                     {
                         PayOrders(l, false);
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         lbmessage.Text = "付款失败，请稍后再试。";
                         lbmessage.ForeColor = Color.Red;

@@ -6,7 +6,8 @@
     System.Timers.Timer myTimer;
     string _999parcelBpost;
     string ukmailBpost;
-    System.IO.StreamReader sr1, sr2;
+    string mailbody;
+    System.IO.StreamReader sr1, sr2, sr3;
     UK_ExpressEntities entities = new UK_ExpressEntities();
     
     void Application_Start(object sender, EventArgs e) 
@@ -29,6 +30,10 @@
         myTimer.Enabled = true;
 
         myTimer.AutoReset = true;  */
+
+        sr3 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/Mail.html", Encoding.UTF8);        
+        Application["MailBody"] = sr3.ReadToEnd();        
+        sr3.Close();
     }
 
     void myTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
