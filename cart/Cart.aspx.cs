@@ -82,7 +82,7 @@ public partial class cart_Cart : System.Web.UI.Page
             if (o.Service.PickUpCompany.Contains("999 Parcel") || o.Service.PickUpCompany.Contains("999Parcel"))
             {
                 total999PickupCount += o.Recipients.Sum(r => r.Packages.Count);
-                if (o.PickupPrice >= 0m)
+                if (o.PickupPrice > 0m)
                 {
                     totalNonePickupFree += o.Recipients.Sum(r => r.Packages.Count);
                 }
