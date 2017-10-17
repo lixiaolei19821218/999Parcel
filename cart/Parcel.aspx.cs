@@ -31,7 +31,15 @@ public partial class cart_Parcel : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string user = Membership.GetUser().UserName;
-        packages = repo.Context.Packages.Where(p => p.Recipient.Order.User == user && p.Status == "SUCCESS");
+        string content = Request.QueryString["content"];
+        if (content == null)
+        {
+            packages = repo.Context.Packages.Where(p => p.Recipient.Order.User == user && p.Status == "SUCCESS");
+        }
+        else
+        {
+            packages = repo.Context.Packages.Where(p => p.Recipient.Order.User == user && p.TrackNumber == content);
+        }
     }
 
     public IEnumerable<Package> GetPackages()
@@ -172,5 +180,11 @@ public partial class cart_Parcel : System.Web.UI.Page
         }
 
         #endregion
+    }
+
+    protected void FindParcel_Click(object sender, EventArgs e)
+    {
+        string content = Request.Form.Get("content").Trim();
+        Response.Redirect(string.Format("/admin/Parcel.aspx?content={0}", content));
     }
 }

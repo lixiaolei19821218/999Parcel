@@ -11,7 +11,10 @@
    
     <div style="margin-top: 15px; background-color: #fff; padding: 15px">
         <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
-
+            <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px">
+                <input type="text" style="margin: 10px 0; width: 30%; height: 30px" placeholder="运单号" id="content" name="content" />
+                <asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="查询 &gt;" ID="FindParcel" OnClick="FindParcel_Click"/>              
+            </div>  
             <table class="table table-orders" style="font-size:small;">
                 <asp:Repeater ID="Rpt" runat="server" ItemType="Package" SelectMethod="GetPageApplys">
                     <HeaderTemplate>

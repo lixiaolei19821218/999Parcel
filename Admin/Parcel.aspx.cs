@@ -28,8 +28,16 @@ public partial class Admin_Parcel : System.Web.UI.Page
     private IEnumerable<Package> packages;
 
     protected void Page_Load(object sender, EventArgs e)
-    {        
-        packages = repo.Context.Packages.Where(p => p.Status == "SUCCESS");
+    {
+        string content = Request.QueryString["content"];
+        if (content == null)
+        {
+            packages = repo.Context.Packages.Where(p => p.Status == "SUCCESS");
+        }
+        else
+        {
+            packages = repo.Context.Packages.Where(p => p.TrackNumber == content);
+        }
     }
    
 
@@ -151,5 +159,11 @@ public partial class Admin_Parcel : System.Web.UI.Page
         }
 
         #endregion
+    }
+
+    protected void FindParcel_Click(object sender, EventArgs e)
+    {
+        string content = Request.Form.Get("content").Trim();
+        Response.Redirect(string.Format("/admin/Parcel.aspx?content={0}", content));
     }
 }

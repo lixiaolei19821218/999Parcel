@@ -11,9 +11,15 @@
    
     <div style="margin-top: 15px; background-color: #fff; padding: 15px">
         <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
-            
-                
+            <div class="mg1">            
+            <div class="rds2" style="background-color: #fff; padding-left: 0px; padding-right: 20px">
+                <input type="text" style="margin: 10px 0; width: 30%; height: 30px" placeholder="运单号" id="content" name="content" />
+                <asp:Button runat="server" CssClass="btn btn-info" Style="margin-bottom: 3px; line-height: 1" Text="查询 &gt;" ID="FindParcel" OnClick="FindParcel_Click" />
                 <a href="/admin/CheckApply.aspx" style="float: right;margin: 15px 0;">返回管理页</a>
+            </div>           
+        </div>
+                
+               
                 
             
           
@@ -23,14 +29,13 @@
                         <tr>
                             <th class="tac">运单号</th>
                             <th class="tac">用户名</th>
-                            <th class="tac">收件人</th>
-                            
+                            <th class="tac">收件人</th>                            
                             <th class="tac">收件人电话</th>
                             <th class="tac">重量</th>   
                             <th class="tac">价格</th> 
                             <th class="tac">下单时间</th>                          
                             <th class="tac">面单</th>
-                           
+                            <th class="tac">赔付/补交</th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -46,7 +51,9 @@
                             <td class="tac">
                                 <a href="/<%#Item.Pdf %>">下载</a>
                             </td>
-                           
+                            <td class="tac">
+                                <a href="/Admin/Compensate.aspx?id=<%#Item.Id %>">赔付/补交</a>
+                            </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
