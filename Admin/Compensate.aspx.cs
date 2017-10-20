@@ -64,21 +64,21 @@ public partial class Admin_Compensate : System.Web.UI.Page
     {
         Compensate c = new Compensate() { Id = Package.Id, Value = decimal.Parse(add.Value) };
         repo.Context.Compensates.Add(c);
-        string username = Membership.GetUser().UserName;
+        string username = Package.Recipient.Order.User;
         aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);
         user.Balance += decimal.Parse(add.Value);
         repo.Context.SaveChanges();
-        Response.Redirect("/admin/parcel.aspx");
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void ButtonSub_Click(object sender, EventArgs e)
     {
-        Repay r = new Repay() { Id = Package.Id, Weight = decimal.Parse(txtHeight.Value), Length = decimal.Parse(txtLength.Value), Width = decimal.Parse(txtWidth.Value), Height = decimal.Parse(txtHeight.Value), Value = decimal.Parse(sub.Value) };
+        Repay r = new Repay() { Id = Package.Id, Weight = decimal.Parse(txtWeight.Value), Length = decimal.Parse(txtLength.Value), Width = decimal.Parse(txtWidth.Value), Height = decimal.Parse(txtHeight.Value), Value = decimal.Parse(sub.Value) };
         repo.Context.Repays.Add(r);
-        string username = Membership.GetUser().UserName;
+        string username = Package.Recipient.Order.User;
         aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);
         user.Balance -= decimal.Parse(sub.Value);
         repo.Context.SaveChanges();
-        Response.Redirect("/admin/parcel.aspx");
+        Response.Redirect(Request.RawUrl);
     }
 }

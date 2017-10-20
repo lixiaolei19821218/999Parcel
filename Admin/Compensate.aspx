@@ -57,10 +57,13 @@
             </tr>
         </table>
         <hr />
-        <div class="mg1" style="float:right;">
-            <label runat="server" id="lbRepay" style="font-family: 'Microsoft YaHei UI';">运费补交</label><input type="number" id="sub" runat="server" style="width: 50px; margin-left: 5px; margin-right: 5px;" min="0.01" value="0.01" step="0.01" /><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonSub" OnClick="ButtonSub_Click" />
-            <label runat="server" id="lbCompensate" style="margin-left: 20px; font-family: 'Microsoft YaHei UI';">运费赔付</label><input id="add" runat="server" type="number" style="width: 50px; margin-left: 5px; margin-right: 5px;" min="0.01" value="0.01" step="0.01"/><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonAdd" OnClick="ButtonAdd_Click" />
-            <asp:Label runat="server" ID="message" ForeColor="Green" />
-        </div>
+        
+        <div class="mg1">
+            <a href="Parcel.aspx">返回已完成包裹</a>
+            <div style="float:right;">
+            <label runat="server" id="lbRepay" style="font-family: 'Microsoft YaHei UI';">运费补交</label><input type="number" id="sub" runat="server" style="width: 60px; margin-left: 5px; margin-right: 5px;" min="0.01" value="0.01" step="0.01" /><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonSub" OnClick="ButtonSub_Click" />
+            <label runat="server" id="lbCompensate" style="margin-left: 20px; font-family: 'Microsoft YaHei UI';">运费赔付</label><input id="add" runat="server" type="number" style="width: 60px; margin-left: 5px; margin-right: 5px;" min="0.01" value="0.01" step="0.01"/><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonAdd" OnClick="ButtonAdd_Click" />
+                    </div>
+            </div>
     </form>
 </asp:Content>
