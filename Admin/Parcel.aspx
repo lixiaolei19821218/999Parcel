@@ -33,7 +33,9 @@
                             <th class="tac">收件人电话</th>
                             <th class="tac">重量</th>   
                             <th class="tac">价格</th> 
-                            <th class="tac">下单时间</th>                          
+                            <th class="tac">下单时间</th>  
+                            <th class="tac">赔付金额</th>   
+                            <th class="tac">补交金额</th>                     
                             <th class="tac">面单</th>
                             <th class="tac">赔付/补交</th>
                         </tr>
@@ -48,6 +50,8 @@
                             <td class="tac"><%#Item.Weight %></td>                            
                             <td class="tac"><%#Item.FinalCost == 0 ? Item.DeliverCost : Item.FinalCost %></td>
                             <td class="tac"><%#Item.Recipient.Order.OrderTime %></td>
+                            <td class="tac" align="center"><%#Item.Compensate == null ? "-" : Item.Compensate.Value.ToString("F2") %></td>
+                            <td class="tac" align="center"><%#Item.Repay == null ? "-" : Item.Repay.Value.ToString("F2") %></td>
                             <td class="tac">
                                 <a href="/<%#Item.Pdf %>">下载</a>
                             </td>

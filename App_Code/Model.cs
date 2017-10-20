@@ -25,6 +25,14 @@ public partial class aspnet_User
     public string CellPhone { get; set; }
 }
 
+public partial class Compensate
+{
+    public int Id { get; set; }
+    public decimal Value { get; set; }
+
+    public virtual Package Package { get; set; }
+}
+
 public partial class Discount
 {
     public int Id { get; set; }
@@ -132,6 +140,8 @@ public partial class Package
 
     public virtual Recipient Recipient { get; set; }
     public virtual ICollection<PackageItem> PackageItems { get; set; }
+    public virtual Compensate Compensate { get; set; }
+    public virtual Repay Repay { get; set; }
 }
 
 public partial class PackageItem
@@ -276,6 +286,18 @@ public partial class Reinforce
     public string PictureLink { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; }
+}
+
+public partial class Repay
+{
+    public int Id { get; set; }
+    public decimal Weight { get; set; }
+    public decimal Length { get; set; }
+    public decimal Width { get; set; }
+    public decimal Height { get; set; }
+    public decimal Value { get; set; }
+
+    public virtual Package Package { get; set; }
 }
 
 public partial class Service

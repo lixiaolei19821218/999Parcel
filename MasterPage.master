@@ -64,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              &nbsp;&nbsp;|&nbsp;&nbsp;            
             <a href="/our-services/dg/" style="color:black;">奶粉包税</a>
              &nbsp;&nbsp;|&nbsp;&nbsp;            
-            <a href="/userguide/MilkPowder.aspx" style="color:black;">新手指南</a>
+            <a href="/userguide/faq.aspx" style="color:black;">新手指南</a>
         </div>
         <div style="clear: both"></div>
     </div>
@@ -137,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li role="presentation"><a>仓库地址</a></li>
                                     </ul>
                                 </li>
-                                <li class="hvr-bounce-to-bottom"><a href="/faq/" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">常见问题</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="/userguide/faq.aspx" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">常见问题</a></li>
                                 <li class="hvr-bounce-to-bottom"><a href="/contact-us/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">联系我们</a></li>
                             
                             </ul>
@@ -207,7 +207,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <div class="footer-bottom">
         <div class="container">
-            <p>Copyright &copy; 2016. 999 Parcel Ltd. All rights reserved.</p>
+            <p>Copyright &copy; 2017. 999 Parcel Ltd. All rights reserved.</p>
         </div>
     </div>
     <!-- //footer -->

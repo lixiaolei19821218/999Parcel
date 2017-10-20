@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="914f643574f44fc69d626da314bb1769" Name="Diagram1" ZoomLevel="50">
+      <Diagram DiagramId="914f643574f44fc69d626da314bb1769" Name="Diagram1" ZoomLevel="65">
         <EntityTypeShape EntityType="UK_ExpressModel.Table" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="UK_ExpressModel.Order" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="UK_ExpressModel.Package" Width="1.5" PointX="7.5" PointY="1.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.Package" Width="1.5" PointX="20.125" PointY="0.625" />
         <EntityTypeShape EntityType="UK_ExpressModel.PriceItem" Width="1.5" PointX="5.75" PointY="5.75" />
         <EntityTypeShape EntityType="UK_ExpressModel.PriceList" Width="1.5" PointX="5.75" PointY="9" />
-        <EntityTypeShape EntityType="UK_ExpressModel.Recipient" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="UK_ExpressModel.Recipient" Width="1.5" PointX="5.375" PointY="0.875" />
         <EntityTypeShape EntityType="UK_ExpressModel.Reinforce" Width="1.5" PointX="0.75" PointY="2.25" />
         <EntityTypeShape EntityType="UK_ExpressModel.Service" Width="1.5" PointX="0.75" PointY="6.875" />
         <AssociationConnector Association="UK_ExpressModel.FK_OrderID" />
@@ -19,8 +19,8 @@
         <AssociationConnector Association="UK_ExpressModel.FK_RecipientID" />
         <AssociationConnector Association="UK_ExpressModel.FK_PriceListID" />
         <AssociationConnector Association="UK_ExpressModel.FK_PriceListID_Service" />
-        <EntityTypeShape EntityType="UK_ExpressModel.SheffieldOrder" Width="1.5" PointX="8.375" PointY="5.875" />
-        <EntityTypeShape EntityType="UK_ExpressModel.SheffieldService" Width="1.5" PointX="8.375" PointY="8.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.SheffieldOrder" Width="1.5" PointX="16.25" PointY="8.25" />
+        <EntityTypeShape EntityType="UK_ExpressModel.SheffieldService" Width="1.5" PointX="8" PointY="11.5" />
         <AssociationConnector Association="UK_ExpressModel.FK_SheffieldOrderID" />
         <AssociationConnector Association="UK_ExpressModel.FK_SheffieldServiceID" />
         <AssociationConnector Association="UK_ExpressModel.FK_PriceListID_Orders" />
@@ -42,6 +42,10 @@
         <EntityTypeShape EntityType="UK_ExpressModel.Provider" Width="1.5" PointX="12.375" PointY="9.875" />
         <AssociationConnector Association="UK_ExpressModel.FK_ProviderID" />
         <EntityTypeShape EntityType="UK_ExpressModel.TTKDMilkPowder" Width="1.5" PointX="12.375" PointY="3.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.Compensate" Width="1.5" PointX="22.375" PointY="2.625" />
+        <AssociationConnector Association="UK_ExpressModel.FK_Compensates_Packages" />
+        <EntityTypeShape EntityType="UK_ExpressModel.Repay" Width="1.5" PointX="22.375" PointY="5.875" />
+        <AssociationConnector Association="UK_ExpressModel.FK_Repays_Packages" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

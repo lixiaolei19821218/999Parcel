@@ -1,14 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Compensate.aspx.cs" Inherits="Admin_Compensate" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-    <title>运费赔付补交 | 诚信物流-可靠,快捷,实惠</title>
-    <link href="../static/bootstrap3/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="../static/bootstrap3/js/jquery-1.11.1.min.js"></script>
-    <script src="../static/bootstrap3/js/bootstrap.min.js"></script>
-    <script>$(function () {
-    $("[data-toggle='popover']").popover();
-});
-    </script>
+    <title>运费赔付补交 | 诚信物流-可靠,快捷,实惠</title>    
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -53,20 +46,20 @@
             <tr>
                 <th class="tac" style="vertical-align: middle;">实测</th>
                 <td class="tac">
-                    <input type="number" style="width: 50px;" value="<%:Package.Weight %>" /></td>
+                   <input id="txtWeight" runat="server" type="number" style="width: 50px;" min="0.1" step="0.1"/></td>
                 <td class="tac">
-                    <input type="number" style="width: 50px;" value="<%:Package.Length %>" /></td>
+                    <input id="txtLength" runat="server" type="number" style="width: 50px;" min="0.1" step="0.1" /></td>
                 <td class="tac">
-                    <input type="number" style="width: 50px;" value="<%:Package.Width %>" /></td>
+                    <input id="txtWidth" runat="server" type="number" style="width: 50px;" min="0.1" step="0.1" /></td>
                 <td class="tac">
-                    <input type="number" style="width: 50px;" value="<%:Package.Height %>" /></td>
+                    <input id="txtHeight" runat="server" type="number" style="width: 50px;" min="0.1" step="0.1" /></td>
                 <td class="tac"></td>
             </tr>
         </table>
         <hr />
         <div class="mg1" style="float:right;">
-            <label style="font-family: 'Microsoft YaHei UI';">运费补交</label><input type="number" id="sub" runat="server" style="width: 50px; margin-left: 5px; margin-right: 5px;" min="0" value="0" /><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonSub" />
-            <label style="margin-left: 20px; font-family: 'Microsoft YaHei UI';">运费赔付</label><input id="add" runat="server" type="number" style="width: 50px; margin-left: 5px; margin-right: 5px;" min="0" value="0" /><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonAdd" />
+            <label runat="server" id="lbRepay" style="font-family: 'Microsoft YaHei UI';">运费补交</label><input type="number" id="sub" runat="server" style="width: 50px; margin-left: 5px; margin-right: 5px;" min="0.01" value="0.01" step="0.01" /><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonSub" OnClick="ButtonSub_Click" />
+            <label runat="server" id="lbCompensate" style="margin-left: 20px; font-family: 'Microsoft YaHei UI';">运费赔付</label><input id="add" runat="server" type="number" style="width: 50px; margin-left: 5px; margin-right: 5px;" min="0.01" value="0.01" step="0.01"/><asp:Button runat="server" CssClass="btn btn-danger btn-small del" Style="margin-bottom: 3px; line-height: 1" Text="确定" ID="ButtonAdd" OnClick="ButtonAdd_Click" />
             <asp:Label runat="server" ID="message" ForeColor="Green" />
         </div>
     </form>
