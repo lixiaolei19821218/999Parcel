@@ -63,7 +63,7 @@
         <div id="container-main" style="margin-top: 20px; width: 860px; margin-left: -20px;">
             <h2>充值明细</h2>
             <div class="sub-nav">
-                <span class="rt">账户余额<em>£<%:GetTotalApplyMoney() %></em></span>
+                <span class="rt">账户余额<em>£<%:GetBalance() %></em></span>
                 <a href="Recharge.aspx" class="back">充值</a>
             </div>
             <div class="uitopb uitopb-border mt10" style="border-top: 1px solid #CCC;">

@@ -51,6 +51,12 @@ public partial class accounts_UserCentre_RechargeList : System.Web.UI.Page
         }
     }
 
+    public decimal GetBalance()
+    {
+        string username = Membership.GetUser().UserName;
+        return repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username).Balance;
+    }
+
     public IEnumerable<RechargeApply> GetPageApplys()
     {
         string user = Membership.GetUser().UserName;

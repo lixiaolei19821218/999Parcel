@@ -42,7 +42,7 @@
                             <td class="tac"><%#Item.FinalCost == 0 ? Item.DeliverCost : Item.FinalCost %></td>
                             <td class="tac"><%#Item.Recipient.Order.OrderTime %></td>
                             <td class="tac" style="text-align:center;"><%#Item.Compensate == null ? "-" : Item.Compensate.Value.ToString("F2") %></td>
-                            <td class="tac" style="text-align:center;"><%#Item.Repay == null ? "-" : Item.Repay.Value.ToString("F2") %></td>
+                            <td class="tac" style="text-align:center;"><a href="Repay.aspx?id=<%#Item.Id %>"><%#Item.Repay == null ? "-" : Item.Repay.Value.ToString("F2") %></a></td>
                             <td class="tac">
                                 <a href="/<%#Item.Pdf %>">下载</a>
                             </td>
