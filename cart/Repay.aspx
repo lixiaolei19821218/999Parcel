@@ -49,7 +49,7 @@
                 <td class="tac"><%:Package.Repay.Length %></td>
                 <td class="tac"><%:Package.Repay.Width %></td>
                 <td class="tac"><%:Package.Repay.Height %></td>
-                <td class="tac">赔付：£<%:Package.Repay.Value.ToString("F2") %></td>
+                <td class="tac">补交：£<%:Package.Repay.Value.ToString("F2") %></td>
             </tr>
         </table>
         <hr />
