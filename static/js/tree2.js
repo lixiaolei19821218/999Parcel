@@ -36,6 +36,7 @@ function updateForms(formClass, prefix) {
                 regex = /id_addr-(\d+)-/,
                 addrId = addrIdName.match(regex)[1];
             forms.eq(i).find('[id$=address_id]').val(addrId);
+            forms.eq(i).find('input[name$=-content-TOTAL_FORMS]').val(forms.eq(i).find('.mx').length);
         }
     }
 }
