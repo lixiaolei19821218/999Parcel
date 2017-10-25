@@ -39,7 +39,7 @@
                             <tr>
                                 <td class="tac"><%#Item.UserName %></td>
                                 <td class="tac"><%#Item.CreationDate %></td>
-                                <td class="tac"><%#Item.Email %></td>
+                                <td class="tac"><a href="mailto:<%#Item.Email %>"><%#Item.Email %></a></td>
                                 <td class="tac"><%#GetUserOrderCount(Item.UserName)%></td>
                                 <td class="tac"><%#GetUserBalance(Item.UserName) %></td>
                                 <td class="tac"><%#Item.IsApproved ? "已激活" : "未激活" %></td>                                
