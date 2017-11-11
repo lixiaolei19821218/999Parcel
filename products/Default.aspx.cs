@@ -140,17 +140,29 @@ public partial class product_Default : System.Web.UI.Page
             else
             {
                 IEnumerable<ServiceView> sv;
-                if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 7 && p.Weight <= 8)))
+                if (provider.Name == "自营奶粉包税")
                 {
-                    sv = provider.Services.Where(s => s.Valid && s.Name.Contains("自营奶粉包税6罐")).Select(s => new ServiceView(s));
+                    if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 7 && p.Weight <= 8)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && s.Name.Contains("自营奶粉包税6罐")).Select(s => new ServiceView(s));
+                    }
+                    else if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 4 && p.Weight <= 5)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && s.Name.Contains("自营奶粉包税4罐")).Select(s => new ServiceView(s));
+                    }
+                    else
+                    {
+                        //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                        sv = new List<ServiceView>();
+                    }
                 }
-                else if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 4 && p.Weight <= 5)))
+                else if (provider.Name == "Parcelforce")
                 {
-                    sv = provider.Services.Where(s => s.Valid && s.Name.Contains("自营奶粉包税4罐")).Select(s => new ServiceView(s));
+                    //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                    sv = provider.Services.Where(s => s.Provider.Name == "Parcelforce").Select(s => new ServiceView(s));
                 }
                 else
                 {
-                    //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
                     sv = new List<ServiceView>();
                 }
                 //var sv = repo.Context.Services.Where(s => s.ProviderId == providerId).Select(s => new ServiceView(s));
@@ -165,6 +177,7 @@ public partial class product_Default : System.Web.UI.Page
 
     public string GetHtml(ServiceView sv)
     {
+        /*
         if (sv.Name.Contains("Parcelforce"))
         {
             return "<span style=\"font - family:YouYuan\">请联系客服</span>";
@@ -173,6 +186,8 @@ public partial class product_Default : System.Web.UI.Page
         {
             return string.Format("<button class=\"btn btn-warning\" name=\"order\" value=\"{0}\" type=\"submit\">购买</button>", sv.Id);
         }
+        */
+        return string.Format("<button class=\"btn btn-warning\" name=\"order\" value=\"{0}\" type=\"submit\">购买</button>", sv.Id);
     }
     /*
     public IEnumerable<ServiceView> Get4PXServices()
