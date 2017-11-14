@@ -267,6 +267,8 @@ public partial class Recipient
     public string IDNumber { get; set; }
     public string Province { get; set; }
     public string District { get; set; }
+    public string PyProvince { get; set; }
+    public string PyDistrict { get; set; }
 
     public virtual Order Order { get; set; }
     public virtual ICollection<Package> Packages { get; set; }

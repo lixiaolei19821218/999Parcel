@@ -217,6 +217,8 @@
           <Property Name="IDNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Province" Type="nvarchar" MaxLength="50" />
           <Property Name="District" Type="nvarchar" MaxLength="50" />
+          <Property Name="PyProvince" Type="nvarchar" MaxLength="50" />
+          <Property Name="PyDistrict" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Reinforces">
           <Key>
@@ -1500,6 +1502,8 @@
           <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Province" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="District" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PyProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PyDistrict" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Reinforce">
           <Key>
@@ -2117,6 +2121,8 @@
           <EntitySetMapping Name="Recipients">
             <EntityTypeMapping TypeName="UK_ExpressModel.Recipient">
               <MappingFragment StoreEntitySet="Recipients">
+                <ScalarProperty Name="PyDistrict" ColumnName="PyDistrict" />
+                <ScalarProperty Name="PyProvince" ColumnName="PyProvince" />
                 <ScalarProperty Name="District" ColumnName="District" />
                 <ScalarProperty Name="Province" ColumnName="Province" />
                 <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />

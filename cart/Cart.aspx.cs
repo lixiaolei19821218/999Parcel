@@ -279,19 +279,15 @@ public partial class cart_Cart : System.Web.UI.Page
 
                     break;
                 case "Parcelforce Economy - 上门取件":
-                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyPickup, attachmentPaths);
-                    break;
+                    
                 case "Parcelforce Priority - 上门取件":
-                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
-                    break;
+                   
                 case "Parcelforce Economy - 自送Depot":
-                    SendTo51Parcel(o, UKShipmentType.Send2Warehouse, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
-                    break;
+                    
                 case "Parcelforce Economy - 自送邮局":
-                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForceEconomyDropOff, attachmentPaths);
-                    break;
+                   
                 case "Parcelforce Priority - 自送邮局":
-                    SendTo51Parcel(o, UKShipmentType.ParcelForceUK, ServiceProvider.ParcelForcePriority, attachmentPaths);
+                    SendToPF(o);
                     break;
                 case "Bpost - 诚信物流取件":
                     //SendBpostLciFile(o);
@@ -600,6 +596,31 @@ public partial class cart_Cart : System.Web.UI.Page
         string orderNum = parameters[0] as string;
         TTKDType type = (TTKDType)parameters[1];
         GetTTKDLabel(orderNum, type);
+    }
+
+    public void SendToPF(Order order)
+    {
+        foreach (Recipient r in order.Recipients)
+        {
+            foreach (Package p in r.Packages)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("{\"Pacel\":");
+                sb.Append(string.Format("{\"weight\":{0},", p.Weight));
+                sb.Append(string.Format("\"length\":{0},", p.Length));
+                sb.Append(string.Format("\"height\":{0},", p.Height));
+                sb.Append(string.Format("\"width\":{0},", p.Weight));
+                sb.Append("\"Item\":[");
+                foreach (PackageItem i in p.PackageItems)
+                {
+                    sb.Append(string.Format("{\"name\":\"{0}\",\"number\":{1},\"value\":{2}},", i.Description, i.Count, i.UnitPrice));                    
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append("],");
+                sb.Append(string.Format("\"BillAddress\":\"{0} {1} {2} {3}\",", order.SenderCity, order.SenderAddress1, order.SenderAddress2, order.SenderAddress3).Trim());
+                sb.Append(string.Format("\"ShipAddress\":", r.PyProvince));
+            }
+        }
     }
 
     private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")
