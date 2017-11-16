@@ -319,7 +319,7 @@
                             </div>
                            <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_email">E-Mail</label>
-                                <input class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" value="<%:Order.SenderEmail %>" title="电子邮箱"/>                              
+                                <input class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" value="<%:Order.SenderEmail %>" title="电子邮箱" required="required"/>                              
 
 
                             </div>

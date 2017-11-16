@@ -313,17 +313,22 @@ public partial class products_Product : System.Web.UI.Page
             Recipient recipient = new Recipient();
             order.Recipients.Add(recipient);
             recipient.Name = Request.Form.Get(string.Format("addr-{0}-cn_name", i)).Trim();
+            recipient.PyName = Request.Form.Get(string.Format("hd_name{0}", i)).Trim();
 
             recipient.Province = Request.Form.Get(string.Format("addr-{0}-cn_province", i)).Trim();
+            recipient.PyProvince = Request.Form.Get(string.Format("hd_province{0}", i)).Trim();
             if (recipient.Province == "北京市" || recipient.Province == "天津市" || recipient.Province == "上海市" || recipient.Province == "重庆市")
             {
                 recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+                recipient.PyCity = Request.Form.Get(string.Format("hd_district{0}", i)).Trim();
                 recipient.District = " ";
             }
             else
             {
                 recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_city", i)).Trim();
                 recipient.District = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+                recipient.PyCity = Request.Form.Get(string.Format("hd_city{0}", i)).Trim();
+                recipient.PyDistrict = Request.Form.Get(string.Format("hd_district{0}", i)).Trim();
                 if (string.IsNullOrEmpty(recipient.District))
                 {
                     recipient.District = " ";
@@ -331,6 +336,7 @@ public partial class products_Product : System.Web.UI.Page
             }
 
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
+            recipient.PyAddress = Request.Form.Get(string.Format("hd_street{0}", i)).Trim();
             recipient.PhoneNumber = Request.Form.Get(string.Format("addr-{0}-phone", i)).Trim();
             recipient.ZipCode = Request.Form.Get(string.Format("addr-{0}-postcode", i)).Trim();           
             recipient.IDNumber = Request.Form.Get(string.Format("addr-{0}-idnumber", i)).Trim();

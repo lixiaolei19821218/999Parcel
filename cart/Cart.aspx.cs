@@ -604,6 +604,17 @@ public partial class cart_Cart : System.Web.UI.Page
         {
             foreach (Package p in r.Packages)
             {
+                string json = JsonConvert.SerializeObject(new {
+                    Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
+                    BillAddress = new { fullname_en = order.SenderName, city_en = order.SenderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
+                    ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
+                    serviceId = 27,
+                    type = 1,
+                    to = 1
+                });
+
+                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");
+
                 StringBuilder sb = new StringBuilder();
                 sb.Append("{\"Pacel\":");
                 sb.Append(string.Format("{\"weight\":{0},", p.Weight));

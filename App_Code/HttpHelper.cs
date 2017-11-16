@@ -11,7 +11,7 @@ using System.Web;
 /// </summary>
 public static class HttpHelper
 {
-    public static string HttpPost(string postUrl, string postData, string authorization = "")
+    public static string HttpPost(string postUrl, string postData, string authorization = "", string etoApikey = "")
     {
         Stream outstream = null;
         Stream instream = null;
@@ -30,11 +30,15 @@ public static class HttpHelper
             {
                 request.Headers.Add("Authorization", authorization);
             }
+            if (etoApikey != "")
+            {
+                request.Headers.Add("eto_apikey", etoApikey);
+            }
             request.CookieContainer = cookieContainer;
             request.AllowAutoRedirect = true;
             request.Method = "POST";
             request.Timeout = 1000 * 60 * 5;
-            request.ContentType = "text/json";
+            request.ContentType = "application/json";
             request.Headers.Add("charset", "utf-8");
             request.ContentLength = data.Length;
             
