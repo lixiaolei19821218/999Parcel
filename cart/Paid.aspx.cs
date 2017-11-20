@@ -266,9 +266,22 @@ public partial class cart_Paid : System.Web.UI.Page
                 file.BeginUpdate();
                 file.NameTransform = new MyNameTransfom();//通过这个名称格式化器，可以将里面的文件名进行一些处理。默认情况下，会自动根据文件的路径在zip中创建有关的文件夹。
 
-                foreach (Recipient r in order.Recipients)
+                if (order.Service.Name.Contains("自营奶粉包税"))
                 {
-                    file.Add(Server.MapPath("~/" + r.WMLeaderPdf));                    
+                    foreach (Recipient r in order.Recipients)
+                    {
+                        file.Add(Server.MapPath("~/" + r.WMLeaderPdf));
+                    }
+                }
+                else if (order.Service.Name.Contains("Parcelforce"))
+                {
+                    foreach (Recipient r in order.Recipients)
+                    {
+                        foreach (Package p in r.Packages)
+                        {
+                            file.Add(Server.MapPath("~/" + p.Pdf));
+                        }
+                    }
                 }
 
                 file.CommitUpdate();

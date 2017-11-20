@@ -385,7 +385,7 @@
                                 <input id="id_addr-0-id" name="addr-0-id" type="hidden" />
                                 <!-- recipient address -->
                                 <div style="padding-top: 10px"> 
-                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px" <%:ServiceView.Name.Contains("包税") ? "hidden=\"hidden\"" : "" %>>
+                                    <div class="py_fields" style="position: relative; background-color: #e1e1e1; min-height: 24px; display:normal; margin-left: 5px; margin-right: 5px; font-size: 13px" hidden="hidden" >
                                         <div style="float: left; width: 162px; padding-left: 60px" id="py_name<%#Container.ItemIndex %>"><%#Item.PyName %></div><input type="hidden" value="<%#Item.PyName %>" name="hd_name<%#Container.ItemIndex %>" id="hd_name<%#Container.ItemIndex %>"></input>
                                         <div style="float: left; width: 162px; padding-left: 28px" id="py_province<%#Container.ItemIndex %>"><%#Item.PyProvince %></div><input type="hidden" value="<%#Item.PyProvince %>" name="hd_province<%#Container.ItemIndex %>" id="hd_province<%#Container.ItemIndex %>"></input>
                                         <div style="float: left; width: 162px; padding-left: 28px" id="py_city<%#Container.ItemIndex %>"><%#Item.PyCity %></div><input type="hidden" value="<%#Item.PyCity %>" name="hd_city<%#Container.ItemIndex %>" id="hd_city<%#Container.ItemIndex %>"></input>
@@ -459,7 +459,7 @@
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" pattern="\d{17}(\d|x|X)" value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%> required oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" <%:ServiceView.Name.Contains("包税") ? "pattern=\"\\d{17}(\\d|x|X)\"" :  ""%> value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%> oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "" : "hidden=\"hidden\"" %> >
@@ -540,8 +540,8 @@
                                                         <div class="pd7 bold" >重量/尺寸</div>
                                                         <div class="ib pd7">
                                                             重量(kg)
-                                                            <div style="text-align:center">                                                                
-                                                                 <span class="input-small" id="id_parcel-0-weight" name="parcel-0-weight" style="width: 55px"><strong><%#Item.Weight %></strong></span>
+                                                            <div style="text-align:center">  
+                                                                <%#GetHtml(Item, "weight")%>
                                                             </div>
                                                         </div>
                                                         <div class="ib pd7">

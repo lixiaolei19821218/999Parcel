@@ -30,6 +30,7 @@ using ZXing;
 using System.Drawing;
 using ZXing.Common;
 using System.Dynamic;
+using ICSharpCode.SharpZipLib.Zip;
 
 public partial class cart_Cart : System.Web.UI.Page
 {
@@ -287,6 +288,8 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "Parcelforce Economy - 自送邮局":
                    
                 case "Parcelforce Priority - 自送邮局":
+
+                case "Parcelforce Luggage 大行李专线":
                     SendToPF(o);
                     break;
                 case "Bpost - 诚信物流取件":
@@ -600,39 +603,83 @@ public partial class cart_Cart : System.Web.UI.Page
 
     public void SendToPF(Order order)
     {
-        foreach (Recipient r in order.Recipients)
+        int sid = 0;
+        if (order.Service.Name.Contains("Parcelforce Economy"))
         {
+            sid = 27;
+        }
+        else if (order.Service.Name.Contains("Parcelforce Priority"))
+        {
+            sid = 22;
+        }
+        else if (order.Service.Name.Contains("Parcelforce Luggage"))
+        {
+            sid = 21;
+        }
+
+        List<string> oFiles = new List<string>();
+        foreach (Recipient r in order.Recipients)
+        {            
             foreach (Package p in r.Packages)
             {
-                string json = JsonConvert.SerializeObject(new {
-                    Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
-                    BillAddress = new { fullname_en = order.SenderName, city_en = order.SenderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
-                    ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
-                    serviceId = 27,
-                    type = 1,
-                    to = 1
-                });
-
-                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");
-
-                StringBuilder sb = new StringBuilder();
-                sb.Append("{\"Pacel\":");
-                sb.Append(string.Format("{\"weight\":{0},", p.Weight));
-                sb.Append(string.Format("\"length\":{0},", p.Length));
-                sb.Append(string.Format("\"height\":{0},", p.Height));
-                sb.Append(string.Format("\"width\":{0},", p.Weight));
-                sb.Append("\"Item\":[");
-                foreach (PackageItem i in p.PackageItems)
+                string json;
+                if (sid == 21)
                 {
-                    sb.Append(string.Format("{\"name\":\"{0}\",\"number\":{1},\"value\":{2}},", i.Description, i.Count, i.UnitPrice));                    
+                    json = JsonConvert.SerializeObject(new
+                    {
+                        Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
+                        BillAddress = new { fullname_en = order.SenderName, city_en = order.SenderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
+                        ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
+                        serviceId = sid,
+                        type = 1,
+                        to = 1,
+                        pickup = "1|" + order.PickupTime.Value.ToString("yyyy-MM-dd")
+                    });
                 }
-                sb.Remove(sb.Length - 1, 1);
-                sb.Append("],");
-                sb.Append(string.Format("\"BillAddress\":\"{0} {1} {2} {3}\",", order.SenderCity, order.SenderAddress1, order.SenderAddress2, order.SenderAddress3).Trim());
-                sb.Append(string.Format("\"ShipAddress\":", r.PyProvince));
+                else
+                {
+                    json = JsonConvert.SerializeObject(new
+                    {
+                        Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
+                        BillAddress = new { fullname_en = order.SenderName, city_en = order.SenderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
+                        ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
+                        serviceId = sid,
+                        type = 1,
+                        to = 1                        
+                    });
+                }
+                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");                
+                var res = JsonConvert.DeserializeAnonymousType(response, new { ems = string.Empty, status = string.Empty, shipmentId = string.Empty, label = new List<string>() });
+                if (res.status == "success")
+                {
+                    p.Status = "SUCCESS";
+                    p.TrackNumber = res.ems;
+
+                    List<string> files = new List<string>();
+                    foreach (string pdf in res.label)
+                    {
+                        files.Add(HttpHelper.Download(pdf, Membership.GetUser().UserName));                        
+                    }
+                    oFiles.AddRange(files);
+                    p.Pdf = HttpHelper.ZipFiles(files, Membership.GetUser().UserName, res.shipmentId);                    
+                }
+                else
+                {
+                    p.Status = "FAIL";
+                    p.Response = res.status;
+                }
             }
+            r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");
+        }
+
+        order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
+        if (order.SuccessPaid ?? false)
+        {
+            string mailBody = Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", order.Id));
+            EmailService.SendEmailAync(string.IsNullOrEmpty(order.SenderEmail) ? Membership.GetUser().Email : order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", order.Id), mailBody, oFiles.ToArray());
         }
     }
+    
 
     private void SendToBpost(Order order, string shipMethod = "LGINTBPMU")
     {

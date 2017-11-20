@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -91,5 +92,83 @@ public static class HttpHelper
 
         return retString;
 
+    }
+
+    public static string Download(string url, string username)
+    {
+        
+        System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(url);
+        System.Net.HttpWebResponse response = (System.Net.HttpWebResponse)request.GetResponse();
+        long totalBytes = response.ContentLength;
+        System.IO.Stream st = response.GetResponseStream();
+        string folder = string.Format("{0}files\\PF\\{1}", HttpRuntime.AppDomainAppPath, username);
+        if (!Directory.Exists(folder))
+        {
+            Directory.CreateDirectory(folder);
+        }
+        string filename = string.Format("{0}\\{1}", folder, request.RequestUri.Segments.Last());        
+        System.IO.Stream so = new System.IO.FileStream(filename, System.IO.FileMode.Create);
+        long totalDownloadedByte = 0;
+        byte[] by = new byte[1024];
+        int osize = st.Read(by, 0, (int)by.Length);
+        while (osize > 0)
+        {
+            totalDownloadedByte = osize + totalDownloadedByte;
+            so.Write(by, 0, osize);
+            osize = st.Read(by, 0, (int)by.Length);
+        }
+        so.Close();
+        st.Close();
+        return filename; 
+    }
+
+    public static string ZipFiles(List<string> files, string username, string id)
+    {
+        MemoryStream ms = new MemoryStream();
+        byte[] buffer = null;
+
+        using (ZipFile file = ZipFile.Create(ms))
+        {
+            file.BeginUpdate();
+            file.NameTransform = new MyNameTransfom();//通过这个名称格式化器，可以将里面的文件名进行一些处理。默认情况下，会自动根据文件的路径在zip中创建有关的文件夹。
+
+            foreach (string pdf in files)
+            {
+                file.Add(pdf);
+            }
+
+            file.CommitUpdate();
+
+            buffer = new byte[ms.Length];
+            ms.Position = 0;
+            ms.Read(buffer, 0, buffer.Length);
+        }
+
+        string folder = string.Format("", HttpRuntime.AppDomainAppPath, username);        
+        string zip = string.Format("{0}files\\PF\\{1}\\{2}.zip", HttpRuntime.AppDomainAppPath, username, id);
+
+        FileStream fs = new FileStream(zip, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        fs.Write(buffer, 0, buffer.Length);
+        fs.Close();
+
+        return string.Format("files/PF/{0}/{1}.zip", username, id);
+    }
+
+    public class MyNameTransfom : ICSharpCode.SharpZipLib.Core.INameTransform
+    {
+
+        #region INameTransform 成员
+
+        public string TransformDirectory(string name)
+        {
+            return null;
+        }
+
+        public string TransformFile(string name)
+        {
+            return Path.GetFileName(name);
+        }
+
+        #endregion
     }
 }

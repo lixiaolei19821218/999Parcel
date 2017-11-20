@@ -159,7 +159,7 @@ public partial class product_Default : System.Web.UI.Page
                 else if (provider.Name == "Parcelforce")
                 {
                     //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
-                    sv = provider.Services.Where(s => s.Provider.Name == "Parcelforce").Select(s => new ServiceView(s));
+                    sv = provider.Services.Where(s => s.Valid && s.Provider.Name == "Parcelforce").Select(s => new ServiceView(s));
                 }
                 else
                 {
