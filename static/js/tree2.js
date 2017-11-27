@@ -295,6 +295,8 @@ function delParcel() {
 }
 
 function recalcAll() {
+    
+
     $.post(window.location, $("#tree").serialize(), function(response){
         if (response.total)
             $("#total").html('&#163;' + response.total);
@@ -307,6 +309,25 @@ function recalc() {
     var parcelLi = $(this).closest('li');
     var nan = parcelLi.find('.input-small').not(':first').is(function(){
         return isNaN(parseFloat($(this).val()));
+    });
+
+    $.ajax({
+        //要用post方式       
+        type: "Post",
+        //方法所在页面和方法名       
+        url: "Product.aspx/GetOrderPrice",
+        data: "{'index':'" + parcelLi.find('.ordering_number').text() + "','weight':'" + parcelLi.find('[id$=weight]').val() + "','length':'" + parcelLi.find('[id$=length]').val() + "','width':'" + parcelLi.find('[id$=width]').val() + "','height':'" + parcelLi.find('[id$=height]').val() + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            //返回的数据用data.d获取内容       
+            $(data.d).each(function () {
+                //$(".item_detail").append("<option>" + this + "</option>");
+            });
+        },
+        error: function (err) {
+            alert(err);
+        }
     });
     // If at least one input not a number, return without posting to server
     if (nan)
@@ -359,6 +380,16 @@ function clone() {
     var cost = parseFloat(pd.find('span.cost').text().substring(1));
     var discount = parseFloat(pd.find('span.discount').text().substring(1));
     $('#total').html('£' + ((cost - discount) * count + pickup));
+}
+
+function getOrderPrice(){
+    var recipientCount = $('addr-TOTAL_FORMS').val();
+
+}
+
+function getParcelPrice()
+{
+
 }
 
 $(function(){

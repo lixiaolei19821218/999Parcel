@@ -317,7 +317,7 @@ public partial class products_Product : System.Web.UI.Page
             recipient.PyName = Pinyin.GetPinyin(recipient.Name);
 
             recipient.Province = Request.Form.Get(string.Format("addr-{0}-cn_province", i)).Trim();
-            recipient.PyProvince = Request.Form.Get(string.Format("hd_province{0}", i)).Trim();
+            recipient.PyProvince = Pinyin.GetPinyin(recipient.Province);
             if (recipient.Province == "北京市" || recipient.Province == "天津市" || recipient.Province == "上海市" || recipient.Province == "重庆市")
             {
                 recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
@@ -357,7 +357,20 @@ public partial class products_Product : System.Web.UI.Page
         for (int j = 0; j < parcelCount; j++)
         {
             int recipientNum = int.Parse(Request.Form.Get(string.Format("parcel-{0}-address_id", j)));
-            Package p = new Package() { Weight = weight, Length = 1, Width = 1, Height = 1 };
+            Package p;
+            if (order.Service.Name.Contains("自营奶粉包税6罐"))
+            {
+                p = new Package() { Weight = weight, Length = 1, Width = 1, Height = 1 };
+            }
+            else
+            {
+                p = new Package() {
+                    Weight = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-weight", j))),
+                    Length = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-length", j))),
+                    Width = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-width", j))),
+                    Height = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-height", j))),
+                };
+            }
             order.Recipients.ElementAt(recipientNum).Packages.Add(p);
             int itemsCount = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-TOTAL_FORMS", j)));
             for (int k = 0; k < itemsCount; k++)
@@ -734,6 +747,12 @@ public partial class products_Product : System.Web.UI.Page
         }
     }
 
+    [WebMethod]
+    public static decimal GetOrderPrice(int index, decimal weight, decimal length, decimal width, decimal height)
+    {
+        return 0;
+    }
+
     public int GetMaxItemCount()
     {
         if (Order.Service.Name.Contains("自营奶粉包税4罐"))
@@ -838,9 +857,9 @@ public partial class products_Product : System.Web.UI.Page
                 default:
                     return string.Empty;
             }
-            if (p.Recipient.Order.Service.Name.Contains("Parcelforce"))
+            if (order.Service.Name.Contains("Parcelforce"))
             {
-                return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 55px\" value=\"{1}\"></input>", kind, v);
+                return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 45px\" value=\"{1}\"></input>", kind, v);
             }
             else
             {

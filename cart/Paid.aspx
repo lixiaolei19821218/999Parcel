@@ -50,7 +50,10 @@
                                 <td class="tac"><%#Item.SenderName %></td>
                                 <td class="right"><%#Item.Service.Name %></td>
                                 <td><%#GetIcon(Item) %></td>
-                                <td class="right"><asp:LinkButton ID="DownloadLabel" OnClick="DownloadLabel_Click" runat="server" Text="下载面单" data-id="<%#Item.Id %>" Font-Size="small" Visible ="<%#Item.SuccessPaid ?? false %>" /></td>
+                                <td class="right">
+                                    <asp:LinkButton ID="DownloadLabel" OnClick="DownloadLabel_Click" runat="server" Text="下载面单" data-id="<%#Item.Id %>" Font-Size="small" Visible ="<%#Item.SuccessPaid ?? false %>" />
+                                    <asp:LinkButton ID="ReSend" OnClick="ReSend_Click" runat="server" Text="重新发送" ForeColor="green" data-id="<%#Item.Id %>" Font-Size="small" Visible ="<%#!(Item.SuccessPaid ?? false) %>" />
+                                </td>
                                 <td colspan="2">
                                     <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="small" />                                    
                                 </td>

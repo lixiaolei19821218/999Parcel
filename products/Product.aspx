@@ -547,19 +547,19 @@
                                                         <div class="ib pd7">
                                                             长度(cm)                                   
                                                             <div style="text-align:center">
-                                                                 <span class="input-small" id="id_parcel-0-length" name="parcel-0-length"" style="width: 55px"><strong><%#Item.Length %></strong></span>
+                                                                 <%#GetHtml(Item, "length")%>
                                                             </div>
                                                         </div>
                                                         <div class="ib pd7">
                                                             宽度(cm)                                   
                                                             <div style="text-align:center">
-                                                                 <span class="input-small" id="id_parcel-0-width" name="parcel-0-width" style="width: 55px "><strong><%#Item.Width %></strong></span>
+                                                                 <%#GetHtml(Item, "width")%>
                                                             </div>
                                                         </div>
                                                         <div class="ib pd7">
                                                             高度(cm)                                
                                                             <div style="text-align:center">
-                                                                 <span class="input-small" id="id_parcel-0-height" name="parcel-0-height" style="width: 55px"><strong><%#Item.Height %></strong></span>
+                                                                 <%#GetHtml(Item, "height")%>
                                                             </div>
                                                         </div>
                                                     </div>
