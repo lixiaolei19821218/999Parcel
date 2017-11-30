@@ -371,86 +371,82 @@ public partial class cart_Paid : System.Web.UI.Page
     {
         foreach (Recipient r in order.Recipients)
         {
-            StringBuilder data = new StringBuilder();
-            string code = type == TTKDType.SixTin ? "001" : "003";
-            data.Append(string.Format("{{\"serviceCode\":\"{0}\",\"userKey\":\"{1}\",\"packageList\": [ ", code, ConfigurationManager.AppSettings["TTKDUserKey"]));
-            foreach (Package p in r.Packages)
+            if (!(r.SuccessPaid ?? false))
             {
-                data.Append("{");
-                data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
-                data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
-                data.Append("\"sendCompany\": \"999 Parcel\",");
-                data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
-                data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
-                data.Append(string.Format("\"sendAddressLine3\": \"{0}\",", order.SenderAddress3));
-                data.Append(string.Format("\"sendCity\": \"{0}\",", order.SenderCity));
-                data.Append(string.Format("\"sendZipCode\": \"{0}\",", order.SenderZipCode));
-                data.Append("\"sendCountry\": \"UK\",");
-                data.Append("\"remarks\": \"\", ");
-                data.Append(string.Format("\"receiverID\": \"{0}\",", r.IDNumber));
-                data.Append(string.Format("\"receiverName\": \"{0}\",", r.Name));
-                data.Append(string.Format("\"receiverPhone\": \"{0}\",", r.PhoneNumber));
-                data.Append(string.Format("\"receiverZipCode\": \"{0}\",", r.ZipCode));
-                data.Append(string.Format("\"receiverProvinces\": \"{0}\",", r.Province));
-                data.Append(string.Format("\"receiverCity\": \"{0}\",", r.City));
-                data.Append(string.Format("\"receiverArea\": \"{0}\",", r.District));
-                data.Append(string.Format("\"receiverAddr\": \"{0}\",", r.Address));
-                int weight = type == TTKDType.SixTin ? 7 : 5;
-                data.Append(string.Format("\"totalWeight\": {0},", weight));
-                data.Append("\"productInfo\": [");
-                foreach (PackageItem i in p.PackageItems)
-                {
-                    data.Append("{");
-                    data.Append(string.Format("\"productName\": \"{0}\",", i.Description));
-                    data.Append(string.Format("\"total\": {0}", i.Count));
-                    data.Append("},");
-                }
-                data.Remove(data.Length - 1, 1);
-                data.Append("]},");
-            }
-            data.Remove(data.Length - 1, 1);
-            data.Append("]}");
-
-            string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), data.ToString(), ConfigurationManager.AppSettings["Authorization"]);
-            //order.UKMErrors = data.ToString() + " | " + response;
-            //return;           
-            //throw new Exception();                  
-
-            var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
-
-            if (res.Msg == "success")
-            {/*
-                Thread labelThread = new Thread(GetTTKDLabelThread) { IsBackground = true };
-                labelThread.Start(new object[] { res.Data.OrderNum, type });
-                
-                r.WMLeaderNumber = res.Data.OrderNum;
-                string path = path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, res.Data.OrderNum);
-                
-              * */
-                r.SuccessPaid = true;
-                string path = GetTTKDLabel(res.Data.OrderNum, type);
-
-                r.WMLeaderPdf = path;
-                for (int i = 0; i < r.Packages.Count; i++)
-                {
-                    Package p = r.Packages.ElementAt(i);
-                    p.Status = "SUCCESS";
-                    p.TrackNumber = res.Data.Mail_Nums[i];
-                    p.Pdf = path;
-                }
-
-                string mailBody = Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", r.Order.Id));
-                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
-            }
-            else
-            {
-                r.SuccessPaid = false;
-                r.Errors = "TTKD: " + res.Msg;
+                StringBuilder data = new StringBuilder();
+                string code = type == TTKDType.SixTin ? "001" : "003";
+                data.Append(string.Format("{{\"serviceCode\":\"{0}\",\"userKey\":\"{1}\",\"packageList\": [ ", code, ConfigurationManager.AppSettings["TTKDUserKey"]));
                 foreach (Package p in r.Packages)
                 {
-                    p.Status = "FAIL";
-                    //p.Response = "TTKD: " + res.Msg;
-                    p.Response = "信息错误，请联系客服";
+                    data.Append("{");
+                    data.Append(string.Format("\"sendName\": \"{0}\",", order.SenderName));
+                    data.Append(string.Format("\"sendPhone\": \"{0}\",", order.SenderPhone));
+                    data.Append("\"sendCompany\": \"999 Parcel\",");
+                    data.Append(string.Format("\"sendAddressLine1\": \"{0}\",", order.SenderAddress1));
+                    data.Append(string.Format("\"sendAddressLine2\": \"{0}\",", order.SenderAddress2));
+                    data.Append(string.Format("\"sendAddressLine3\": \"{0}\",", order.SenderAddress3));
+                    data.Append(string.Format("\"sendCity\": \"{0}\",", order.SenderCity));
+                    data.Append(string.Format("\"sendZipCode\": \"{0}\",", order.SenderZipCode));
+                    data.Append("\"sendCountry\": \"UK\",");
+                    data.Append("\"remarks\": \"\", ");
+                    data.Append(string.Format("\"receiverID\": \"{0}\",", r.IDNumber));
+                    data.Append(string.Format("\"receiverName\": \"{0}\",", r.Name));
+                    data.Append(string.Format("\"receiverPhone\": \"{0}\",", r.PhoneNumber));
+                    data.Append(string.Format("\"receiverZipCode\": \"{0}\",", r.ZipCode));
+                    data.Append(string.Format("\"receiverProvinces\": \"{0}\",", r.Province));
+                    data.Append(string.Format("\"receiverCity\": \"{0}\",", r.City));
+                    data.Append(string.Format("\"receiverArea\": \"{0}\",", r.District));
+                    data.Append(string.Format("\"receiverAddr\": \"{0}\",", r.Address));
+                    int weight = type == TTKDType.SixTin ? 7 : 5;
+                    data.Append(string.Format("\"totalWeight\": {0},", weight));
+                    data.Append("\"productInfo\": [");
+                    foreach (PackageItem i in p.PackageItems)
+                    {
+                        data.Append("{");
+                        data.Append(string.Format("\"productName\": \"{0}\",", i.Description));
+                        data.Append(string.Format("\"total\": {0}", i.Count));
+                        data.Append("},");
+                    }
+                    data.Remove(data.Length - 1, 1);
+                    data.Append("]},");
+                }
+                data.Remove(data.Length - 1, 1);
+                data.Append("]}");
+
+                string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), data.ToString(), ConfigurationManager.AppSettings["Authorization"]);
+                //order.UKMErrors = data.ToString() + " | " + response;
+                //return;           
+                //throw new Exception();                  
+
+                var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
+
+                if (res.Msg == "success")
+                {
+                    r.SuccessPaid = true;
+                    string path = GetTTKDLabel(res.Data.OrderNum, type);
+
+                    r.WMLeaderPdf = path;
+                    for (int i = 0; i < r.Packages.Count; i++)
+                    {
+                        Package p = r.Packages.ElementAt(i);
+                        p.Status = "SUCCESS";
+                        p.TrackNumber = res.Data.Mail_Nums[i];
+                        p.Pdf = path;
+                    }
+
+                    string mailBody = Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", r.Order.Id));
+                    EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
+                }
+                else
+                {
+                    r.SuccessPaid = false;
+                    r.Errors = "TTKD: " + res.Msg;
+                    foreach (Package p in r.Packages)
+                    {
+                        p.Status = "FAIL";
+                        p.Response = "TTKD: " + res.Msg;
+                        //p.Response = "信息错误，请联系客服";
+                    }
                 }
             }
         }

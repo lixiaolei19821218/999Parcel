@@ -81,27 +81,13 @@ function addAddr() {
     updateAddrs();
     $('.dist').distpicker();
 
-    var pd = $('#details').find('.parcelDetail:last').clone();
+    var i = addrLi.find('.parcelItem:first').find('span.ordering_number').text() - 1;
+    var pd = $('#details').find('.parcelDetail').eq(i).clone();
     $('#details').append(pd);
     var count = $('#details').find('.parcelDetail').length;
     pd.find('span:first').html(count);
-    var pickup;
-    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
-        if (count >= 3) {
-            $('#pickup_price').text('£0.00');
-            pickup = 0.0;
-        }
-        else {
-            $('#pickup_price').text('£' + 2.0 * count);
-            pickup = 2.0 * count;
-        }
-    }
-    else {
-        pickup = 0.0;
-    }
-    var cost = parseFloat(pd.find('span.cost').text().substring(1));
-    var discount = parseFloat(pd.find('span.discount').text().substring(1));
-    $('#total').html('£' + ((cost - discount) * count + pickup));
+
+    recalcAll();
 }
 
 function addParcel() {
@@ -125,48 +111,25 @@ function delAddr() {
 
     addrLi.remove();
     updateAddrs();
-    recalcAll();
 
+    var start = addrLi.find('.parcelItem:first').find('span.ordering_number').text() - 1;
     var length = addrLi.find('.parcelItem').length;
-    for (var i = 0; i < length; i++) {
-        var pd = $('#details').find('.parcelDetail:last');
-        pd.remove();
+    var a = new Array();
+    var n = 0;
+    for (var i = start; i < start + length; i++) {
+        var pd = $('#details').find('.parcelDetail').eq(i);
+        a[n] = pd;
+        n++;
+    }
+    for (var m = 0; m < a.length; m++){
+        a[m].remove();
     }
     var count = $('#details').find('.parcelDetail').length;
-    pd.find('span:first').html(count);
-    var pickup;
-    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
-        if (count >= 3) {
-            $('#pickup_price').text('£0.00');
-            pickup = 0.0;
-        }
-        else {
-            $('#pickup_price').text('£' + 2.0 * count);
-            pickup = 2.0 * count;
-        }
+    for (var n = 0; n < count; n++) {
+        $('#details').find('.parcelDetail').eq(n).find('span:first').html(n + 1);
     }
-    else {
-        pickup = 0.0;
-    }
-    var cost = parseFloat(pd.find('span.cost').text().substring(1));
-    var discount = parseFloat(pd.find('span.discount').text().substring(1));
-    $('#total').html('£' + ((cost - discount) * count + pickup));
-    //~ $( "#dialog-confirm" ).dialog({
-        //~ resizable: false,
-        //~ height:120,
-        //~ modal: true,
-        //~ buttons: {
-            //~ "确认": function() {
-                //~ $( this ).dialog( "close" );
-                //~ addrLi.remove();
-                //~ updateAddrs();
-                //~ recalcAll();
-            //~ },
-            //~ "取消": function() {
-                //~ $( this ).dialog( "close" );
-            //~ }
-        //~ }
-    //~ });
+
+    recalcAll();
 }
 
 function selectAddr() {
@@ -267,31 +230,19 @@ function delParcel() {
     if($(this).closest('.addrItem').find('.parcelItem').length <= 1)
         return;
     var parcelLi = $(this).closest('li');
+    var i = parcelLi.find('span.ordering_number').text();
     parcelLi.remove();
     updateParcels();
-    recalcAll();
 
-    var pd = $('#details').find('.parcelDetail:last');
+    var pd = $('#details').find('.parcelDetail').eq(i - 1);
     pd.remove();
+
     var count = $('#details').find('.parcelDetail').length;
-    pd.find('span:first').html(count);
-    var pickup;
-    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
-        if (count >= 3) {
-            $('#pickup_price').text('£0.00');
-            pickup = 0.0;
-        }
-        else {
-            $('#pickup_price').text('£' + 2.0 * count);
-            pickup = 2.0 * count;
-        }
+    for (var n = 0; n < count; n++) {
+        $('#details').find('.parcelDetail').eq(n).find('span:first').html(n + 1);
     }
-    else {
-        pickup = 0.0;
-    }
-    var cost = parseFloat(pd.find('span.cost').text().substring(1));
-    var discount = parseFloat(pd.find('span.discount').text().substring(1));
-    $('#total').html('£' + ((cost - discount) * count + pickup));
+
+    recalcAll();
 }
 
 function recalcAll() {
@@ -343,7 +294,7 @@ function recalc() {
             recalcAll();
         },
         error: function (err) {
-            alert(err);
+            alert('重量不能大于30KG，长宽高不能超过105CM。');
         }
     });
     // If at least one input not a number, return without posting to server
@@ -379,8 +330,17 @@ function clone() {
     parcelLi.parent().append(newLi);
     updateParcels();
 
-    var pd = $('#details').find('.parcelDetail:last').clone();
-    $('#details').append(pd);
+    var i = parcelLi.find('span.ordering_number').text();
+    var pr = $('#details').find('.parcelDetail').eq(i - 1);
+    var pd = pr.clone();
+    var j = newLi.find('span.ordering_number').text();
+    var pn = $('#details').find('.parcelDetail').eq(j - 2);
+    pn.after(pd);
+    var count = $('#details').find('.parcelDetail').length;
+    //pd.find('span:first').html(i);
+    for (var n = 0; n < count; n++) {
+        $('#details').find('.parcelDetail').eq(n).find('span:first').html(n + 1);
+    }
 
     recalcAll();
 

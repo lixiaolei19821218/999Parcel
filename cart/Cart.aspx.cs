@@ -141,7 +141,7 @@ public partial class cart_Cart : System.Web.UI.Page
         {
             Order order = repo.Context.Orders.Find(id);
             Session["Order"] = order;
-            Response.Redirect(string.Format("/products/product.aspx?orderId={0}", order.Id));
+            Response.Redirect(string.Format("/products/product.aspx?orderId={0}&serviceId={1}", order.Id, order.ServiceID));
             return;
 
             Order orderCopy = new Order();
