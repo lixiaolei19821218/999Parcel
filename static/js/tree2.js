@@ -295,14 +295,31 @@ function delParcel() {
 }
 
 function recalcAll() {
+    var total = 0;
+    var count = $('#details').find('.parcelDetail').length;
+    for (var i = 0; i < count; i++) {
+        var p = $('#details').find('.parcelDetail').eq(i);
+        var cost = parseFloat(p.find('span.cost').text().substring(1));//去掉£
+        var discount = parseFloat(p.find('span.discount').text().substring(1));
+        total += cost - discount;
+    }
     
-
-    $.post(window.location, $("#tree").serialize(), function(response){
-        if (response.total)
-            $("#total").html('&#163;' + response.total);
-        if (response.details)
-            $('#details').html(response.details);        
-    });
+    var pickup;
+    if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
+        if (count >= 3) {
+            $('#pickup_price').text('£0.00');
+            pickup = 0.0;
+        }
+        else {
+            $('#pickup_price').text('£' + (2.0 * count));
+            pickup = 2.0 * count;
+        }
+    }
+    else {
+        pickup = 0.0;
+    }
+   
+    $('#total').html('£' + (total + pickup));
 }
 
 function recalc() {
@@ -316,14 +333,14 @@ function recalc() {
         type: "Post",
         //方法所在页面和方法名       
         url: "Product.aspx/GetOrderPrice",
-        data: "{'index':'" + parcelLi.find('.ordering_number').text() + "','weight':'" + parcelLi.find('[id$=weight]').val() + "','length':'" + parcelLi.find('[id$=length]').val() + "','width':'" + parcelLi.find('[id$=width]').val() + "','height':'" + parcelLi.find('[id$=height]').val() + "'}",
+        data: "{'sid':'" + GetQueryString("serviceId") + "','index':'" + parcelLi.find('.ordering_number').text() + "','weight':'" + parcelLi.find('[id$=weight]').val() + "','length':'" + parcelLi.find('[id$=length]').val() + "','width':'" + parcelLi.find('[id$=width]').val() + "','height':'" + parcelLi.find('[id$=height]').val() + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            //返回的数据用data.d获取内容       
-            $(data.d).each(function () {
-                //$(".item_detail").append("<option>" + this + "</option>");
-            });
+        success: function (res) {
+            var i = parcelLi.find('.ordering_number').text();
+            var pd = $('#details').find('.parcelDetail').eq(i - 1);
+            pd.find('span.cost').html('£' + res.d);
+            recalcAll();
         },
         error: function (err) {
             alert(err);
@@ -331,8 +348,13 @@ function recalc() {
     });
     // If at least one input not a number, return without posting to server
     if (nan)
-        return;
-    recalcAll();
+        return;    
+}
+
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
 }
 
 $.fn.bindAllListners = function() {
@@ -356,10 +378,13 @@ function clone() {
     newLi.find('.mx_total').html('0');
     parcelLi.parent().append(newLi);
     updateParcels();
+
+    var pd = $('#details').find('.parcelDetail:last').clone();
+    $('#details').append(pd);
+
     recalcAll();
 
-    var pd = $('#details').find('.parcelDetail:last').clone(); 
-    $('#details').append(pd);
+    /*
     var count = $('#details').find('.parcelDetail').length;
     pd.find('span:first').html(count);
     var pickup;
@@ -379,7 +404,7 @@ function clone() {
    
     var cost = parseFloat(pd.find('span.cost').text().substring(1));
     var discount = parseFloat(pd.find('span.discount').text().substring(1));
-    $('#total').html('£' + ((cost - discount) * count + pickup));
+    $('#total').html('£' + ((cost - discount) * count + pickup));*/
 }
 
 function getOrderPrice(){

@@ -748,9 +748,14 @@ public partial class products_Product : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static decimal GetOrderPrice(int index, decimal weight, decimal length, decimal width, decimal height)
+    public static string GetOrderPrice(int sid, int index, decimal weight, decimal length, decimal width, decimal height)
     {
-        return 0;
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+        Service s = repo.Services.Find(sid);
+        ServiceView sv = new ServiceView(s);
+        Package p = new Package() { Weight = weight, Length = length, Width = width, Height = height };
+        decimal cost = sv.GetPackageDeliverPrice(p);
+        return cost.ToString();
     }
 
     public int GetMaxItemCount()
@@ -859,7 +864,7 @@ public partial class products_Product : System.Web.UI.Page
             }
             if (order.Service.Name.Contains("Parcelforce"))
             {
-                return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 45px\" value=\"{1}\"></input>", kind, v);
+                return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 45px\" value=\"{1}\" type=\"number\" step=\"0.1\" max=\"{2}\" min=\"1\"></input>", kind, v, kind == "weight" ? 30 : 105);
             }
             else
             {

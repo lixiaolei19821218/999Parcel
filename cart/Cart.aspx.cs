@@ -480,7 +480,7 @@ public partial class cart_Cart : System.Web.UI.Page
         foreach (Recipient r in order.Recipients)
         {
             StringBuilder data = new StringBuilder();
-            string code = type == TTKDType.SixTin ? "001" : "002";
+            string code = type == TTKDType.SixTin ? "001" : "003";
             data.Append(string.Format("{{\"serviceCode\":\"{0}\",\"userKey\":\"{1}\",\"packageList\": [ ", code, ConfigurationManager.AppSettings["TTKDUserKey"]));
             foreach (Package p in r.Packages)
             {
@@ -569,7 +569,7 @@ public partial class cart_Cart : System.Web.UI.Page
     {
         string path = string.Empty;
         StringBuilder json = new StringBuilder("{");
-        string code = type == TTKDType.SixTin ? "001" : "002";
+        string code = type == TTKDType.SixTin ? "001" : "003";
         json.Append(string.Format("\"serviceCode\": \"{0}\",", code));
         json.Append(string.Format("\"userKey\": \"{0}\",", ConfigurationManager.AppSettings["TTKDUserKey"]));
         json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
