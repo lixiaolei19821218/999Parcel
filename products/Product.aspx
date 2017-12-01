@@ -267,66 +267,42 @@
                         <!-- sender address -->
                         <div class="bg1 rds1 clrw1" style="height: 38px; background-position: 0 0; background-repeat: repeat-x; padding: 10px 20px">
                             发件人地址（英国）
+                            <input type="button" class="btn btn-danger btn-small del" id="id_setDefalutSender" style="float:right;padding:0px 10px;" value="设为默认发件人" />
                         </div>
 
                         <div class="rds2" style="border: 1px solid #ddd; background-color: #F2F8FC; padding: 5px 1px">
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_name">姓名</label>
-                                <input class="input-medium" id="id_billing_detail_name" maxlength="25" name="billing_detail_name" style="width: 115px" type="text" value="<%:Order.SenderName %>" required="required"/>
-
-
+                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_name" maxlength="25" name="billing_detail_name" style="width: 115px" type="text" required="required"/>
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_street">地址</label>
-                                <input class="input-xxlarge" id="id_billing_detail_street" maxlength="24" name="billing_detail_street" style="width: 180px" type="text" value="<%:Order.SenderAddress1 %>" required="required"/>
-
-
-
-
+                                <input runat="server" ClientIDMode="Static" class="input-xxlarge" id="id_billing_detail_street" maxlength="24" name="billing_detail_street" style="width: 180px" type="text" required="required"/>
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
-                                <input class="input-medium" id="id_billing_detail_street2" maxlength="24" name="billing_detail_street2" style="width: 180px" type="text" value="<%:Order.SenderAddress2 %>" />
-
-
-
-
+                                <input runat="server" ClientIDMode="Static" lass="input-medium" id="id_billing_detail_street2" maxlength="24" name="billing_detail_street2" style="width: 180px" type="text" />
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
-                                <input class="input-medium" id="id_billing_detail_street3" maxlength="24" name="billing_detail_street3" style="width: 173px" type="text" value="<%:Order.SenderAddress3 %>" />
-
-
-
+                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_street3" maxlength="24" name="billing_detail_street3" style="width: 173px" type="text" />                           
 
                             </div>
                             <div style="clear: both"></div>
-
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_city">城市</label>
-                                <input autocomplete="on" class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" value="<%:Order.SenderCity %>" required="required"/>
-
-
-
-
-                            </div>
+                                <input runat="server" ClientIDMode="Static" autocomplete="on" class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" required="required"/>                            </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_postcode">邮编</label>
-                                <input class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" value="<%:Order.SenderZipCode %>" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>
-                               
+                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>                              
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_phone">电话</label>
-                                <input class="input-medium" id="id_billing_detail_phone" maxlength="11" name="billing_detail_phone" style="width: 180px" type="text" value="<%:Order.SenderPhone %>" required="required" title="请输入数字" pattern="\d{11}" required oninvalid="setCustomValidity('请输入11位电话号码。')" oninput="setCustomValidity('')"/>
+                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_phone" maxlength="11" name="billing_detail_phone" style="width: 180px" type="text" title="请输入数字" pattern="\d{11}" required oninvalid="setCustomValidity('请输入11位电话号码。')" oninput="setCustomValidity('')"/>
                             </div>
                            <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_email">E-Mail</label>
-                                <input class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" value="<%:Order.SenderEmail %>" title="电子邮箱" required="required"/>                              
-
-
-                            </div>
-
-                            
-
-                            <div style="clear: both"></div>
+                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_email" name="id_billing_detail_email" style="width: 175px;border: 1px solid #ccc; border-radius: 4px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;" type="email" title="电子邮箱" required="required"/>
+                           </div>                   
+                            <div style="clear: both"></div> 
                         </div>
 
                         <div style="margin-top: 10px;">

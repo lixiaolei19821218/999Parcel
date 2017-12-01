@@ -324,6 +324,23 @@ $.fn.bindAllListners = function() {
     this.on('click', '.select-addr', selectAddr);
     this.on('click', '.trans-pinyin', transPinyin);
     this.on('change', '.addr_insurance', recalcAll);
+    this.on('click', '#id_setDefalutSender', setDefalutSender);
+}
+
+function setDefalutSender(){
+    $.ajax({        
+        type: "Post",       
+        url: "Product.aspx/SetDefaultSender",
+        data: "{'username':'" + $('#id_username').text() + "','senderName':'" + $('#id_billing_detail_name').val() + "','city':'" + $('#id_billing_detail_city').val() + "','zipcode':'" + $('#id_billing_detail_postcode').val() + "','address1':'" + $('#id_billing_detail_street').val() + "','address2':'" + $('#id_billing_detail_street2').val() + "','address3':'" + $('#id_billing_detail_street3').val() + "','phone':'" + $('#id_billing_detail_phone').val() + "','mail':'" + $('#id_billing_detail_email').val() + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (res) {
+            
+        },
+        error: function (err) {
+            //alert('');
+        }
+    });
 }
 
 function clone() {

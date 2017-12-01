@@ -46,6 +46,8 @@
         <AssociationConnector Association="UK_ExpressModel.FK_Compensates_Packages" />
         <EntityTypeShape EntityType="UK_ExpressModel.Repay" Width="1.5" PointX="22.375" PointY="5.875" />
         <AssociationConnector Association="UK_ExpressModel.FK_Repays_Packages" />
+        <EntityTypeShape EntityType="UK_ExpressModel.DefaultSender" Width="1.5" PointX="3" PointY="16.5" />
+        <AssociationConnector Association="UK_ExpressModel.FK_UserID" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

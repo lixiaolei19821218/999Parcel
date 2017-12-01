@@ -87,8 +87,41 @@ public partial class products_Product : System.Web.UI.Page
         {
             pfuk.Visible = false;
             _999parcel.Visible = true;            
-        }      
-        
+        }
+
+        //Fill Sender
+        if (!IsPostBack)
+        {
+            if (order.Id == 0)
+            {
+                string username = Membership.GetUser().UserName;
+                aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);
+                repo.Context.Entry<aspnet_User>(user).Reload();                
+                if (user.DefaultSender != null)
+                {
+                    repo.Context.Entry<DefaultSender>(user.DefaultSender).Reload();
+                    id_billing_detail_name.Value = user.DefaultSender.Name;
+                    id_billing_detail_city.Value = user.DefaultSender.City;
+                    id_billing_detail_email.Value = user.DefaultSender.Mail;
+                    id_billing_detail_phone.Value = user.DefaultSender.Phone;
+                    id_billing_detail_postcode.Value = user.DefaultSender.ZipCode;
+                    id_billing_detail_street.Value = user.DefaultSender.Address1;
+                    id_billing_detail_street2.Value = user.DefaultSender.Address2;
+                    id_billing_detail_street3.Value = user.DefaultSender.Address3;
+                }
+            }
+            else
+            {
+                id_billing_detail_name.Value = order.SenderName;
+                id_billing_detail_city.Value = order.SenderCity;
+                id_billing_detail_email.Value = order.SenderEmail;
+                id_billing_detail_phone.Value = order.SenderPhone;
+                id_billing_detail_postcode.Value = order.SenderZipCode;
+                id_billing_detail_street.Value = order.SenderAddress1;
+                id_billing_detail_street2.Value = order.SenderAddress2;
+                id_billing_detail_street3.Value = order.SenderAddress3;
+            }
+        }
     }   
 
     public IEnumerable<Recipient> GetRecipients()
@@ -280,18 +313,18 @@ public partial class products_Product : System.Web.UI.Page
     public string FillOrder()
     {
         StringBuilder msg = new StringBuilder();
-        order.SenderName = Request.Form.Get("billing_detail_name").Trim();
-        order.SenderCity = Request.Form.Get("billing_detail_city").Trim();
-        order.SenderPhone = Request.Form.Get("billing_detail_phone").Trim();
+        order.SenderName = id_billing_detail_name.Value.Trim();
+        order.SenderCity = id_billing_detail_city.Value.Trim();
+        order.SenderPhone = id_billing_detail_phone.Value.Trim();
         if (order.SenderPhone.Length != 11)
         {
             msg.Append("请输入11位电话号码。");
         }
-        order.SenderAddress1 = Request.Form.Get("billing_detail_street").Trim();
-        order.SenderAddress2 = Request.Form.Get("billing_detail_street2").Trim();
-        order.SenderAddress3 = Request.Form.Get("billing_detail_street3").Trim();
-        order.SenderZipCode = Request.Form.Get("billing_detail_postcode").Trim();
-        order.SenderEmail = Request.Form.Get("id_billing_detail_email").Trim();
+        order.SenderAddress1 = id_billing_detail_street.Value.Trim();
+        order.SenderAddress2 = id_billing_detail_street2.Value.Trim();
+        order.SenderAddress3 = id_billing_detail_street3.Value.Trim();
+        order.SenderZipCode = id_billing_detail_postcode.Value.Trim();
+        order.SenderEmail = id_billing_detail_email.Value.Trim();
 
         
         if (order.Id != 0)
@@ -756,6 +789,32 @@ public partial class products_Product : System.Web.UI.Page
         Package p = new Package() { Weight = weight, Length = length, Width = width, Height = height };
         decimal cost = sv.GetPackageDeliverPrice(p);
         return cost.ToString();
+    }
+
+    [WebMethod]
+    public static void SetDefaultSender(string username, string senderName, string city, string zipcode, string address1, string address2, string address3, string phone, string mail)
+    {
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+        aspnet_User user = repo.aspnet_User.FirstOrDefault(u => u.UserName == username);
+        DefaultSender sender;
+        if (user.DefaultSender == null)
+        {
+            sender = new DefaultSender();            
+            user.DefaultSender = sender;
+        }
+        else
+        {
+            sender = user.DefaultSender;
+        }
+        sender.Address1 = address1;
+        sender.Address2 = address2;
+        sender.Address3 = address3;
+        sender.City = city;
+        sender.Mail = mail;
+        sender.Name = senderName;
+        sender.Phone = phone;
+        sender.ZipCode = zipcode;
+        repo.SaveChanges();
     }
 
     public int GetMaxItemCount()

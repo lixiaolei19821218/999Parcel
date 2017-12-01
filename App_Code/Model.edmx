@@ -28,6 +28,20 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="DefaultSenders">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Discounts">
           <Key>
             <PropertyRef Name="Id" />
@@ -495,6 +509,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserID">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="DefaultSenders" Type="Self.DefaultSenders" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DefaultSenders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="aspnet_AnyDataInTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TablesToCheck" Type="int" Mode="In" />
         </Function>
@@ -829,6 +855,7 @@
         <EntityContainer Name="UK_ExpressModelStoreContainer">
           <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compensates" EntityType="Self.Compensates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefaultSenders" EntityType="Self.DefaultSenders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IDNumbers" EntityType="Self.IDNumbers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MilkPowderSKUs" EntityType="Self.MilkPowderSKUs" Schema="dbo" store:Type="Tables" />
@@ -914,6 +941,10 @@
           <AssociationSet Name="FK_TraceNumberId" Association="Self.FK_TraceNumberId">
             <End Role="TraceNumbers" EntitySet="TraceNumbers" />
             <End Role="TraceMessage" EntitySet="TraceMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserID" Association="Self.FK_UserID">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="DefaultSenders" EntitySet="DefaultSenders" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1340,6 +1371,11 @@
             <End Role="Package" EntitySet="Packages" />
             <End Role="Repay" EntitySet="Repays" />
           </AssociationSet>
+          <EntitySet Name="DefaultSenders" EntityType="UK_ExpressModel.DefaultSender" />
+          <AssociationSet Name="FK_UserID" Association="UK_ExpressModel.FK_UserID">
+            <End Role="aspnet_User" EntitySet="aspnet_User" />
+            <End Role="DefaultSender" EntitySet="DefaultSenders" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1721,6 +1757,7 @@
           <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DefaultSender" Relationship="UK_ExpressModel.FK_UserID" FromRole="aspnet_User" ToRole="DefaultSender" />
         </EntityType>
         <EntityType Name="PackageItem">
           <Key>
@@ -1909,6 +1946,33 @@
             </Principal>
             <Dependent Role="Repay">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DefaultSender">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Users" Relationship="UK_ExpressModel.FK_UserID" FromRole="DefaultSender" ToRole="aspnet_User" />
+        </EntityType>
+        <Association Name="FK_UserID">
+          <End Type="UK_ExpressModel.aspnet_User" Role="aspnet_User" Multiplicity="1" />
+          <End Type="UK_ExpressModel.DefaultSender" Role="DefaultSender" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="DefaultSender">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2359,6 +2423,21 @@
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefaultSenders">
+            <EntityTypeMapping TypeName="UK_ExpressModel.DefaultSender">
+              <MappingFragment StoreEntitySet="DefaultSenders">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

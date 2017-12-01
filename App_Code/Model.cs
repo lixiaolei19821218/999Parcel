@@ -23,6 +23,8 @@ public partial class aspnet_User
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string CellPhone { get; set; }
+
+    public virtual DefaultSender DefaultSender { get; set; }
 }
 
 public partial class Compensate
@@ -31,6 +33,21 @@ public partial class Compensate
     public decimal Value { get; set; }
 
     public virtual Package Package { get; set; }
+}
+
+public partial class DefaultSender
+{
+    public System.Guid UserId { get; set; }
+    public string Name { get; set; }
+    public string Address1 { get; set; }
+    public string Address2 { get; set; }
+    public string Address3 { get; set; }
+    public string City { get; set; }
+    public string ZipCode { get; set; }
+    public string Phone { get; set; }
+    public string Mail { get; set; }
+
+    public virtual aspnet_User aspnet_Users { get; set; }
 }
 
 public partial class Discount

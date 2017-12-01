@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="/accounts/signup/?next=/" style="color: #C34C21;">注册</a>
             </div>
             <div id="welcomeDiv" runat="server">
-                您好，<span style="color: #C34C21;"><%:GetGreeting() %></span>，欢迎光临诚信物流！&nbsp;&nbsp;<a class="fr pd2 clrb2" href="/accounts/logout/?next=<%: Request.Path %>">退出</a>
+                您好，<span style="color: #C34C21;" id="id_username"><%:GetGreeting() %></span>，欢迎光临诚信物流！&nbsp;&nbsp;<a class="fr pd2 clrb2" href="/accounts/logout/?next=<%: Request.Path %>">退出</a>
             </div>
         </div>
         <div style="margin: 10px 0px; float: right;">
