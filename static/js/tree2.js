@@ -254,7 +254,8 @@ function recalcAll() {
         var discount = parseFloat(p.find('span.discount').text().substring(1));
         total += cost - discount;
     }
-    
+    total = decimal(total, 2);
+
     var pickup;
     if ($('strong#service').text().indexOf('诚信物流取件') > 0) {
         if (count >= 3) {
@@ -270,7 +271,12 @@ function recalcAll() {
         pickup = 0.0;
     }
    
-    $('#total').html('£' + (total + pickup));
+    $('#total').html('£' + (total + pickup).toFixed(2));
+}
+
+function decimal(num, v) {
+    var vv = Math.pow(10, v);
+    return Math.round(num * vv) / vv;
 }
 
 function recalc() {

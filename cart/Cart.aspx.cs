@@ -648,25 +648,33 @@ public partial class cart_Cart : System.Web.UI.Page
                         to = 1                        
                     });
                 }
-                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");                
-                var res = JsonConvert.DeserializeAnonymousType(response, new { ems = string.Empty, status = string.Empty, shipmentId = string.Empty, label = new List<string>() });
-                if (res.status == "success")
+                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");
+                try
                 {
-                    p.Status = "SUCCESS";
-                    p.TrackNumber = res.ems;
-
-                    List<string> files = new List<string>();
-                    foreach (string pdf in res.label)
+                    var res = JsonConvert.DeserializeAnonymousType(response, new { ems = string.Empty, status = string.Empty, shipmentId = string.Empty, label = new List<string>() });
+                    if (res.status == "success")
                     {
-                        files.Add(HttpHelper.Download(pdf, Membership.GetUser().UserName));                        
+                        p.Status = "SUCCESS";
+                        p.TrackNumber = res.ems;
+
+                        List<string> files = new List<string>();
+                        foreach (string pdf in res.label)
+                        {
+                            files.Add(HttpHelper.Download(pdf, Membership.GetUser().UserName));
+                        }
+                        oFiles.AddRange(files);
+                        p.Pdf = HttpHelper.ZipFiles(files, Membership.GetUser().UserName, res.shipmentId);
                     }
-                    oFiles.AddRange(files);
-                    p.Pdf = HttpHelper.ZipFiles(files, Membership.GetUser().UserName, res.shipmentId);                    
+                    else
+                    {
+                        p.Status = "FAIL";
+                        p.Response = res.status;
+                    }
                 }
-                else
+                catch
                 {
                     p.Status = "FAIL";
-                    p.Response = res.status;
+                    p.Response = response;
                 }
             }
             r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");
