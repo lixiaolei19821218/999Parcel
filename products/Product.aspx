@@ -435,7 +435,7 @@
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_idnum">身份证号</label>
-                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" <%:ServiceView.Name.Contains("包税") ? "pattern=\\d{17}(\\d|x|X)" :  ""%> value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=\"required\"" :  ""%> oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
+                                            <input id="id_addr-0-idnumber" maxlength="18" name="addr-<%#Container.ItemIndex %>-idnumber" style="width: 218px" type="text" <%:ServiceView.Name.Contains("包税") ? "pattern=\\d{17}(\\d|x|X)" :  ""%> value="<%#Item.IDNumber %>"  <%:ServiceView.Name.Contains("包税") ? "required=required" :  ""%> oninvalid="setCustomValidity('请输入正确的18位身份证号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>                              
                                     <div style="float: left; margin: 5px; margin-left: 20px;" class="control-group" <%:ServiceView.Name.Contains("Parcelforce Priority") ? "hidden=\"hidden\"" : "hidden=\"hidden\"" %> >

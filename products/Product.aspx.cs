@@ -391,10 +391,10 @@ public partial class products_Product : System.Web.UI.Page
         {
             int recipientNum = int.Parse(Request.Form.Get(string.Format("parcel-{0}-address_id", j)));
             Package p;
-            if (order.Service.Name.Contains("自营奶粉包税6罐"))
+            if (order.Service.Name.Contains("自营奶粉包税"))
             {
                 p = new Package() { Weight = weight, Length = 1, Width = 1, Height = 1 };
-            }
+            }           
             else
             {
                 p = new Package() {
