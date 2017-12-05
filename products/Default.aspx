@@ -18,7 +18,8 @@
         <form runat="server">
             <table class="table table-products">
                 <tr>
-                    <th style="min-width: 240px">服务</th>
+                    <th style="min-width: 40px">服务</th>
+                    <th style="min-width: 2px"></th>
                     <th>描述</th>                                     
                     <th style="min-width: 160px">价格(<span style="font-size: 12px">包含取件费</span>)</th>
                 </tr>
@@ -29,8 +30,10 @@
                         <ItemTemplate>
                             <tr>
                                 <td style="vertical-align: middle">
-                                    <img src="<%# Item.PictureLink %>" style="float: left; min-height: 40px; max-width: 60px; margin-right: 3px" />
-                                    <%# Item.Name %>
+                                    <img src="<%# Item.PictureLink %>" style="float: left; min-height: 40px; max-width: 60px; margin-right: 3px" />                                   
+                                </td>
+                                <td style="vertical-align: middle">
+                                     <%# Item.Name %>
                                 </td>
                                 <td>
                                     <p>

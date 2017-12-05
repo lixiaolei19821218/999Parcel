@@ -129,7 +129,16 @@ public class ServiceView
             case "Parcelforce Economy - 自送Depot"://Parcelforce
             case "Parcelforce Economy - 自送邮局"://Parcelforce
             case "Parcelforce Priority - 自送邮局"://Parcelforce
+            case "Parcelforce Economy - 自送仓库"://Parcelforce
+            case "Parcelforce Priority 小包裹 - 自送仓库"://Parcelforce
+            case "Parcelforce Luggage 大行李专线"://Parcelforce
+            case "Parcelforce Child Car Seat 儿童安全座椅专线 - 自送仓库"://Parcelforce
                 price = 0m;
+                break;
+            case "Parcelforce Economy - 诚信物流取件":
+            case "Parcelforce Priority 小包裹 - 诚信物流取件":
+            case "Parcelforce Child Car Seat 儿童安全座椅专线 - 诚信物流取件":
+                price = 2m;
                 break;
             case "Bpost - UKMail 取件"://Bpost UKMail取件
             case "荷兰邮政 - UKMail 取件"://post nl UKMail取件

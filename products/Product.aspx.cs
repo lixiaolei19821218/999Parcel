@@ -921,7 +921,7 @@ public partial class products_Product : System.Web.UI.Page
                 default:
                     return string.Empty;
             }
-            if (order.Service.Name.Contains("Parcelforce"))
+            if (order.Service.Name.Contains("Parcelforce Economy"))
             {
                 return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 45px\" value=\"{1}\" type=\"number\" step=\"0.1\" max=\"{2}\" min=\"1\"></input>", kind, v, kind == "weight" ? 30 : 105);
             }

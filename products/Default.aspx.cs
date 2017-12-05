@@ -159,7 +159,22 @@ public partial class product_Default : System.Web.UI.Page
                 else if (provider.Name == "Parcelforce")
                 {
                     //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
-                    sv = provider.Services.Where(s => s.Valid && s.Provider.Name == "Parcelforce").Select(s => new ServiceView(s));
+                    if (order.Recipients.All(r => r.Packages.All(p => p.Weight <= 2m)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && (s.Name.Contains("Parcelforce Economy") || s.Name.Contains("Parcelforce Priority"))).Select(s => new ServiceView(s));
+                    }
+                    else if (order.Recipients.All(r => r.Packages.All(p => p.Weight == 24m)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && (s.Name.Contains("Parcelforce Economy") || s.Name.Contains("Parcelforce Luggage"))).Select(s => new ServiceView(s));
+                    }
+                    else if (order.Recipients.All(r => r.Packages.All(p => p.Weight == 13m)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && (s.Name.Contains("Parcelforce Economy") || s.Name.Contains("Parcelforce Child Car Seat"))).Select(s => new ServiceView(s));
+                    }
+                    else
+                    {
+                        sv = provider.Services.Where(s => s.Valid && s.Name.Contains("Parcelforce Economy")).Select(s => new ServiceView(s));
+                    }
                 }
                 else
                 {
