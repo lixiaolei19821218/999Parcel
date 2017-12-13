@@ -38,11 +38,13 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             ButtonSuccessPaid.Visible = false;
             ButtonSuccessPaid.Width = 0;
+            ButtonReSend.Visible = false;
         }
         else
         {
             ButtonSuccessPaid.Visible = true;
             hrConfirm.Visible = true;
+            ButtonReSend.Visible = true;
         }
 
         if  (Order.Service.PickUpCompany.Contains("999") && !(Order.HasPickedUp ?? false))
@@ -320,5 +322,12 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             return "取件号：" + o.UKMConsignmentNumber;
         }
+    }
+
+    protected void ButtonReSend_Click(object sender, EventArgs e)
+    {
+        SendHelper.SendOrder(order);
+        repo.Context.SaveChanges();
+        Response.Redirect(Request.RawUrl);
     }
 }

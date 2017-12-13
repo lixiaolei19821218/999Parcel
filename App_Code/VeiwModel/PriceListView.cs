@@ -35,9 +35,17 @@ public class PriceListView
     public decimal GetPackageDeliverPrice(Package package)
     {
         decimal weightBySize = package.Length * package.Width * package.Height / 5000m;
-        decimal weight = package.Weight > weightBySize ? package.Weight : weightBySize; 
-        
-        decimal price = PriceItems.OrderBy(i => i.Weight).First(i => i.Weight >= weight).Price;  
+        decimal weight = package.Weight > weightBySize ? package.Weight : weightBySize;
+
+        decimal price;
+        if (weight > PriceItems.Max(i => i.Weight))
+        {
+            price = 99999;
+        }
+        else
+        {
+            price = PriceItems.OrderBy(i => i.Weight).First(i => i.Weight >= weight).Price;
+        }
         return Math.Round(price, 2);
     }
 
