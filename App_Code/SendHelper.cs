@@ -178,8 +178,8 @@ public static class SendHelper
                         to = 1
                     });
                 }
-                //string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");//测试key
-                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "e8b1cbd05f6e6a358a81dee52493dd06");//正式key
+                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");//测试key
+                //string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "e8b1cbd05f6e6a358a81dee52493dd06");//正式key
                 try
                 {
                     var res = JsonConvert.DeserializeAnonymousType(response, new { ems = string.Empty, status = string.Empty, shipmentId = string.Empty, label = new List<string>() });

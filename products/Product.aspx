@@ -581,7 +581,7 @@
                                                                             <option value="Beauty Apparatus">美容保健器材</option>
                                                                             <option value="Visual Equipment">影音设备</option>
                                                                             <option value="Mobile Phones and Devices">手机和移动设备</option>
-                                                                            <option value="Mobile Phones and Devices Accessories">手机和移动设备配件</option>
+                                                                            <option value="Mobile Phones and Devices Accessory">手机和移动设备配件</option>
                                                                             <option value="Computer">计算机</option>
                                                                             <option value="Computer Peripherals">计算机外围设备</option>
                                                                             <option value="Books and Newspapers">书报、刊物</option>
@@ -594,13 +594,13 @@
                                                                             <option value="Stamp">邮票</option>
                                                                             <option value="Musical Instruments">乐器</option>
                                                                             <option value="Tea">茶包</option>
-                                                                            <option value="汽车配件">汽车配件</option>
-                                                                            <option value="个人行李 - 旧箱包">个人行李 - 旧箱包</option>
-                                                                            <option value="个人行李 - 旧文具">个人行李 - 旧文具</option>
-                                                                            <option value="个人行李 - 旧电子物品">个人行李 - 旧电子物品</option>
-                                                                            <option value="个人行李 - 旧护肤品">个人行李 - 旧护肤品</option>
-                                                                            <option value="个人行李 - 个人礼品">个人行李 - 个人礼品</option>
-                                                                            <option value="个人行李 - 旧衣物">个人行李 - 旧衣物</option>
+                                                                            <option value="Car Accessories">汽车配件</option>
+                                                                            <option value="Luggage - Bag">个人行李 - 旧箱包</option>
+                                                                            <option value="Luggage - Stationery">个人行李 - 旧文具</option>
+                                                                            <option value="Luggage - Electronics">个人行李 - 旧电子物品</option>
+                                                                            <option value="Luggage - Skin Care">个人行李 - 旧护肤品</option>
+                                                                            <option value="Luggage - Gift">个人行李 - 个人礼品</option>
+                                                                            <option value="Luggage - Clothing">个人行李 - 旧衣物</option>
                                                                         </select>
                                                                         <!--
                                                                         <div class="<%:ServiceView.Name.Contains("杂物包税") ? "ib" : "" %> mx_quantity mx_cal" <%:ServiceView.Name.Contains("杂物包税") ? "" : "hidden=\"hidden\"" %>>
