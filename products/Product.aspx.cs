@@ -371,6 +371,8 @@ public partial class products_Product : System.Web.UI.Page
             }
 
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
+            recipient.Address = recipient.Address.Replace("（", "(");
+            recipient.Address = recipient.Address.Replace("）", ")");
             recipient.PyAddress = Pinyin.GetPinyin(recipient.Address);
             recipient.PhoneNumber = Request.Form.Get(string.Format("addr-{0}-phone", i)).Trim();
             recipient.ZipCode = Request.Form.Get(string.Format("addr-{0}-postcode", i)).Trim();           
@@ -786,6 +788,11 @@ public partial class products_Product : System.Web.UI.Page
         UK_ExpressEntities repo = new UK_ExpressEntities();
         Service s = repo.Services.Find(sid);
         ServiceView sv = new ServiceView(s);
+        decimal maxWeight = s.PriceList.PriceItems.Max(i => i.Weight);
+        if (weight > maxWeight)
+        {
+            weight = maxWeight;
+        }
         Package p = new Package() { Weight = weight, Length = length, Width = width, Height = height };
         decimal cost = sv.GetPackageDeliverPrice(p);
         return cost.ToString();
@@ -921,9 +928,22 @@ public partial class products_Product : System.Web.UI.Page
                 default:
                     return string.Empty;
             }
-            if (order.Service.Name.Contains("Parcelforce Economy"))
+            if (order.Service.Name.Contains("Parcelforce"))
             {
-                return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 45px\" value=\"{1}\" type=\"number\" step=\"0.1\" max=\"{2}\" min=\"1\"></input>", kind, v, kind == "weight" ? 30 : 105);
+                int maxWeight;
+                if (order.Service.Name.Contains("Parcelforce Priority 小包裹"))
+                {
+                    maxWeight = 2;
+                }
+                else if (order.Service.Name.Contains("Parcelforce Child Car Seat 儿童安全座椅专线"))
+                {
+                    maxWeight = 13;
+                }
+                else
+                {
+                    maxWeight = 30;
+                }
+                return string.Format("<input class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 45px\" value=\"{1}\" type=\"number\" step=\"0.1\" max=\"{2}\" min=\"1\"></input>", kind, v, kind == "weight" ? maxWeight : 105);
             }
             else
             {
