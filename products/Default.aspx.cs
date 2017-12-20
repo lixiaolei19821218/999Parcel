@@ -13,9 +13,8 @@ using Newtonsoft.Json.Linq;
 
 public partial class product_Default : System.Web.UI.Page
 {
-    //[Ninject.Inject]
-    //public IRepository repo { get; set; }
-    public UK_ExpressEntities repo = new UK_ExpressEntities();
+    [Ninject.Inject]
+    public IRepository repo { get; set; }
 
     private Order order;
 
@@ -34,7 +33,7 @@ public partial class product_Default : System.Web.UI.Page
             if (int.TryParse(Request.Form["order"], out serviceID))
             {
                 order.ServiceID = serviceID;
-                Service service = repo.Services.Find(order.ServiceID);
+                Service service = repo.Context.Services.Find(order.ServiceID);
                 order.Service = service;
                 ServiceView sv = new ServiceView(order.Service);
                 order.PickupPrice = sv.GetPickupPrice(order);
@@ -50,10 +49,10 @@ public partial class product_Default : System.Web.UI.Page
 
                 //计算折扣
                 MembershipUser user = Membership.GetUser();
-                var discount = repo.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
+                var discount = repo.Context.Discounts.Where(d => d.User == user.UserName && d.ServiceId == order.ServiceID).FirstOrDefault();
                 if (discount != null)
                 {
-                    repo.Entry<Discount>(discount).Reload();
+                    repo.Context.Entry<Discount>(discount).Reload();
                     foreach (Recipient r in order.Recipients)
                     {
                         foreach (Package p in r.Packages)
@@ -76,8 +75,8 @@ public partial class product_Default : System.Web.UI.Page
                 Server.Transfer("product.aspx");
                 */
                 //order.OrderTime = DateTime.Now;
-                //repo.Orders.Add(order);
-                //repo.SaveChanges();
+                //repo.Context.Orders.Add(order);
+                //repo.Context.SaveChanges();
                 Response.Redirect(string.Format("product.aspx?serviceId={0}", order.ServiceID));
             }
         }
@@ -133,7 +132,7 @@ public partial class product_Default : System.Web.UI.Page
         int providerId;
         if (int.TryParse(Request["providerId"], out providerId))
         {
-            Provider provider = repo.Providers.Find(providerId);
+            Provider provider = repo.Context.Providers.Find(providerId);
             if (provider == null)
             {
                 return new List<ServiceView>();
@@ -176,7 +175,7 @@ public partial class product_Default : System.Web.UI.Page
                 {
                     sv = new List<ServiceView>();
                 }
-                //var sv = repo.Services.Where(s => s.ProviderId == providerId).Select(s => new ServiceView(s));
+                //var sv = repo.Context.Services.Where(s => s.ProviderId == providerId).Select(s => new ServiceView(s));
                 return sv;
             }
         }
