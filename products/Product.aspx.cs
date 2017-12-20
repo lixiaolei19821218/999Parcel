@@ -12,6 +12,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NPinyin;
+using Microsoft.VisualBasic;
 
 public partial class products_Product : System.Web.UI.Page
 {
@@ -373,7 +374,9 @@ public partial class products_Product : System.Web.UI.Page
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
             recipient.Address = recipient.Address.Replace("（", "(");
             recipient.Address = recipient.Address.Replace("）", ")");
-            recipient.PyAddress = Pinyin.GetPinyin(recipient.Address);
+            string temp = Strings.StrConv(recipient.Address, VbStrConv.SimplifiedChinese, 0);
+            temp = Pinyin.GetPinyin(temp);
+            recipient.PyAddress = SendHelper.DeleteChineseWord(temp);
             recipient.PhoneNumber = Request.Form.Get(string.Format("addr-{0}-phone", i)).Trim();
             recipient.ZipCode = Request.Form.Get(string.Format("addr-{0}-postcode", i)).Trim();           
             recipient.IDNumber = Request.Form.Get(string.Format("addr-{0}-idnumber", i)).Trim();

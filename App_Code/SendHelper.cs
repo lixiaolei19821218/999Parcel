@@ -178,8 +178,8 @@ public static class SendHelper
                         to = 1
                     });
                 }
-                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");//测试key
-                //string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "e8b1cbd05f6e6a358a81dee52493dd06");//正式key
+                //string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "3e8477beA689de58");//测试key
+                string response = HttpHelper.HttpPost("http://eto.uk.com/api/createShipment", json, "", "e8b1cbd05f6e6a358a81dee52493dd06");//正式key
                 try
                 {
                     var res = JsonConvert.DeserializeAnonymousType(response, new { ems = string.Empty, status = string.Empty, shipmentId = string.Empty, label = new List<string>() });
@@ -238,5 +238,24 @@ public static class SendHelper
         {
             SendToPF(order);
         }
+    }
+
+    public static string DeleteChineseWord(string str)
+    {
+        string retValue = str;
+        if (System.Text.RegularExpressions.Regex.IsMatch(str, @"[\u4e00-\u9fa5]"))
+        {
+            retValue = string.Empty;
+            var strsStrings = str.ToCharArray();
+            for (int index = 0; index < strsStrings.Length; index++)
+            {
+                if (strsStrings[index] >= 0x4e00 && strsStrings[index] <= 0x9fa5)
+                {
+                    continue;
+                }
+                retValue += strsStrings[index];
+            }
+        }
+        return retValue;
     }
 }
