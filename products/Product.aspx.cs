@@ -349,6 +349,7 @@ public partial class products_Product : System.Web.UI.Page
             order.Recipients.Add(recipient);
             recipient.Name = Request.Form.Get(string.Format("addr-{0}-cn_name", i)).Trim();
             recipient.PyName = Pinyin.GetPinyin(recipient.Name);
+            recipient.PyName = SendHelper.DeleteChineseWord(recipient.PyName);
 
             recipient.Province = Request.Form.Get(string.Format("addr-{0}-cn_province", i)).Trim();
             recipient.PyProvince = Pinyin.GetPinyin(recipient.Province);
