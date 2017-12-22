@@ -375,7 +375,9 @@ public partial class products_Product : System.Web.UI.Page
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
             recipient.Address = recipient.Address.Replace("（", "(");
             recipient.Address = recipient.Address.Replace("）", ")");
-            string temp = Strings.StrConv(recipient.Address, VbStrConv.SimplifiedChinese, 0);
+            recipient.Address = recipient.Address.Replace("，", ",");
+            string temp = Strings.StrConv(recipient.Address.Replace(" ", ""), VbStrConv.SimplifiedChinese, 0);
+            temp = temp.Replace("?", "");
             temp = Pinyin.GetPinyin(temp);
             recipient.PyAddress = SendHelper.DeleteChineseWord(temp);
             recipient.PhoneNumber = Request.Form.Get(string.Format("addr-{0}-phone", i)).Trim();
