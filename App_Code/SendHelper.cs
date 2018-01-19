@@ -6,6 +6,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Security;
 
@@ -153,13 +154,15 @@ public static class SendHelper
         {
             foreach (Package p in r.Packages.Where(pacecl => pacecl.Status != "SUCCESS"))
             {
+                string senderName = HasChinese(order.SenderName) ? Pinyin.GetPinyin(order.SenderName) : order.SenderName;
+                string senderCity = HasChinese(order.SenderCity) ? Pinyin.GetPinyin(order.SenderCity) : order.SenderCity;
                 string json;
                 if (sid == 21)
                 {
                     json = JsonConvert.SerializeObject(new
                     {
                         Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
-                        BillAddress = new { fullname_en = Pinyin.GetPinyin(order.SenderName), city_en = Pinyin.GetPinyin(order.SenderCity), zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
+                        BillAddress = new { fullname_en = senderName, city_en = senderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
                         ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
                         serviceId = sid,
                         type = 1,
@@ -172,7 +175,7 @@ public static class SendHelper
                     json = JsonConvert.SerializeObject(new
                     {
                         Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
-                        BillAddress = new { fullname_en = Pinyin.GetPinyin(order.SenderName), city_en = Pinyin.GetPinyin(order.SenderCity), zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
+                        BillAddress = new { fullname_en = senderName, city_en = senderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
                         ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
                         serviceId = sid,
                         type = 1,
@@ -259,5 +262,10 @@ public static class SendHelper
             }
         }
         return retValue;
+    }
+
+    public static bool HasChinese(this string str)
+    {
+        return Regex.IsMatch(str, @"[\u4e00-\u9fa5]");
     }
 }
