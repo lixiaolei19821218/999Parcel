@@ -1153,10 +1153,17 @@
                     //$current_addr_item.find('[id$=cn_city').val($(this).siblings('div.addr-city').text());
                     //$current_addr_item.find('[id$=cn_district').val($(this).siblings('div.addr-district').text());
                     $current_addr_item.find('.dist').distpicker('destroy');
+                    var p = $(this).siblings('div.addr-province').text();
+                    var c = $(this).siblings('div.addr-city').text();
+                    var d = $(this).siblings('div.addr-district').text();
+                    if (p == '北京市' || p == '天津市' || p == '上海市' || p == '重庆市') {
+                        d = c;
+                    }
+
                     $current_addr_item.find('.dist').distpicker({
-                        province: $(this).siblings('div.addr-province').text(),
-                        city: $(this).siblings('div.addr-city').text(),
-                        district: $(this).siblings('div.addr-district').text()
+                        province: p,
+                        city: c,
+                        district: d
                     });
                     //$current_addr_item.find('.dist').distpicker('reset');
                     //$current_addr_item.find('.dist')[0].reset();
