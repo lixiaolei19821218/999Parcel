@@ -183,7 +183,7 @@ public static class SendHelper
                     });
                 }
 
-                string response = HttpHelper.HttpPost("https://eto.uk.com/api/createShipment", json, "", ConfigurationManager.AppSettings["eto_apikey"]);
+                string response = HttpHelper.HttpPost("https://www.eto.uk.com/api/createShipment", json, "", ConfigurationManager.AppSettings["eto_apikey"]);
                 
                 try
                 {
