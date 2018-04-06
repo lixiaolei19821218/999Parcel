@@ -377,6 +377,7 @@ public partial class products_Product : System.Web.UI.Page
             recipient.Address = recipient.Address.Replace("）", ")");
             recipient.Address = recipient.Address.Replace("，", ",");
             recipient.Address = recipient.Address.Replace("—", "-");
+            recipient.Address = recipient.Address.Replace("－", "-");
             string temp = Strings.StrConv(recipient.Address.Replace(" ", ""), VbStrConv.SimplifiedChinese, 0);
             temp = temp.Replace("?", "");
             temp = Pinyin.GetPinyin(temp);
