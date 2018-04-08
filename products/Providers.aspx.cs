@@ -52,6 +52,6 @@ public partial class products_Providers : System.Web.UI.Page
 
     public decimal GetLowestPrice(Provider provider)
     {
-        return provider.Services.Min(s => new ServiceView(s).GetSendPrice(order));
+        return provider.Services.Where(s => s.Valid).Min(s => new ServiceView(s).GetSendPrice(order));
     }
 }
