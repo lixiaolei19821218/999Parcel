@@ -25,6 +25,7 @@ public partial class accounts_Recover : System.Web.UI.Page
         }
         else
         {
+            mUser.UnlockUser();
             string newPassword = mUser.ResetPassword("answer");
             while (newPassword.Any(c => !char.IsLetterOrDigit(c)))
             {
@@ -34,11 +35,11 @@ public partial class accounts_Recover : System.Web.UI.Page
 
             string requestString = Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/accounts/ResetPassword.aspx?user=" + mUser.UserName + "&password=" + newPassword;
             string mailContent = "点击<a href=\"http://" + requestString + "\">找回密码</a>\r\n或复制链接以下链接到浏览器：\r\n" + requestString;
-            SendEmail(mUser.Email, "设置新密码", mailContent);
+            EmailService.SendEmail(mUser.Email, "设置新密码", mailContent);
             message.InnerText = string.Format("一封找回密码的邮件已经发送到您邮箱：{0}。", mUser.Email);
         }
     }
-
+    /*
     public bool SendEmail(string mailTo, string mailSubject, string mailContent, params string[] attachmentPaths)
     {
         // 设置发送方的邮件信息,例如使用网易的smtp
@@ -75,4 +76,5 @@ public partial class accounts_Recover : System.Web.UI.Page
             return false;
         }
     }
+    */
 }
