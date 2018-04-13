@@ -24,16 +24,18 @@ public partial class accounts_Recover : System.Web.UI.Page
             message.InnerText = string.Format("没有找到用户：{0}，请输入正确的用户名", Request["username"]);
         }
         else
-        {
-            mUser.UnlockUser();
+        {           
             string newPassword = mUser.ResetPassword("answer");
-            while (newPassword.Any(c => !char.IsLetterOrDigit(c)))
-            {
-                //去掉特殊字符
-                newPassword = mUser.ResetPassword("answer");
-            }
+            newPassword = Server.UrlEncode(newPassword);
 
-            string requestString = Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/accounts/ResetPassword.aspx?user=" + mUser.UserName + "&password=" + newPassword;
+
+
+            mUser.UnlockUser();
+            mUser.IsApproved = true;
+            Membership.UpdateUser(mUser);
+            string requestString = Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/accounts/ResetPassword.aspx?user=" + Server.UrlEncode(mUser.UserName) + "&password=" + newPassword;
+            
+            return;
             string mailContent = "点击<a href=\"http://" + requestString + "\">找回密码</a>\r\n或复制链接以下链接到浏览器：\r\n" + requestString;
             EmailService.SendEmail(mUser.Email, "设置新密码", mailContent);
             message.InnerText = string.Format("一封找回密码的邮件已经发送到您邮箱：{0}。", mUser.Email);

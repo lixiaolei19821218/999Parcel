@@ -22,12 +22,23 @@ public partial class Default2 : System.Web.UI.Page
             }
             else
             {
-                if (Membership.ValidateUser(user, pass))
+                MembershipUser mUser = Membership.GetUser(user);
+               
+                if (mUser != null)
                 {
-                    FormsAuthentication.RedirectFromLoginPage(user, false);
+                    if (Membership.ValidateUser(user, pass))
+                    {
+                        FormsAuthentication.RedirectFromLoginPage(user, false);
+                    }
+                    else
+                    {
+                        message.InnerText = "密码错误。";
+                        message.Style["visibility"] = "visible";                       
+                    }
                 }
                 else
-                {
+                {                    
+                    message.InnerText = "用户名未注册。";
                     message.Style["visibility"] = "visible";
                 }
             }
