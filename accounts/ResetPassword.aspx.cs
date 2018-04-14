@@ -14,8 +14,7 @@ public partial class accounts_ResetPassword : System.Web.UI.Page
         if (IsPostBack)
         {
             string user = Request.QueryString["user"];
-            string password = Request.QueryString["password"];
-            password = HttpUtility.UrlDecode(password);
+            string password = Request.QueryString["password"];            
 
             if (user != null && password != null && Membership.ValidateUser(user, password))
             {

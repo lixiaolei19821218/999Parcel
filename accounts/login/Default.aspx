@@ -52,7 +52,7 @@
 
                 <div class="control-group input_id_username">
                     <label class="control-label" for="id_username">
-                        用户名
+                        用户名或电子邮件地址
                     </label>
                     <div class="controls">
                         <input autofocus="" id="id_username" name="username" required="" type="text" style="height:30px;"/>

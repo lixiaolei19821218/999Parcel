@@ -23,8 +23,33 @@ public partial class Default2 : System.Web.UI.Page
             else
             {
                 MembershipUser mUser = Membership.GetUser(user);
-               
-                if (mUser != null)
+
+                if (mUser == null)
+                {
+                    user = Membership.GetUserNameByEmail(user);
+                    if (string.IsNullOrEmpty(user))
+                    {
+                        message.InnerText = "用户名未注册。";
+                        message.Style["visibility"] = "visible";
+                        return;
+                    }
+                    else
+                    {
+                        mUser = Membership.GetUser(user);
+                    }
+                }
+
+                if (!mUser.IsApproved)
+                {
+                    message.InnerText = "用户未激活，请在您的注册邮箱查收激活邮件。";
+                    message.Style["visibility"] = "visible";
+                }
+                else if (mUser.IsLockedOut)
+                {
+                    message.InnerText = "用户被锁定，请重置您的密码。";
+                    message.Style["visibility"] = "visible";
+                }
+                else
                 {
                     if (Membership.ValidateUser(user, pass))
                     {
@@ -33,13 +58,8 @@ public partial class Default2 : System.Web.UI.Page
                     else
                     {
                         message.InnerText = "密码错误。";
-                        message.Style["visibility"] = "visible";                       
+                        message.Style["visibility"] = "visible";
                     }
-                }
-                else
-                {                    
-                    message.InnerText = "用户名未注册。";
-                    message.Style["visibility"] = "visible";
                 }
             }
         }
