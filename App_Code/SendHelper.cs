@@ -148,6 +148,14 @@ public static class SendHelper
         {
             sid = 21;
         }
+        else if (order.Service.Name.Contains("顺丰奶粉包税4罐"))
+        {
+            sid = 34;
+        }
+        else if (order.Service.Name.Contains("顺丰奶粉包税6罐"))
+        {
+            sid = 36;
+        }
 
         List<string> oFiles = new List<string>();
         foreach (Recipient r in order.Recipients)
@@ -170,11 +178,23 @@ public static class SendHelper
                         pickup = "1|" + order.PickupTime.Value.ToString("yyyy-MM-dd")
                     });
                 }
-                else
+                else if (sid == 22 || sid == 27)
                 {
                     json = JsonConvert.SerializeObject(new
                     {
                         Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice }) },
+                        BillAddress = new { fullname_en = senderName, city_en = senderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
+                        ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
+                        serviceId = sid,
+                        type = 1,
+                        to = 1
+                    });
+                }
+                else//34,36
+                {
+                    json = JsonConvert.SerializeObject(new
+                    {
+                        Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice, cate = i.TariffCode }) },
                         BillAddress = new { fullname_en = senderName, city_en = senderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
                         ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
                         serviceId = sid,

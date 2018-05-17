@@ -171,6 +171,22 @@ public partial class product_Default : System.Web.UI.Page
                         sv = provider.Services.Where(s => s.Valid && !s.Name.Contains("Parcelforce Priority 小包裹") && !s.Name.Contains("Parcelforce Child Car Seat")).Select(s => new ServiceView(s));
                     }                    
                 }
+                else if (provider.Name == "顺丰奶粉包税")
+                {
+                    if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 7 && p.Weight <= 8)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && s.Name.Contains("顺丰奶粉包税6罐")).Select(s => new ServiceView(s));
+                    }
+                    else if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 4 && p.Weight <= 5)))
+                    {
+                        sv = provider.Services.Where(s => s.Valid && s.Name.Contains("顺丰奶粉包税4罐")).Select(s => new ServiceView(s));
+                    }
+                    else
+                    {
+                        //sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
+                        sv = new List<ServiceView>();
+                    }
+                }
                 else
                 {
                     sv = new List<ServiceView>();

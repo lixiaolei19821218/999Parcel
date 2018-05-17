@@ -409,6 +409,22 @@ public partial class TTKDMilkPowder
     public string Name { get; set; }
 }
 
+public partial class yp_ems_goods
+{
+    public int id { get; set; }
+    public string shotcode { get; set; }
+    public string code { get; set; }
+    public string tax_code { get; set; }
+    public string name { get; set; }
+    public string ban { get; set; }
+    public string model { get; set; }
+    public double unit_weight { get; set; }
+    public string unit { get; set; }
+    public double unit_price { get; set; }
+    public double usd { get; set; }
+    public double fourpcs { get; set; }
+}
+
 public partial class aspnet_Membership_GetPassword_Result
 {
     public string Column1 { get; set; }

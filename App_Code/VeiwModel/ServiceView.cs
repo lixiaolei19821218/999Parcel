@@ -195,7 +195,9 @@ public class ServiceView
                 price = 0m;
                 break;
             case "自营奶粉包税4罐 - 诚信物流取件"://自营4罐奶粉
-            case "自营奶粉包税6罐 - 诚信物流取件"://自营6罐奶粉                
+            case "自营奶粉包税6罐 - 诚信物流取件"://自营6罐奶粉    
+            case "顺丰奶粉包税4罐 - 诚信物流取件"://顺丰4罐奶粉
+            case "顺丰奶粉包税6罐 - 诚信物流取件"://顺丰6罐奶粉                   
                 packageCount = order.Recipients.Sum(r => r.Packages.Count);
                 
                 if (packageCount < 3)

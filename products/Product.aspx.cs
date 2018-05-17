@@ -222,7 +222,7 @@ public partial class products_Product : System.Web.UI.Page
             repo.Context.SaveChanges();
 
             //ParcelForce
-            if (sv.Name.Contains("Parcelforce") || sv.Name.Contains("自营奶粉包税"))
+            if (sv.Name.Contains("Parcelforce") || sv.Name.Contains("奶粉包税"))
             {
 
                 Response.Redirect("/cart/cart.aspx");
@@ -396,12 +396,12 @@ public partial class products_Product : System.Web.UI.Page
         }
 
         int parcelCount = int.Parse(Request.Form.Get("parcel-TOTAL_FORMS"));
-        int weight = order.Service.Name.Contains("自营奶粉包税6罐") ? 7 : 5;
+        int weight = order.Service.Name.Contains("奶粉包税6罐") ? 7 : 5;
         for (int j = 0; j < parcelCount; j++)
         {
             int recipientNum = int.Parse(Request.Form.Get(string.Format("parcel-{0}-address_id", j)));
             Package p;
-            if (order.Service.Name.Contains("自营奶粉包税"))
+            if (order.Service.Name.Contains("奶粉包税"))
             {
                 p = new Package() { Weight = weight, Length = 1, Width = 1, Height = 1 };
             }           
@@ -420,13 +420,17 @@ public partial class products_Product : System.Web.UI.Page
             {
                 PackageItem pi = new PackageItem();
                 pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", j, k)).Trim();
+                if (order.Service.Name.Contains("顺丰奶粉包税"))
+                {
+                    pi.TariffCode = repo.Context.yp_ems_goods.FirstOrDefault(y => y.name == pi.Description).id.ToString();
+                }
                 pi.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", j, k)));
                 decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", j, k)));
                 pi.UnitPrice = unitPrice;
                 pi.Value = Math.Round(unitPrice * (decimal)pi.Count, 2);
                 p.PackageItems.Add(pi);
             }
-            if (order.Service.Name.Contains("自营奶粉包税6罐"))
+            if (order.Service.Name.Contains("奶粉包税6罐"))
             {
                 int count = p.PackageItems.Sum(item => item.Count).Value;
                 if (count > 6)
@@ -434,7 +438,7 @@ public partial class products_Product : System.Web.UI.Page
                     msg.Append(string.Format("包裹{0}的奶粉数量超过6罐。", j + 1));
                 }
             }
-            if (order.Service.Name.Contains("自营奶粉包税4罐"))
+            if (order.Service.Name.Contains("奶粉包税4罐"))
             {
                 int count = p.PackageItems.Sum(item => item.Count).Value;
                 if (count > 4)
@@ -791,6 +795,13 @@ public partial class products_Product : System.Web.UI.Page
     }
 
     [WebMethod]
+    public static IEnumerable<object> GetSFMilkPowders(string name)
+    {
+        UK_ExpressEntities repo = new UK_ExpressEntities();
+        return from y in repo.yp_ems_goods select y.name;
+    }
+
+    [WebMethod]
     public static string GetOrderPrice(int sid, int index, decimal weight, decimal length, decimal width, decimal height)
     {
         UK_ExpressEntities repo = new UK_ExpressEntities();
@@ -834,11 +845,11 @@ public partial class products_Product : System.Web.UI.Page
 
     public int GetMaxItemCount()
     {
-        if (Order.Service.Name.Contains("自营奶粉包税4罐"))
+        if (Order.Service.Name.Contains("奶粉包税4罐"))
         {
             return 4;
         }
-        else if (Order.Service.Name.Contains("自营奶粉包税6罐"))
+        else if (Order.Service.Name.Contains("奶粉包税6罐"))
         {
             return 6;
         }

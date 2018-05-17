@@ -260,7 +260,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Discribe" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DiscribePictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -316,6 +316,23 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="yp_ems_goods">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="shotcode" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="tax_code" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ban" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="unit_weight" Type="float" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="unit_price" Type="float" Nullable="false" />
+          <Property Name="usd" Type="float" Nullable="false" />
+          <Property Name="fourpcs" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK_ChannelID">
           <End Role="RechargeChannels" Type="Self.RechargeChannels" Multiplicity="1" />
@@ -878,6 +895,7 @@
           <EntitySet Name="TraceMessage" EntityType="Self.TraceMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraceNumbers" EntityType="Self.TraceNumbers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TTKDMilkPowders" EntityType="Self.TTKDMilkPowders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yp_ems_goods" EntityType="Self.yp_ems_goods" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ChannelID" Association="Self.FK_ChannelID">
             <End Role="RechargeChannels" EntitySet="RechargeChannels" />
             <End Role="RechargeApplys" EntitySet="RechargeApplys" />
@@ -1376,6 +1394,7 @@
             <End Role="aspnet_User" EntitySet="aspnet_User" />
             <End Role="DefaultSender" EntitySet="DefaultSenders" />
           </AssociationSet>
+          <EntitySet Name="yp_ems_goods" EntityType="UK_ExpressModel.yp_ems_goods" />
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1557,7 +1576,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PictureLink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Discribe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DiscribePictureLink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1976,6 +1995,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="yp_ems_goods">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="shotcode" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="tax_code" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ban" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="model" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="unit_weight" Type="Double" Nullable="false" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="unit_price" Type="Double" Nullable="false" />
+          <Property Name="usd" Type="Double" Nullable="false" />
+          <Property Name="fourpcs" Type="Double" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2438,6 +2474,24 @@
                 <ScalarProperty Name="Address1" ColumnName="Address1" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yp_ems_goods">
+            <EntityTypeMapping TypeName="UK_ExpressModel.yp_ems_goods">
+              <MappingFragment StoreEntitySet="yp_ems_goods">
+                <ScalarProperty Name="fourpcs" ColumnName="fourpcs" />
+                <ScalarProperty Name="usd" ColumnName="usd" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="unit_weight" ColumnName="unit_weight" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="ban" ColumnName="ban" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tax_code" ColumnName="tax_code" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="shotcode" ColumnName="shotcode" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

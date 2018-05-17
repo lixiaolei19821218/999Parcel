@@ -37,6 +37,7 @@
                             <th class="tac">赔付金额</th>   
                             <th class="tac">补交金额</th>                     
                             <th class="tac">面单</th>
+                            <th class="tac">详情</th>
                             <th class="tac">赔付/补交</th>
                         </tr>
                     </HeaderTemplate>
@@ -55,6 +56,9 @@
                             <td class="tac">
                                 <a href="/<%#Item.Pdf %>">下载</a>
                             </td>
+                            <td colspan="1">
+                                    <asp:LinkButton ID="NormalDetail" OnClick="NormalDetail_Click" runat="server" Text="详情" data-id="<%#Item.Id %>" Font-Size="Small" />
+                                </td>
                             <td class="tac">
                                 <a href="/Admin/Compensate.aspx?id=<%#Item.Id %>">赔付/补交</a>
                             </td>

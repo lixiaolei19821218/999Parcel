@@ -292,6 +292,14 @@ public partial class cart_Cart : System.Web.UI.Page
                 case "Parcelforce Child Car Seat 儿童安全座椅专线 - 诚信物流取件":
 
                 case "Parcelforce Child Car Seat 儿童安全座椅专线 - 自送仓库":
+
+                case "顺丰奶粉包税4罐 - 自送仓库":
+
+                case "顺丰奶粉包税6罐 - 自送仓库":
+
+                case "顺丰奶粉包税4罐 - 诚信物流取件":
+
+                case "顺丰奶粉包税6罐 - 诚信物流取件":
                     SendHelper.SendToPF(o);
                     break;
                 case "Bpost - 诚信物流取件":

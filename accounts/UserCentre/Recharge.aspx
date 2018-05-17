@@ -313,7 +313,7 @@
                     <tr>
                         <th><em>*</em>金额：</th>
                         <td>
-                            <input type="text" name="applyAmount" id="applyAmount" value="" size="10" class="input-text"/>£
+                            <input type="number" name="applyAmount" id="applyAmount" value="" size="10" class="input-text" min="50"/>£
 				<span id="mnyTip"></span>
                             <div id="mnyRMB"></div>
                         </td>

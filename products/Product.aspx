@@ -176,6 +176,46 @@
             });
         }
 
+        function loadSFMilkPowders() {
+            $.ajax({
+                //要用post方式       
+                type: "Post",
+                //方法所在页面和方法名       
+                url: "Product.aspx/GetSFMilkPowders",
+                data: "{ 'name': '<%:Order.Service.Name%>' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    //返回的数据用data.d获取内容       
+                    $(data.d).each(function (j, s) {
+                        $(".item_detail").each(function (i, e) {
+                            if (e.dataset.selected == s)
+                            {
+                                $(e).append("<option selected = \"selected\">" + s + "</option>");
+                            }
+                            else
+                            {
+                                $(e).append("<option>" + s + "</option>");
+                            }
+                            
+                        }
+                        )
+                        /*
+                        if ($(".item_detail").attr("data-selected") == this) {
+                            $(".item_detail").append("<option selected = \"selected\">" + this + "</option>");
+                        }
+                        else {
+                            $(".item_detail").appendC
+                        }*/
+                        //$(".item_detail")
+                    });
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        }
+
         $(function () {
             var service = '<%:ServiceView.Name%>';
             if (service.indexOf("杂物包税") != -1) {
@@ -191,6 +231,11 @@
             if (service.indexOf("自营奶粉包税") != -1) {
                 $('.item_detail').empty();
                 $('.item_detail').load(loadTTKDMilkPowders());
+            }
+
+            if (service.indexOf("顺丰奶粉包税") != -1) {
+                $('.item_detail').empty();
+                $('.item_detail').load(loadSFMilkPowders());
             }
         });
         

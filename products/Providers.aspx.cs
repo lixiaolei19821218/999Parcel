@@ -41,7 +41,7 @@ public partial class products_Providers : System.Web.UI.Page
         if (order.Recipients.All(r => r.Packages.All(p => p.Weight >= 4 && p.Weight <= 5)) ||
             order.Recipients.All(r => r.Packages.All(p => p.Weight >= 7 && p.Weight <= 8)))
         {
-            return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税" || p.Name == "Parcelforce");
+            return repo.Context.Providers.Where(p => p.Name == "自营奶粉包税" || p.Name == "Parcelforce" || p.Name == "顺丰奶粉包税");
         }
         else
         {

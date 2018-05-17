@@ -166,4 +166,15 @@ public partial class Admin_Parcel : System.Web.UI.Page
         string content = Request.Form.Get("content").Trim();
         Response.Redirect(string.Format("/admin/Parcel.aspx?content={0}", content));
     }
+
+    protected void NormalDetail_Click(object sender, EventArgs e)
+    {
+        int id;
+        if (int.TryParse((sender as LinkButton).Attributes["data-id"], out id))
+        {
+            int orderId = repo.Context.Packages.Find(id).Recipient.Order.Id;
+            Session.Add("id", orderId);
+            Response.Redirect("/admin/OrderDetail.aspx");
+        }
+    }
 }
