@@ -421,8 +421,8 @@ public partial class products_Product : System.Web.UI.Page
                 PackageItem pi = new PackageItem();
                 pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", j, k)).Trim();
                 if (order.Service.Name.Contains("顺丰奶粉包税"))
-                {
-                    pi.TariffCode = repo.Context.yp_ems_goods.FirstOrDefault(y => y.name == pi.Description).id.ToString();
+                {                    
+                    pi.TariffCode = repo.Context.yp_ems_goods.FirstOrDefault(y => y.name == pi.Description).id.ToString();                    
                 }
                 pi.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", j, k)));
                 decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", j, k)));

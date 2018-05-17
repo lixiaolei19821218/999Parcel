@@ -325,11 +325,11 @@
           <Property Name="shotcode" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="code" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="tax_code" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ban" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="model" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="unit_weight" Type="float" Nullable="false" />
-          <Property Name="unit" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="unit_price" Type="float" Nullable="false" />
           <Property Name="usd" Type="float" Nullable="false" />
           <Property Name="fourpcs" Type="float" Nullable="false" />
@@ -2003,11 +2003,11 @@
           <Property Name="shotcode" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="code" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="tax_code" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ban" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="model" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="unit_weight" Type="Double" Nullable="false" />
-          <Property Name="unit" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="unit_price" Type="Double" Nullable="false" />
           <Property Name="usd" Type="Double" Nullable="false" />
           <Property Name="fourpcs" Type="Double" Nullable="false" />

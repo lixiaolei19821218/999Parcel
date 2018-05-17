@@ -219,7 +219,7 @@ public partial class cart_Paid : System.Web.UI.Page
 
     protected string GetIcon(Order o)
     {
-        if (o.Service.Name.Contains("Parcelforce") || o.Service.Name.Contains("杂物包税") || o.Service.Name.Contains("自营奶粉包税"))
+        if (o.Service.Name.Contains("Parcelforce") || o.Service.Name.Contains("杂物包税") || o.Service.Name.Contains("奶粉包税"))
         {
             if (o.SuccessPaid ?? false)
             {
