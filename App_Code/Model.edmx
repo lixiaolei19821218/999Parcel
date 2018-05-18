@@ -23,10 +23,12 @@
         </EntityType>
         <EntityType Name="Compensates">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="PackageId" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="AdminAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
         <EntityType Name="DefaultSenders">
           <Key>
@@ -134,7 +136,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Length" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Width" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Height" Type="decimal" Precision="18" Scale="1" Nullable="false" />
@@ -246,14 +248,16 @@
         </EntityType>
         <EntityType Name="Repays">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="PackageId" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="Weight" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Length" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Width" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Height" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="AdminAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -354,7 +358,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Compensates">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -462,7 +466,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Repays">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1379,6 +1383,12 @@
             <End Role="Service" EntitySet="Services" />
           </AssociationSet>
           <EntitySet Name="TTKDMilkPowders" EntityType="UK_ExpressModel.TTKDMilkPowder" />
+          <EntitySet Name="DefaultSenders" EntityType="UK_ExpressModel.DefaultSender" />
+          <AssociationSet Name="FK_UserID" Association="UK_ExpressModel.FK_UserID">
+            <End Role="aspnet_User" EntitySet="aspnet_User" />
+            <End Role="DefaultSender" EntitySet="DefaultSenders" />
+          </AssociationSet>
+          <EntitySet Name="yp_ems_goods" EntityType="UK_ExpressModel.yp_ems_goods" />
           <EntitySet Name="Compensates" EntityType="UK_ExpressModel.Compensate" />
           <AssociationSet Name="FK_Compensates_Packages" Association="UK_ExpressModel.FK_Compensates_Packages">
             <End Role="Package" EntitySet="Packages" />
@@ -1389,12 +1399,6 @@
             <End Role="Package" EntitySet="Packages" />
             <End Role="Repay" EntitySet="Repays" />
           </AssociationSet>
-          <EntitySet Name="DefaultSenders" EntityType="UK_ExpressModel.DefaultSender" />
-          <AssociationSet Name="FK_UserID" Association="UK_ExpressModel.FK_UserID">
-            <End Role="aspnet_User" EntitySet="aspnet_User" />
-            <End Role="DefaultSender" EntitySet="DefaultSenders" />
-          </AssociationSet>
-          <EntitySet Name="yp_ems_goods" EntityType="UK_ExpressModel.yp_ems_goods" />
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -1924,50 +1928,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Compensate">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Package" Relationship="UK_ExpressModel.FK_Compensates_Packages" FromRole="Compensate" ToRole="Package" />
-        </EntityType>
-        <Association Name="FK_Compensates_Packages">
-          <End Type="UK_ExpressModel.Package" Role="Package" Multiplicity="1" />
-          <End Type="UK_ExpressModel.Compensate" Role="Compensate" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Package">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Compensate">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Repay">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Weight" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
-          <Property Name="Length" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
-          <Property Name="Width" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
-          <Property Name="Height" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
-          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Package" Relationship="UK_ExpressModel.FK_Repays_Packages" FromRole="Repay" ToRole="Package" />
-        </EntityType>
-        <Association Name="FK_Repays_Packages">
-          <End Type="UK_ExpressModel.Package" Role="Package" Multiplicity="1" />
-          <End Type="UK_ExpressModel.Repay" Role="Repay" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Package">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Repay">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="DefaultSender">
           <Key>
             <PropertyRef Name="UserId" />
@@ -2012,6 +1972,54 @@
           <Property Name="usd" Type="Double" Nullable="false" />
           <Property Name="fourpcs" Type="Double" Nullable="false" />
         </EntityType>
+        <EntityType Name="Compensate">
+          <Key>
+            <PropertyRef Name="PackageId" />
+          </Key>
+          <Property Name="PackageId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="AdminAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Package" Relationship="UK_ExpressModel.FK_Compensates_Packages" FromRole="Compensate" ToRole="Package" />
+        </EntityType>
+        <Association Name="FK_Compensates_Packages">
+          <End Type="UK_ExpressModel.Package" Role="Package" Multiplicity="1" />
+          <End Type="UK_ExpressModel.Compensate" Role="Compensate" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compensate">
+              <PropertyRef Name="PackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Repay">
+          <Key>
+            <PropertyRef Name="PackageId" />
+          </Key>
+          <Property Name="PackageId" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
+          <Property Name="Length" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
+          <Property Name="Width" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
+          <Property Name="Height" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="AdminAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Package" Relationship="UK_ExpressModel.FK_Repays_Packages" FromRole="Repay" ToRole="Package" />
+        </EntityType>
+        <Association Name="FK_Repays_Packages">
+          <End Type="UK_ExpressModel.Package" Role="Package" Multiplicity="1" />
+          <End Type="UK_ExpressModel.Repay" Role="Repay" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Repay">
+              <PropertyRef Name="PackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2442,26 +2450,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Compensates">
-            <EntityTypeMapping TypeName="UK_ExpressModel.Compensate">
-              <MappingFragment StoreEntitySet="Compensates">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Repays">
-            <EntityTypeMapping TypeName="UK_ExpressModel.Repay">
-              <MappingFragment StoreEntitySet="Repays">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DefaultSenders">
             <EntityTypeMapping TypeName="UK_ExpressModel.DefaultSender">
               <MappingFragment StoreEntitySet="DefaultSenders">
@@ -2492,6 +2480,30 @@
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="shotcode" ColumnName="shotcode" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compensates">
+            <EntityTypeMapping TypeName="UK_ExpressModel.Compensate">
+              <MappingFragment StoreEntitySet="Compensates">
+                <ScalarProperty Name="ApproveTime" ColumnName="ApproveTime" />
+                <ScalarProperty Name="AdminAccount" ColumnName="AdminAccount" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repays">
+            <EntityTypeMapping TypeName="UK_ExpressModel.Repay">
+              <MappingFragment StoreEntitySet="Repays">
+                <ScalarProperty Name="ApproveTime" ColumnName="ApproveTime" />
+                <ScalarProperty Name="AdminAccount" ColumnName="AdminAccount" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

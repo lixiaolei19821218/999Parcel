@@ -70,12 +70,12 @@
                 <div class="table-div">
                     <table class="table-list">
                         <tr>
-                            <th>申请单号</th>
-                            <th>方式</th>
-                            <th>申请金额(£)</th>                           
-                            <th>凭证</th>
-                            <th>时间</th>
-                            <th>处理</th>
+                            <th style="font-weight:bold;">申请单号</th>
+                            <th style="font-weight:bold;">方式</th>
+                            <th style="font-weight:bold;">申请金额(£)</th>                           
+                            <th style="font-weight:bold;">凭证</th>
+                            <th style="font-weight:bold;">时间</th>
+                            <th style="font-weight:bold;">审批结果</th>
                         </tr>
                         <asp:Repeater runat="server" SelectMethod="GetPageApplys" ItemType="RechargeApply">
                             <ItemTemplate>

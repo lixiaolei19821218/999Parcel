@@ -62,7 +62,7 @@ public partial class Admin_Compensate : System.Web.UI.Page
 
     protected void ButtonAdd_Click(object sender, EventArgs e)
     {
-        Compensate c = new Compensate() { Id = Package.Id, Value = decimal.Parse(add.Value) };
+        Compensate c = new Compensate() { PackageId = Package.Id, Value = decimal.Parse(add.Value), AdminAccount = Membership.GetUser().UserName, ApproveTime = DateTime.Now };
         repo.Context.Compensates.Add(c);
         string username = Package.Recipient.Order.User;
         aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);
@@ -73,7 +73,9 @@ public partial class Admin_Compensate : System.Web.UI.Page
 
     protected void ButtonSub_Click(object sender, EventArgs e)
     {
-        Repay r = new Repay() { Id = Package.Id, Weight = decimal.Parse(txtWeight.Value), Length = decimal.Parse(txtLength.Value), Width = decimal.Parse(txtWidth.Value), Height = decimal.Parse(txtHeight.Value), Value = decimal.Parse(sub.Value) };
+        Repay r = new Repay() { PackageId = Package.Id,
+            Weight = decimal.Parse(txtWeight.Value), Length = decimal.Parse(txtLength.Value), Width = decimal.Parse(txtWidth.Value), Height = decimal.Parse(txtHeight.Value),
+            Value = decimal.Parse(sub.Value), AdminAccount = Membership.GetUser().UserName, ApproveTime = DateTime.Now };
         repo.Context.Repays.Add(r);
         string username = Package.Recipient.Order.User;
         aspnet_User user = repo.Context.aspnet_User.FirstOrDefault(u => u.UserName == username);

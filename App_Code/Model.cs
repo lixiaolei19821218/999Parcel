@@ -29,8 +29,10 @@ public partial class aspnet_User
 
 public partial class Compensate
 {
-    public int Id { get; set; }
+    public int PackageId { get; set; }
     public decimal Value { get; set; }
+    public string AdminAccount { get; set; }
+    public Nullable<System.DateTime> ApproveTime { get; set; }
 
     public virtual Package Package { get; set; }
 }
@@ -309,12 +311,14 @@ public partial class Reinforce
 
 public partial class Repay
 {
-    public int Id { get; set; }
+    public int PackageId { get; set; }
     public decimal Weight { get; set; }
     public decimal Length { get; set; }
     public decimal Width { get; set; }
     public decimal Height { get; set; }
     public decimal Value { get; set; }
+    public string AdminAccount { get; set; }
+    public Nullable<System.DateTime> ApproveTime { get; set; }
 
     public virtual Package Package { get; set; }
 }

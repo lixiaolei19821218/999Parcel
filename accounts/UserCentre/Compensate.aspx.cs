@@ -6,18 +6,21 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
+
 public partial class accounts_UserCentre_Compensate : System.Web.UI.Page
 {
+
     [Ninject.Inject]
     public IRepository repo { get; set; }
 
-    private int pageSize = 10;
+    private int pageSize = 20;
 
     public int PageSpan
     {
         get
         {
-            return 10;
+            return 20;
         }
     }
 
@@ -29,12 +32,19 @@ public partial class accounts_UserCentre_Compensate : System.Web.UI.Page
             page = int.TryParse(Request.QueryString["startpage"], out page) ? page : 1;
             return page > MaxPage ? MaxPage : page;
         }
-    }
+    }   
 
-    public IEnumerable<Order> GetCompensate()
+    public IEnumerable<CompensateRecord> GetCompensate()
     {
-        string user = Membership.GetUser().UserName;        
-        return repo.Context.Orders.Where(o => o.User == user && o.Compensate.HasValue && o.Compensate > 0.0m).OrderByDescending(p => p.Id).Skip((CurrentPage - 1) * pageSize).Take(pageSize);
+        string user = Membership.GetUser().UserName;
+        var compensates = repo.Context.Compensates.Where(c => c.Package.Recipient.Order.User == user).
+            Select( c => new CompensateRecord() { OrderId = c.Package.Recipient.OrderId.Value, TrackNUmber = c.Package.TrackNumber, Value = c.Value, ApproveTime = c.ApproveTime.Value } );
+        var repays = repo.Context.Repays.Where(c => c.Package.Recipient.Order.User == user).
+            Select(c => new CompensateRecord() { OrderId = c.Package.Recipient.OrderId.Value, TrackNUmber = c.Package.TrackNumber, Value = -c.Value, ApproveTime = c.ApproveTime.Value });
+
+        List<CompensateRecord> records = compensates.ToList();
+        records.AddRange(repays.ToList());
+        return records.OrderByDescending(c => c.ApproveTime).Skip((CurrentPage - 1) * pageSize).Take(pageSize);
     }
     protected int CurrentPage
     {

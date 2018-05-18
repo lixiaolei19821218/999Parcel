@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Compensate.aspx.cs" Inherits="accounts_UserCentre_Compensate" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-    <title>充值记录</title>
+    <title>补退款记录</title>
     <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/global_v2.0.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/tpl/t4/style.css" rel="stylesheet" type="text/css" />
@@ -67,16 +67,18 @@
                 <div class="table-div">
                     <table class="table-list">
                         <tr>
-                            <th>订单号</th>
-                            <th>补偿金额</th>
-                           
+                            <th style="font-weight:bold;">订单号</th>                            
+                            <th style="font-weight:bold;">运单号</th>
+                            <th style="font-weight:bold;">补偿/补扣金额</th>
+                            <th style="font-weight:bold;">审批时间</th>
                         </tr>
-                        <asp:Repeater runat="server" SelectMethod="GetCompensate" ItemType="Order">
+                        <asp:Repeater runat="server" SelectMethod="GetCompensate" ItemType="CompensateRecord">
                             <ItemTemplate>
                                 <tr>
-                                    <td><%#string.Format("{0:d9}", Item.Id) %></td>
-                                    <td><%#Item.Compensate %></td>
-                                    
+                                    <td><%#string.Format("{0:d9}", Item.OrderId) %></td>
+                                    <td><%#Item.TrackNUmber %></td>
+                                    <td><%#Item.Value %></td>
+                                    <td><%#Item.ApproveTime %></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
