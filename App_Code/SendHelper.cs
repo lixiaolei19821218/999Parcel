@@ -190,13 +190,13 @@ public static class SendHelper
                         to = 1
                     });
                 }
-                else//34,36
+                else//34,36 顺丰奶粉包税
                 {
                     json = JsonConvert.SerializeObject(new
                     {
                         Pacel = new { weight = p.Weight, length = p.Length, height = p.Height, width = p.Width, item = p.PackageItems.Select(i => new { name = i.Description, number = i.Count, value = i.UnitPrice, cate = i.TariffCode }) },
                         BillAddress = new { fullname_en = senderName, city_en = senderCity, zip = order.SenderZipCode, phone = order.SenderPhone, email = order.SenderEmail, address1_en = order.SenderAddress1, address2_en = order.SenderAddress2 + " " + order.SenderAddress3 },
-                        ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email },
+                        ShipAddress = new { fullname_en = r.PyName, fullname = r.Name, city_en = r.PyProvince + ", " + r.PyCity + ", " + r.PyDistrict, city = r.Province + ", " + r.City + ", " + r.District, address1_en = r.PyAddress, address1 = r.Address, zip = r.ZipCode, phone = r.PhoneNumber, email = Membership.GetUser().Email, identity = r.IDNumber },
                         serviceId = sid,
                         type = 1,
                         to = 1
