@@ -313,9 +313,17 @@
                     <tr>
                         <th><em>*</em>金额：</th>
                         <td>
-                            <input type="number" name="applyAmount" id="applyAmount" value="" size="10" class="input-text" min="50"/>£
-				<span id="mnyTip"></span>
-                            <div id="mnyRMB"></div>
+                            <select class="item_detail" name="applyAmount" id="applyAmount" style="width:100px;height:23px;">
+                                <option selected="selected">50</option>
+                                <option>100</option>
+                                <option>200</option>
+                                <option>300</option>
+                                <option>500</option>
+                                <option>1000</option>
+                            </select>
+                            <!--<input type="number" name="applyAmount" id="applyAmount" value="" size="10" class="input-text" min="50" />-->£
+				            <span id="mnyTip"></span>
+                            <!--<div id="mnyRMB"></div>-->
                         </td>
                     </tr>
                     <tr id="image">
