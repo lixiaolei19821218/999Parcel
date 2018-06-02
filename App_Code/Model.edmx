@@ -152,6 +152,7 @@
           <Property Name="ReinforceCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FinalCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Json" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="PriceItems">
           <Key>
@@ -235,6 +236,7 @@
           <Property Name="District" Type="nvarchar" MaxLength="50" />
           <Property Name="PyProvince" Type="nvarchar" MaxLength="50" />
           <Property Name="PyDistrict" Type="nvarchar" MaxLength="50" />
+          <Property Name="Json" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Reinforces">
           <Key>
@@ -1515,6 +1517,7 @@
           <Property Name="FinalCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Compensate" Relationship="UK_ExpressModel.FK_Compensates_Packages" FromRole="Package" ToRole="Compensate" />
           <NavigationProperty Name="Repay" Relationship="UK_ExpressModel.FK_Repays_Packages" FromRole="Package" ToRole="Repay" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PriceItem">
           <Key>
@@ -1563,6 +1566,7 @@
           <Property Name="District" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="PyProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PyDistrict" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Reinforce">
           <Key>
@@ -2188,6 +2192,7 @@
           <EntitySetMapping Name="Packages">
             <EntityTypeMapping TypeName="UK_ExpressModel.Package">
               <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="Json" ColumnName="Json" />
                 <ScalarProperty Name="FinalCost" ColumnName="FinalCost" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="ReinforceCost" ColumnName="ReinforceCost" />
@@ -2229,6 +2234,7 @@
           <EntitySetMapping Name="Recipients">
             <EntityTypeMapping TypeName="UK_ExpressModel.Recipient">
               <MappingFragment StoreEntitySet="Recipients">
+                <ScalarProperty Name="Json" ColumnName="Json" />
                 <ScalarProperty Name="PyDistrict" ColumnName="PyDistrict" />
                 <ScalarProperty Name="PyProvince" ColumnName="PyProvince" />
                 <ScalarProperty Name="District" ColumnName="District" />

@@ -156,6 +156,7 @@ public partial class Package
     public decimal ReinforceCost { get; set; }
     public decimal Discount { get; set; }
     public decimal FinalCost { get; set; }
+    public string Json { get; set; }
 
     public virtual Recipient Recipient { get; set; }
     public virtual ICollection<PackageItem> PackageItems { get; set; }
@@ -288,6 +289,7 @@ public partial class Recipient
     public string District { get; set; }
     public string PyProvince { get; set; }
     public string PyDistrict { get; set; }
+    public string Json { get; set; }
 
     public virtual Order Order { get; set; }
     public virtual ICollection<Package> Packages { get; set; }

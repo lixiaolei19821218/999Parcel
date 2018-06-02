@@ -65,7 +65,8 @@ public static class SendHelper
                 data.Remove(data.Length - 1, 1);
                 data.Append("]}");
 
-                string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), data.ToString(), ConfigurationManager.AppSettings["Authorization"]);
+                r.Json = data.ToString();
+                string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), r.Json, ConfigurationManager.AppSettings["Authorization"]);
                 //order.UKMErrors = data.ToString() + " | " + response;
                 //return;           
                 //throw new Exception();                  
@@ -203,6 +204,7 @@ public static class SendHelper
                     });
                 }
 
+                p.Json = json;
                 string response = HttpHelper.HttpPost("https://www.eto.uk.com/api/createShipment", json, "", ConfigurationManager.AppSettings["eto_apikey"]);
                 
                 try

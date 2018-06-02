@@ -17,7 +17,7 @@
     <div class="sz16 bold colorb2" style="margin-top: 20px">
         <span style="font-size:large;font-family:'Microsoft YaHei';">订单详情</span>
         <div style="float: right; font-size: small;">
-            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%:GetPickupNumber(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预约取件时间：<%=GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
+            <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%:GetPickupNumber(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预约取件时间：<%=GetPickupTime(Order) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单金额：<%:Order.Cost %>
         </div>
     </div>
 
@@ -62,7 +62,7 @@
                                             <td class="left"><%#Item.Length %></td>
                                             <td class="tac"><%#Item.Width %></td>
                                             <td class="tac"><%#Item.Height %></td>
-                                            <td class="tac"><%#Item.Value %></td>
+                                            <td class="tac"><%#Item.FinalCost %></td>
                                             <td class="tac"><%#Item.Status %></td>
                                             <td class="tac"><%#Item.TrackNumber %></td>                                            
                                             <td colspan="2">
