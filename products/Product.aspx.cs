@@ -137,7 +137,7 @@ public partial class products_Product : System.Web.UI.Page
                }
             }
         }
-        return order.Recipients;
+        return order.Recipients.Where(r => r.SuccessPaid == true);
     }
 
     public decimal GetSendPrice()
@@ -155,41 +155,15 @@ public partial class products_Product : System.Web.UI.Page
                 order.OrderTime = DateTime.Now;
                 order.Cost = sv.GetSendPrice(order);
                 repo.Context.Orders.Add(order);        
-            }/*
-            else
+            }
+
+            if (order.Id != 0 && order.SuccessPaid == false)
             {
-                Order old = repo.Context.Orders.Find(order.Id);
+                repo.Context.SaveChanges();
+                Session.Add("id", order.Id);
+                Response.Redirect("/cart/OrderDetail.aspx");
+            }
 
-                foreach (Recipient r in old.Recipients)
-                {
-                    foreach (Package p in r.Packages)
-                    {
-                        repo.Context.PackageItems.RemoveRange(p.PackageItems);
-                    }
-                    repo.Context.Packages.RemoveRange(r.Packages);
-                }
-                repo.Context.Recipients.RemoveRange(old.Recipients);
-
-                old.HasPaid = order.HasPaid;
-                old.IsValid = order.IsValid;
-                old.OrderTime = order.OrderTime;
-                old.PickupTime = order.PickupTime;
-                old.SenderAddress1 = order.SenderAddress1;
-                old.SenderAddress2 = order.SenderAddress2;
-                old.SenderAddress3 = order.SenderAddress3;
-                old.SenderCity = order.SenderCity;
-                old.SenderName = order.SenderName;
-                old.SenderPhone = order.SenderPhone;
-                old.SenderZipCode = order.SenderZipCode;
-                old.SenderEmail = order.SenderEmail;
-                foreach (Recipient r in order.Recipients)
-                {
-                    old.Recipients.Add(r);
-                }
-                old.Cost = sv.GetSendPrice(old);
-            }*/
-
-            
             order.PickupPrice = sv.GetPickupPrice(order);
             foreach (Recipient r in order.Recipients)
             {

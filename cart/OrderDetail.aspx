@@ -25,28 +25,31 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="sz16 bold colorb2" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;color:#C34C21;padding-top:30px;">
-        订单详情
+    <form runat="server" method="post" id="placeOrder" style="padding-top: 0px;">
+        <div class="sz16 bold colorb2" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-weight: bold; font-size: large; color: #C34C21; padding-top: 30px;">
+            订单详情
         <div style="float: right; font-size: smaller">
             <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
+            <asp:Button ID="ButtonReSend" CssClass="btn btn-danger btn-small del" runat="server" Text="重新发送" style="padding:0px 10px;" OnClick="ButtonReSend_Click"/>
         </div>
-    </div>
+        </div>
 
-    <div style="margin-top: 15px; background-color: #fff; padding: 15px;">
-        <fieldset>
-            <legend>发件人：<%:Order.SenderName %><div style="float:right;font-size:medium;" title="<%:GetOrderTip() %>">费用：<%:Order.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></div></legend>
-            <ul>
-                <li>城市：<%:Order.SenderCity %></li>
-                <li>地址：<%:Order.SenderAddress1 + " " + Order.SenderAddress2 + " " + Order.SenderAddress3 %></li>
-                <li>手机：<%:Order.SenderPhone%></li>
-                <li>邮编：<%:Order.SenderZipCode%></li>
-                <%=GetUKM() %>
-            </ul>
-        </fieldset>
-    </div>
+        <div style="margin-top: 15px; background-color: #fff; padding: 15px;">
+            <fieldset>
+                <legend>发件人：<%:Order.SenderName %><div style="float: right; font-size: medium;" title="<%:GetOrderTip() %>">费用：<%:Order.Cost.Value.ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></div>
+                </legend>
+                <ul>
+                    <li>城市：<%:Order.SenderCity %></li>
+                    <li>地址：<%:Order.SenderAddress1 + " " + Order.SenderAddress2 + " " + Order.SenderAddress3 %></li>
+                    <li>手机：<%:Order.SenderPhone%></li>
+                    <li>邮编：<%:Order.SenderZipCode%></li>
+                    <%=GetUKM() %>
+                </ul>
+            </fieldset>
+        </div>
 
-    <div style="margin-top: 15px; margin-bottom:15px; background-color: #fff; padding: 15px; min-height: 600px;">
-        <form runat="server" method="post" id="placeOrder" style="padding-top: 0px;">
+        <div style="margin-top: 15px; margin-bottom: 15px; background-color: #fff; padding: 15px; min-height: 600px;">
+
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
                 <ItemTemplate>
                     <fieldset>
@@ -95,6 +98,7 @@
                     <br />
                 </ItemTemplate>
             </asp:Repeater>
-        </form>
-    </div>
+
+        </div>
+    </form>
 </asp:Content>

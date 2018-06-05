@@ -200,4 +200,8 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-gb");
         return string.Format("取件费：{0:c2}，加固费：{1:c2}，快递费：{2:c2}， 折扣：-{3:c2}", order.PickupPrice, order.ReinforcePrice, order.DeliverPrice, order.Discount);
     }
+    protected void ButtonReSend_Click(object sender, EventArgs e)
+    {
+
+    }
 }
