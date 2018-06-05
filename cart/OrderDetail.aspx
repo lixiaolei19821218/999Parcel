@@ -30,7 +30,7 @@
             订单详情
         <div style="float: right; font-size: smaller">
             <%:Order.Service.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：<%:string.Format("{0:d9}", Session["id"]) %>
-            <asp:Button ID="ButtonReSend" CssClass="btn btn-danger btn-small del" runat="server" Text="重新发送" style="padding:0px 10px;" OnClick="ButtonReSend_Click"/>
+            
         </div>
         </div>
 
@@ -48,7 +48,7 @@
             </fieldset>
         </div>
 
-        <div style="margin-top: 15px; margin-bottom: 15px; background-color: #fff; padding: 15px; min-height: 600px;">
+        <div style="margin-top: 15px; margin-bottom: 15px; background-color: #fff; padding: 15px; min-height: 300px;">
 
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
                 <ItemTemplate>
@@ -99,6 +99,10 @@
                 </ItemTemplate>
             </asp:Repeater>
 
+        </div>
+        <div style="float: right;" runat="server" id="divEdit">
+            <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改订单" OnClick="ButtonEdit_Click" Style="padding: 0px 10px;" />
+            <asp:Button ID="ButtonReSend" CssClass="btn btn-danger btn-small del" runat="server" Text="重新发送" Style="padding: 0px 10px;" OnClick="ButtonReSend_Click" />
         </div>
     </form>
 </asp:Content>

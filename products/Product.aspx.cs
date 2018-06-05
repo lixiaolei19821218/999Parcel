@@ -75,7 +75,7 @@ public partial class products_Product : System.Web.UI.Page
         //ParcelForce
         if (sv.Name.Contains("Parcelforce"))
         {
-            add2cart.Text = "添加到购物车";
+            //add2cart.Text = "添加到购物车";
         }
 
         //根据用户选取的服务，确定不同的取件时间
@@ -137,7 +137,7 @@ public partial class products_Product : System.Web.UI.Page
                }
             }
         }
-        return order.Recipients.Where(r => r.SuccessPaid == true);
+        return order.Recipients.Where(r => r.SuccessPaid.HasValue == false || r.SuccessPaid == false);
     }
 
     public decimal GetSendPrice()
@@ -157,7 +157,7 @@ public partial class products_Product : System.Web.UI.Page
                 repo.Context.Orders.Add(order);        
             }
 
-            if (order.Id != 0 && order.SuccessPaid == false)
+            if (order.Id != 0 && (order.SuccessPaid.HasValue == false || order.SuccessPaid == false))
             {
                 repo.Context.SaveChanges();
                 Session.Add("id", order.Id);

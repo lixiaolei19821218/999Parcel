@@ -39,6 +39,11 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         }
         Service service = repo.Services.FirstOrDefault(s => s.Id == order.ServiceID);
         sv = new ServiceView(service);
+
+        if (order.SuccessPaid == true)
+        {
+            divEdit.Visible = false;
+        }
     }
 
     public string GetUKM()
@@ -202,6 +207,12 @@ public partial class cart_OrderDetail : System.Web.UI.Page
     }
     protected void ButtonReSend_Click(object sender, EventArgs e)
     {
-
+        SendHelper.SendOrder(order);
+        repo.Context.SaveChanges();
+        Response.Redirect(Request.RawUrl);
+    }
+    protected void ButtonEdit_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(string.Format("/products/product.aspx?orderId={0}&serviceId={1}", order.Id, order.ServiceID));
     }
 }
