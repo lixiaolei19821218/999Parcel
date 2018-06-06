@@ -398,8 +398,8 @@
                                 <div class="clrw1" style="background-color: #FD7F23; padding: 5px 20px">
                                     <div class="pull-left" style="padding-top: 4px">收件人地址 <span class="addr_item_num"><%#Container.ItemIndex + 1 %></span></div>
                                     <div class="select-addr2 pull-left btn btn-primary btn-small btn-hover"><i class="icon-book icon-white"></i><span>调用地址簿</span></div>                              
-                                    <div class="del-addr pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除收件人</span></div>
-                                    <div class="add-addr pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加收件人</span></div>
+                                    <div <%=GetVisibility() %> class="del-addr pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除收件人</span></div>
+                                    <div <%=GetVisibility() %> class="add-addr pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加收件人</span></div>
                                     <div style="clear: both"></div>
                                     <div style="clear: both"></div>
                                 </div>
@@ -551,8 +551,8 @@
                                             <li class="parcelItem" style="list-style: none; margin-top: 15px">
                                                 <div class="rds1 clrw1" style="background-color: #0075C2; padding: 5px 20px">
                                                     包裹 <span class="ordering_number">1</span>
-                                                    <span class="del-parcel pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除包裹</span></span>
-                                                    <span class="clone pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加包裹</span></span>                                                    
+                                                    <span <%=GetVisibility() %> class="del-parcel pull-right btn btn-danger btn-small btn-hover"><i class="icon-trash icon-white"></i><span>删除包裹</span></span>
+                                                    <span <%=GetVisibility() %> class="clone pull-right btn btn-primary btn-small btn-hover"><i class="icon-plus icon-white"></i><span>添加包裹</span></span>
                                                 </div>
                                                 <input id="id_parcel-0-address_id" name="parcel-0-address_id" type="hidden" value="0" />
                                                 <input id="id_parcel-0-id" name="parcel-0-id" type="hidden" />

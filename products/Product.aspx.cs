@@ -125,6 +125,18 @@ public partial class products_Product : System.Web.UI.Page
         }
     }   
 
+    public string GetVisibility()
+    {
+        if (order.SuccessPaid == false)
+        {
+            return "style = \"visibility:collapse;\"";
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
+
     public IEnumerable<Recipient> GetRecipients()
     {
         foreach (Recipient r in order.Recipients)
@@ -920,6 +932,10 @@ public partial class products_Product : System.Web.UI.Page
                     break;
                 default:
                     return string.Empty;
+            }
+            if (order.SuccessPaid == false)
+            {
+                return string.Format("<span class=\"input-small\" id=\"id_parcel-0-{0}\" name=\"parcel-0-{0}\" style=\"width: 55px\"><strong>{1}</strong></span>", kind, v);
             }
             if (order.Service.Name.Contains("Parcelforce"))
             {
