@@ -169,7 +169,7 @@ public partial class products_Product : System.Web.UI.Page
                 repo.Context.Orders.Add(order);        
             }
 
-            if (order.Id != 0 && (order.SuccessPaid.HasValue == false || order.SuccessPaid == false))
+            if (order.Id != 0 && order.SuccessPaid == false)
             {
                 repo.Context.SaveChanges();
                 Session.Add("id", order.Id);
