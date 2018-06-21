@@ -10,11 +10,11 @@ public partial class accounts_signup_Activate : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        username.Value = Request["username"];
+        //username.Value = Request["username"];
     }
     protected void Activate_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(username.Value))
+        if (!string.IsNullOrWhiteSpace(username.Value))
         {
             string name = username.Value.Trim();
             MembershipUser user = Membership.GetUser(name);
