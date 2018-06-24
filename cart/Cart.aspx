@@ -7,6 +7,16 @@
     <style type="text/css">
        
     </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[name*='ButtonPayOne']").click(function (e) {              
+                e.currentTarget.value = 'Paying..';              
+            })
+            $("input[name*='payAll']").click(function (e) {
+                e.currentTarget.value = 'Paying..';
+            })
+        });
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -45,7 +55,7 @@
                                 <th class="tac">包裹数</th>
                                 <th class="tac">发件人</th>
                                 <th>服务</th>
-                                <th colspan="3"></th>
+                                <th class="right" colspan="3"></th>
                             </tr>
                         </HeaderTemplate>                        
                         <ItemTemplate>
@@ -57,10 +67,10 @@
                                 <td class="tac" style="vertical-align:middle;"><%#Item.Recipients.Sum(r => r.Packages.Count) %></td>
                                 <td class="tac" style="vertical-align:middle;"><%#Item.SenderName %></td>
                                 <td class="right" style="vertical-align:middle;"><%#Item.Service.Name %></td>
-                                <td colspan="2">
+                                <td class="right" colspan="3">
                                     <asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改" data-id="<%#Item.Id %>" OnClick="ButtonEdit_Click" style="padding:0px 10px;" />
                                     <asp:Button ID="ButtonDel" CssClass="btn btn-danger btn-small del" runat="server" Text="删除" data-id="<%#Item.Id %>" OnClick="ButtonDel_Click"  style="padding:0px 10px;"/>
-                                    <asp:Button ID="ButtonPayOne" CssClass="btn btn-danger btn-small del" runat="server" Text="支付" data-id="<%#Item.Id %>" OnClick="ButtonPayOne_Click"  style="padding:0px 10px;"/>
+                                    <asp:Button ID="ButtonPayOne" CssClass="btn btn-danger btn-small del payone" runat="server" Text="支付" data-id="<%#Item.Id %>" OnClick="ButtonPayOne_Click"  style="padding:0px 10px;width:70px;"/>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -115,7 +125,7 @@
 
                    <a href="/" class="btn btn-info" style="line-height: 1;width:120px;">继续下单</a>
 
-                    <asp:Button ID="pay" runat="server" CssClass="btn btn-info" Text="支付所有定单" style="line-height: 1;width:120px;" OnClick="pay_Click" />
+                    <asp:Button ID="payAll" runat="server" CssClass="btn btn-info" Text="支付所有定单" style="line-height: 1;width:120px;" OnClick="pay_Click" />
                     
 
                     <div style="clear: both"></div>

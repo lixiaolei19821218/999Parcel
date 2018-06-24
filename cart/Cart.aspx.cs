@@ -909,6 +909,10 @@ public partial class cart_Cart : System.Web.UI.Page
     { 
         if (balance >= totalPrice)
         {
+            if (normalOrders.Any(o => o.SuccessPaid == true))
+            {
+                return;
+            }
             try
             {
                 PayOrders(normalOrders, total999PickupCount >= 3);
@@ -1475,7 +1479,7 @@ public partial class cart_Cart : System.Web.UI.Page
         if (int.TryParse((sender as Button).Attributes["data-id"], out id))
         {
             Order order = repo.Context.Orders.Find(id);
-            if (order != null)
+            if (order != null && (order.SuccessPaid ?? false) == false)
             {                
                 if (apUser.Balance >= order.Cost.Value)
                 {
