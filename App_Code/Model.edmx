@@ -1517,7 +1517,7 @@
           <Property Name="FinalCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Compensate" Relationship="UK_ExpressModel.FK_Compensates_Packages" FromRole="Package" ToRole="Compensate" />
           <NavigationProperty Name="Repay" Relationship="UK_ExpressModel.FK_Repays_Packages" FromRole="Package" ToRole="Repay" />
-          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PriceItem">
           <Key>
@@ -1566,7 +1566,7 @@
           <Property Name="District" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="PyProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PyDistrict" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Reinforce">
           <Key>
