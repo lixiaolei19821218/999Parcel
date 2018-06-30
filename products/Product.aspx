@@ -416,7 +416,7 @@
                                     </div>                                    
                                     <div style="float: left; margin: 5px" class="control-group ">
                                         <label for="id_addr-<%#Container.ItemIndex %>-cn_name">中文姓名</label>                                 
-                                        <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="24" name="addr-<%#Container.ItemIndex %>-cn_name" style="width: 90px" type="text" value="<%#Item.Name %>"  required="required" 
+                                        <input class="cn_fields cn_name" id="id_addr-0-cn_name" maxlength="5" name="addr-<%#Container.ItemIndex %>-cn_name" style="width: 90px" type="text" value="<%#Item.Name %>"  required="required" 
                                             onblur="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onchange="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;" 
                                             onkeydown="var py=($('#id_addr-<%#Container.ItemIndex %>-cn_name').toPinyin());py_name<%#Container.ItemIndex %>.innerText=py;hd_name<%#Container.ItemIndex %>.value=py;"/>

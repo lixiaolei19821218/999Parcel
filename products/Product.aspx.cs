@@ -313,26 +313,46 @@ public partial class products_Product : System.Web.UI.Page
         order.SenderZipCode = id_billing_detail_postcode.Value.Trim();
         order.SenderEmail = id_billing_detail_email.Value.Trim();
 
-        
-        if (order.Id != 0)
+        if (order.Id == 0)
         {
-            foreach (Recipient r in order.Recipients)
-            {
-                foreach (Package p in r.Packages)
-                {
-                    repo.Context.PackageItems.RemoveRange(p.PackageItems);
-                }
-                repo.Context.Packages.RemoveRange(r.Packages);
-            }
-            repo.Context.Recipients.RemoveRange(order.Recipients);
+            order.Recipients.Clear();
         }
-        order.Recipients.Clear();
-        
+        else
+        {
+            if (order.SuccessPaid == null)
+            {
+                foreach (Recipient r in order.Recipients)
+                {
+                    foreach (Package p in r.Packages)
+                    {
+                        repo.Context.PackageItems.RemoveRange(p.PackageItems);
+                    }
+                    repo.Context.Packages.RemoveRange(r.Packages);
+                }
+                repo.Context.Recipients.RemoveRange(order.Recipients);
+                order.Recipients.Clear();
+            }
+            else if (order.SuccessPaid == false)
+            {
+
+            }
+        }
+
+       
         int recipientCount = int.Parse(Request.Form.Get("addr-TOTAL_FORMS"));
         for (int i = 0; i < recipientCount; i++)
         {
-            Recipient recipient = new Recipient();
-            order.Recipients.Add(recipient);
+            Recipient recipient;
+            if (order.SuccessPaid == false)
+            {
+                recipient = order.Recipients.ElementAt(i);
+            }
+            else
+            {
+                recipient = new Recipient();
+                order.Recipients.Add(recipient);
+            }
+            
             recipient.Name = Request.Form.Get(string.Format("addr-{0}-cn_name", i)).Trim();
             recipient.PyName = Pinyin.GetPinyin(recipient.Name);
             recipient.PyName = SendHelper.DeleteChineseWord(recipient.PyName);
@@ -381,55 +401,59 @@ public partial class products_Product : System.Web.UI.Page
             }           
         }
 
-        int parcelCount = int.Parse(Request.Form.Get("parcel-TOTAL_FORMS"));
-        int weight = order.Service.Name.Contains("奶粉包税6罐") ? 7 : 5;
-        for (int j = 0; j < parcelCount; j++)
+        if (order.SuccessPaid == null)//fail paid order can't modify packages
         {
-            int recipientNum = int.Parse(Request.Form.Get(string.Format("parcel-{0}-address_id", j)));
-            Package p;
-            if (order.Service.Name.Contains("奶粉包税"))
+            int parcelCount = int.Parse(Request.Form.Get("parcel-TOTAL_FORMS"));
+            int weight = order.Service.Name.Contains("奶粉包税6罐") ? 7 : 5;
+            for (int j = 0; j < parcelCount; j++)
             {
-                p = new Package() { Weight = weight, Length = 1, Width = 1, Height = 1 };
-            }           
-            else
-            {
-                p = new Package() {
-                    Weight = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-weight", j))),
-                    Length = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-length", j))),
-                    Width = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-width", j))),
-                    Height = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-height", j))),
-                };
-            }
-            order.Recipients.ElementAt(recipientNum).Packages.Add(p);
-            int itemsCount = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-TOTAL_FORMS", j)));
-            for (int k = 0; k < itemsCount; k++)
-            {
-                PackageItem pi = new PackageItem();
-                pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", j, k)).Trim();
-                if (order.Service.Name.Contains("顺丰奶粉包税"))
-                {                    
-                    pi.TariffCode = repo.Context.yp_ems_goods.FirstOrDefault(y => y.name == pi.Description).id.ToString();                    
-                }
-                pi.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", j, k)));
-                decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", j, k)));
-                pi.UnitPrice = unitPrice;
-                pi.Value = Math.Round(unitPrice * (decimal)pi.Count, 2);
-                p.PackageItems.Add(pi);
-            }
-            if (order.Service.Name.Contains("奶粉包税6罐"))
-            {
-                int count = p.PackageItems.Sum(item => item.Count).Value;
-                if (count > 6)
+                int recipientNum = int.Parse(Request.Form.Get(string.Format("parcel-{0}-address_id", j)));
+                Package p;
+                if (order.Service.Name.Contains("奶粉包税"))
                 {
-                    msg.Append(string.Format("包裹{0}的奶粉数量超过6罐。", j + 1));
+                    p = new Package() { Weight = weight, Length = 1, Width = 1, Height = 1 };
                 }
-            }
-            if (order.Service.Name.Contains("奶粉包税4罐"))
-            {
-                int count = p.PackageItems.Sum(item => item.Count).Value;
-                if (count > 4)
+                else
                 {
-                    msg.Append(string.Format("包裹{0}的奶粉数量超过4罐。", j + 1));
+                    p = new Package()
+                    {
+                        Weight = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-weight", j))),
+                        Length = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-length", j))),
+                        Width = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-width", j))),
+                        Height = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-height", j))),
+                    };
+                }
+                order.Recipients.ElementAt(recipientNum).Packages.Add(p);
+                int itemsCount = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-TOTAL_FORMS", j)));
+                for (int k = 0; k < itemsCount; k++)
+                {
+                    PackageItem pi = new PackageItem();
+                    pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", j, k)).Trim();
+                    if (order.Service.Name.Contains("顺丰奶粉包税"))
+                    {
+                        pi.TariffCode = repo.Context.yp_ems_goods.FirstOrDefault(y => y.name == pi.Description).id.ToString();
+                    }
+                    pi.Count = int.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-quantity", j, k)));
+                    decimal unitPrice = decimal.Parse(Request.Form.Get(string.Format("parcel-{0}-content-{1}-cost", j, k)));
+                    pi.UnitPrice = unitPrice;
+                    pi.Value = Math.Round(unitPrice * (decimal)pi.Count, 2);
+                    p.PackageItems.Add(pi);
+                }
+                if (order.Service.Name.Contains("奶粉包税6罐"))
+                {
+                    int count = p.PackageItems.Sum(item => item.Count).Value;
+                    if (count > 6)
+                    {
+                        msg.Append(string.Format("包裹{0}的奶粉数量超过6罐。", j + 1));
+                    }
+                }
+                if (order.Service.Name.Contains("奶粉包税4罐"))
+                {
+                    int count = p.PackageItems.Sum(item => item.Count).Value;
+                    if (count > 4)
+                    {
+                        msg.Append(string.Format("包裹{0}的奶粉数量超过4罐。", j + 1));
+                    }
                 }
             }
         }
