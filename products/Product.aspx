@@ -474,7 +474,7 @@
                                     <div style="margin-left: 26px; float: left">
                                         <div style="float: left; margin: 5px 5px 5px 7px" class="control-group ">
                                             <label for="id_addr-0-phone">电话</label>
-                                            <input id="id_addr-0-phone" maxlength="12" pattern="(^1[3|4|5|6|7|8][0-9]\d{4,8}$)|(^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$)|(^((0\d{2,3}\d{7,8})|(1[3584]\d{9}))$)" name="addr-<%#Container.ItemIndex %>-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required oninvalid="setCustomValidity('请输入正确的11位手机号码或固话号码。')" oninput="setCustomValidity('')"/>
+                                            <input id="id_addr-0-phone" maxlength="12" pattern="(^1[3|4|5|6|7|8|9][0-9]\d{4,8}$)|(^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$)|(^((0\d{2,3}\d{7,8})|(1[3584]\d{9}))$)" name="addr-<%#Container.ItemIndex %>-phone" style="width: 100px" type="text" value="<%#Item.PhoneNumber %>"  required oninvalid="setCustomValidity('请输入正确的11位手机号码或固话号码。')" oninput="setCustomValidity('')"/>
                                         </div>
                                     </div>      
                                      <div style="margin-left: 26px; float: left" <%:ServiceView.Name.Contains("杂物包税") ||  ServiceView.Name.Contains("奶粉包税") ? "" : "hidden=\"hidden\"" %>>
