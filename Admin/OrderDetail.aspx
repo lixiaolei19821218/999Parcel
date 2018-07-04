@@ -24,7 +24,7 @@
     <div style="margin-top: 15px; background-color: #fff; padding: 15px; min-height: 600px;">
         <form runat="server" method="post" id="placeOrder" style="padding-top: 0px">
             <fieldset>
-                        <legend>发件人：<%:Order.SenderName%><div style="float:right;"><asp:Button ID="ButtonReSend" CssClass="btn btn-danger btn-small del" runat="server" Text="重新发送" style="padding:0px 10px;" OnClick="ButtonReSend_Click"/></div></legend>
+                        <legend>发件人：<%:Order.SenderName%><div style="float:right;"><asp:Button ID="ButtonEdit" CssClass="btn btn-info btn-small edit" runat="server" Text="修改订单" style="padding:0px 10px;" OnClick="ButtonEdit_Click"/>&nbsp;&nbsp<asp:Button ID="ButtonReSend" CssClass="btn btn-danger btn-small del" runat="server" Text="重新发送" style="padding:0px 10px;" OnClick="ButtonReSend_Click"/></div></legend>
                         <ul>
                             <li>城市：<%:Order.SenderCity %></li>
                             <li>邮编：<%:Order.SenderZipCode %></li>                            

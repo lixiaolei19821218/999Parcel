@@ -39,12 +39,14 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             ButtonSuccessPaid.Visible = false;
             ButtonSuccessPaid.Width = 0;
             ButtonReSend.Visible = false;
+            ButtonEdit.Visible = false;
         }
         else
         {
             ButtonSuccessPaid.Visible = true;
             hrConfirm.Visible = true;
             ButtonReSend.Visible = true;
+            ButtonEdit.Visible = true;
         }
 
         if  (Order.Service.PickUpCompany.Contains("999") && !(Order.HasPickedUp ?? false))
@@ -329,5 +331,10 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         SendHelper.SendOrder(order);
         repo.Context.SaveChanges();
         Response.Redirect(Request.RawUrl);
+    }
+
+    protected void ButtonEdit_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(string.Format("/products/product.aspx?orderId={0}&serviceId={1}", order.Id, order.ServiceID));
     }
 }
