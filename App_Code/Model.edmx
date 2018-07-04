@@ -136,7 +136,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Length" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Width" Type="decimal" Precision="18" Scale="1" Nullable="false" />
           <Property Name="Height" Type="decimal" Precision="18" Scale="1" Nullable="false" />
@@ -152,7 +152,7 @@
           <Property Name="ReinforceCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FinalCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Json" Type="varchar(max)" />
+          <Property Name="Json" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PriceItems">
           <Key>
@@ -236,7 +236,7 @@
           <Property Name="District" Type="nvarchar" MaxLength="50" />
           <Property Name="PyProvince" Type="nvarchar" MaxLength="50" />
           <Property Name="PyDistrict" Type="nvarchar" MaxLength="50" />
-          <Property Name="Json" Type="varchar(max)" />
+          <Property Name="Json" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Reinforces">
           <Key>

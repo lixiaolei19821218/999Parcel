@@ -213,6 +213,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
     }
     protected void ButtonEdit_Click(object sender, EventArgs e)
     {
-        Response.Redirect(string.Format("/products/product.aspx?orderId={0}&serviceId={1}", order.Id, order.ServiceID));
+        Session["Order"] = order;
+        Response.Redirect("/products/product.aspx");
     }
 }
