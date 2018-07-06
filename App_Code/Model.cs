@@ -157,6 +157,7 @@ public partial class Package
     public decimal Discount { get; set; }
     public decimal FinalCost { get; set; }
     public string Json { get; set; }
+    public decimal PickupCost { get; set; }
 
     public virtual Recipient Recipient { get; set; }
     public virtual ICollection<PackageItem> PackageItems { get; set; }
@@ -359,7 +360,7 @@ public partial class SheffieldOrder
 
     public int Id { get; set; }
     public string User { get; set; }
-    public bool HasPaid { get; set; }
+    public Nullable<bool> HasPaid { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; }
 }

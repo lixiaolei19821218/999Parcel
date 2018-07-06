@@ -27,7 +27,7 @@
           </Key>
           <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="AdminAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminAccount" Type="varchar" MaxLength="50" />
           <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
         <EntityType Name="DefaultSenders">
@@ -149,6 +149,7 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Pdf" Type="nvarchar(max)" />
           <Property Name="DeliverCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PickupCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ReinforceCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FinalCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -202,7 +203,7 @@
           <Property Name="User" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Wangwang" Type="nvarchar(max)" />
           <Property Name="Time" Type="datetime2" Precision="7" />
-          <Property Name="Approver" Type="nvarchar" MaxLength="50" />
+          <Property Name="Approver" Type="nvarchar(max)" />
           <Property Name="ApproveTime" Type="datetime" />
         </EntityType>
         <EntityType Name="RechargeChannels">
@@ -272,7 +273,7 @@
           <Property Name="DiscribePictureLink" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PickUpService" Type="bit" Nullable="false" />
           <Property Name="PriceListID" Type="int" />
-          <Property Name="PickUpCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PickUpCompany" Type="nvarchar" MaxLength="50" />
           <Property Name="Valid" Type="bit" Nullable="false" />
           <Property Name="ProviderId" Type="int" />
         </EntityType>
@@ -282,7 +283,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User" Type="nvarchar" MaxLength="50" />
-          <Property Name="HasPaid" Type="bit" Nullable="false" />
+          <Property Name="HasPaid" Type="bit" />
         </EntityType>
         <EntityType Name="SheffieldServices">
           <Key>
@@ -505,18 +506,6 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="SheffieldOrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SheffieldServiceID">
-          <End Role="SheffieldServices" Type="Self.SheffieldServices" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SheffieldServices">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="SheffieldServiceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -956,10 +945,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_SheffieldOrderID" Association="Self.FK_SheffieldOrderID">
             <End Role="SheffieldOrders" EntitySet="SheffieldOrders" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SheffieldServiceID" Association="Self.FK_SheffieldServiceID">
-            <End Role="SheffieldServices" EntitySet="SheffieldServices" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_TraceNumberId" Association="Self.FK_TraceNumberId">
@@ -1518,6 +1503,7 @@
           <NavigationProperty Name="Compensate" Relationship="UK_ExpressModel.FK_Compensates_Packages" FromRole="Package" ToRole="Compensate" />
           <NavigationProperty Name="Repay" Relationship="UK_ExpressModel.FK_Repays_Packages" FromRole="Package" ToRole="Repay" />
           <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PickupCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PriceItem">
           <Key>
@@ -1590,7 +1576,7 @@
           <Property Name="DiscribePictureLink" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PickUpService" Type="Boolean" Nullable="false" />
           <Property Name="PriceListID" Type="Int32" />
-          <Property Name="PickUpCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PickUpCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="UK_ExpressModel.FK_ServiceID" FromRole="Service" ToRole="Order" />
           <NavigationProperty Name="PriceList" Relationship="UK_ExpressModel.FK_PriceListID_Service" FromRole="Service" ToRole="PriceList" />
           <NavigationProperty Name="Discounts" Relationship="UK_ExpressModel.FK_ServiceId_Discounts" FromRole="Service" ToRole="Discount" />
@@ -1677,7 +1663,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Orders" Relationship="UK_ExpressModel.FK_SheffieldOrderID" FromRole="SheffieldOrder" ToRole="Order" />
           <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HasPaid" Type="Boolean" Nullable="false" />
+          <Property Name="HasPaid" Type="Boolean" />
         </EntityType>
         <EntityType Name="SheffieldService">
           <Key>
@@ -1746,7 +1732,7 @@
           <Property Name="User" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Wangwang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="DateTime" Precision="7" />
-          <Property Name="Approver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Approver" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ApproveTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RechargeChannel">
@@ -1982,7 +1968,7 @@
           </Key>
           <Property Name="PackageId" Type="Int32" Nullable="false" />
           <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="AdminAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ApproveTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Package" Relationship="UK_ExpressModel.FK_Compensates_Packages" FromRole="Compensate" ToRole="Package" />
         </EntityType>
@@ -2192,6 +2178,7 @@
           <EntitySetMapping Name="Packages">
             <EntityTypeMapping TypeName="UK_ExpressModel.Package">
               <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="PickupCost" ColumnName="PickupCost" />
                 <ScalarProperty Name="Json" ColumnName="Json" />
                 <ScalarProperty Name="FinalCost" ColumnName="FinalCost" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />

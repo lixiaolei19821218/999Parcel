@@ -337,7 +337,7 @@
                                 <input runat="server" ClientIDMode="Static" autocomplete="on" class="input-medium" id="id_billing_detail_city" maxlength="24" name="billing_detail_city" style="width: 115px" type="text" required="required"/>                            </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_postcode">邮编</label>
-                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" required="required" onchange="zip_code_change()"  onblur="zip_code_change()"/>                              
+                                <input runat="server" ClientIDMode="Static" class="input-medium" id="id_billing_detail_postcode" maxlength="8" name="billing_detail_postcode" style="width: 100px" type="text" required="required" pattern="\b[a-zA-Z]{1,2}\d{1,2} \d[a-zA-Z]{2}\b|\b[a-zA-Z]{1,2}\d[a-zA-Z] \d[a-zA-Z]{2}\b|\b[a-zA-Z]{3} \d[a-zA-Z]{2}\b" title="请输入正确的邮编" onchange="zip_code_change()"  onblur="zip_code_change()"/>                              
                             </div>
                             <div style="float: left; margin: 5px" class="control-group ">
                                 <label for="id_billing_detail_phone">电话</label>
