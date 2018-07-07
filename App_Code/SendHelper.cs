@@ -229,10 +229,10 @@ public static class SendHelper
                         p.Response = res.status;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     p.Status = "FAIL";
-                    p.Response = response;
+                    p.Response = "Exception message: " + ex.Message + "Response: " + response;
                 }
             }
             r.SuccessPaid = r.Packages.All(p => p.Status == "SUCCESS");

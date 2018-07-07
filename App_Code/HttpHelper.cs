@@ -24,8 +24,10 @@ public static class HttpHelper
         // 准备请求...  
         try
         {
+            ServicePointManager.DefaultConnectionLimit = 50;
             // 设置参数  
-            request = WebRequest.Create(postUrl) as HttpWebRequest;
+            request = WebRequest.Create(postUrl) as HttpWebRequest; 
+            request.KeepAlive = false;
             CookieContainer cookieContainer = new CookieContainer();
             if (authorization != "")
             {

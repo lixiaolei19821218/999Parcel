@@ -142,7 +142,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
 
     public string GetPacakgeDetail(Package p)
     {
-        if (p.Recipient.Order.Service.Name.Contains("Parcelforce"))
+        if (p.Recipient.Order.Service.Name.Contains("Parcelforce") || p.Recipient.Order.Service.Name.Contains("顺丰奶粉包税"))
         {
             return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
         }
