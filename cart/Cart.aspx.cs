@@ -917,9 +917,9 @@ public partial class cart_Cart : System.Web.UI.Page
             {
                 PayOrders(normalOrders, total999PickupCount >= 3);
             }
-            catch
+            catch (Exception ex)
             {
-                lbmessage.Text = "付款失败，请稍后再试。";
+                lbmessage.Text = "付款失败，请稍后再试。Message: " + ex.Message;
                 lbmessage.ForeColor = Color.Red;
                 return;
             }
@@ -1491,7 +1491,7 @@ public partial class cart_Cart : System.Web.UI.Page
                     }
                     catch (Exception ex)
                     {
-                        lbmessage.Text = "付款失败，请稍后再试。";
+                        lbmessage.Text = "付款失败，请稍后再试。Message: " + ex.Message;
                         lbmessage.ForeColor = Color.Red;
                         return;
                     }

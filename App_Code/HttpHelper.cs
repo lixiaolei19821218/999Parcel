@@ -60,8 +60,7 @@ public static class HttpHelper
         }
         catch (Exception ex)
         {
-            string err = ex.Message;
-            return err;
+            throw ex;
         }
     }
 

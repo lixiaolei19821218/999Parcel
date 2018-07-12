@@ -66,12 +66,25 @@ public static class SendHelper
                 data.Append("]}");
 
                 r.Json = data.ToString();
-                string response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), r.Json, ConfigurationManager.AppSettings["Authorization"]);
-                //order.UKMErrors = data.ToString() + " | " + response;
-                //return;           
-                //throw new Exception();                  
 
-                var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });
+                string response;
+                try
+                {
+                    response = HttpHelper.HttpPost(string.Format("{0}/interface/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), r.Json, ConfigurationManager.AppSettings["Authorization"]);
+                }
+                catch (Exception ex)
+                {
+                    r.SuccessPaid = false;
+                    r.Errors = "Exception: " + ex.Message;
+                    foreach (Package p in r.Packages)
+                    {
+                        p.Status = "FAIL";
+                        p.Response = "Exception: " + ex.Message;                       
+                    }
+                    continue;
+                }        
+
+                var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });               
 
                 if (res.Msg == "success")
                 {
@@ -97,8 +110,7 @@ public static class SendHelper
                     foreach (Package p in r.Packages)
                     {
                         p.Status = "FAIL";
-                        p.Response = "TTKD: " + res.Msg;
-                        //p.Response = "信息错误，请联系客服";
+                        p.Response = "TTKD: " + res.Msg;                        
                     }
                 }
             }
