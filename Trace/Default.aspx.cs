@@ -35,8 +35,15 @@ public partial class Trace_Default : System.Web.UI.Page
         {
             return new List<TraceMessage>();
         }
-        string traceNumber = Request["txtTraceNumber"].Trim();        
-        return GetTTKDTraceMessages(traceNumber);
+        string traceNumber = Request["txtTraceNumber"].Trim();
+        if (traceNumber.Substring(0, 2) == "BE")
+        {
+            return GetTTKDTraceMessages(traceNumber);
+        }
+        else
+        {
+            return new List<TraceMessage>(repo.Context.TraceMessages.Where(t => t.TraceNumber.Number == traceNumber));
+        }
     }
 
     public IEnumerable<TraceMessage> GetTTKDTraceMessages(string traceNumber)
@@ -51,6 +58,7 @@ public partial class Trace_Default : System.Web.UI.Page
             TraceMessage m = new TraceMessage { Message = "暂时没有该运单消息，请稍后再试。" };
             traceMessages.Add(m);
         }
+        else
         {
             foreach (var info in trace.Info)
             {

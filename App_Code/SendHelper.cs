@@ -79,7 +79,7 @@ public static class SendHelper
                     foreach (Package p in r.Packages)
                     {
                         p.Status = "FAIL";
-                        p.Response = "Exception: " + ex.Message;                       
+                        p.Response = "Exception message: " + ex.Message;                       
                     }
                     continue;
                 }        
@@ -126,7 +126,15 @@ public static class SendHelper
         json.Append(string.Format("\"serviceCode\": \"{0}\",", code));
         json.Append(string.Format("\"userKey\": \"{0}\",", ConfigurationManager.AppSettings["TTKDUserKey"]));
         json.Append(string.Format("\"orderNum\": \"{0}\"}}", orderNum));
-        string response = HttpHelper.HttpPost(string.Format("{0}/interface/order-label", ConfigurationManager.AppSettings["TTKDDomainName"]), json.ToString(), ConfigurationManager.AppSettings["Authorization"]);
+        string response;
+        try
+        {
+            response = HttpHelper.HttpPost(string.Format("{0}/interface/order-label", ConfigurationManager.AppSettings["TTKDDomainName"]), json.ToString(), ConfigurationManager.AppSettings["Authorization"]);
+        }
+        catch (Exception ex)
+        {
+            return "Get label error, message: " + ex.Message;
+        }
         var res = JsonConvert.DeserializeAnonymousType(response, new { ErrNo = string.Empty, Msg = string.Empty, Data = new { Label = string.Empty } });
 
         if (res.Msg == "success")
@@ -217,7 +225,17 @@ public static class SendHelper
                 }
 
                 p.Json = json;
-                string response = HttpHelper.HttpPost("https://www.eto.uk.com/api/createShipment", json, "", ConfigurationManager.AppSettings["eto_apikey"]);
+                string response;
+                try
+                {
+                    response = HttpHelper.HttpPost("https://www.eto.uk.com/api/createShipment", json, "", ConfigurationManager.AppSettings["eto_apikey"]);
+                }
+                catch (Exception ex)
+                {
+                    p.Status = "FAIL";
+                    p.Response = "Exception message: " + ex.Message;
+                    continue;
+                }
                 
                 try
                 {
