@@ -105,9 +105,25 @@ public partial class cart_OrderDetail : System.Web.UI.Page
 
     public string GetStatus(Recipient r)
     {
-        if (r.Order.Service.Name.Contains("Parcelforce") || r.Order.Service.Name.Contains("杂物包税") || r.Order.Service.Name.Contains("自营奶粉包税"))
+        if (r.Order.Service.Name.Contains("自营奶粉包税"))
         {
-            return (r.SuccessPaid ?? false) ? "<div style=\"float:right;font-size:medium;color:green;\">发送成功</div>" : "<div style=\"float:right;font-size:medium;color:red;\">发送失败</div>";
+            string h;
+            if (r.SuccessPaid == true)
+            {
+                h = "<div style=\"float:right;font-size:medium;color:green;\">发送成功</div>";
+            }
+            else
+            {
+                if (r.Errors.StartsWith("FAIL"))
+                {
+                    h = "<div style=\"float:right;font-size:medium;color:red;\">发送失败</div>";
+                }
+                else
+                {
+                    h = "<div style=\"float:right;font-size:medium;color:blue;\">TTKD服务器异常，请在TTKD网站确认是否发送成功</div>";
+                }
+            }
+            return h;
         }
         else if (r.Order.Service.Name.Contains("Bpost"))
         {
@@ -144,7 +160,20 @@ public partial class cart_OrderDetail : System.Web.UI.Page
     {
         if (p.Recipient.Order.Service.Name.Contains("Parcelforce") || p.Recipient.Order.Service.Name.Contains("顺丰奶粉包税"))
         {
-            return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+            string h;
+            if (p.Status == "SUCCESS")
+            {
+                h = "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+            }
+            else if (p.Status == "FAIL")
+            {
+                h = "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+            }
+            else
+            {
+                h = "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"ETO服务器异常，请登录ETO官网查询是否发送成功。" + p.Response + "\">异常详情</a>";
+            }
+            return h;
         }
         else if (p.Recipient.Order.Service.Name.Contains("Bpost"))
         {            

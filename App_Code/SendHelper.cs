@@ -23,7 +23,7 @@ public static class SendHelper
     {
         foreach (Recipient r in order.Recipients)
         {
-            if (!(r.SuccessPaid ?? false))
+            if ( r.SuccessPaid == null || (r.SuccessPaid == false && r.Errors.StartsWith("FAIL")) )
             {
                 StringBuilder data = new StringBuilder();
                 string code = type == TTKDType.SixTin ? tt6Tin : tt4Tin;
@@ -78,7 +78,7 @@ public static class SendHelper
                     r.Errors = "Exception: " + ex.Message;
                     foreach (Package p in r.Packages)
                     {
-                        p.Status = "FAIL";
+                        p.Status = "Exception";
                         p.Response = "Exception message: " + ex.Message;                       
                     }
                     continue;
@@ -106,7 +106,7 @@ public static class SendHelper
                 else
                 {
                     r.SuccessPaid = false;
-                    r.Errors = "TTKD: " + res.Msg;
+                    r.Errors = "FAIL. TTKD: " + res.Msg;
                     foreach (Package p in r.Packages)
                     {
                         p.Status = "FAIL";
@@ -181,7 +181,7 @@ public static class SendHelper
         List<string> oFiles = new List<string>();
         foreach (Recipient r in order.Recipients)
         {
-            foreach (Package p in r.Packages.Where(pacecl => pacecl.Status != "SUCCESS"))
+            foreach (Package p in r.Packages.Where(pacecl => string.IsNullOrEmpty(pacecl.Status) || pacecl.Status == "FAIL"))
             {
                 string senderName = HasChinese(order.SenderName) ? Pinyin.GetPinyin(order.SenderName) : order.SenderName;
                 string senderCity = HasChinese(order.SenderCity) ? Pinyin.GetPinyin(order.SenderCity) : order.SenderCity;
@@ -232,7 +232,7 @@ public static class SendHelper
                 }
                 catch (Exception ex)
                 {
-                    p.Status = "FAIL";
+                    p.Status = "Exception";
                     p.Response = "Exception message: " + ex.Message;
                     continue;
                 }
@@ -261,7 +261,7 @@ public static class SendHelper
                 }
                 catch (Exception ex)
                 {
-                    p.Status = "FAIL";
+                    p.Status = "Exception";
                     p.Response = "Exception message: " + ex.Message + "Response: " + response;
                 }
             }
@@ -291,7 +291,7 @@ public static class SendHelper
             }
             SendToTTKD(order, t);
         }
-        else if (order.Service.Name.Contains("Parcelforce"))
+        else if (order.Service.Name.Contains("Parcelforce") || order.Service.Name.Contains("顺丰奶粉包税"))
         {
             SendToPF(order);
         }
