@@ -36,9 +36,15 @@ public partial class Trace_Default : System.Web.UI.Page
             return new List<TraceMessage>();
         }
         string traceNumber = Request["txtTraceNumber"].Trim();
-        Package package = repo.Context.Packages.FirstOrDefault(p => p.TrackNumber == traceNumber && p.Recipient.Order.Service.Name.Contains("自营奶粉包税"));
-        
+
+        /*
+        Package package = repo.Context.Packages.FirstOrDefault(p => p.TrackNumber == traceNumber && p.Recipient.Order.Service.Name.Contains("自营奶粉包税"));        
         if (package != null)
+        {
+            return GetTTKDTraceMessages(traceNumber);
+        }
+        */
+        if (traceNumber.StartsWith("99") || traceNumber.StartsWith("BE"))
         {
             return GetTTKDTraceMessages(traceNumber);
         }
