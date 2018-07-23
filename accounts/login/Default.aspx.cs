@@ -16,6 +16,11 @@ public partial class Default2 : System.Web.UI.Page
             string pass = Request["password"];
             string code = Request["validateCode"];
 
+            if (Request.Cookies["validateCode"] == null)
+            {
+                this.Page.RegisterStartupScript(" ", "<script>alert('请重新获取验证码。'); </script> ");
+                return;
+            }
             if (String.Compare(Request.Cookies["validateCode"].Value, code, true) != 0)
             {
                 this.Page.RegisterStartupScript(" ", "<script>alert('请输入正确的验证码。'); </script> ");
