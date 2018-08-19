@@ -35,7 +35,7 @@
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
                 <ItemTemplate>
                     <fieldset>
-                        <legend>收件人：<%#Item.Name %><%#GetStatus(Item)%></legend>
+                        <legend>收件人：<%#Item.Name %><%#GetStatus(Item)%><asp:Button ID="ButtonCancelReciver" CssClass="btn btn-danger btn-small del" runat="server" Text="取消运单" data-id="<%#Item.Id %>" OnClick="ButtonCancelReciver_Click" style="<%#GetCancelReceiverStyle(Item)%>" ToolTip="取消此收件人所有运单"/></legend>
 
                         <ul>
                             <li>城市：<%#Item.Province + " " + Item.City %></li>
@@ -53,7 +53,8 @@
                                             <th class="tac">总额</th>
                                             <th class="tac">状态</th>
                                             <th class="tac">跟踪号</th>                                            
-                                            <th colspan="2">详情</th>                                       
+                                            <th colspan="2">详情</th>    
+                                            <th colspan="1"></th>                                    
                                         </tr>
                                     </HeaderTemplate>
                                     <ItemTemplate>
@@ -67,7 +68,10 @@
                                             <td class="tac"><%#Item.TrackNumber %></td>                                            
                                             <td colspan="2">
                                                 <%#GetPacakgeDetail(Item)%>
-                                            </td>                                           
+                                            </td>       
+                                            <td colspan="1">
+                                               <asp:Button ID="ButtonCancel" CssClass="btn btn-danger btn-small del" runat="server" Text="取消" data-id="<%#Item.Id %>" OnClick="ButtonCancel_Click" style="<%#GetCancelParcelStyle(Item)%>"/>
+                                            </td>                                        
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>

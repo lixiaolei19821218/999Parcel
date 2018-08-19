@@ -21,6 +21,17 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="256" />
           <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="CancelLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="PackageId" Type="int" />
+          <Property Name="Compensate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Operator" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecipientId" Type="int" />
+        </EntityType>
         <EntityType Name="Compensates">
           <Key>
             <PropertyRef Name="PackageId" />
@@ -866,6 +877,7 @@
         </Function>
         <EntityContainer Name="UK_ExpressModelStoreContainer">
           <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CancelLogs" EntityType="Self.CancelLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compensates" EntityType="Self.Compensates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefaultSenders" EntityType="Self.DefaultSenders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
@@ -1386,6 +1398,7 @@
             <End Role="Package" EntitySet="Packages" />
             <End Role="Repay" EntitySet="Repays" />
           </AssociationSet>
+          <EntitySet Name="CancelLogs" EntityType="UK_ExpressModel.CancelLog" />
         </EntityContainer>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -2010,6 +2023,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CancelLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PackageId" Type="Int32" />
+          <Property Name="Compensate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Operator" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecipientId" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2497,6 +2521,18 @@
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CancelLogs">
+            <EntityTypeMapping TypeName="UK_ExpressModel.CancelLog">
+              <MappingFragment StoreEntitySet="CancelLogs">
+                <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="Compensate" ColumnName="Compensate" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

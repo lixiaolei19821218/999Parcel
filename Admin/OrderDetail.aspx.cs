@@ -58,7 +58,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {                  
             ButtonPickedUp.Visible = false;
             ButtonPickedUp.Width = 0;
-        }
+        }       
     }
 
     public IEnumerable<Recipient> GetRecipients()
@@ -108,7 +108,14 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             if (p.Recipient.Order.Service.Name.Contains("Parcelforce") || p.Recipient.Order.Service.Name.Contains("顺丰奶粉包税"))
             {
-                return (p.Status == "SUCCESS") ? "<a href=\"/" + p.Pdf + "\">点击下载</a>" : "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                if (p.Status == "SUCCESS" || p.Status == "Cancelled")
+                {
+                    return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
+                }
+                else
+                {
+                    return "<a title=\"错误信息\" class=\"btn-link\" data-container=\"body\" data-toggle=\"popover\" data-placement=\"right\" data-content=\"" + p.Response + "\">错误详情</a>";
+                }                
             }
             else if (p.Recipient.Order.Service.Name.Contains("Bpost"))
             {
@@ -143,7 +150,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             {
                 if (!string.IsNullOrEmpty(p.Status))
                 {
-                    if (p.Status == "SUCCESS")
+                    if (p.Status == "SUCCESS" || p.Status == "Cancelled")
                     {
                         return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
                     }
@@ -338,4 +345,89 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         Session["Order"] = order;
         Response.Redirect("/products/product.aspx");
     }
+
+    protected void ButtonCancel_Click(object sender, EventArgs e)
+    {
+        int id;
+        if (int.TryParse((sender as Button).Attributes["data-id"], out id))
+        {
+            Package p = repo.Context.Packages.Find(id);
+            if (p == null)
+            {
+
+            }
+            else
+            {
+                if (p.Status != "Cancelled")
+                {
+                    aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == Order.User).FirstOrDefault();
+                    apUser.Balance += p.FinalCost;
+                    CancelLog log = new CancelLog() { Compensate = p.FinalCost, Operator = Membership.GetUser().UserName, PackageId = p.Id, Time = DateTime.Now };
+                    repo.Context.CancelLogs.Add(log);
+                    p.Status = "Cancelled";
+                    repo.Context.SaveChanges();
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
+        }
+    }
+
+    protected void ButtonCancelReciver_Click(object sender, EventArgs e)
+    {
+        int id;
+        if (int.TryParse((sender as Button).Attributes["data-id"], out id))
+        {
+            Recipient r = repo.Context.Recipients.Find(id);
+            if (r == null)
+            {
+
+            }
+            else
+            {
+                if (r.Packages.All(p => p.Status != "Cancelled"))
+                {
+                    aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == Order.User).FirstOrDefault();
+                    decimal compensate = r.Packages.Sum(p => p.FinalCost);
+                    apUser.Balance += compensate;
+                    CancelLog log = new CancelLog() { Compensate = compensate, Operator = Membership.GetUser().UserName, RecipientId = r.Id, Time = DateTime.Now };
+                    repo.Context.CancelLogs.Add(log);
+                    foreach (Package p in r.Packages)
+                    {
+                        p.Status = "Cancelled";
+                    }
+                    repo.Context.SaveChanges();
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
+        }
+    }
+
+    public string GetCancelReceiverStyle(Recipient r)
+    {
+        string style = "padding: 0px 10px; margin-left:20px; margin-bottom:3px;{0}";
+        if (r.Order.Service.Name.Contains("自营奶粉包税") && r.Packages.All(p => p.Status != "Cancelled"))
+        {
+            style = string.Format(style, "visibility:visible");
+        }
+        else
+        {
+            style = string.Format(style, "visibility:collapse");
+        }
+        return style;
+    }
+
+    public string GetCancelParcelStyle(Package p)
+    {
+        string style = "padding:0px 10px;{0}";
+        if (!p.Recipient.Order.Service.Name.Contains("自营奶粉包税") && p.Status != "Cancelled")
+        {
+            style = string.Format(style, "visibility:visible");
+        }
+        else
+        {
+            style = string.Format(style, "visibility:collapse");
+        }
+        return style;
+    }
+    
 }

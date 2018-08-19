@@ -27,6 +27,16 @@ public partial class aspnet_User
     public virtual DefaultSender DefaultSender { get; set; }
 }
 
+public partial class CancelLog
+{
+    public int Id { get; set; }
+    public System.DateTime Time { get; set; }
+    public Nullable<int> PackageId { get; set; }
+    public decimal Compensate { get; set; }
+    public string Operator { get; set; }
+    public Nullable<int> RecipientId { get; set; }
+}
+
 public partial class Compensate
 {
     public int PackageId { get; set; }

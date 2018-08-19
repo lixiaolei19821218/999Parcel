@@ -138,7 +138,7 @@ public class ServiceView
             case "Parcelforce Economy - 诚信物流取件":
             case "Parcelforce Priority 小包裹 - 诚信物流取件":
             case "Parcelforce Child Car Seat 儿童安全座椅专线 - 诚信物流取件":
-                price = 2m;
+                price = decimal.Parse(ConfigurationManager.AppSettings["pickupPrice"]);
                 break;
             case "Bpost - UKMail 取件"://Bpost UKMail取件
             case "荷兰邮政 - UKMail 取件"://post nl UKMail取件
@@ -202,7 +202,7 @@ public class ServiceView
                 
                 if (packageCount < 3)
                 {
-                    price = 2m * packageCount;
+                    price = decimal.Parse(ConfigurationManager.AppSettings["pickupPrice"]) * packageCount;
                 }
                 else
                 {

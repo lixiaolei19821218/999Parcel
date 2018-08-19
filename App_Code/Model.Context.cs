@@ -51,6 +51,7 @@ public partial class UK_ExpressEntities : DbContext
     public virtual DbSet<yp_ems_goods> yp_ems_goods { get; set; }
     public virtual DbSet<Compensate> Compensates { get; set; }
     public virtual DbSet<Repay> Repays { get; set; }
+    public virtual DbSet<CancelLog> CancelLogs { get; set; }
 
     public virtual ObjectResult<string> aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
     {

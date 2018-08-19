@@ -91,7 +91,7 @@ public partial class cart_Cart : System.Web.UI.Page
         }
         if (total999PickupCount >= 3)
         {
-            totalPrice -= 2m * totalNonePickupFree;
+            totalPrice -= decimal.Parse(ConfigurationManager.AppSettings["pickupPrice"]) * totalNonePickupFree;
         }
     }
 

@@ -161,7 +161,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         if (p.Recipient.Order.Service.Name.Contains("Parcelforce") || p.Recipient.Order.Service.Name.Contains("顺丰奶粉包税"))
         {
             string h;
-            if (p.Status == "SUCCESS")
+            if (p.Status == "SUCCESS" || p.Status == "Cancelled")
             {
                 h = "<a href=\"/" + p.Pdf + "\">点击下载</a>";
             }
@@ -209,7 +209,7 @@ public partial class cart_OrderDetail : System.Web.UI.Page
         {
             if (!string.IsNullOrEmpty(p.Status))
             {
-                if (p.Status == "SUCCESS")
+                if (p.Status == "SUCCESS" || p.Status == "Cancelled")
                 {
                     return "<a href=\"/" + p.Pdf + "\">点击下载</a>";
                 }
