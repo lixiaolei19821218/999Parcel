@@ -1274,7 +1274,7 @@
             }
             else if (today.getDay() == 6) {
                 myStartDate.setDate(today.getDate() + 2);
-                myEndDate.setDate(today.getDate() + 3);
+                myEndDate.setDate(today.getDate() + 4);
             }
             else {
                 myStartDate.setDate(today.getDate() + 1);
@@ -1292,7 +1292,7 @@
                 if (today.getHours() > 12) {
                     myStartDate.setDate(today.getDate() + 2);
                 }
-                myEndDate.setDate(today.getDate() + 3);
+                myEndDate.setDate(today.getDate() + 4);
             }
             else if (today.getDay() == 6) {
                 myStartDate.setDate(today.getDate() + 1);
