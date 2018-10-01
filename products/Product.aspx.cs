@@ -793,7 +793,13 @@ public partial class products_Product : System.Web.UI.Page
             return repo.TTKDMilkPowders.Where(t =>
                 t.Name != "英国雀巢Nestle全脂Nido奶粉400g" &&
                 t.Name != "英国Marvel脱脂奶粉340g" &&
-                t.Name != "英国雅培小安素400g"
+                t.Name != "英国雅培小安素400g" &&
+                t.Name != "英国雀巢Nestle全脂Nido奶粉400g" &&
+                t.Name != "英国Marvel脱脂奶粉340g" &&
+                t.Name != "英国Marvel脱脂奶粉278g" &&
+                t.Name != "英国Marvel脱脂奶粉198g" &&
+                t.Name != "英国tesco脱脂奶粉340g" &&
+                t.Name != "英国tesco脱脂奶粉198g"
                 ).Select(t => t.Name);
         }
         else
