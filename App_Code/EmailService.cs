@@ -42,7 +42,7 @@ public static class EmailService
         mailMessage.Body = mailContent;//内容
         mailMessage.BodyEncoding = Encoding.UTF8;//正文编码
         mailMessage.IsBodyHtml = true;//设置为HTML格式
-        mailMessage.Priority = MailPriority.Low;//优先级
+        mailMessage.Priority = MailPriority.Normal;//优先级
 
         foreach (string path in attachmentPaths)
         {
