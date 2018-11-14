@@ -324,11 +324,11 @@ public partial class cart_Cart : System.Web.UI.Page
                     break;
                 case "自营奶粉包税4罐 - 自送仓库":
                 case "自营奶粉包税4罐 - 诚信物流取件":
-                    SendHelper.SendToTTKD(o, TTKDType.FourTin);
+                    SendHelper.SendToTTKD_V2(o, TTKDType.FourTin);
                     break;
                 case "自营奶粉包税6罐 - 自送仓库":
                 case "自营奶粉包税6罐 - 诚信物流取件":
-                    SendHelper.SendToTTKD(o, TTKDType.SixTin);
+                    SendHelper.SendToTTKD_V2(o, TTKDType.SixTin);
                     break;
                 default:
                     break;

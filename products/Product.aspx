@@ -141,8 +141,8 @@
                 //要用post方式       
                 type: "Post",
                 //方法所在页面和方法名       
-                url: "Product.aspx/GetTTKDMilkPowders",
-                data: "{ 'name': '<%:Order.Service.Name%>' }",
+                url: "Product.aspx/GetTTKDMilkPowdersV2",
+                data: "{ 'service': '<%:Order.Service.Name%>' }",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -151,11 +151,11 @@
                         $(".item_detail").each(function (i, e) {
                             if (e.dataset.selected == s)
                             {
-                                $(e).append("<option selected = \"selected\">" + s + "</option>");
+                                $(e).append("<option selected = \"selected\" value = \"" + s.ProductID + "\">" + s.ProductName + "</option>");
                             }
                             else
                             {
-                                $(e).append("<option>" + s + "</option>");
+                                $(e).append("<option value = \"" + s.ProductID + "\">" + s.ProductName + "</option>");
                             }
                             
                         }

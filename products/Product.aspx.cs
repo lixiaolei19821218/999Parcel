@@ -811,6 +811,33 @@ public partial class products_Product : System.Web.UI.Page
     }
 
     [WebMethod]
+    public static IEnumerable<TTKDMilkPowder> GetTTKDMilkPowdersV2(string service)
+    {
+        string address = ConfigurationManager.AppSettings["TTKDDomainName"] + "\\product-list";
+        string key = ConfigurationManager.AppSettings["TTKDUserKey"];
+        string serviceCode;
+        if (service.Contains("自营奶粉包税4罐"))
+        {
+            serviceCode = "M4E";
+        }
+        else
+        {
+            serviceCode = "M6P";
+        }
+        string json = string.Format("{{\"userAccount\": \"{0}\", \"serviceCode\": \"{1}\"}}", key, serviceCode);
+        string response = HttpHelper.HttpPost(address, json, ConfigurationManager.AppSettings["Authorization"]);
+        var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, ErrNo = 0, Data = new List<TTKDMilkPowder>() });
+        return res.Data;   
+    }
+
+    public class TTKDMilkPowder
+    {
+        public string ProductID { get; set; }
+        public string ProductName { get; set; }
+        public int MaxQty { get; set; }
+    }
+
+    [WebMethod]
     public static IEnumerable<object> GetSFMilkPowders(string name)
     {
         UK_ExpressEntities repo = new UK_ExpressEntities();

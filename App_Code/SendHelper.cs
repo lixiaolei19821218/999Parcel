@@ -118,6 +118,61 @@ public static class SendHelper
         order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
     }
 
+    public static void SendToTTKD_V2(Order order, TTKDType type)
+    {
+        dynamic o = new System.Dynamic.ExpandoObject();
+        o.userAccount = ConfigurationManager.AppSettings["TTKDUserKey"];
+        o.requestId = order.Id;
+        List<System.Dynamic.ExpandoObject> dpList = new List<System.Dynamic.ExpandoObject>();
+        foreach (Recipient r in order.Recipients)
+        {
+            foreach (Package p in r.Packages)
+            {
+                dynamic dp = new System.Dynamic.ExpandoObject();
+                dp.packageId = p.Id;
+                dp.serviceCode = order.Service.Name.Contains("自营奶粉4罐") ? "M4E": "M6P";
+                dp.remarks = "999Parcel";
+                dp.senderName = order.SenderName;
+                dp.senderPhone = order.SenderPhone;
+                dp.senderCompany = "999Parcel";
+                dp.senderAddrLine1 = order.SenderAddress1;
+                dp.senderAddrLine2 = order.SenderAddress2;
+                dp.senderAddrLine3 = order.SenderAddress3;
+                dp.senderCity = order.SenderCity;
+                dp.senderZipCode = order.SenderZipCode;
+                dp.senderCountry = "GB";
+                dp.receiverID = r.IDNumber;
+                dp.receiverName = r.Name;
+                dp.receiverPhone = r.PhoneNumber;
+                dp.receiverZipCode = r.ZipCode;
+                dp.receiverProvince = r.Province;
+                dp.receiverCity = r.City;
+                dp.receiverArea = r.District;
+                dp.receiverAddr = r.Address;
+                dp.totalWeight = p.Weight;
+                dp.length = p.Length;
+                dp.width = p.Width;
+                dp.height = p.Height;
+                dp.insurance = "0";
+
+                List<System.Dynamic.ExpandoObject> diList = new List<System.Dynamic.ExpandoObject>();
+                foreach (PackageItem i in p.PackageItems)
+                {
+                    dynamic di = new System.Dynamic.ExpandoObject();
+                    di.productId = i.Description;
+                    di.productQty = i.Count;
+                    diList.Add(di);                    
+                }
+                dp.productInfo = diList;
+
+                dpList.Add(dp);
+            }
+        }
+        o.packageList = dpList;
+        string json = JsonConvert.SerializeObject(o);
+        string response = HttpHelper.HttpPost(string.Format("{0}/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), json, ConfigurationManager.AppSettings["Authorization"]);
+    }
+
     public static string GetTTKDLabel(string orderNum, TTKDType type)
     {
         string path = string.Empty;
@@ -289,7 +344,7 @@ public static class SendHelper
             {
                 t = TTKDType.FourTin;
             }
-            SendToTTKD(order, t);
+            SendToTTKD_V2(order, t);
         }
         else if (order.Service.Name.Contains("Parcelforce") || order.Service.Name.Contains("顺丰奶粉包税"))
         {
