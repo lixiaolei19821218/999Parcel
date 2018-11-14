@@ -3,6 +3,7 @@ using NPinyin;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -120,6 +121,7 @@ public static class SendHelper
 
     public static void SendToTTKD_V2(Order order, TTKDType type)
     {
+        GetTTKDLabelV2("9940010000700");
         dynamic o = new System.Dynamic.ExpandoObject();
         o.userAccount = ConfigurationManager.AppSettings["TTKDUserKey"];
         o.requestId = order.Id;
@@ -130,7 +132,7 @@ public static class SendHelper
             {
                 dynamic dp = new System.Dynamic.ExpandoObject();
                 dp.packageId = p.Id;
-                dp.serviceCode = order.Service.Name.Contains("自营奶粉4罐") ? "M4E": "M6P";
+                dp.serviceCode = order.Service.Name.Contains("自营奶粉包税4罐") ? "M4E": "M6P";
                 dp.remarks = "999Parcel";
                 dp.senderName = order.SenderName;
                 dp.senderPhone = order.SenderPhone;
@@ -149,28 +151,74 @@ public static class SendHelper
                 dp.receiverCity = r.City;
                 dp.receiverArea = r.District;
                 dp.receiverAddr = r.Address;
-                dp.totalWeight = p.Weight;
-                dp.length = p.Length;
-                dp.width = p.Width;
-                dp.height = p.Height;
-                dp.insurance = "0";
+                dp.totalWeight = "";
+                dp.length = "";
+                dp.width = "";
+                dp.height = "";
+                dp.insurance = "";
 
                 List<System.Dynamic.ExpandoObject> diList = new List<System.Dynamic.ExpandoObject>();
                 foreach (PackageItem i in p.PackageItems)
                 {
                     dynamic di = new System.Dynamic.ExpandoObject();
                     di.productId = i.Description;
-                    di.productQty = i.Count;
+                    di.productQty = order.Service.Name.Contains("自营奶粉包税4罐") ? 4 : 6;
                     diList.Add(di);                    
                 }
                 dp.productInfo = diList;
 
                 dpList.Add(dp);
             }
+
+            o.packageList = dpList;
+            string json = JsonConvert.SerializeObject(o);
+            r.Json = json;
+
+            string response;
+            try
+            {
+                response = HttpHelper.HttpPost(string.Format("{0}/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), json, ConfigurationManager.AppSettings["Authorization"]);
+            }
+            catch (Exception ex)
+            {
+                r.SuccessPaid = false;
+                r.Errors = "Exception: " + ex.Message;
+                foreach (Package p in r.Packages)
+                {
+                    p.Status = "Exception";
+                    p.Response = "Exception message: " + ex.Message;
+                }
+                continue;
+            }
+
+            var res = JsonConvert.DeserializeAnonymousType(response, new { msg = string.Empty, errno = string.Empty, requestId = string.Empty, data = new { orderNum = string.Empty, totalPackage = 0, packageList = new List<object>() } });
+            if (res.msg == "success")
+            {
+                r.SuccessPaid = true;
+                r.WMLeaderNumber = res.data.orderNum;
+                r.WMLeaderPdf = GetTTKDLabelV2(res.data.orderNum);
+                for (int i = 0; i < r.Packages.Count; i++)
+                {
+                    Package p = r.Packages.ElementAt(i);
+                    p.TrackNumber = JsonConvert.DeserializeAnonymousType(res.data.packageList[0].ToString(), new { packageId = string.Empty, mailNum = string.Empty }).mailNum;
+                    p.Pdf = r.WMLeaderPdf;
+                    p.Status = "SUCCESS";
+                }
+                string mailBody = HttpContext.Current.Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", r.Order.Id));
+                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
+            }
+            else
+            {
+                r.SuccessPaid = false;
+                r.Errors = "FAIL. TTKD: " + res.msg;
+                foreach (Package p in r.Packages)
+                {
+                    p.Status = "FAIL";
+                    p.Response = "TTKD: " + res.msg;
+                }
+            }
         }
-        o.packageList = dpList;
-        string json = JsonConvert.SerializeObject(o);
-        string response = HttpHelper.HttpPost(string.Format("{0}/make-order", ConfigurationManager.AppSettings["TTKDDomainName"]), json, ConfigurationManager.AppSettings["Authorization"]);
+        order.SuccessPaid = order.Recipients.All(r => r.SuccessPaid ?? false);
     }
 
     public static string GetTTKDLabel(string orderNum, TTKDType type)
@@ -201,6 +249,32 @@ public static class SendHelper
             }
             string label = string.Format("{0}\\{1}.pdf", folder, orderNum);
             byte[] stream = Convert.FromBase64String(res.Data.Label);
+            FileStream file = new FileStream(label, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.Write(stream, 0, stream.Length);
+            file.Close();
+            path = string.Format("files\\TTKD\\{0}\\{1}.pdf", Membership.GetUser().UserName, orderNum);
+        }
+        return path;
+    }
+
+    public static string GetTTKDLabelV2(string orderNum)
+    {
+        string url = ConfigurationManager.AppSettings["TTKDDomainName"] + "/order-label";
+        string json = string.Format("{{\"userAccount\": \"{0}\", \"mailNum\": \"{1}\"}}", ConfigurationManager.AppSettings["TTKDUserKey"], orderNum);
+        string response = HttpHelper.HttpPost(url, json, ConfigurationManager.AppSettings["Authorization"]);
+        var res = JsonConvert.DeserializeAnonymousType(response, new { msg = string.Empty, errno = string.Empty, data = new { label = new byte[] { } } });
+
+        string path = string.Empty;
+        if (res.msg == "success")
+        {
+            string folder = string.Format("{0}files\\TTKD\\{1}", HttpRuntime.AppDomainAppPath, Membership.GetUser().UserName);
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            string label = string.Format("{0}\\{1}.pdf", folder, orderNum);
+            //byte[] stream = Convert.FromBase64String(res.data.label);
+            byte[] stream = res.data.label;
             FileStream file = new FileStream(label, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             file.Write(stream, 0, stream.Length);
             file.Close();

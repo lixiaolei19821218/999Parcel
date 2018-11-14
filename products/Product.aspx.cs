@@ -361,21 +361,20 @@ public partial class products_Product : System.Web.UI.Page
             recipient.PyProvince = Pinyin.GetPinyin(recipient.Province);
             if (recipient.Province == "北京市" || recipient.Province == "天津市" || recipient.Province == "上海市" || recipient.Province == "重庆市")
             {
-                recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
-                recipient.PyCity = Pinyin.GetPinyin(recipient.City);
-                recipient.District = " ";
-                recipient.PyDistrict = " ";
+                //recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+                //recipient.PyCity = Pinyin.GetPinyin(recipient.City);
+                recipient.City = recipient.Province;
             }
             else
             {
                 recipient.City = Request.Form.Get(string.Format("addr-{0}-cn_city", i)).Trim();
-                recipient.District = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
-                recipient.PyCity = Pinyin.GetPinyin(recipient.City);
-                recipient.PyDistrict = Pinyin.GetPinyin(recipient.District);
-                if (string.IsNullOrEmpty(recipient.District))
-                {
-                    recipient.District = " ";
-                }
+            }
+            recipient.District = Request.Form.Get(string.Format("addr-{0}-cn_district", i)).Trim();
+            recipient.PyCity = Pinyin.GetPinyin(recipient.City);
+            recipient.PyDistrict = Pinyin.GetPinyin(recipient.District);
+            if (string.IsNullOrEmpty(recipient.District))
+            {
+                recipient.District = " ";
             }
 
             recipient.Address = Request.Form.Get(string.Format("addr-{0}-cn_street", i)).Trim();
@@ -813,7 +812,7 @@ public partial class products_Product : System.Web.UI.Page
     [WebMethod]
     public static IEnumerable<TTKDMilkPowder> GetTTKDMilkPowdersV2(string service)
     {
-        string address = ConfigurationManager.AppSettings["TTKDDomainName"] + "\\product-list";
+        string address = ConfigurationManager.AppSettings["TTKDDomainName"] + "/product-list";
         string key = ConfigurationManager.AppSettings["TTKDUserKey"];
         string serviceCode;
         if (service.Contains("自营奶粉包税4罐"))
