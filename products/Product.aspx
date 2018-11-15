@@ -149,15 +149,14 @@
                     //返回的数据用data.d获取内容       
                     $(data.d).each(function (j, s) {
                         $(".item_detail").each(function (i, e) {
-                            if (e.dataset.selected == s)
+                            if (e.dataset.selected == s.ProductID)
                             {
                                 $(e).append("<option selected = \"selected\" value = \"" + s.ProductID + "\">" + s.ProductName + "</option>");
                             }
                             else
                             {
                                 $(e).append("<option value = \"" + s.ProductID + "\">" + s.ProductName + "</option>");
-                            }
-                            
+                            }                            
                         }
                         )
                         /*
@@ -601,7 +600,7 @@
                                                                 <div class="mx">
                                                                     <div class="ib">(<span class="mx_sq"><%#Container.ItemIndex + 1%></span>)</div>
                                                                     <div class="ib mx_type">
-                                                                        
+                                                                    <!--<input hidden="hidden" name="parcel-0-content-<%#Container.ItemIndex %>-description" value="<%#Item.Description %>"></input>-->
                                                                     <select class="item_detail" name="parcel-0-content-<%#Container.ItemIndex %>-type" style="width:230px;height:23px;" data-selected="<%#Item.Description %>">
                                                                             <option value="Baby Milk Powder" selected="selected">婴儿奶粉</option>
                                                                             <option value="Baby Food">婴儿食品</option>
@@ -931,6 +930,13 @@
         }
 
         $(document).ready(function () {
+
+            
+            /*
+            $("select[name^='parcel-0-content']").change(function () {
+                var descripton = $(this).find("option:selected").text();
+                $(this).prev()[0].defaultValue = descripton;
+            });*/
 
             $('#tree').on('click', '.add_mx', function () {
                 var mx = $(this).closest('.mx'),

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -384,17 +386,42 @@ public partial class cart_OrderDetail : System.Web.UI.Page
             }
             else
             {
-                if (r.Packages.All(p => p.Status != "Cancelled"))
+                if (r.Packages.All(p => !p.Status.Contains("Cancell")))
                 {
+                    if (r.Order.Service.Name.Contains("自营奶粉包税"))
+                    {
+                        string url = ConfigurationManager.AppSettings["TTKDDomainName"] + "/cancel-order";
+                        string key = ConfigurationManager.AppSettings["TTKDUserKey"];
+                        string auth = ConfigurationManager.AppSettings["Authorization"];
+                        foreach (Package p in r.Packages)
+                        {                            
+                            string json = string.Format("{{\"userAccount\": \"{0}\",\"mailNum\": \"{1}\"}}", key, p.TrackNumber);
+                            string response;
+                            try
+                            {
+                                response = HttpHelper.HttpPost(url, json, auth);
+                            }
+                            catch (Exception ex)
+                            {
+                                message.Text += string.Format(" 取消运单{0}出现异常，请在TTKD官网取消。Exception: {1}", p.TrackNumber, ex.Message);
+                                p.Status = "Cancell Exception";
+                                continue;                             
+                            }
+                            var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, ErrNo = string.Empty, MailNum = string.Empty });
+                            if (res.Msg != "success")
+                            {
+                                message.Text += string.Format(" 取消运单{0}失败，请在TTKD官网查看。Message: {1}", p.TrackNumber, res.Msg);
+                                p.Status = "Cancell Failed";
+                                continue;
+                            }
+                            p.Status = "Cancelled";
+                        }
+                    }
                     aspnet_User apUser = repo.Context.aspnet_User.Where(u => u.UserName == Order.User).FirstOrDefault();
                     decimal compensate = r.Packages.Sum(p => p.FinalCost);
                     apUser.Balance += compensate;
                     CancelLog log = new CancelLog() { Compensate = compensate, Operator = Membership.GetUser().UserName, RecipientId = r.Id, Time = DateTime.Now };
-                    repo.Context.CancelLogs.Add(log);
-                    foreach (Package p in r.Packages)
-                    {
-                        p.Status = "Cancelled";
-                    }
+                    repo.Context.CancelLogs.Add(log);                   
                     repo.Context.SaveChanges();
                     Response.Redirect(Request.RawUrl);
                 }

@@ -35,8 +35,7 @@
             <asp:Repeater runat="server" ItemType="Recipient" SelectMethod="GetRecipients">
                 <ItemTemplate>
                     <fieldset>
-                        <legend>收件人：<%#Item.Name %><%#GetStatus(Item)%><asp:Button ID="ButtonCancelReciver" CssClass="btn btn-danger btn-small del" runat="server" Text="取消运单" data-id="<%#Item.Id %>" OnClick="ButtonCancelReciver_Click" style="<%#GetCancelReceiverStyle(Item)%>" ToolTip="取消此收件人所有运单"/></legend>
-
+                        <legend>收件人：<%#Item.Name %><%#GetStatus(Item)%><asp:Button ID="ButtonCancelReciver" CssClass="btn btn-danger btn-small del" runat="server" Text="取消运单" data-id="<%#Item.Id %>" OnClick="ButtonCancelReciver_Click" style="<%#GetCancelReceiverStyle(Item)%>" ToolTip="取消此收件人所有运单"/><asp:Label ID="message" runat="server" Text="" Font-Size="Small" ForeColor="Red"></asp:Label></legend>                        
                         <ul>
                             <li>城市：<%#Item.Province + " " + Item.City %></li>
                             <li>地址：<%#Item.Address %></li>
