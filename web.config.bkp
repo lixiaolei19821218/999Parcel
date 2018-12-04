@@ -9,6 +9,7 @@
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
   </configSections>
   <system.web>
+    <machineKey validationKey="52B3217F9A9F7B8CE24DEFBD3EDF2B698E37B2ADE33257FAD329A242C11579D0EEDDB67F94CCF27143DCA4BBF9667DDAE78EBEDDD9EABB7C7AB874B5EC443954" decryptionKey="8A3AD1DD400FF3A09F3F5CB27C0411D2E8C7792CE523FD7B" validation="SHA1" />
     <pages validateRequest="false" enableSessionState="true" enableViewStateMac="false" enableViewState="true" enableEventValidation="false" viewStateEncryptionMode="Never" />
     <sessionState mode="InProc" cookieless="false" timeout="6000" />
     <roleManager enabled="true" defaultProvider="RoleProvider">
@@ -18,7 +19,7 @@
       </providers>
     </roleManager>
     <customErrors mode="Off" />
-    <compilation debug="true" targetFramework="4.5">
+    <compilation debug="true" targetFramework="4.5" defaultLanguage="c#">
       <assemblies>
         <add assembly="System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
         <add assembly="System.Data.Entity.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -50,12 +51,13 @@
       </properties>
     </profile>
   </system.web>
-  <location path="products">
+  <location path="products" allowOverride="false">
     <system.web>
       <authorization>
         <allow roles="users" />
         <deny users="*" />
       </authorization>
+      
     </system.web>
   </location>
   <location path="cart">
@@ -90,13 +92,8 @@
     </providers>
   </entityFramework>
   <connectionStrings>
-    <clear />
     <add name="UK_Express_Users" connectionString="Data Source=mssql.uk.ds.network;Initial Catalog=UK_Express;User Id=parcelco;Password=X207#hxf;Connect Timeout=1000" providerName="System.Data.SqlClient" />
-    <!--<add name="UK_Express_Users" connectionString="Data Source=.\sqlexpress;Initial Catalog=UK_Express;Integrated Security=True" providerName="System.Data.SqlClient" />-->
-    <!--<add name="UK_ExpressConnectionString" connectionString="Data Source=localhost\sqlexpress;Initial Catalog=UK_Express;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True;Application Name=EntityFramework" providerName="System.Data.SqlClient" />-->
-    <!--<add name="UK_ExpressConnectionString" connectionString="Data Source=localhost\MSSQLSERVER;Initial Catalog=UK_Express;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True;Application Name=EntityFramework" providerName="System.Data.SqlClient" />-->
-    <add name="UK_ExpressEntities" connectionString="metadata=res://*/App_Code.Model.csdl|res://*/App_Code.Model.ssdl|res://*/App_Code.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\sqlexpress;initial catalog=UK_Express;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-    <!--<add name="UK_ExpressEntities" connectionString="metadata=res://*/App_Code.Model.csdl|res://*/App_Code.Model.ssdl|res://*/App_Code.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=176.74.24.75;initial catalog=UK_Express;User Id=parcelco;Password=X207#hxf;Connect Timeout=1000;pooling=False;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />-->
+    <add name="UK_ExpressEntities" connectionString="metadata=res://*/App_Code.Model.csdl|res://*/App_Code.Model.ssdl|res://*/App_Code.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=mssql.uk.ds.network;initial catalog=UK_Express;User Id=parcelco;Password=X207#hxf;Connect Timeout=1000;pooling=False;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
@@ -112,13 +109,44 @@
       <add name="NinjectHttpModule" type="Ninject.Web.Common.NinjectHttpModule" />
       <add name="WebNinjectHttpModule" type="Ninject.Web.NinjectHttpModule" />
     </modules>
-    <httpErrors errorMode="Detailed" />
+    <httpErrors errorMode="Detailed">
+      <remove statusCode="502" subStatusCode="-1" />
+      <remove statusCode="501" subStatusCode="-1" />
+      <remove statusCode="500" subStatusCode="-1" />
+      <remove statusCode="412" subStatusCode="-1" />
+      <remove statusCode="406" subStatusCode="-1" />
+      <remove statusCode="405" subStatusCode="-1" />
+      <remove statusCode="404" subStatusCode="-1" />
+      <remove statusCode="403" subStatusCode="-1" />
+      <remove statusCode="401" subStatusCode="-1" />
+      <remove statusCode="400" />
+      <error statusCode="400" path="W:\vhosts\999parcel.com\error_docs\bad_request.html" />
+      <remove statusCode="407" />
+      <error statusCode="407" path="W:\vhosts\999parcel.com\error_docs\proxy_authentication_required.html" />
+      <remove statusCode="414" />
+      <error statusCode="414" path="W:\vhosts\999parcel.com\error_docs\request-uri_too_long.html" />
+      <remove statusCode="415" />
+      <error statusCode="415" path="W:\vhosts\999parcel.com\error_docs\unsupported_media_type.html" />
+      <remove statusCode="503" />
+      <error statusCode="503" path="W:\vhosts\999parcel.com\error_docs\maintenance.html" />
+      <error statusCode="401" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\unauthorized.html" />
+      <error statusCode="403" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\forbidden.html" />
+      <error statusCode="404" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\not_found.html" />
+      <error statusCode="405" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\method_not_allowed.html" />
+      <error statusCode="406" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\not_acceptable.html" />
+      <error statusCode="412" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\precondition_failed.html" />
+      <error statusCode="500" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\internal_server_error.html" />
+      <error statusCode="501" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\not_implemented.html" />
+      <error statusCode="502" prefixLanguageFilePath="" path="W:\vhosts\999parcel.com\error_docs\bad_gateway.html" />
+    </httpErrors>
   </system.webServer>
   <system.serviceModel>
     <bindings>
       <basicHttpBinding>
         <binding name="BasicHttpBinding_IOrderService" maxReceivedMessageSize="200000000" />
-        <binding name="BasicHttpBinding_IYCShipmentService" closeTimeout="00:10:00" openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00" allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" />
+        <binding name="BasicHttpBinding_IYCShipmentService" closeTimeout="00:10:00" openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00" allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+        </binding>
         <binding name="BasicHttpEndpoint_IUKMConsignmentService" maxReceivedMessageSize="200000000">
           <security mode="Transport" />
         </binding>
@@ -137,7 +165,6 @@
         <binding name="BasicHttpEndpoint_IUKMCollectionService1">
           <security mode="Transport" />
         </binding>
-        <binding name="CommonExpressServiceServiceSoapBinding" />
       </basicHttpBinding>
     </bindings>
     <client>
@@ -149,7 +176,6 @@
       <endpoint address="https://api.ukmail.com/Services/UKMConsignmentServices/UKMConsignmentService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpEndpoint_IUKMConsignmentService1" contract="UKMConsignmentService.IUKMConsignmentService" name="BasicHttpEndpoint_IUKMConsignmentService1" />
       <endpoint address="https://qa-api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpEndpoint_IUKMCollectionService" contract="UKMCollectionServiceQA.IUKMCollectionService" name="BasicHttpEndpoint_IUKMCollectionService" />
       <endpoint address="https://api.ukmail.com/Services/UKMCollectionServices/UKMCollectionService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpEndpoint_IUKMCollectionService1" contract="UKMCollectionService.IUKMCollectionService" name="BasicHttpEndpoint_IUKMCollectionService1" />
-      <endpoint address="http://218.17.248.244:11080/bsp-oisp/ws/sfexpressService" binding="basicHttpBinding" bindingConfiguration="CommonExpressServiceServiceSoapBinding" contract="SFService.IExpressService" name="CommonExpressServicePort" />
     </client>
   </system.serviceModel>
   <appSettings>
@@ -157,25 +183,21 @@
     <add key="_999ParcelChargeAreas" value="S35,S36, S17,S20,S21,S26,S25,S26" />
     <add key="_999ParcelChargePrice" value="3" />
     <add key="EAStartNum" value="95450051" />
-    <add key="JRM" value="BSPdevelop" />
-    <add key="CheckWord" value="j8DzkIFgmlomPt0aLuwU" />
-    <!--Production
+    <!--Production-->
     <add key="TTKDDomainName" value="http://ttkeu.com" />
-    <add key="TTKDUserKey" value="TK82519368"/>
-    <add key="Authorization" value="6aie1mg2b8x74wshny0p"/>
-    -->
+    <add key="TTKDUserKey" value="TK82519368" />
+    <add key="Authorization" value="6aie1mg2b8x74wshny0p" />
     <!--Test 0
     <add key="TTKDDomainName" value="http://54.222.195.106:8028" />
     <add key="TTKDUserKey" value="TK82525808"/>
     <add key="Authorization" value="zqyxtd8g72epia4sn3bm"/>
+    
+    <add key="TTKDDomainName" value="http://54.222.195.106:8028" />
+    <add key="TTKDUserKey" value="TK64261343"/>
+    <add key="Authorization" value="qy1o4g3zexp72bafdwnv"/>
     -->
-    <add key="TTKDDomainName" value="http://47.104.8.76:8028/interface/v2" />
-    <add key="TTKDTrack" value="http://47.104.8.76:8028/track/api" />
-    <add key="TTKDUserKey" value="TK82519368" />
-    <add key="Authorization" value="bs2o0tpz714w8ukr3d56" />
-    <add key="Mails" value="3021087828@qq.com" />
-    <add key="eto_apikey" value="3e8477beA689de58" />
-    <!--Production<add key="eto_apikey" value="e8b1cbd05f6e6a358a81dee52493dd06"/>-->
+    <add key="Mails" value="alan@999parcel.com;mel@999parcel.com;selina@999parcel.com" />
+    <add key="eto_apikey" value="e8b1cbd05f6e6a358a81dee52493dd06" />
     <add key="pickupPrice" value="2" />
   </appSettings>
 </configuration>
