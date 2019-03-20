@@ -205,7 +205,7 @@ public static class SendHelper
                     p.Status = "SUCCESS";
                 }
                 string mailBody = HttpContext.Current.Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", r.Order.Id));
-                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory + path });
+                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory  });
             }
             else
             {
