@@ -57,7 +57,7 @@ public partial class Trace_Default : System.Web.UI.Page
     public IEnumerable<TraceMessage> GetTTKDTraceMessages(string traceNumber)
     {
         string data = string.Format("{{\"numbers\": \"{0}\"}}", traceNumber.Trim());
-        string response = HttpHelper.HttpPost("http://www.ttkeu.com/track/api", data);
+        string response = HttpHelper.HttpPost(ConfigurationManager.AppSettings["TTKDTrack"], data);
         var result = JsonConvert.DeserializeAnonymousType(response, new { Numbers = new List<TraceInfo>() });
         var trace = result.Numbers[0];
         List<TraceMessage> traceMessages = new List<TraceMessage>();

@@ -158,7 +158,7 @@ public partial class product_Default : System.Web.UI.Page
                 }
                 else if (provider.Name == "Parcelforce")
                 {                   
-                    if (order.Recipients.All(r => r.Packages.All(p => p.Weight <= 2m)))
+                    if (order.Recipients.All(r => r.Packages.All(p => p.Weight <= 3m)))
                     {
                         sv = provider.Services.Where(s => s.Valid).Select(s => new ServiceView(s));
                     }

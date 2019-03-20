@@ -273,7 +273,10 @@ public partial class cart_Paid : System.Web.UI.Page
                 {
                     foreach (Recipient r in order.Recipients)
                     {
-                        file.Add(Server.MapPath("~/" + r.WMLeaderPdf));
+                        foreach (Package p in r.Packages)
+                        {
+                            file.Add(Server.MapPath("~/" + p.Pdf));
+                        }
                     }
                 }
                 else if (order.Service.Name.Contains("Parcelforce") || order.Service.Name.Contains("顺丰奶粉包税"))

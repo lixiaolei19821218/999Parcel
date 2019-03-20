@@ -81,6 +81,14 @@ public partial class IDNumber
     public string Number { get; set; }
 }
 
+public partial class Log
+{
+    public int Id { get; set; }
+    public System.DateTime LogTime { get; set; }
+    public string Action { get; set; }
+    public string Message { get; set; }
+}
+
 public partial class MilkPowderSKU
 {
     public int Id { get; set; }

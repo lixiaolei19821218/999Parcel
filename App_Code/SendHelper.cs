@@ -120,14 +120,14 @@ public static class SendHelper
     }
 
     public static void SendToTTKD_V2(Order order, TTKDType type)
-    {
-        GetTTKDLabelV2("9940010000700");
-        dynamic o = new System.Dynamic.ExpandoObject();
-        o.userAccount = ConfigurationManager.AppSettings["TTKDUserKey"];
-        o.requestId = order.Id;
-        List<System.Dynamic.ExpandoObject> dpList = new List<System.Dynamic.ExpandoObject>();
-        foreach (Recipient r in order.Recipients)
+    {       
+        for (int n = 0; n < order.Recipients.Count; n++)
         {
+            Recipient r = order.Recipients.ElementAt(n);
+            dynamic o = new System.Dynamic.ExpandoObject();
+            o.userAccount = ConfigurationManager.AppSettings["TTKDUserKey"];
+            o.requestId = "O" + order.Id + "R" + r.Id + "N" + n;
+            List<System.Dynamic.ExpandoObject> dpList = new List<System.Dynamic.ExpandoObject>();
             foreach (Package p in r.Packages)
             {
                 dynamic dp = new System.Dynamic.ExpandoObject();
@@ -158,11 +158,11 @@ public static class SendHelper
                 dp.insurance = "";
 
                 List<System.Dynamic.ExpandoObject> diList = new List<System.Dynamic.ExpandoObject>();
-                foreach (PackageItem i in p.PackageItems)
+                foreach (PackageItem pi in p.PackageItems)
                 {
                     dynamic di = new System.Dynamic.ExpandoObject();
-                    di.productId = i.Description;
-                    di.productQty = order.Service.Name.Contains("自营奶粉包税4罐") ? 4 : 6;
+                    di.productId = pi.Description;
+                    di.productQty = pi.Count;
                     diList.Add(di);                    
                 }
                 dp.productInfo = diList;
@@ -196,16 +196,22 @@ public static class SendHelper
             {
                 r.SuccessPaid = true;
                 r.WMLeaderNumber = res.data.orderNum;
-                r.WMLeaderPdf = GetTTKDLabelV2(res.data.orderNum);
+                //r.WMLeaderPdf = GetTTKDLabelV2(res.data.orderNum);
+                List<string> labels = new List<string>();
                 for (int i = 0; i < r.Packages.Count; i++)
                 {
                     Package p = r.Packages.ElementAt(i);
-                    p.TrackNumber = JsonConvert.DeserializeAnonymousType(res.data.packageList[0].ToString(), new { packageId = string.Empty, mailNum = string.Empty }).mailNum;
-                    p.Pdf = r.WMLeaderPdf;
+                    p.TrackNumber = JsonConvert.DeserializeAnonymousType(res.data.packageList[i].ToString(), new { packageId = string.Empty, mailNum = string.Empty }).mailNum;
+                    p.Pdf = GetTTKDLabelV2(p.TrackNumber);
+                    labels.Add(p.Pdf);
                     p.Status = "SUCCESS";
                 }
                 string mailBody = HttpContext.Current.Application["MailBody"].ToString().Replace("999ParcelOrderNumber", string.Format("{0:d9}", r.Order.Id));
+<<<<<<< HEAD
                 EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, new string[] { System.AppDomain.CurrentDomain.BaseDirectory  });
+=======
+                EmailService.SendEmailAync(string.IsNullOrEmpty(r.Order.SenderEmail) ? Membership.GetUser().Email : r.Order.SenderEmail, "您在999Parcel的订单" + string.Format("{0:d9}", r.Order.Id), mailBody, labels.Select(l => System.AppDomain.CurrentDomain.BaseDirectory + l).ToArray());
+>>>>>>> 76a75377383709071857b79902a199fc4d39be58
             }
             else
             {

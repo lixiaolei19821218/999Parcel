@@ -24,11 +24,13 @@ public partial class accounts_Recover : System.Web.UI.Page
             message.InnerText = string.Format("没有找到用户：{0}，请输入正确的用户名", Request["username"]);
         }
         else
-        {           
-            string newPassword = mUser.ResetPassword("answer");
-            
+        {
             mUser.UnlockUser();
             mUser.IsApproved = true;
+            string newPassword = mUser.ResetPassword("answer");
+            
+            //mUser.UnlockUser();
+            //mUser.IsApproved = true;
             Membership.UpdateUser(mUser);
             string requestString = Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/accounts/ResetPassword.aspx?" +
                 HttpUtility.UrlEncode("user") + "=" + Server.UrlEncode(mUser.UserName) + "&" +

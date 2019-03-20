@@ -49,7 +49,8 @@
         <AssociationConnector Association="UK_ExpressModel.FK_Compensates_Packages" />
         <EntityTypeShape EntityType="UK_ExpressModel.Repay" Width="1.5" PointX="22.375" PointY="5.625" />
         <AssociationConnector Association="UK_ExpressModel.FK_Repays_Packages" />
-        <EntityTypeShape EntityType="UK_ExpressModel.CancelLog" Width="1.5" PointX="14.375" PointY="10.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.CancelLog" Width="1.5" PointX="14.375" PointY="11.75" />
+        <EntityTypeShape EntityType="UK_ExpressModel.Log" Width="1.5" PointX="8.375" PointY="8.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

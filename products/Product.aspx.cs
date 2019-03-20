@@ -427,7 +427,11 @@ public partial class products_Product : System.Web.UI.Page
                 for (int k = 0; k < itemsCount; k++)
                 {
                     PackageItem pi = new PackageItem();
+
+                    //pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-description", j, k)).Trim();
+                    //pi.Brand = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", j, k)).Trim();
                     pi.Description = Request.Form.Get(string.Format("parcel-{0}-content-{1}-type", j, k)).Trim();
+
                     if (order.Service.Name.Contains("顺丰奶粉包税"))
                     {
                         pi.TariffCode = repo.Context.yp_ems_goods.FirstOrDefault(y => y.name == pi.Description).id.ToString();
@@ -441,17 +445,24 @@ public partial class products_Product : System.Web.UI.Page
                 if (order.Service.Name.Contains("奶粉包税6罐"))
                 {
                     int count = p.PackageItems.Sum(item => item.Count).Value;
-                    if (count > 6)
+                    if (count != 6)
                     {
-                        msg.Append(string.Format("包裹{0}的奶粉数量超过6罐。", j + 1));
+                        msg.Append(string.Format("包裹{0}的奶粉数量不等于6罐。", j + 1));
                     }
                 }
                 if (order.Service.Name.Contains("奶粉包税4罐"))
                 {
                     int count = p.PackageItems.Sum(item => item.Count).Value;
-                    if (count > 4)
+                    if (count != 4)
                     {
-                        msg.Append(string.Format("包裹{0}的奶粉数量超过4罐。", j + 1));
+                        msg.Append(string.Format("包裹{0}的奶粉数量不等于4罐。", j + 1));
+                    }
+                }
+                if (order.Service.Name.Contains("奶粉包税"))
+                {
+                    if (p.PackageItems.Select(i => i.Description).Distinct().Count() != p.PackageItems.Count)
+                    {
+                        msg.Append(string.Format("包裹{0}的奶粉有重复货号。", j + 1));
                     }
                 }
             }
@@ -908,10 +919,10 @@ public partial class products_Product : System.Web.UI.Page
         if (idNumber == null)
         {
             string url = string.Format("http://op.juhe.cn/idcard/query?key=0f2dc8c56cbce8c6e0c9364191bb6f32&idcard={0}&realname={1}", number, name);
-            string response = HttpHelper.HttpGet(url);
+            string response = HttpHelper.HttpGet(url);           
             //string response = "{\"reason\":\"成功\",\"result\":{\"realname\":\"兰琳婕\",\"idcard\":\"510108198412072127\",\"res\":1},\"error_code\":0}";
             var r= JsonConvert.DeserializeAnonymousType(response, new { Reason = string.Empty, Result = new { RealName = string.Empty, IDCard = string.Empty, Res = string.Empty }, ErrorCode = string.Empty });
-            
+           
             if (r.Result != null && r.Result.Res == "1")
             {
                 IDNumber idNumberNew = new IDNumber() { Name = name, Number = number };
