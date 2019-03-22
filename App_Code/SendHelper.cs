@@ -216,7 +216,7 @@ public static class SendHelper
                 foreach (Package p in r.Packages)
                 {
                     p.Status = "FAIL";
-                    p.Response = "TTKD: " + res.msg;
+                    p.Response = "FAIL. TTKD: " + res.msg;
                 }
             }
         }
