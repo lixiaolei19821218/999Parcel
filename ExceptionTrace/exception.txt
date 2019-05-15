@@ -1,0 +1,12 @@
+2019/5/15 14:03:30
+Message: 发送邮件失败。
+MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
+
+2019/5/15 14:17:47
+Message: 发送邮件失败。
+MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
+
+2019/5/15 14:23:13
+Message: 发送邮件失败。
+MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
+

@@ -21,7 +21,7 @@ public static class EmailService
     public static bool SendEmail(List<string> mailTo, string mailSubject, string mailContent, params string[] attachmentPaths)
     {
         // 设置发送方的邮件信息,例如使用网易的smtp        
-        string smtpServer = "999parcel.com"; //SMTP服务器
+        string smtpServer = "mail.999parcel.com"; //SMTP服务器
         string mailFrom = "support@999parcel.com"; //登陆用户名
         string userPassword = "Wnt589$h";//登陆密码
         //string smtpServer = "smtp.163.com"; //SMTP服务器
@@ -33,8 +33,8 @@ public static class EmailService
         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;//指定电子邮件发送方式
         smtpClient.Host = smtpServer; //指定SMTP服务器
         //smtpClient.Port = 25;
-        int port = smtpClient.Port;
-        smtpClient.EnableSsl = false;
+        //int port = smtpClient.Port;
+        //smtpClient.EnableSsl = false;
         smtpClient.Credentials = new System.Net.NetworkCredential(mailFrom, userPassword);//用户名和密码
 
         // 发送邮件设置        
@@ -60,8 +60,9 @@ public static class EmailService
             smtpClient.Send(mailMessage); // 发送邮件
             return true;
         }
-        catch
+        catch (Exception ex)
         {
+            ExceptionTrace.PrintException(ex);
             return false;
         }
     }
@@ -97,7 +98,7 @@ public static class EmailService
 
     public static void SendThreadMethod(object obj)
     {
-        Thread.Sleep(10000);//wait pdf to generate.
+        //Thread.Sleep(10000);//wait pdf to generate.
         object[] contents = obj as object[];
         List<string> address = contents[0] as List<string>;
         string title = contents[1] as string;
