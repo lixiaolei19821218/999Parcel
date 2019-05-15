@@ -32,12 +32,12 @@ public partial class accounts_Recover : System.Web.UI.Page
             //mUser.UnlockUser();
             //mUser.IsApproved = true;
             Membership.UpdateUser(mUser);
-            string requestString = Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/accounts/ResetPassword.aspx?" +
+            string requestString = Request.ServerVariables["SERVER_NAME"] + "/accounts/ResetPassword.aspx?" +
                 HttpUtility.UrlEncode("user") + "=" + Server.UrlEncode(mUser.UserName) + "&" +
                 HttpUtility.UrlEncode("password") + "=" + HttpUtility.UrlEncode(newPassword);            
             
             string mailContent = "点击<a href=\"http://" + requestString + "\">找回密码</a>\r\n或复制链接以下链接到浏览器：\r\n" + requestString;
-            EmailService.SendEmail(mUser.Email, "设置新密码", mailContent);
+            EmailService.SendEmailAync(mUser.Email, "设置新密码", mailContent);
             message.InnerText = string.Format("一封找回密码的邮件已经发送到您邮箱：{0}。", mUser.Email);
         }
     }

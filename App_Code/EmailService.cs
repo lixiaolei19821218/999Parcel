@@ -24,11 +24,17 @@ public static class EmailService
         string smtpServer = "999parcel.com"; //SMTP服务器
         string mailFrom = "support@999parcel.com"; //登陆用户名
         string userPassword = "Wnt589$h";//登陆密码
+        //string smtpServer = "smtp.163.com"; //SMTP服务器
+        //string mailFrom = "iir_lee@163.com"; //登陆用户名
+        //string userPassword = "llc^181925";//登陆密码
 
         // 邮件服务设置
         SmtpClient smtpClient = new SmtpClient();
         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;//指定电子邮件发送方式
         smtpClient.Host = smtpServer; //指定SMTP服务器
+        //smtpClient.Port = 25;
+        int port = smtpClient.Port;
+        smtpClient.EnableSsl = false;
         smtpClient.Credentials = new System.Net.NetworkCredential(mailFrom, userPassword);//用户名和密码
 
         // 发送邮件设置        
