@@ -10,3 +10,11 @@ MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
 Message: 发送邮件失败。
 MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
 
+2019/5/15 15:48:53
+Message: 发送邮件失败。
+MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
+
+2019/5/15 16:00:15
+Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+InnerException: 
+
