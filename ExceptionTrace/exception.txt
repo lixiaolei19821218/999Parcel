@@ -22,3 +22,31 @@ InnerException:
 Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
 InnerException: 
 
+2019/5/16 8:28:53
+Message: 不允许使用邮箱名称。 服务器响应为:authentication is required,163 smtp1,C9GowABX9o0CsNxcbtq0Ag--.49S2 1557966851
+InnerException: 
+
+2019/5/16 8:31:44
+Message: 不允许使用邮箱名称。 服务器响应为:authentication is required,163 smtp1,C9GowABX2oWssNxcEoq1Ag--.191S2 1557967021
+InnerException: 
+
+2019/5/16 9:24:12
+Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+InnerException: 
+
+2019/5/16 9:29:31
+Message: 发送邮件失败。
+InnerException: 未能解析此远程名称: 'smtp.999parcel.com'
+
+2019/5/16 9:34:46
+Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+InnerException: 
+
+2019/5/16 9:37:52
+Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+InnerException: 
+
+2019/5/16 13:14:28
+Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+InnerException: 
+
