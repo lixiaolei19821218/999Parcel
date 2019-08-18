@@ -21,7 +21,7 @@ public partial class accounts_signup_Activate : System.Web.UI.Page
             if (user != null)
             {
                 message.InnerText = string.Format("一封激活账号的邮件已发送到您的注册邮箱{0}，请在邮件中激活您的账号。", user.Email);
-                string link = string.Format("http://{0}:{1}/accounts/signup/ActivateHandler.ashx?username={2}", Request.ServerVariables["SERVER_NAME"], Request.ServerVariables["SERVER_PORT"], user.UserName);
+                string link = string.Format("http://{0}/accounts/signup/ActivateHandler.ashx?username={1}", Request.ServerVariables["SERVER_NAME"], user.UserName);
                 string content = string.Format("请点击<a href='{0}'>激活</a>您的账号。\r\n或复制链接以下链接到浏览器：{1}\r\n", link, link);
                 EmailService.SendEmailAync(user.Email, "请激活您的账号", content);
             }
