@@ -18,3 +18,7 @@ MInnerException: 未能解析此远程名称: 'mail.999parcel.com'
 Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
 InnerException: 
 
+2019/5/15 20:05:07
+Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+InnerException: 
+

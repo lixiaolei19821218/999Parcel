@@ -17,7 +17,7 @@
     <div style="float:left;margin:10px;padding:10px;width:460px">
         <div>
             <img src="/static/img/static/home.png" style="float:left;margin-right:5px;margin-top:-7px" />
-            <div style="float:left;width:163px;margin-right:5px">官方网站<br><a href="http://www.999Parcel.com">www.999Parcel.com</a></div>
+            <div style="float:left;width:163px;margin-right:5px">官方网站<br><a href="https://www.999Parcel.com">www.999Parcel.com</a></div>
             <div style="float:left;width:140px">官方微博<br><span style="color:#428BCA">999Parcel诚信物流</span></div>
             <div style="float:left;width:163px;margin-right:5px">淘宝店<br><a href="https://shop104258668.world.taobao.com">英国诚信物流</a></div>
             <div style="float:left;width:140px">官方微信<br><span style="color:#428BCA">英国诚信物流</span></div>
@@ -35,14 +35,21 @@
     
     <div style="float:left;margin:10px;padding:10px;width:356px">
         <img src="/static/img/static/person.png" style="float:left;margin-right:5px;margin-top:-7px" />
-        <div style="float:left;width:140px">电子邮箱<br><span style="color:#428BCA">support@999Parcel.com</span></div>
+        <div style="float:left;width:140px">电子邮箱<br><span style="color:#428BCA">support@999Parcel.com alanmelai@hotmail.com</span></div>
         <div style="float:left;width:180px">官方QQ<br><span style="color:#428BCA">595922231 1532855482</span></div>
-        <div style="float:left;width:140px">官方旺旺<br><span style="color:#428BCA">999Parcel速递</span></div>
+        <div style="float:left;width:140px;margin-left:110px">官方旺旺<br><span style="color:#428BCA">999Parcel速递</span></div>
         <div style="float:left;width:180px;margin-left:110px">客服电话<br><span style="color:#428BCA">01143273880 07946560303</span></div>
         <div style="clear:both"></div>
-    </div>
+    </div>   
 
     <div style="clear:both"></div>
+    <hr />
+    <h1>Registration Info</h1>
+     <div>
+        <p>Registration name: <span style="color:#428BCA">999 PARCEL LIMITED</span></p>
+         <p>Place of registration: <span style="color:#428BCA">Companies House, Cardiff</span></p>
+          <p>Registered number: <span style="color:#428BCA">9215203</span></p>
+    </div>
 </div>
    <script>
        $('.main-menu .contact-us').siblings().removeClass('active').end().addClass('active');
