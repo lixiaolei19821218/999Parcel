@@ -18,18 +18,20 @@
 <div style="margin: 10px 0; border: 1px solid #ccc;">
 <h1 style="padding: 0 15px; margin: 0; line-height: 40px; background-color: #8998ce; border-bottom: 5px solid #E8E8E8; font-size: 20px;">隐私条款</h1>
 <div style="padding: 5px 20px;">
-<b>Definitions: </b>
+<p>At 999Parcel.com and all its agent websites we are dedicated to safeguarding and preserving your privacy when visiting our site or communicating electronically with us.</p>
 <div></div>
-<div>In this policy, “we”, “us” and “our” refer to TTK Express Europe Ltd,  83 fitzwilliam street s1 4jp, UK. </div>
-<div>We (TTK Express Europe Ltd) are the data controller for the purposes of this policy, the Data Protection Act 1998 and the EU General Data Protection Regulation (the 'GDPR') .</div>
-<br />
-<div><b>1. Introduction: </b></div>
+<div>This Privacy Policy, together with our <a href="/conditions_terms/Default.aspx">Terms & Conditions</a>, provides an explanation as to what happens to any personal data that you provide to us, or that we collect from you.</div>
 <div></div>
-<div>1.1. We are committed to protecting the personal data that we hold and use and to respecting your privacy. :</div>
-<div>1.2. This policy and other documents that we may refer to within this policy describes the data that we collect from you or about you, and the way we may use it from time to time. </div>
-<div>1.3. This policy applies where we are acting as a data controller; in other words, where we are determining where and how we use the personal data you provide to us. </div>
+<div>We do update this Policy from time to time so please do review this Policy regularly.</div>
 <br />
-<div><b>2. How we use your personal data: </b></div>
+<div><b>Information We Collect</b></div>
+<div></div>
+<div>In operating our website we may collect and process the following data about you:</div>
+<div>&nbsp; &nbsp; &nbsp;- Details of your visits to our website and the resources that you access, including, but not limited to, traffic data, location data, weblogs and other communication data.</div>
+<div>&nbsp; &nbsp; &nbsp;- Information that you provide by filling in forms on our website, such as when you registered for information or make a purchase.</div>
+<div>&nbsp; &nbsp; &nbsp;- Information provided to us when you communicate with us for any reason.</div>
+<br />
+<div><b>Why we collect personal information about you</b></div>
 <div></div>
 <div>To provide you with our online services which are detailed on our website.</div>
 <br />
@@ -105,4 +107,3 @@
     
 </div>
 </asp:Content>
-

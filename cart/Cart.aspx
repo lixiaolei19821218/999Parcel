@@ -126,8 +126,21 @@
                    <a href="/" class="btn btn-info" style="line-height: 1;width:120px;">继续下单</a>
 
                     <asp:Button ID="payAll" runat="server" CssClass="btn btn-info" Text="支付所有定单" style="line-height: 1;width:120px;" OnClick="pay_Click" />
-                    
-
+                    <table border="0" style="float: right;">
+                        <tbody>
+                            <tr>
+                                <td style="width:70px;">
+                                    <input name="op-DPChoose-ECMC^SSL" type="image" src="/static/img/logos/ECMC.gif" alt="Mastercard" />                                    
+                                </td>
+                                <td style="width:70px;">
+                                    <input name="op-DPChoose-VISA^SSL" type="image" src="/static/img/logos/VISA.gif" alt="Visa" />                               
+                                </td>
+                                <td style="width:70px;">
+                                    <input name="op-DPChoose-AMEX^SSL" type="image" src="/static/img/logos/AMEX.gif" alt="Amex" />                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div style="clear: both"></div>
                 </div>
             </div>

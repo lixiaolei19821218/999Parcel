@@ -45,10 +45,10 @@
     <div style="clear:both"></div>
     <hr />
     <h1>Registration Info</h1>
-     <div>
-        <p>Registration name: <span style="color:#428BCA">999 PARCEL LIMITED</span></p>
-         <p>Place of registration: <span style="color:#428BCA">Companies House, Cardiff</span></p>
-          <p>Registered number: <span style="color:#428BCA">9215203</span></p>
+    <div>
+        <li><b>Registration name: <span style="color: #428BCA">999 PARCEL LIMITED</span></b></li>
+        <li><b>Place of registration: <span style="color: #428BCA">Companies House, Cardiff</span></b></li>
+        <li><b>Registered number: <span style="color: #428BCA">9215203</span></b></li>
     </div>
 </div>
    <script>

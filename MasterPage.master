@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link rel="shortcut icon" type="image/x-icon" href="/static/img/999parcel_title.png"/>
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/999parcel_title.png" />
+
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -36,9 +36,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             e.children[1].style.display = 'none';
         }
     </script>
-    
 
-    <!-- start-smoth-scrolling --> 
+
+    <!-- start-smoth-scrolling -->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -56,23 +56,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
         <div style="margin: 10px 0px; float: right;">
-            <a href="/cart/cart.aspx" style="color:black;">购物车</a>            
-             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="/cart/Paid.aspx" style="color:black;">我的订单</a>            
-             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="/prices/" style="color:black;">网上报价</a>             
-             &nbsp;&nbsp;|&nbsp;&nbsp;            
-            <a href="/our-services/dg/" style="color:black;">奶粉包税</a>
-             &nbsp;&nbsp;|&nbsp;&nbsp;            
-            <a href="/userguide/faq.aspx" style="color:black;">新手指南</a>
+            <a href="/cart/cart.aspx" style="color: black;">购物车</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="/cart/Paid.aspx" style="color: black;">我的订单</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="/prices/" style="color: black;">网上报价</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;            
+            <a href="/our-services/dg/" style="color: black;">奶粉包税</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;            
+            <a href="/userguide/faq.aspx" style="color: black;">新手指南</a>
         </div>
         <div style="clear: both"></div>
     </div>
-    <!-- banner-body --> 
-    <div class="banner-body" style="padding-top:20px;">    
-        <div class="container" style="max-width:10080px;">
+    <!-- banner-body -->
+    <div class="banner-body" style="padding-top: 20px;">
+        <div class="container" style="max-width: 10080px;">
             <!-- header -->
-            <div class="header" style="position:relative;z-index:100;">
+            <div class="header" style="position: relative; z-index: 100;">
                 <div class="header-nav">
                     <nav class="navbar navbar-default">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -84,13 +84,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span class="icon-bar"></span>
                             </button>
                             <a class="navbar-brand" href="/">999Parcel</a>
-                        </div>                                                  
+                        </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="hvr-bounce-to-bottom"><a href="/" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">首页</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="/" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">首页</a></li>
                                 <li class="hvr-bounce-to-bottom" id="service" onmouseover="onhover(this)" onmouseout="onleave(this)">
-                                    <a href="/our-services/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-weight:bold; font-size:large;">快递服务</a>
+                                    <a href="/our-services/" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-weight: bold; font-size: large;">快递服务</a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a>新手专线</a></li>
                                         <li><a>行李专线</a></li>
@@ -99,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><a href="/cart/Paid.aspx">已完成订单</a></li>
                                         <li><a href="/cart/Parcel.aspx">已完成包裹</a></li>
                                     </ul>
-                                </li>                               
+                                </li>
                                 <li class="hvr-bounce-to-bottom" onmouseover="onhover(this)" onmouseout="onleave(this)">
                                     <a href="/our-services/zy/" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">国际快递</a>
                                     <ul class="dropdown-menu" role="menu">
@@ -114,8 +114,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><a href="/news/">新闻资询</a></li>
                                     </ul>
                                 </li>
-                                <li class="hvr-bounce-to-bottom"  onmouseover="onhover(this)" onmouseout="onleave(this)">
-                                    <a style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">诚信商场</a>
+                                <li class="hvr-bounce-to-bottom" onmouseover="onhover(this)" onmouseout="onleave(this)">
+                                    <a style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">诚信商场</a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a>婴儿奶粉</a></li>
                                         <li><a>包装材料</a></li>
@@ -125,8 +125,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             -->
                                     </ul>
                                 </li>
-                                <li class="hvr-bounce-to-bottom"   onmouseover="onhover(this)" onmouseout="onleave(this)">
-                                    <a style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">海淘转运</a>
+                                <li class="hvr-bounce-to-bottom" onmouseover="onhover(this)" onmouseout="onleave(this)">
+                                    <a style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">海淘转运</a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li role="presentation"><a>海淘流程</a></li>
                                         <li role="presentation"><a href="/haitao/AddedService.aspx">加固和增值服务</a></li>
@@ -137,21 +137,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li role="presentation"><a>仓库地址</a></li>
                                     </ul>
                                 </li>
-                                <li class="hvr-bounce-to-bottom"><a href="/userguide/faq.aspx" style="font-family:'Microsoft YaHei UI'; font-weight:bold; font-size:large;">常见问题</a></li>
-                                <li class="hvr-bounce-to-bottom"><a href="/contact-us/" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">联系我们</a></li>
-                            
+                                <li class="hvr-bounce-to-bottom"><a href="/userguide/faq.aspx" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">常见问题</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="/contact-us/" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">联系我们</a></li>
+
                             </ul>
-                                
+
                             <div class="sign-in" runat="server" id="loginDiv2">
                                 <ul>
-                                    <li><a href="/accounts/UserCentre/Default.aspx" style="font-family:'Microsoft YaHei UI'; font-weight:bold;  font-size:large;">个人中心</a></li>                                    
+                                    <li><a href="/accounts/UserCentre/Default.aspx" style="font-family: 'Microsoft YaHei UI'; font-weight: bold; font-size: large;">个人中心</a></li>
                                 </ul>
-                            </div> 
-                            
-                                
-                            
+                            </div>
+
+
+
                         </div>
-                        <!-- /.navbar-collapse -->                      
+                        <!-- /.navbar-collapse -->
                     </nav>
                 </div>
 
@@ -164,42 +164,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!-- //search-scripts -->
             </div>
             <div class="header-bottom">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-                </div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
             <!-- //header -->
         </div>
     </div>
     <!-- //banner-body -->
     <!-- footer -->
-    <div class="footer" style="padding-top:30px;">
+    <div class="footer" style="padding-top: 30px;">
         <div class="container">
-            <div class="footer-grids">                
+            <div class="footer-grids">
                 <div class="col-md-3 footer-grid">
-                    
+
                     <ul>
                         <li><a href="/our-services/">快递服务</a></li>
                         <li><a href="/our-services/zy/">国际快递</a></li>
-                        <li><a href="/our-services/yun/">海外仓储</a></li>                                          
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-grid">                    
-                    <ul>
-                        <li><a href="/news/">新闻资讯</a></li>
-                        <li><a href="/shop/">诚信商场</a></li>      
-                        <li><a href="/prices/">网上报价</a></li>                        
-                    </ul>
-                </div>
-              <div class="col-md-3 footer-grid">                    
-                    <ul>
-                        <li><a href="/contact-us/">联系我们</a></li>
-                        <li><a href="/privacy_policy/">Privacy Policy</a></li>
-                        <!--<li><a href="/faq/">常见问题</a></li>-->
-                        <li><a href="/accounts/signup/Activate.aspx">激活账号</a></li>
+                        <li><a href="/our-services/yun/">海外仓储</a></li>
+                        <li><a href="/shop/">诚信商场</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-grid">
-                    <img src="/static/img/weixin.png" style="width:250px;" />
+                    <ul>
+                        <li><a href="/news/">新闻资讯</a></li>                        
+                        <li><a href="/prices/">网上报价</a></li>
+                        <li><a href="/accounts/signup/Activate.aspx">激活账号</a></li>
+                        <li><a href="/faq/">常见问题</a></li>                        
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-grid">
+                    <ul>
+                        <li><a href="/contact-us/">联系我们</a></li>
+                        <li><a href="/privacy_policy/">Privacy Policy</a></li>
+                        <li><a href="/conditions_terms/">Conditions Terms</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-grid">
+                    <img src="/static/img/weixin.png" style="width: 250px;" />
                 </div>
                 <div class="clearfix"></div>
             </div>
