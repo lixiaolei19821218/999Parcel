@@ -906,39 +906,46 @@ public partial class cart_Cart : System.Web.UI.Page
     }
     
     protected void pay_Click(object sender, EventArgs e)
-    { 
-        if (balance >= totalPrice)
+    {
+        if (rbWorldPay.Checked)
         {
-            if (normalOrders.Any(o => o.SuccessPaid == true))
-            {
-                return;
-            }
-            try
-            {
-                PayOrders(normalOrders, total999PickupCount >= 3);
-            }
-            catch (Exception ex)
-            {
-                lbmessage.Text = "付款失败，请稍后再试。Message: " + ex.Message;
-                lbmessage.ForeColor = Color.Red;
-                return;
-            }
-            /*
-            foreach (SheffieldOrder sOrder in sheffieldOrders)
-            {
-                PayOrders(sOrder.Orders);
-                sOrder.HasPaid = true;
-            }
-            */
-            lbmessage.Text = "";            
-            apUser.Balance -= totalPrice;            
-            repo.Context.SaveChanges();      
-            
-            Response.Redirect("Paid.aspx");            
+
         }
         else
         {
-            Response.Redirect("RedirectToRecharge.aspx");
+            if (balance >= totalPrice)
+            {
+                if (normalOrders.Any(o => o.SuccessPaid == true))
+                {
+                    return;
+                }
+                try
+                {
+                    PayOrders(normalOrders, total999PickupCount >= 3);
+                }
+                catch (Exception ex)
+                {
+                    lbmessage.Text = "付款失败，请稍后再试。Message: " + ex.Message;
+                    lbmessage.ForeColor = Color.Red;
+                    return;
+                }
+                /*
+                foreach (SheffieldOrder sOrder in sheffieldOrders)
+                {
+                    PayOrders(sOrder.Orders);
+                    sOrder.HasPaid = true;
+                }
+                */
+                lbmessage.Text = "";
+                apUser.Balance -= totalPrice;
+                repo.Context.SaveChanges();
+
+                Response.Redirect("Paid.aspx");
+            }
+            else
+            {
+                Response.Redirect("RedirectToRecharge.aspx");
+            }
         }
     }        
 

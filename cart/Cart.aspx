@@ -113,8 +113,10 @@
                 </table>
 
             </fieldset>-->
+            
             <div>
-                
+                <asp:RadioButton runat="server" ID="rbBalance" Text="余额支付" GroupName="PayMethod" />
+                    <asp:RadioButton runat="server" ID="rbWorldPay" Text="World Pay支付" Checked="true" GroupName="PayMethod" />
                 <div style="float: right">总金额: <strong class="total-price" style="color: #f00"><%:GetTotalPrice().ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></strong></div>
             </div>
 
@@ -126,6 +128,8 @@
                    <a href="/" class="btn btn-info" style="line-height: 1;width:120px;">继续下单</a>
 
                     <asp:Button ID="payAll" runat="server" CssClass="btn btn-info" Text="支付所有定单" style="line-height: 1;width:120px;" OnClick="pay_Click" />
+                    
+                    
                     <table border="0" style="float: right;">
                         <tbody>
                             <tr>
