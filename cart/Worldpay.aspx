@@ -73,7 +73,7 @@
      <form id="aspnetForm" runat="server">          
         <asp:Panel runat="server" ID="RequestPanel">
             <div class="payment-errors"></div>
-            <div class="header">Checkout</div>           
+            
 
             <div class="form-row apm" style="display:none;">
                 <label>APM</label>
@@ -94,7 +94,7 @@
           
             <div class="form-row control-group">
                 <label>Name</label>
-                <input class="input-xxlarge" type="text" id="name" name="name" data-worldpay="name" value="Example Name" />
+                <input style="height:30px;" type="text" id="name" name="name" data-worldpay="name" value="Example Name" />
             </div>
             <br />
             <div class="form-row apm apm-url" style="display:none;">
@@ -127,18 +127,18 @@
 
             <div class="form-row no-apm">
                 <label>Card Number</label>
-                <input type="text" id="card" size="20" data-worldpay="number" value="4444333322221111" />
+                <input style="height:30px;" type="text" id="card" size="20" data-worldpay="number" value="4444333322221111" />
             </div>
-            
+            <br />
             
             <div class="form-row no-apm">
                 <label>CVC</label>
-                <input type="text" id="cvc" size="4" data-worldpay="cvc" value="321" />
+                <input style="height:30px;" type="text" id="cvc" size="4" data-worldpay="cvc" value="321" />
             </div>
-
+            <br />
             <div class="form-row no-apm">
                 <label>Expiration (MM/YYYY)</label>
-                <select id="expiration-month" data-worldpay="exp-month">
+                <select style="height:30px;" id="expiration-month" data-worldpay="exp-month">
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -153,28 +153,24 @@
                     <option value="12">12</option>
                 </select>
                 <span> / </span>
-                <select id="expiration-year" data-worldpay="exp-year">
-                    <option value="2015">2015</option>
-                    <option value="2016" selected="selected">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
+                <select style="height:30px;" id="expiration-year" data-worldpay="exp-year">                  
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
                 </select>
             </div>
-
+            <br />
             <div class="form-row">
                 <label>Amount</label>
-                <input type="text" id="amount" size="4" name="amount" value="15.23" />
+                <input style="height:30px;" type="text" id="amount" size="4" name="amount" value="15.23" />
             </div>
-
+            <br />
 
             <div class="apmName apm"></div>
 
             <input name="env" type="hidden" value=""/>
             <div>
-                <asp:Button ID="PlaceOrder" runat="server" Text="Place Order" />
+                <asp:Button CssClass="btn btn-info col-lg-3 col-lg-push-2" ID="PlaceOrder" runat="server" Text="Place Order" />
             </div>
         </asp:Panel>
 
