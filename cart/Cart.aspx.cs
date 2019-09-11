@@ -71,6 +71,13 @@ public partial class cart_Cart : System.Web.UI.Page
             lbmessage.ForeColor = Color.Green;
         }
 
+        if (Session["Message"] != null)
+        {
+            lbmessage.Text = Session["Message"].ToString();
+            lbmessage.ForeColor = Color.Red;
+            Session["Message"] = null;
+        }
+
         balance = apUser.Balance;
         totalPrice = normalOrders.Sum(o => o.Cost.Value);
         //totalPrice = normalOrders.Sum(o => o.Cost.Value) + sheffieldOrders.Sum(so => so.Orders.Sum(o => o.Cost.Value));
@@ -262,6 +269,8 @@ public partial class cart_Cart : System.Web.UI.Page
 
     private void PayOrders(IEnumerable<Order> orders, bool freePickupCost)
     {
+        SendHelper.PayOrders(orders, freePickupCost, total999PickupCount);
+        /*
         List<string> attachmentPaths = new List<string>();
 
         TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
@@ -334,143 +343,6 @@ public partial class cart_Cart : System.Web.UI.Page
                     break;
             }
 
-            #region 华盟
-            /*
-                foreach (Recipient r in o.Recipients)
-                {
-                    OrderServiceClient client = new OrderServiceClient();
-                    int parcelCount = r.Packages.Count;
-                    string[] purposeOfShipment = new string[parcelCount];
-                    for (int i = 0; i < purposeOfShipment.Length; i++)
-                    {
-                        purposeOfShipment[i] = "Gift";
-                    }
-
-                    OrderResponse response = client.OrderPlace(
-                        r.Packages.Select(p => p.Detail).ToArray(),
-                        purposeOfShipment,
-                        r.Packages.Select(p => (float)p.Height).ToArray(),
-                        r.Packages.Select(p => (float)p.Length).ToArray(),
-                        r.Packages.Select(p => (float)p.Width).ToArray(),
-                        r.Packages.Select(p => (float)p.Weight).ToArray(),
-                        r.Packages.Select(p => (float)p.Value).ToArray(),
-                        parcelCount,
-                        wmPassword,
-                        wmUsername,
-                        r.ZipCode,
-                        r.Address,
-                        r.City,
-                        "Personal",
-                        r.Name,
-                        "China",
-                        r.PhoneNumber,
-                        r.Order.SenderAddress1 + " " + r.Order.SenderAddress2 + " " + r.Order.SenderAddress3,
-                        r.Order.SenderCity,
-                        "Personal",
-                        r.Order.SenderName,
-                        "UK",
-                        r.Order.SenderPhone,//"B29 7sn",
-                        r.Order.SenderZipCode,
-                        wmService,
-                        r.Order.PickupTime.ToString()
-                        );
-
-                    if (response.Errors == null)
-                    {
-                        //国际追踪号
-                        string tracknumber = response.TrackNumber;
-                        //WM的订单号，主订单号
-                        string wm_leadernumber = response.LeaderOrderNumber;
-                        //WM的包裹号，用逗号分隔
-                        string wm_ordernumber = response.OrderNumber;
-                        //返回的pdf信息，
-                        LabelResponse labelResponse_leader = client.GetLabelByWMLeaderNumber(wmUsername, wmPassword, wm_leadernumber);
-                        //订单合并成的一个pdf，输入为主订单号
-                        if (labelResponse_leader.Errors == null)
-                        {
-                            byte[] byt = labelResponse_leader.Label;
-                            string folderPath = AppDomain.CurrentDomain.BaseDirectory + "pdf\\" + Membership.GetUser().UserName;
-                            if (!Directory.Exists(folderPath))
-                            {
-                                Directory.CreateDirectory(folderPath);
-                            }
-                            string attachment = folderPath + "\\" + wm_leadernumber + ".pdf";
-                            File.WriteAllBytes(attachment, byt);
-                           
-                            r.WMLeaderNumber = wm_leadernumber;
-                            r.WMLeaderPdf = wm_leadernumber + ".pdf"; 
-                            string[] tracknumbers = tracknumber.Split(',');
-                            for (int i = 0; i < r.Packages.Count; i++)
-                            {
-                                r.Packages.ElementAt(i).TrackNumber = tracknumbers[i];
-                            }
-                            r.SuccessPaid = true;
-                            attachmentPaths.Add(attachment);
-                        }
-                        else
-                        {
-                            //错误保存在Errors里面
-                            r.SuccessPaid = false;
-                            StringBuilder errors = new StringBuilder();
-                            foreach (string error in labelResponse_leader.Errors)
-                            {
-                                errors.Append(error + ";");
-                            }
-
-                            r.Errors = errors.ToString();
-                        }
-
-                        /*
-                        //根据包裹号下载pdf
-                        string[] packagenumbers = wm_ordernumber.Split(',');
-                        LabelResponse labelResponse_package = client.GetLabelByPackgeNumber(username, password, packagenumbers[0]);
-                        if (labelResponse_package.Errors == null)
-                        {
-                            byte[] byt = labelResponse_package.Label;
-                            File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\pdf\\" + packagenumbers[0] + ".pdf", byt);
-
-                        }
-                        else
-                        {
-                            //错误保存在Errors里面
-                        }
-                        //根据国际单号下载pdf
-                        string[] tracknumbers = tracknumber.Split(',');
-                        LabelResponse labelResponse_track = client.GetLabelByTrackNumber(username, password, tracknumbers[0]);
-                        if (labelResponse_track.Errors == null)
-                        {
-                            byte[] byt = labelResponse_track.Label;
-                            File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\pdf\\" + tracknumbers[0] + ".pdf", byt);
-
-                        }
-                        else
-                        {
-                            //错误保存在Errors里面
-                        }
-                         
-
-
-                    }
-                    //如果出现错误
-                    else
-                    {
-                        for (int i = 0; i < response.Errors.Length; i++)
-                        {//错误列表
-                            string error = response.Errors[i].ToString();
-                        }
-                        r.SuccessPaid = false;
-
-                        StringBuilder errors = new StringBuilder();
-                        foreach (string error in response.Errors)
-                        {
-                            errors.Append(error + ";");
-                        }
-
-                        r.Errors = errors.ToString();
-                    }                    
-                }
-        */
-            #endregion
             if (freePickupCost)
             {
                 if (o.Service.PickUpCompany.Contains("999 Parcel") || o.Service.PickUpCompany.Contains("999Parcel"))
@@ -480,7 +352,7 @@ public partial class cart_Cart : System.Web.UI.Page
                 }
             }
             o.HasPaid = true;
-        }        
+        }     */   
     }
 
     public void GetTTKDLabelThread(object parameter)
@@ -909,7 +781,19 @@ public partial class cart_Cart : System.Web.UI.Page
     {
         if (rbWorldPay.Checked)
         {
-
+            if (Roles.IsUserInRole(Membership.GetUser().UserName, "Admin"))
+            {
+                lbmessage.Text = "Worldpay支付测试中，目前只能管理员可以使用..";
+                return;
+            }
+            if (normalOrders.Any(o => o.SuccessPaid == true))
+            {
+                return;
+            }
+            Session["Cost"] = totalPrice;
+            Session["Orders"] = normalOrders;
+            Session["Total999PickupCount"] = Total999PickupCount;
+            Response.Redirect("worldpay.aspx");
         }
         else
         {
@@ -1487,29 +1371,46 @@ public partial class cart_Cart : System.Web.UI.Page
         {
             Order order = repo.Context.Orders.Find(id);
             if (order != null && (order.SuccessPaid ?? false) == false)
-            {                
-                if (apUser.Balance >= order.Cost.Value)
+            {
+                if (rbWorldPay.Checked)
                 {
-                    List<Order> l = new List<Order>();
-                    l.Add(order);
-                    try
+                    if (!(Roles.IsUserInRole("admins") || Roles.IsUserInRole("superAdmins")))
                     {
-                        PayOrders(l, false);
-                    }
-                    catch (Exception ex)
-                    {
-                        lbmessage.Text = "付款失败，请稍后再试。Message: " + ex.Message;
-                        lbmessage.ForeColor = Color.Red;
+                        lbmessage.Text = "Worldpay支付测试中，目前只能管理员可以使用..";
                         return;
                     }
-                    lbmessage.Text = "";                    
-                    apUser.Balance -= order.Cost.Value;
-                    repo.Context.SaveChanges();
-                    Response.Redirect("/cart/Paid.aspx");
+                    Session["Cost"] = order.Cost.Value;
+                    List<Order> l = new List<Order>();
+                    l.Add(order);
+                    Session["Orders"] = l;
+                    Session["Total999PickupCount"] = 1;
+                    Response.Redirect("worldpay.aspx");
                 }
                 else
                 {
-                    Response.Redirect("RedirectToRecharge.aspx");
+                    if (apUser.Balance >= order.Cost.Value)
+                    {
+                        List<Order> l = new List<Order>();
+                        l.Add(order);
+                        try
+                        {
+                            PayOrders(l, false);
+                        }
+                        catch (Exception ex)
+                        {
+                            lbmessage.Text = "付款失败，请稍后再试。Message: " + ex.Message;
+                            lbmessage.ForeColor = Color.Red;
+                            return;
+                        }
+                        lbmessage.Text = "";
+                        apUser.Balance -= order.Cost.Value;
+                        repo.Context.SaveChanges();
+                        Response.Redirect("/cart/Paid.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("RedirectToRecharge.aspx");
+                    }
                 }
             }
         }

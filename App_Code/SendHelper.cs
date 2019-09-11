@@ -83,8 +83,8 @@ public static class SendHelper
                         p.Response = "Exception message: " + ex.Message;                       
                     }
                     continue;
-                }        
-
+                }
+                
                 var res = JsonConvert.DeserializeAnonymousType(response, new { Msg = string.Empty, Data = new { OrderNum = string.Empty, Mail_Nums = new List<string>() } });               
 
                 if (res.Msg == "success")
@@ -450,5 +450,228 @@ public static class SendHelper
     public static bool HasChinese(this string str)
     {
         return Regex.IsMatch(str, @"[\u4e00-\u9fa5]");
+    }
+
+    public static void PayOrders(IEnumerable<Order> orders, bool freePickupCost, int total999PickupCount)
+    {
+        List<string> attachmentPaths = new List<string>();
+
+        TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        string timeStamp = Convert.ToInt64(ts.TotalSeconds).ToString();
+
+        foreach (Order o in orders)
+        {
+            if (total999PickupCount >= 3)
+            {
+                o.PickupPrice = 0m;
+            }
+            switch (o.Service.Name.Trim())
+            {
+                case "荷兰邮政 - 免费取件":
+                case "荷兰邮政 - UKMail 取件":
+
+                    break;
+                case "Parcelforce Economy - 诚信物流取件":
+                    
+                case "Parcelforce Priority 小包裹 - 诚信物流取件":
+                   
+                case "Parcelforce Economy - 自送仓库":
+                    
+                case "Parcelforce Priority 小包裹 - 自送仓库":
+                   
+                case "Parcelforce Luggage - 大行李专线":
+
+                case "Parcelforce Child Car Seat 儿童安全座椅专线 - 诚信物流取件":
+
+                case "Parcelforce Child Car Seat 儿童安全座椅专线 - 自送仓库":
+
+                case "顺丰奶粉包税4罐 - 自送仓库":
+
+                case "顺丰奶粉包税6罐 - 自送仓库":
+
+                case "顺丰奶粉包税4罐 - 诚信物流取件":
+
+                case "顺丰奶粉包税6罐 - 诚信物流取件":
+                    SendToPF(o);
+                    break;
+                case "Bpost - 诚信物流取件":
+                    //SendBpostLciFile(o);
+                    //SendToBpost(o);
+                    break;
+                case "Bpost - UKMail 取件":
+                    //if (UKMailCollection(o))
+                    {
+                      //  SendToBpost(o);
+                    }
+                    break;
+                case "杂物包税专线（100镑以内） - 自送仓库":
+                case "杂物包税专线（100镑以内） - 诚信物流取件":
+                case "杂物包税专线（200镑以内） - 自送仓库":
+                case "杂物包税专线（200镑以内） - 诚信物流取件":
+                    //SendTo4PX(o);
+                    break;
+                case "奶粉包税专线 - 诚信物流取件":
+                case "奶粉包税专线 - 自送仓库":
+                    //SendToBpost(o, "LGINTSTD");
+                    break;
+                case "自营奶粉包税4罐 - 自送仓库":
+                case "自营奶粉包税4罐 - 诚信物流取件":
+                    SendToTTKD_V2(o, TTKDType.FourTin);
+                    break;
+                case "自营奶粉包税6罐 - 自送仓库":
+                case "自营奶粉包税6罐 - 诚信物流取件":
+                    SendToTTKD_V2(o, TTKDType.SixTin);
+                    break;
+                default:
+                    break;
+            }
+
+            #region 华盟
+            /*
+                foreach (Recipient r in o.Recipients)
+                {
+                    OrderServiceClient client = new OrderServiceClient();
+                    int parcelCount = r.Packages.Count;
+                    string[] purposeOfShipment = new string[parcelCount];
+                    for (int i = 0; i < purposeOfShipment.Length; i++)
+                    {
+                        purposeOfShipment[i] = "Gift";
+                    }
+
+                    OrderResponse response = client.OrderPlace(
+                        r.Packages.Select(p => p.Detail).ToArray(),
+                        purposeOfShipment,
+                        r.Packages.Select(p => (float)p.Height).ToArray(),
+                        r.Packages.Select(p => (float)p.Length).ToArray(),
+                        r.Packages.Select(p => (float)p.Width).ToArray(),
+                        r.Packages.Select(p => (float)p.Weight).ToArray(),
+                        r.Packages.Select(p => (float)p.Value).ToArray(),
+                        parcelCount,
+                        wmPassword,
+                        wmUsername,
+                        r.ZipCode,
+                        r.Address,
+                        r.City,
+                        "Personal",
+                        r.Name,
+                        "China",
+                        r.PhoneNumber,
+                        r.Order.SenderAddress1 + " " + r.Order.SenderAddress2 + " " + r.Order.SenderAddress3,
+                        r.Order.SenderCity,
+                        "Personal",
+                        r.Order.SenderName,
+                        "UK",
+                        r.Order.SenderPhone,//"B29 7sn",
+                        r.Order.SenderZipCode,
+                        wmService,
+                        r.Order.PickupTime.ToString()
+                        );
+
+                    if (response.Errors == null)
+                    {
+                        //国际追踪号
+                        string tracknumber = response.TrackNumber;
+                        //WM的订单号，主订单号
+                        string wm_leadernumber = response.LeaderOrderNumber;
+                        //WM的包裹号，用逗号分隔
+                        string wm_ordernumber = response.OrderNumber;
+                        //返回的pdf信息，
+                        LabelResponse labelResponse_leader = client.GetLabelByWMLeaderNumber(wmUsername, wmPassword, wm_leadernumber);
+                        //订单合并成的一个pdf，输入为主订单号
+                        if (labelResponse_leader.Errors == null)
+                        {
+                            byte[] byt = labelResponse_leader.Label;
+                            string folderPath = AppDomain.CurrentDomain.BaseDirectory + "pdf\\" + Membership.GetUser().UserName;
+                            if (!Directory.Exists(folderPath))
+                            {
+                                Directory.CreateDirectory(folderPath);
+                            }
+                            string attachment = folderPath + "\\" + wm_leadernumber + ".pdf";
+                            File.WriteAllBytes(attachment, byt);
+                           
+                            r.WMLeaderNumber = wm_leadernumber;
+                            r.WMLeaderPdf = wm_leadernumber + ".pdf"; 
+                            string[] tracknumbers = tracknumber.Split(',');
+                            for (int i = 0; i < r.Packages.Count; i++)
+                            {
+                                r.Packages.ElementAt(i).TrackNumber = tracknumbers[i];
+                            }
+                            r.SuccessPaid = true;
+                            attachmentPaths.Add(attachment);
+                        }
+                        else
+                        {
+                            //错误保存在Errors里面
+                            r.SuccessPaid = false;
+                            StringBuilder errors = new StringBuilder();
+                            foreach (string error in labelResponse_leader.Errors)
+                            {
+                                errors.Append(error + ";");
+                            }
+
+                            r.Errors = errors.ToString();
+                        }
+
+                        /*
+                        //根据包裹号下载pdf
+                        string[] packagenumbers = wm_ordernumber.Split(',');
+                        LabelResponse labelResponse_package = client.GetLabelByPackgeNumber(username, password, packagenumbers[0]);
+                        if (labelResponse_package.Errors == null)
+                        {
+                            byte[] byt = labelResponse_package.Label;
+                            File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\pdf\\" + packagenumbers[0] + ".pdf", byt);
+
+                        }
+                        else
+                        {
+                            //错误保存在Errors里面
+                        }
+                        //根据国际单号下载pdf
+                        string[] tracknumbers = tracknumber.Split(',');
+                        LabelResponse labelResponse_track = client.GetLabelByTrackNumber(username, password, tracknumbers[0]);
+                        if (labelResponse_track.Errors == null)
+                        {
+                            byte[] byt = labelResponse_track.Label;
+                            File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\pdf\\" + tracknumbers[0] + ".pdf", byt);
+
+                        }
+                        else
+                        {
+                            //错误保存在Errors里面
+                        }
+                         
+
+
+                    }
+                    //如果出现错误
+                    else
+                    {
+                        for (int i = 0; i < response.Errors.Length; i++)
+                        {//错误列表
+                            string error = response.Errors[i].ToString();
+                        }
+                        r.SuccessPaid = false;
+
+                        StringBuilder errors = new StringBuilder();
+                        foreach (string error in response.Errors)
+                        {
+                            errors.Append(error + ";");
+                        }
+
+                        r.Errors = errors.ToString();
+                    }                    
+                }
+        */
+            #endregion
+            if (freePickupCost)
+            {
+                if (o.Service.PickUpCompany.Contains("999 Parcel") || o.Service.PickUpCompany.Contains("999Parcel"))
+                {
+                    o.PickupPrice = 0m;
+                    o.UKMConsignmentNumber = timeStamp;
+                }
+            }
+            o.HasPaid = true;
+        }        
     }
 }

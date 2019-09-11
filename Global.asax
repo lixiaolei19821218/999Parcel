@@ -1,7 +1,7 @@
 ﻿<%@ Application Language="C#" %>
 <%@ Import Namespace="System.IO" %>
 
-<script runat="server">
+<script runat="server">   
 
     System.Timers.Timer myTimer;
     string _999parcelBpost;
@@ -34,6 +34,8 @@
         sr3 = new System.IO.StreamReader(HttpRuntime.AppDomainAppPath + "cart/Mail.html", Encoding.UTF8);        
         Application["MailBody"] = sr3.ReadToEnd();        
         sr3.Close();
+
+        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
     }
 
     void myTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)

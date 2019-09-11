@@ -115,8 +115,8 @@
             </fieldset>-->
             
             <div>
-                <asp:RadioButton runat="server" ID="rbBalance" Text="余额支付" GroupName="PayMethod" />
-                    <asp:RadioButton runat="server" ID="rbWorldPay" Text="World Pay支付" Checked="true" GroupName="PayMethod" />
+                <asp:RadioButton runat="server" ID="rbBalance" Text="余额支付" Checked="true" GroupName="PayMethod" />
+                    <asp:RadioButton runat="server" ID="rbWorldPay" Text="World Pay支付" GroupName="PayMethod" />
                 <div style="float: right">总金额: <strong class="total-price" style="color: #f00"><%:GetTotalPrice().ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></strong></div>
             </div>
 
@@ -134,14 +134,21 @@
                         <tbody>
                             <tr>
                                 <td style="width:70px;">
-                                    <input name="op-DPChoose-ECMC^SSL" type="image" src="/static/img/logos/ECMC.gif" alt="Mastercard" />                                    
+                                    <input name="op-DPChoose-ECMC^SSL" type="image" src="/static/img/logos/99b8b93b12bbdb95c94a3ded6239461.png" alt="Mastercard" />                                    
                                 </td>
                                 <td style="width:70px;">
-                                    <input name="op-DPChoose-VISA^SSL" type="image" src="/static/img/logos/VISA.gif" alt="Visa" />                               
+                                    <input name="op-DPChoose-VISA^SSL" type="image" src="/static/img/logos/c514e1e08db201b45993b344e9f312e.png" alt="Visa" />                               
                                 </td>
                                 <td style="width:70px;">
-                                    <input name="op-DPChoose-AMEX^SSL" type="image" src="/static/img/logos/AMEX.gif" alt="Amex" />                                    
+                                    <input name="op-DPChoose-Maestro^SSL" type="image" src="/static/img/logos/78b6bdb195e7fc394b09c80f2b0a6e4.png" alt="Maestro" />                                    
                                 </td>
+                                <td style="width:70px;">
+                                    <input name="op-DPChoose-JCB^SSL" type="image" src="/static/img/logos/8d0fb151dc66e94b4969fe63748a473.png" alt="JCB" />                                    
+                                </td>
+                                <td style="width:70px;">
+                                    <input name="op-DPChoose-WP^SSL" type="image" src="/static/img/logos/d9c9a010ab363d78b82a3aff5837f86.png" alt="worldpay" />                                    
+                                </td>
+                               
                             </tr>
                         </tbody>
                     </table>

@@ -22,3 +22,7 @@ InnerException:
 Message: 邮箱不可用。 服务器响应为:5.7.54 SMTP; Unable to relay recipient in non-accepted domain
 InnerException: 
 
+2019/9/11 13:30:28
+Message: 发送邮件失败。
+InnerException: 正在中止线程。
+
