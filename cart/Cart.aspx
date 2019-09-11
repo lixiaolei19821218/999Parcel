@@ -115,8 +115,8 @@
             </fieldset>-->
             
             <div>
-                <asp:RadioButton runat="server" ID="rbBalance" Text="余额支付" Checked="true" GroupName="PayMethod" />
-                    <asp:RadioButton runat="server" ID="rbWorldPay" Text="World Pay支付" GroupName="PayMethod" />
+                <asp:RadioButton runat="server" ID="rbBalance" Text="余额支付" Checked="true" GroupName="PayMethod" OnCheckedChanged="rbBalance_CheckedChanged" AutoPostBack="false" />
+                    <asp:RadioButton runat="server" ID="rbWorldPay" Text="World Pay支付" GroupName="PayMethod" OnCheckedChanged="rbWorldPay_CheckedChanged" AutoPostBack="false" />
                 <div style="float: right">总金额: <strong class="total-price" style="color: #f00"><%:GetTotalPrice().ToString("c", CultureInfo.CreateSpecificCulture("en-GB")) %></strong></div>
             </div>
 

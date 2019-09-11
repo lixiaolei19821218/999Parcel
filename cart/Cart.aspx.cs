@@ -790,6 +790,11 @@ public partial class cart_Cart : System.Web.UI.Page
             {
                 return;
             }
+            if (normalOrders.Count() > 1)
+            {
+                lbmessage.Text = "Worldpay只支持单笔支付..";
+                return;
+            }
             Session["Cost"] = totalPrice;
             Session["Orders"] = normalOrders;
             Session["Total999PickupCount"] = Total999PickupCount;
@@ -1413,6 +1418,30 @@ public partial class cart_Cart : System.Web.UI.Page
                     }
                 }
             }
+        }
+    }
+
+    protected void rbWorldPay_CheckedChanged(object sender, EventArgs e)
+    {
+        if (rbWorldPay.Checked)
+        {
+            payAll.Visible = false;
+        }
+        else
+        {
+            payAll.Visible = true;
+        }
+    }
+
+    protected void rbBalance_CheckedChanged(object sender, EventArgs e)
+    {
+        if (rbBalance.Checked)
+        {
+            payAll.Visible = true;
+        }
+        else
+        {
+            payAll.Visible = false;
         }
     }
 }

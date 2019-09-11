@@ -12,6 +12,13 @@ using System.Configuration;
 
 public partial class cart_Worldpay : System.Web.UI.Page
 {
+    [Ninject.Inject]
+    public IRepository repo
+    {
+        get;
+        set;
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack)
@@ -161,8 +168,9 @@ public partial class cart_Worldpay : System.Web.UI.Page
                 {
                     client.GetOrderService().Refund(response.orderCode);
                     Session["Message"] = "发送订单失败，Worldpay已退款";
-                    Response.Redirect("cart.aspx");
-                }         
+                    //Response.Redirect("cart.aspx");
+                }
+                repo.Context.SaveChanges();
                 Response.Redirect("paid.aspx");
             }
             HandleSuccessResponse(response);
